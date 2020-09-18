@@ -2,6 +2,7 @@
 #define LOGIN_H
 
 #include <QDialog>
+#include <QtWidgets>
 
 namespace Ui {
 class login;
@@ -15,7 +16,7 @@ public:
     explicit login(QWidget *parent = nullptr);
     ~login();
 
-    bool logining();
+     int logining();
 
 private slots:
 

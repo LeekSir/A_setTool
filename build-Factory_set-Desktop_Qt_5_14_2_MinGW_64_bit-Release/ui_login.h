@@ -39,7 +39,14 @@ public:
     {
         if (login->objectName().isEmpty())
             login->setObjectName(QString::fromUtf8("login"));
-        login->resize(354, 221);
+        login->resize(354, 218);
+        QSizePolicy sizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
+        sizePolicy.setHorizontalStretch(0);
+        sizePolicy.setVerticalStretch(0);
+        sizePolicy.setHeightForWidth(login->sizePolicy().hasHeightForWidth());
+        login->setSizePolicy(sizePolicy);
+        login->setMinimumSize(QSize(354, 218));
+        login->setMaximumSize(QSize(354, 218));
         layoutWidget = new QWidget(login);
         layoutWidget->setObjectName(QString::fromUtf8("layoutWidget"));
         layoutWidget->setGeometry(QRect(40, 50, 200, 54));

@@ -3,6 +3,7 @@
 #include <QApplication>
 #include "login.h"
 #include <QDebug>
+#include <synchapi.h>//延时
 
 int main(int argc, char *argv[])
 {
@@ -12,12 +13,20 @@ int main(int argc, char *argv[])
     log.show();
     if(log.exec() == QDialog::Accepted)
     {
+
+
         factory_set w;
-        w.setWindowTitle("产测软件配置工具");
-        if(log.logining())//登陆
+        if(log.logining() == 0)//登陆
         {
+            //Sleep(2000);
             w.Usr_Type = true;
+            w.setWindowTitle("产测软件配置工具(工程员)");
         }
+        else
+        {
+            w.setWindowTitle("产测软件配置工具(操作员)");
+        }
+
         qDebug() << w.Usr_Type;
         w.display();
         w.show();

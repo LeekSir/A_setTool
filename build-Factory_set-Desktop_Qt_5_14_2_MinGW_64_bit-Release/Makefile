@@ -248,6 +248,7 @@ Makefile: ../Factory_set/Factory_set.pro D:/Qt/Qt5.14.2/5.14.2/mingw73_64/mkspec
 		D:/Qt/Qt5.14.2/5.14.2/mingw73_64/mkspecs/features/qt_config.prf \
 		D:/Qt/Qt5.14.2/5.14.2/mingw73_64/mkspecs/win32-g++/qmake.conf \
 		D:/Qt/Qt5.14.2/5.14.2/mingw73_64/mkspecs/features/spec_post.prf \
+		.qmake.stash \
 		D:/Qt/Qt5.14.2/5.14.2/mingw73_64/mkspecs/features/exclusive_builds.prf \
 		D:/Qt/Qt5.14.2/5.14.2/mingw73_64/mkspecs/features/toolchain.prf \
 		D:/Qt/Qt5.14.2/5.14.2/mingw73_64/mkspecs/features/default_pre.prf \
@@ -276,8 +277,8 @@ Makefile: ../Factory_set/Factory_set.pro D:/Qt/Qt5.14.2/5.14.2/mingw73_64/mkspec
 		D:/Qt/Qt5.14.2/5.14.2/mingw73_64/lib/Qt5Gui.prl \
 		D:/Qt/Qt5.14.2/5.14.2/mingw73_64/lib/Qt5Core.prl \
 		D:/Qt/Qt5.14.2/5.14.2/mingw73_64/lib/qtmain.prl \
-		.qmake.stash \
-		D:/Qt/Qt5.14.2/5.14.2/mingw73_64/mkspecs/features/build_pass.prf
+		D:/Qt/Qt5.14.2/5.14.2/mingw73_64/mkspecs/features/build_pass.prf \
+		../Factory_set/image.qrc
 	$(QMAKE) -o Makefile ..\Factory_set\Factory_set.pro -spec win32-g++ "CONFIG+=qtquickcompiler"
 D:/Qt/Qt5.14.2/5.14.2/mingw73_64/mkspecs/features/spec_pre.prf:
 D:/Qt/Qt5.14.2/5.14.2/mingw73_64/mkspecs/qdevice.pri:
@@ -457,6 +458,7 @@ D:/Qt/Qt5.14.2/5.14.2/mingw73_64/mkspecs/features/qt_functions.prf:
 D:/Qt/Qt5.14.2/5.14.2/mingw73_64/mkspecs/features/qt_config.prf:
 D:/Qt/Qt5.14.2/5.14.2/mingw73_64/mkspecs/win32-g++/qmake.conf:
 D:/Qt/Qt5.14.2/5.14.2/mingw73_64/mkspecs/features/spec_post.prf:
+.qmake.stash:
 D:/Qt/Qt5.14.2/5.14.2/mingw73_64/mkspecs/features/exclusive_builds.prf:
 D:/Qt/Qt5.14.2/5.14.2/mingw73_64/mkspecs/features/toolchain.prf:
 D:/Qt/Qt5.14.2/5.14.2/mingw73_64/mkspecs/features/default_pre.prf:
@@ -485,8 +487,8 @@ D:/Qt/Qt5.14.2/5.14.2/mingw73_64/lib/Qt5Widgets.prl:
 D:/Qt/Qt5.14.2/5.14.2/mingw73_64/lib/Qt5Gui.prl:
 D:/Qt/Qt5.14.2/5.14.2/mingw73_64/lib/Qt5Core.prl:
 D:/Qt/Qt5.14.2/5.14.2/mingw73_64/lib/qtmain.prl:
-.qmake.stash:
 D:/Qt/Qt5.14.2/5.14.2/mingw73_64/mkspecs/features/build_pass.prf:
+../Factory_set/image.qrc:
 qmake: FORCE
 	@$(QMAKE) -o Makefile ..\Factory_set\Factory_set.pro -spec win32-g++ "CONFIG+=qtquickcompiler"
 

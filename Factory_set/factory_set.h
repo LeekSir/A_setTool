@@ -5,13 +5,9 @@
 #include <QPushButton>
 #include <QDebug>
 #include <QtWidgets>
-/*
-#define FILE_CVTE_MES "..\CVTE_MES.ini"
-#define FILE_WT_DUT_MIMO "..\WT_SETUP\WT_DUT_MIMO.txt"
-#define FILE_WT_TESTER "..\WT_SETUP\WT_TESTER.txt"
-#define FILE_ADVANCE_INI "..\advance.ini"
-#define FILE_DEBUG_INI "..\debug.ini"
-*/
+
+
+
 QT_BEGIN_NAMESPACE
 namespace Ui { class factory_set; }
 QT_END_NAMESPACE
@@ -30,15 +26,29 @@ public:
 private slots:
     void on_pushButton_set_clicked();
 
-    void on_pushButton_clicked();
-
     void on_pushButton_input_clicked();
+
+    void on_pushButton_set_LineLoss_clicked();
+
+    void on_pushButton_display_LineLoss_clicked();
 
 private:
     QString openfile_display(QString filename, QString show);
     void openfile_set_show(QString filename, QString line_id, QLineEdit* wirte_show);
     void openfile_set_debug(QString filename, bool check_box_sta);
+    void about_info(QString dlgTitle, QString strInfo);
+    QString openfile_display_lineloss(QString filename, QString show, int port_num);
+    void openfile_set_LineLoss(QString Box_name, QDoubleSpinBox* wirte_show, int port_num);
+
     Ui::factory_set *ui;
+
+    QString filename_CVTE_MES;
+    QString filename_WT_DUT_MIMO;
+    QString filename_WT_TESTER;
+    QString filename_advance;
+    QString filename_debug;
+    QString filename_SoftVer;
+    QString filename_WT_ATTEN_DUT;
 
 
 
