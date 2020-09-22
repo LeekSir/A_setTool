@@ -1,6 +1,7 @@
 #include "factory_set.h"
 #include "ui_factory_set.h"
 #include <QChar>
+#include <QLabel>
 
 
 factory_set::factory_set(QWidget *parent)
@@ -8,17 +9,27 @@ factory_set::factory_set(QWidget *parent)
     , ui(new Ui::factory_set)
 {
     ui->setupUi(this);
+#if 0
+    //测试
+    filename_CVTE_MES = "CVTE_MES.ini";//"../CVTE_MES.ini";
+    filename_WT_DUT_MIMO = "WT_DUT_MIMO.txt";//"../WT_SETUP/WT_DUT_MIMO.txt";
+    filename_WT_TESTER = "WT_TESTER.txt";//"../WT_SETUP/WT_TESTER.txt";
+    filename_advance = "advance.ini";//"../advance.ini";
+    filename_debug = "debug.ini";//"../debug.ini";
+    filename_SoftVer = "CVTE_SoftVer_Readme.txt";//"../CVTE_SoftVer_Readme.txt";
+    filename_WT_ATTEN_DUT = "WT_ATTEN_DUT_1.txt";//"../WT_SETUP/WT_ATTEN_DUT_1.txt";
+    filename_WT_WRITE_EFUSE = "WT_FLOW.txt";//"../WT_SETUP/WT_FLOW.txt";
+#else
+    //发布
     filename_CVTE_MES = "../CVTE_MES.ini";
     filename_WT_DUT_MIMO = "../WT_SETUP/WT_DUT_MIMO.txt";
     filename_WT_TESTER = "../WT_SETUP/WT_TESTER.txt";
     filename_advance = "../advance.ini";
-    filename_debug = "/../debug.ini";
+    filename_debug = "../debug.ini";
     filename_SoftVer = "../CVTE_SoftVer_Readme.txt";
     filename_WT_ATTEN_DUT = "../WT_SETUP/WT_ATTEN_DUT_1.txt";
-
-    //this->setObjectName("dialog");
-    //this->setStyleSheet("QWidget {background-image:url(:/image/image/login_bg.jpg)}");
-
+    filename_WT_WRITE_EFUSE = "../WT_SETUP/WT_FLOW.txt";
+#endif
     //display();
 }
 
@@ -45,9 +56,6 @@ QString factory_set::openfile_display(QString filename, QString show)
     QFile Ncfile(RunFrameNcFile);
     if(!Ncfile.open(QIODevice::ReadOnly))
     {
-        QMessageBox::critical(0 , "错误" , "没有找到" + filename + "文件",
-                              QMessageBox::Ok | QMessageBox::Default , QMessageBox::Cancel
-                              | QMessageBox::Escape , 	0 );
         return NULL;
     }
 
@@ -79,6 +87,184 @@ QString factory_set::openfile_display(QString filename, QString show)
 }
 
 
+/**************************************************************************
+**
+** NAME     openfile_wefuse_display
+**
+** PARAMETERS:  QString box_id
+**
+** RETURNS: bool
+**
+** DESCRIPTION  查看是否需要 写efuse.
+**
+** NOTES:       None.
+**************************************************************************/
+bool factory_set::openfile_wefuse_display(QString box_id)
+{
+    QString RunFrameNcFile = filename_WT_WRITE_EFUSE;
+    QFile Ncfile(RunFrameNcFile);
+    if(!Ncfile.open(QIODevice::ReadOnly))
+    {
+        qDebug() << "ERRERRERRERREERRR";
+        return NULL;
+    }
+
+    if (Ncfile.isOpen())
+    {
+        QString strtemp;
+        QTextStream NctextStream(&Ncfile);
+        //展示项
+        QString temp;
+        while(!NctextStream.atEnd())
+        {
+            strtemp = NctextStream.readLine();
+            //if(strtemp.split("//").at(0).simplified() == box_id)
+            if(strtemp.mid(0, box_id.length()) == box_id)
+            {
+                //if()
+                qDebug() << "!!!!!!!!!!!!!!!!!!!!!!!";
+                Ncfile.close();
+                return true;
+            }
+        }
+        Ncfile.close();
+    }
+
+    return false;
+
+}
+
+/**************************************************************************
+**
+** NAME     openfile_set_show
+**
+** PARAMETERS:  (QString filename, QString line_id, QLineEdit* wirte_show)
+**
+** RETURNS:
+**
+** DESCRIPTION  设置第二页中的相关参数.
+**
+** NOTES:       None.
+**************************************************************************/
+void factory_set::openfile_set_wefuse(QString box_id)
+{
+    QString RunFrameNcFile = filename_WT_WRITE_EFUSE;
+    QFile Ncfile(RunFrameNcFile);
+    Ncfile.open(QIODevice::ReadOnly);
+    if (Ncfile.isOpen())
+    {
+        QString strtemp;
+        QTextStream NctextStream(&Ncfile);
+
+        QString temp;
+        while(!NctextStream.atEnd())
+        {
+            strtemp = NctextStream.readLine();
+            if(strtemp.mid(0, box_id.length()) == box_id)
+            {
+                if(ui->checkBox_WT_WRITE_EFUSE->checkState())
+                {
+                    qDebug() << "222222222222222222222";
+                    temp += strtemp;
+                    temp += QString('\n');
+                }
+                else
+                {
+                    temp += "//" + strtemp;
+                    temp += QString('\n');
+                }
+            }
+            else if(strtemp.mid(2, box_id.length()) == box_id)
+            {
+                if(!ui->checkBox_WT_WRITE_EFUSE->checkState())
+                {
+                    qDebug() << "3333333333333333333333";
+                    temp += strtemp;
+                    temp += QString('\n');
+                }
+                else
+                {
+                    qDebug() << strtemp.mid(2, strtemp.length()-2);
+                    temp += strtemp.mid(2, strtemp.length()-2);
+                    temp += QString('\n');
+                }
+            }
+            else
+            {
+                temp += strtemp;
+                temp += QString('\n');
+            }
+        }
+        Ncfile.close();
+        Ncfile.open(QIODevice::WriteOnly);
+        QTextStream in(&Ncfile);
+        in <<temp;
+        Ncfile.close();
+    }
+}
+
+
+/**************************************************************************
+**
+** NAME     display_user_login
+**
+** PARAMETERS:  void
+**
+** RETURNS:
+**
+** DESCRIPTION  显示MES连接信息，并显示在界面上
+**
+** NOTES:       None.
+**************************************************************************/
+void factory_set::display_user_login()
+{
+    QImage *USER = new QImage;
+    qDebug() << "helloworld##############";
+    if(this->Usr_Type)
+    {
+        USER->load(":/image/USER.png");
+        ui->label_user->setPixmap(QPixmap::fromImage(*USER));
+    }
+}
+
+/**************************************************************************
+**
+** NAME     display_connect_mes
+**
+** PARAMETERS:  void
+**
+** RETURNS:
+**
+** DESCRIPTION  显示MES连接信息，并显示在界面上
+**
+** NOTES:       None.
+**************************************************************************/
+void factory_set::display_connect_mes()
+{
+    QImage *MES = new QImage;
+    QString MES_STA = openfile_display(filename_WT_DUT_MIMO, "WT_IS_NEED_LINKMES");
+    if("1" == MES_STA)
+    {
+        qDebug() << "################################";
+        MES->load(":/image/MES_CONNECT.png");
+        ui->label_MES_Status->setPixmap(QPixmap::fromImage(*MES));
+    }
+    else// if("0" == MES_STA)
+    {
+        qDebug() << "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@";
+        MES->load(":/image/MES_DISCONNECT.png");
+        ui->label_MES_Status->setPixmap(QPixmap::fromImage(*MES));
+    }
+#if 0
+    else //if(NULL == MES_STA)
+    {
+        MES->load(":/image/file_no_find.png");
+        ui->label_MES_Status->setPixmap(QPixmap::fromImage(*MES));
+    }
+#endif
+
+
+}
 
 /**************************************************************************
 **
@@ -102,17 +288,23 @@ void factory_set::display()
         ui->lineEdit_IP->setReadOnly(1);
         ui->lineEdit_Port->setReadOnly(1);
         ui->lineEdit_WksNo->setReadOnly(1);
-        ui->lineEdit_PassWord->setReadOnly(1);
-        ui->lineEdit_NgCount->setReadOnly(1);
-        ui->lineEdit_CauseNo->setReadOnly(1);
-        ui->lineEdit_TestItem->setReadOnly(1);
-        ui->lineEdit_WorkerNo->setReadOnly(1);
-        ui->lineEdit_UserName->setReadOnly(1);
-        ui->lineEdit_SysUrl->setReadOnly(1);
+
+        //ui->lineEdit_PassWord->setReadOnly(1);
+        //ui->lineEdit_NgCount->setReadOnly(1);
+        //ui->lineEdit_CauseNo->setReadOnly(1);
+        //ui->lineEdit_TestItem->setReadOnly(1);
+        //ui->lineEdit_WorkerNo->setReadOnly(1);
+        //ui->lineEdit_UserName->setReadOnly(1);
+        //ui->lineEdit_SysUrl->setReadOnly(1);
         ui->lineEdit_WorkCenter->setReadOnly(1);
-        ui->lineEdit_StationCode->setReadOnly(1);
+        //ui->lineEdit_StationCode->setReadOnly(1);
         ui->lineEdit_AutoTestVersion->setReadOnly(1);
-        ui->lineEdit_ProdUrl->setReadOnly(1);
+        //ui->lineEdit_ProdUrl->setReadOnly(1);
+
+        //new
+        ui->lineEdit_MoLotNo->setReadOnly(1);
+        ui->lineEdit_PartNo->setReadOnly(1);
+        ui->lineEdit_ModuleType->setReadOnly(1);
 
         //第二页
         ui->pushButton_input->setEnabled(0);
@@ -123,6 +315,7 @@ void factory_set::display()
         //ui->lineEdit_PopUpFunction->setReadOnly(1);
         //ui->lineEdit_PopUpEnable->setReadOnly(1);
         ui->checkBox_Debug_log->setEnabled(0);
+        ui->checkBox_WT_WRITE_EFUSE->setEnabled(0);
 
         //第三页
         ui->pushButton_set_LineLoss->setEnabled(0);
@@ -131,6 +324,9 @@ void factory_set::display()
         ui->doubleSpinBox_WT_FIXED_ATTEN_2_4_CHAIN1->setReadOnly(1);
         ui->doubleSpinBox_WT_FIXED_ATTEN_5_CHAIN0->setReadOnly(1);
         ui->doubleSpinBox_WT_FIXED_ATTEN_5_CHAIN1->setReadOnly(1);
+        //BT
+        ui->doubleSpinBox_WT_FIXED_ATTEN_BT->setReadOnly(1);
+
         //2.4G
         ui->doubleSpinBox_CH1_Port1->setReadOnly(1);
         ui->doubleSpinBox_CH3_Port1->setReadOnly(1);
@@ -177,24 +373,36 @@ void factory_set::display()
         //this->setObjectName("dialog");
         //this->setStyleSheet("QDialog#dialog{border-image:url(me.png)}");
     }
+
+    /*if(!(ui->lineEdit_AutoTestVersion->text() == openfile_display(filename_CVTE_MES, "AutoTestVersion")))
+    {
+       QMessageBox::critical(0 , "警告信息" , "软件版本号不一致，请核对！",
+                             QMessageBox::Ok | QMessageBox::Default , QMessageBox::Cancel
+                             | QMessageBox::Escape , 	0 );
+    }*/
+
+    ui->lineEdit_AutoTestVersion->setReadOnly(1);
     ui->lineEdit_WT_IS_NEED_LINKMES->setReadOnly(1);
     QString filename = "CVTE_MES.ini";
     //展示 CVTE_MES.ini
     ui->lineEdit_IP->setText(openfile_display(filename_CVTE_MES, "IP"));
     ui->lineEdit_Port->setText(openfile_display(filename_CVTE_MES, "Port"));
-    ui->lineEdit_ProdUrl->setText(openfile_display(filename_CVTE_MES, "ProdUrl"));
-    ui->lineEdit_SysUrl->setText(openfile_display(filename_CVTE_MES, "SysUrl"));
-    ui->lineEdit_UserName->setText(openfile_display(filename_CVTE_MES, "UserName"));
-    ui->lineEdit_PassWord->setText(openfile_display(filename_CVTE_MES, "PassWord"));
-    ui->lineEdit_CauseNo->setText(openfile_display(filename_CVTE_MES, "CauseNo"));
+    //ui->lineEdit_ProdUrl->setText(openfile_display(filename_CVTE_MES, "ProdUrl"));
+    //ui->lineEdit_SysUrl->setText(openfile_display(filename_CVTE_MES, "SysUrl"));
+    //ui->lineEdit_UserName->setText(openfile_display(filename_CVTE_MES, "UserName"));
+    //ui->lineEdit_PassWord->setText(openfile_display(filename_CVTE_MES, "PassWord"));
+    //ui->lineEdit_CauseNo->setText(openfile_display(filename_CVTE_MES, "CauseNo"));
     ui->lineEdit_WorkCenter->setText(openfile_display(filename_CVTE_MES, "WorkCenter"));
     ui->lineEdit_WksNo->setText(openfile_display(filename_CVTE_MES, "WksNo"));
     ui->lineEdit_TestFrameidNo->setText(openfile_display(filename_CVTE_MES, "TestFrameidNo"));
     ui->lineEdit_WorkerNo->setText(openfile_display(filename_CVTE_MES, "WorkerNo"));
     ui->lineEdit_AutoTestVersion->setText(openfile_display(filename_CVTE_MES, "AutoTestVersion"));
-    ui->lineEdit_TestItem->setText(openfile_display(filename_CVTE_MES, "TestItem"));
-    ui->lineEdit_StationCode->setText(openfile_display(filename_CVTE_MES, "StationCode"));
-    ui->lineEdit_NgCount->setText(openfile_display(filename_CVTE_MES, "NgCount"));
+    //ui->lineEdit_TestItem->setText(openfile_display(filename_CVTE_MES, "TestItem"));
+    //ui->lineEdit_StationCode->setText(openfile_display(filename_CVTE_MES, "StationCode"));
+    //ui->lineEdit_NgCount->setText(openfile_display(filename_CVTE_MES, "NgCount"));
+    ui->lineEdit_MoLotNo->setText(openfile_display(filename_CVTE_MES, "MoLotNo"));
+    ui->lineEdit_PartNo->setText(openfile_display(filename_CVTE_MES, "PartNo"));
+    ui->lineEdit_ModuleType->setText(openfile_display(filename_CVTE_MES, "ModuleType"));
 
     //展示 CVTE_SoftVer_Readme
     ui->lineEdit_AutoTestVersion->setText(openfile_display(filename_SoftVer, "AutoTestVersion"));
@@ -222,10 +430,26 @@ void factory_set::display()
         ui->checkBox_Debug_log->setCheckState(Qt::CheckState::Unchecked);
     }
 
+    //展示 WT_FLOW
+    if(openfile_wefuse_display("WT_WRITE_EFUSE\t\t"))
+    {
+        ui->checkBox_WT_WRITE_EFUSE->setCheckState(Qt::CheckState::Checked);
+    }
+    else
+    {
+        qDebug() << "111111111111111111";
+        ui->checkBox_WT_WRITE_EFUSE->setCheckState(Qt::CheckState::Unchecked);
+    }
+
     //展示 WT_ATTEN_DUT 线损参数
     on_pushButton_display_LineLoss_clicked();
     //提示信息
     //ui->lineEdit_PopUpFunction->setPlaceholderText(openfile_display("advance.ini", "PopUpFunction"));
+    //
+    display_connect_mes();
+    display_user_login();
+
+
 
 
 
@@ -248,12 +472,6 @@ void factory_set::display()
 void factory_set::on_pushButton_set_clicked()
 {
 #if 1
-    if(!(ui->lineEdit_AutoTestVersion->text() == openfile_display(filename_CVTE_MES, "AutoTestVersion")))
-    {
-       QMessageBox::critical(0 , "警告信息" , "软件版本号不一致，请核对！",
-                             QMessageBox::Ok | QMessageBox::Default , QMessageBox::Cancel
-                             | QMessageBox::Escape , 	0 );
-    }
 
     QString RunFrameNcFile = "CVTE_MES.ini";
     QFile Ncfile(RunFrameNcFile);
@@ -284,6 +502,11 @@ void factory_set::on_pushButton_set_clicked()
         QString StationCode = "StationCode";
         QString NgCount = "NgCount";
 
+        //new
+        QString MoLotNo = "MoLotNo";
+        QString PartNo = "StationCode";
+        QString ModuleType = "NgCount";
+
         QString Alltemp;
         while(!NctextStream.atEnd())
         {
@@ -299,6 +522,7 @@ void factory_set::on_pushButton_set_clicked()
                 Alltemp += Port + "=" + ui->lineEdit_Port->text();
                 Alltemp += QString('\n');
             }
+            #if 0
             else if(strtemp.mid(0,ProdUrl.length()) == ProdUrl)
             {
                 Alltemp += ProdUrl + "=" + ui->lineEdit_ProdUrl->text();
@@ -324,6 +548,7 @@ void factory_set::on_pushButton_set_clicked()
                 Alltemp += CauseNo + "=" + ui->lineEdit_CauseNo->text();
                 Alltemp += QString('\n');
             }
+            #endif
             else if(strtemp.mid(0,WorkCenter.length()) == WorkCenter)
             {
                 Alltemp += WorkCenter + "=" + ui->lineEdit_WorkCenter->text();
@@ -334,11 +559,12 @@ void factory_set::on_pushButton_set_clicked()
                 Alltemp += WksNo + "=" + ui->lineEdit_WksNo->text();
                 Alltemp += QString('\n');
             }
+            /*
             else if(strtemp.mid(0,TestFrameidNo.length()) == TestFrameidNo)
             {
                 Alltemp += TestFrameidNo + "=" + ui->lineEdit_TestItem->text();
                 Alltemp += QString('\n');
-            }
+            }*/
             else if(strtemp.mid(0,WorkerNo.length()) == WorkerNo)
             {
                 Alltemp += WorkerNo + "=" + ui->lineEdit_WorkerNo->text();
@@ -349,6 +575,7 @@ void factory_set::on_pushButton_set_clicked()
                 Alltemp += AutoTestVersion + "=" + ui->lineEdit_AutoTestVersion->text();
                 Alltemp += QString('\n');
             }
+            /*
             else if(strtemp.mid(0,StationCode.length()) == StationCode)
             {
                 Alltemp += StationCode + "=" + ui->lineEdit_StationCode->text();
@@ -357,6 +584,25 @@ void factory_set::on_pushButton_set_clicked()
             else if(strtemp.mid(0,NgCount.length()) == NgCount)
             {
                 Alltemp += NgCount + "=" + ui->lineEdit_NgCount->text();
+                Alltemp += QString('\n');
+            }*/
+            //new
+            else if(strtemp.mid(0,UserName.length()) == MoLotNo)
+            {
+                qDebug() << "###############################";
+                Alltemp += UserName + "=" + ui->lineEdit_MoLotNo->text();
+                Alltemp += QString('\n');
+            }
+            else if(strtemp.mid(0,PassWord.length()) == PartNo)
+            {
+                qDebug() << "###############################";
+                Alltemp += PassWord + "=" + ui->lineEdit_PartNo->text();
+                Alltemp += QString('\n');
+            }
+            else if(strtemp.mid(0,CauseNo.length()) == ModuleType)
+            {
+                qDebug() << "###############################";
+                Alltemp += CauseNo + "=" + ui->lineEdit_ModuleType->text();
                 Alltemp += QString('\n');
             }
             else
@@ -458,7 +704,7 @@ void factory_set::openfile_set_debug(QString filename, bool check_box_sta)
 //信息提示窗口
 void factory_set::about_info(QString dlgTitle, QString strInfo)
 {
-    QMessageBox::about(0, dlgTitle, strInfo);
+    QMessageBox::about(this, dlgTitle, strInfo);
 }
 
 /**************************************************************************
@@ -547,6 +793,9 @@ void factory_set::on_pushButton_input_clicked()
 
     //debug.ini
     openfile_set_debug("debug.ini", ui->checkBox_Debug_log->checkState());
+
+    //WT_FLOW 写EFUSE
+    openfile_set_wefuse("WT_WRITE_EFUSE\t\t");
 
     Sleep(3000);
     about_info("提示", "参数配置成功！");
@@ -675,11 +924,62 @@ void factory_set::openfile_set_LineLoss(QString Box_name, QDoubleSpinBox* SpinBo
     }
 }
 
+/**************************************************************************
+**
+** NAME     openfile_set_show
+**
+** PARAMETERS:  (QString filename, QString line_id, QLineEdit* wirte_show)
+**
+** RETURNS:
+**
+** DESCRIPTION  设置第二页中的相关参数.
+**
+** NOTES:       None.
+**************************************************************************/
+void factory_set::openfile_set_BT_show(QString filename, QString Box_id, QDoubleSpinBox* SpinBox)
+{
+    QString RunFrameNcFile = filename;
+    QFile Ncfile(RunFrameNcFile);
+    Ncfile.open(QIODevice::ReadOnly);
+    if (Ncfile.isOpen())
+    {
+        QString strtemp;
+        QTextStream NctextStream(&Ncfile);
+
+        QString temp;
+        while(!NctextStream.atEnd())
+        {
+            strtemp = NctextStream.readLine();
+            if(strtemp.mid(0, Box_id.length()) == Box_id)
+            {
+                qDebug() << strtemp;
+                temp += Box_id + "\t=\t" + QString::number(SpinBox->value(),'f',1);
+                temp += QString('\n');
+            }
+            else
+            {
+
+                temp += strtemp;
+                temp += QString('\n');
+            }
+        }
+        Ncfile.close();
+        Ncfile.open(QIODevice::WriteOnly);
+        QTextStream in(&Ncfile);
+        in <<temp;
+        Ncfile.close();
+    }
+}
+
 void factory_set::on_pushButton_set_LineLoss_clicked()
 {
+    ui->pushButton_set_LineLoss->setChecked(true);
     filename_WT_ATTEN_DUT = "../WT_SETUP/WT_ATTEN_" + ui->comboBox_WT_ATTEN_DUT_Select->currentText() + ".txt";
 
     int port_num = 1;
+
+    openfile_set_BT_show(filename_WT_ATTEN_DUT, "WT_FIXED_ATTEN_BT", ui->doubleSpinBox_WT_FIXED_ATTEN_BT);
+
     //端口号为1，2.4G的值
     openfile_set_LineLoss("CH1", ui->doubleSpinBox_CH1_Port1, port_num);
     openfile_set_LineLoss("CH3", ui->doubleSpinBox_CH3_Port1, port_num);
@@ -721,11 +1021,14 @@ void factory_set::on_pushButton_set_LineLoss_clicked()
     openfile_set_LineLoss("CH157", ui->doubleSpinBox_CH157_Port2, port_num);
     openfile_set_LineLoss("CH161", ui->doubleSpinBox_CH161_Port2, port_num);
     openfile_set_LineLoss("CH165", ui->doubleSpinBox_CH165_Port2, port_num);
+    ui->pushButton_set_LineLoss->setChecked(true);
     Sleep(3000);
     about_info("提示", "参数配置成功！");
 
     on_pushButton_display_LineLoss_clicked();
+    ui->pushButton_set_LineLoss->setChecked(false);
 }
+
 
 
 
@@ -739,6 +1042,9 @@ void factory_set::on_pushButton_display_LineLoss_clicked()
     ui->doubleSpinBox_WT_FIXED_ATTEN_2_4_CHAIN1->setValue(openfile_display(filename_WT_ATTEN_DUT, "WT_FIXED_ATTEN_2_4_CHAIN1").toDouble());
     ui->doubleSpinBox_WT_FIXED_ATTEN_5_CHAIN0->setValue(openfile_display(filename_WT_ATTEN_DUT, "WT_FIXED_ATTEN_5_CHAIN0").toDouble());
     ui->doubleSpinBox_WT_FIXED_ATTEN_5_CHAIN1->setValue(openfile_display(filename_WT_ATTEN_DUT, "WT_FIXED_ATTEN_5_CHAIN1").toDouble());
+    //BT
+    ui->doubleSpinBox_WT_FIXED_ATTEN_BT->setValue(openfile_display(filename_WT_ATTEN_DUT, "WT_FIXED_ATTEN_BT").toDouble());
+
 
     //openfile_display_lineloss(filename_WT_ATTEN_DUT, "CH1");
     int port_num = 1;
@@ -782,4 +1088,13 @@ void factory_set::on_pushButton_display_LineLoss_clicked()
     ui->doubleSpinBox_CH157_Port2->setValue(openfile_display_lineloss(filename_WT_ATTEN_DUT, "CH157", port_num).toDouble());
     ui->doubleSpinBox_CH161_Port2->setValue(openfile_display_lineloss(filename_WT_ATTEN_DUT, "CH161", port_num).toDouble());
     ui->doubleSpinBox_CH165_Port2->setValue(openfile_display_lineloss(filename_WT_ATTEN_DUT, "CH165", port_num).toDouble());
+
+
+}
+
+void factory_set::on_pushButton_refresh_clicked()
+{
+   display();
+   Sleep(1000);
+   about_info("提示", "刷新成功！");
 }

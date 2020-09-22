@@ -19,7 +19,7 @@ CXXFLAGS      = -fno-keep-inline-dllexport -O2 -std=gnu++11 -Wall -Wextra -Wextr
 INCPATH       = -I..\Factory_set -I. -ID:\Qt\Qt5.14.2\5.14.2\mingw73_64\include -ID:\Qt\Qt5.14.2\5.14.2\mingw73_64\include\QtWidgets -ID:\Qt\Qt5.14.2\5.14.2\mingw73_64\include\QtGui -ID:\Qt\Qt5.14.2\5.14.2\mingw73_64\include\QtANGLE -ID:\Qt\Qt5.14.2\5.14.2\mingw73_64\include\QtCore -Irelease -I. -I/include -ID:\Qt\Qt5.14.2\5.14.2\mingw73_64\mkspecs\win32-g++ 
 LINKER      =        g++
 LFLAGS        =        -Wl,-s -Wl,-subsystem,windows -mthreads
-LIBS        =        D:\Qt\Qt5.14.2\5.14.2\mingw73_64\lib\libQt5Widgets.a D:\Qt\Qt5.14.2\5.14.2\mingw73_64\lib\libQt5Gui.a D:\Qt\Qt5.14.2\5.14.2\mingw73_64\lib\libQt5Core.a  -lmingw32 D:\Qt\Qt5.14.2\5.14.2\mingw73_64\lib\libqtmain.a -LC:\openssl\lib -LC:\Utils\my_sql\mysql-5.7.25-winx64\lib -LC:\Utils\postgresql\pgsql\lib -lshell32 
+LIBS        =        D:\Qt\Qt5.14.2\5.14.2\mingw73_64\lib\libQt5Widgets.a D:\Qt\Qt5.14.2\5.14.2\mingw73_64\lib\libQt5Gui.a D:\Qt\Qt5.14.2\5.14.2\mingw73_64\lib\libQt5Core.a release\AppIcon_res.o  -lmingw32 D:\Qt\Qt5.14.2\5.14.2\mingw73_64\lib\libqtmain.a -LC:\openssl\lib -LC:\Utils\my_sql\mysql-5.7.25-winx64\lib -LC:\Utils\postgresql\pgsql\lib -lshell32 
 QMAKE         = D:\Qt\Qt5.14.2\5.14.2\mingw73_64\bin\qmake.exe
 DEL_FILE      = del
 CHK_DIR_EXISTS= if not exist
@@ -40,7 +40,7 @@ IDC           = idc
 IDL           = midl
 ZIP           = zip -r -9
 DEF_FILE      = 
-RES_FILE      = 
+RES_FILE      = release\AppIcon_res.o
 SED           = $(QMAKE) -install sed
 MOVE          = move
 
@@ -75,8 +75,11 @@ DESTDIR_TARGET = release\Factory_set.exe
 first: all
 all: Makefile.Release  release/Factory_set.exe
 
-release/Factory_set.exe: D:/Qt/Qt5.14.2/5.14.2/mingw73_64/lib/libQt5Widgets.a D:/Qt/Qt5.14.2/5.14.2/mingw73_64/lib/libQt5Gui.a D:/Qt/Qt5.14.2/5.14.2/mingw73_64/lib/libQt5Core.a D:/Qt/Qt5.14.2/5.14.2/mingw73_64/lib/libqtmain.a ui_factory_set.h ui_login.h $(OBJECTS) 
+release/Factory_set.exe: D:/Qt/Qt5.14.2/5.14.2/mingw73_64/lib/libQt5Widgets.a D:/Qt/Qt5.14.2/5.14.2/mingw73_64/lib/libQt5Gui.a D:/Qt/Qt5.14.2/5.14.2/mingw73_64/lib/libQt5Core.a D:/Qt/Qt5.14.2/5.14.2/mingw73_64/lib/libqtmain.a ui_factory_set.h ui_login.h $(OBJECTS) release/AppIcon_res.o
 	$(LINKER) $(LFLAGS) -o $(DESTDIR_TARGET) $(OBJECTS)  $(LIBS)
+
+release/AppIcon_res.o: ../Factory_set/AppIcon.rc
+	windres -i ..\Factory_set\AppIcon.rc -o release\AppIcon_res.o --include-dir=./../Factory_set $(DEFINES)
 
 qmake: FORCE
 	@$(QMAKE) -o Makefile.Release ..\Factory_set\Factory_set.pro -spec win32-g++ "CONFIG+=qtquickcompiler"
@@ -88,6 +91,7 @@ dist:
 
 clean: compiler_clean 
 	-$(DEL_FILE) release\qrc_image.o release\login.o release\main.o release\factory_set.o release\moc_factory_set.o release\moc_login.o
+	-$(DEL_FILE) release\AppIcon_res.o
 
 distclean: clean 
 	-$(DEL_FILE) .qmake.stash
@@ -114,7 +118,14 @@ compiler_rcc_clean:
 	-$(DEL_FILE) release\qrc_image.cpp release\qrc_image.tmp.o
 release/qrc_image.o: ../Factory_set/image.qrc \
 		D:/Qt/Qt5.14.2/5.14.2/mingw73_64/bin/rcc.exe \
-		../Factory_set/image/login_bg.jpg
+		../Factory_set/image/file_no_find.png \
+		../Factory_set/image/MES_DISCONNECT.png \
+		../Factory_set/image/login.png \
+		../Factory_set/image/USER.png \
+		../Factory_set/image/MES_CONNECT.png \
+		../Factory_set/image/reminder.png \
+		../Factory_set/image/CVTE.jpg \
+		../Factory_set/image/set.png
 	D:\Qt\Qt5.14.2\5.14.2\mingw73_64\bin\rcc.exe -name image ..\Factory_set\image.qrc -pass 1 -o release/qrc_image.cpp 
 	 g++ $(CXXFLAGS) -c release/qrc_image.cpp -o release/qrc_image.tmp.o 
 	 D:\Qt\Qt5.14.2\5.14.2\mingw73_64\bin\rcc.exe -name image ..\Factory_set\image.qrc -pass 2 -temp release/qrc_image.tmp.o -o release\qrc_image.o
@@ -1582,6 +1593,13 @@ release/login.o: ../Factory_set/login.cpp ../Factory_set/login.h \
 		D:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/qwizard.h \
 		D:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/qtwidgetsversion.h \
 		ui_login.h \
+		D:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtGui/QIcon \
+		D:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/QApplication \
+		D:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/QHBoxLayout \
+		D:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/QLabel \
+		D:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/QLineEdit \
+		D:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/QPushButton \
+		D:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/QVBoxLayout \
 		D:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/QDebug
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\login.o ..\Factory_set\login.cpp
 
@@ -2539,6 +2557,22 @@ release/factory_set.o: ../Factory_set/factory_set.cpp ../Factory_set/factory_set
 		D:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/qwizard.h \
 		D:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/qtwidgetsversion.h \
 		ui_factory_set.h \
+		D:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtGui/QIcon \
+		D:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/QApplication \
+		D:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/QCheckBox \
+		D:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/QComboBox \
+		D:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/QDoubleSpinBox \
+		D:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/QFormLayout \
+		D:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/QGridLayout \
+		D:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/QHBoxLayout \
+		D:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/QLabel \
+		D:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/QLineEdit \
+		D:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/QMenuBar \
+		D:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/QSpacerItem \
+		D:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/QSplitter \
+		D:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/QStatusBar \
+		D:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/QTabWidget \
+		D:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/QVBoxLayout \
 		D:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/QChar
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\factory_set.o ..\Factory_set\factory_set.cpp
 

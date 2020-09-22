@@ -31,6 +31,13 @@
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
+  <property name="windowIcon">
+   <iconset resource="image.qrc">
+    <normaloff>:/image/login.png</normaloff>:/image/login.png</iconset>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">#dialog{border-image: url(:/image/USER.png);}</string>
+  </property>
   <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
@@ -139,6 +146,8 @@
    </property>
   </widget>
  </widget>
- <resources/>
+ <resources>
+  <include location="image.qrc"/>
+ </resources>
  <connections/>
 </ui>

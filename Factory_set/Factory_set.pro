@@ -1,4 +1,5 @@
 QT       += core gui
+#RC_ICONS = process_icon.ico
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -37,3 +38,5 @@ RESOURCES += \
     image.qrc
 
 DISTFILES +=
+
+RC_FILE += AppIcon.rc

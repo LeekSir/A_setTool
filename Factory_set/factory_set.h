@@ -32,6 +32,8 @@ private slots:
 
     void on_pushButton_display_LineLoss_clicked();
 
+    void on_pushButton_refresh_clicked();
+
 private:
     QString openfile_display(QString filename, QString show);
     void openfile_set_show(QString filename, QString line_id, QLineEdit* wirte_show);
@@ -39,6 +41,12 @@ private:
     void about_info(QString dlgTitle, QString strInfo);
     QString openfile_display_lineloss(QString filename, QString show, int port_num);
     void openfile_set_LineLoss(QString Box_name, QDoubleSpinBox* wirte_show, int port_num);
+    void openfile_set_BT_show(QString filename, QString Box_id, QDoubleSpinBox* SpinBox);
+    bool openfile_wefuse_display(QString show);
+    void openfile_set_wefuse(QString box_id);
+    void display_user_login();
+
+    void display_connect_mes();
 
     Ui::factory_set *ui;
 
@@ -49,6 +57,7 @@ private:
     QString filename_debug;
     QString filename_SoftVer;
     QString filename_WT_ATTEN_DUT;
+    QString filename_WT_WRITE_EFUSE;
 
 
 

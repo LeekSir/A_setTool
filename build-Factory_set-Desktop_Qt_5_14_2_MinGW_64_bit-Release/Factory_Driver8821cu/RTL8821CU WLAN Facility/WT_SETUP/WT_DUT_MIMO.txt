@@ -24,7 +24,7 @@ WT_START_TEST_WHEN_POPUP_OK		= 0			//тзфТсцаквт╤╞в╔©╗╡Бйтё╛╣╞╢╟╨Свт╤╞©╙й╪╡Бйтё╛╡
 
 WT_DUT_LIB_NAME             		= DutLib_RTL8821CU.dll
 
-WT_IS_NEED_LINKMES			= 0			//йг╥Яа╛╫сMES
+WT_IS_NEED_LINKMES			= 1			//йг╥Яа╛╫сMES
 								//0ё╨╡╩а╛╫с(д╛хож╣)
 								//1: а╛╫с
 //WT_MES_LIB_NAME			= WT_MES.dll
