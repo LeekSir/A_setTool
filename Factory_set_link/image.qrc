@@ -1,0 +1,12 @@
+<RCC>
+    <qresource prefix="/">
+        <file>image/MES_CONNECT.png</file>
+        <file>image/MES_DISCONNECT.png</file>
+        <file>image/USER.png</file>
+        <file>image/file_no_find.png</file>
+        <file>image/reminder.png</file>
+        <file>image/login.png</file>
+        <file>image/set.png</file>
+        <file>image/CVTE.jpg</file>
+    </qresource>
+</RCC>

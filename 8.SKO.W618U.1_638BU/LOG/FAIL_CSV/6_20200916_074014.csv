@@ -1,0 +1,10 @@
+Process ID	:,2e1729f5010853b76c2368e8
+Date		:,2020-09-16 07:40:14
+Elapsed time(s)	:,32.00
+Dut Sn:,
+Dut Mac: ,2C641FEA019D
+Tester Sn: ,WT208C-30473
+Test Summary	:,FAIL
+Num	,Date		,Measurement Name			,P/F		,Measurement	,Units		,Lower Limit	,Upper Limit	,LCEx			,Error Code,
+1	,1.170000	,WLAN_CAL_11AG_54M_2412_Freq_Ant0	,FAIL		, 3.27		,ppm		,-2.00		, 2.00		,(>= <=)		,2002,
+

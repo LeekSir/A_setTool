@@ -1,0 +1,17 @@
+Process ID	:,14b9234b29c1060d4f920f74
+Date		:,2020-09-17 10:59:29
+Elapsed time(s)	:,17.00
+Dut Sn:,
+Dut Mac: ,2C641FE9E3D7
+Tester Sn: ,WT208C-30473
+Test Summary	:,FAIL
+Num	,Date		,Measurement Name			,P/F		,Measurement	,Units		,Lower Limit	,Upper Limit	,LCEx			,Error Code,
+976	,0.390000	,WLAN_CAL_11AG_54M_2412_Freq_Ant0	,PASS		, 1.21		,ppm		,-2.00		, 2.00		,(>= <=)		,0,
+977	,1.061000	,WLAN_CAL_11AG_54M_2412_Power_Ant0	,PASS		,14.93		,dBm		,14.50		,15.50		,(>= <=)		,0,
+978	,0.297000	,WLAN_CAL_11AG_54M_2437_Power_Ant0	,PASS		,14.91		,dBm		,14.50		,15.50		,(>= <=)		,0,
+979	,0.328000	,WLAN_CAL_11AG_54M_2462_Power_Ant0	,PASS		,15.03		,dBm		,14.50		,15.50		,(>= <=)		,0,
+980	,0.359000	,WLAN_CAL_11AG_54M_2412_Power_Ant1	,PASS		,14.93		,dBm		,14.50		,15.50		,(>= <=)		,0,
+981	,0.343000	,WLAN_CAL_11AG_54M_2437_Power_Ant1	,PASS		,15.09		,dBm		,14.50		,15.50		,(>= <=)		,0,
+982	,0.359000	,WLAN_CAL_11AG_54M_2462_Power_Ant1	,PASS		,15.18		,dBm		,14.50		,15.50		,(>= <=)		,0,
+983	,3.354000	,WLAN_CAL_11AG_54M_5180_Power_Ant0	,FAIL		,13.33		,dBm		, 0.50		,28.50		,(>= <=)		,5003,
+

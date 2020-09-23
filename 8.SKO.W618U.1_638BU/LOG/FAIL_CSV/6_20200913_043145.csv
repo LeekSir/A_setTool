@@ -1,0 +1,27 @@
+Process ID	:,336f1d3e23b222df1328488c
+Date		:,2020-09-13 04:31:45
+Elapsed time(s)	:,20.00
+Dut Sn:,
+Dut Mac: ,2C641FE029BB
+Tester Sn: ,WT208C-30473
+Test Summary	:,FAIL
+Num	,Date		,Measurement Name			,P/F		,Measurement	,Units		,Lower Limit	,Upper Limit	,LCEx			,Error Code,
+626	,1.201000	,WLAN_CAL_11AG_54M_2412_Freq_Ant0	,PASS		, 0.24		,ppm		,-2.00		, 2.00		,(>= <=)		,0,
+627	,1.060000	,WLAN_CAL_11AG_54M_2412_Power_Ant0	,PASS		,15.00		,dBm		,14.50		,15.50		,(>= <=)		,0,
+628	,0.328000	,WLAN_CAL_11AG_54M_2437_Power_Ant0	,PASS		,15.27		,dBm		,14.50		,15.50		,(>= <=)		,0,
+629	,0.343000	,WLAN_CAL_11AG_54M_2462_Power_Ant0	,PASS		,15.27		,dBm		,14.50		,15.50		,(>= <=)		,0,
+630	,0.375000	,WLAN_CAL_11AG_54M_2412_Power_Ant1	,PASS		,14.82		,dBm		,14.50		,15.50		,(>= <=)		,0,
+631	,0.312000	,WLAN_CAL_11AG_54M_2437_Power_Ant1	,PASS		,14.89		,dBm		,14.50		,15.50		,(>= <=)		,0,
+632	,0.328000	,WLAN_CAL_11AG_54M_2462_Power_Ant1	,PASS		,15.11		,dBm		,14.50		,15.50		,(>= <=)		,0,
+633	,1.138000	,WLAN_CAL_11AG_54M_5180_Power_Ant0	,PASS		,13.88		,dBm		,13.50		,14.50		,(>= <=)		,0,
+634	,0.312000	,WLAN_CAL_11AG_54M_5240_Power_Ant0	,PASS		,13.79		,dBm		,13.50		,14.50		,(>= <=)		,0,
+635	,1.170000	,WLAN_CAL_11AG_54M_5260_Power_Ant0	,PASS		,14.26		,dBm		,13.50		,14.50		,(>= <=)		,0,
+636	,0.328000	,WLAN_CAL_11AG_54M_5320_Power_Ant0	,PASS		,13.74		,dBm		,13.50		,14.50		,(>= <=)		,0,
+637	,1.108000	,WLAN_CAL_11AG_54M_5500_Power_Ant0	,PASS		,13.79		,dBm		,13.50		,14.50		,(>= <=)		,0,
+638	,0.328000	,WLAN_CAL_11AG_54M_5580_Power_Ant0	,PASS		,13.91		,dBm		,13.50		,14.50		,(>= <=)		,0,
+639	,1.170000	,WLAN_CAL_11AG_54M_5600_Power_Ant0	,PASS		,13.80		,dBm		,13.50		,14.50		,(>= <=)		,0,
+640	,0.343000	,WLAN_CAL_11AG_54M_5680_Power_Ant0	,PASS		,14.30		,dBm		,13.50		,14.50		,(>= <=)		,0,
+641	,1.185000	,WLAN_CAL_11AG_54M_5700_Power_Ant0	,PASS		,13.82		,dBm		,13.50		,14.50		,(>= <=)		,0,
+642	,0.312000	,WLAN_CAL_11AG_54M_5785_Power_Ant0	,PASS		,13.94		,dBm		,13.50		,14.50		,(>= <=)		,0,
+643	,3.620000	,WLAN_CAL_11AG_54M_5805_Power_Ant0	,FAIL		,13.33		,dBm		, 0.50		,28.50		,(>= <=)		,5003,
+

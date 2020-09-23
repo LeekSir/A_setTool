@@ -1,0 +1,27 @@
+Process ID	:,16f659214911425f75c64d89
+Date		:,2020-09-16 01:35:32
+Elapsed time(s)	:,20.00
+Dut Sn:,
+Dut Mac: ,2C641FE9E1FC
+Tester Sn: ,WT208C-30473
+Test Summary	:,FAIL
+Num	,Date		,Measurement Name			,P/F		,Measurement	,Units		,Lower Limit	,Upper Limit	,LCEx			,Error Code,
+1	,0.889000	,WLAN_CAL_11AG_54M_2412_Freq_Ant0	,PASS		,-0.68		,ppm		,-2.00		, 2.00		,(>= <=)		,0,
+2	,1.045000	,WLAN_CAL_11AG_54M_2412_Power_Ant0	,PASS		,14.71		,dBm		,14.50		,15.50		,(>= <=)		,0,
+3	,0.546000	,WLAN_CAL_11AG_54M_2437_Power_Ant0	,PASS		,14.89		,dBm		,14.50		,15.50		,(>= <=)		,0,
+4	,0.343000	,WLAN_CAL_11AG_54M_2462_Power_Ant0	,PASS		,14.69		,dBm		,14.50		,15.50		,(>= <=)		,0,
+5	,0.328000	,WLAN_CAL_11AG_54M_2412_Power_Ant1	,PASS		,14.93		,dBm		,14.50		,15.50		,(>= <=)		,0,
+6	,0.312000	,WLAN_CAL_11AG_54M_2437_Power_Ant1	,PASS		,14.90		,dBm		,14.50		,15.50		,(>= <=)		,0,
+7	,0.327000	,WLAN_CAL_11AG_54M_2462_Power_Ant1	,PASS		,14.93		,dBm		,14.50		,15.50		,(>= <=)		,0,
+8	,1.123000	,WLAN_CAL_11AG_54M_5180_Power_Ant0	,PASS		,13.85		,dBm		,13.50		,14.50		,(>= <=)		,0,
+9	,0.328000	,WLAN_CAL_11AG_54M_5240_Power_Ant0	,PASS		,13.55		,dBm		,13.50		,14.50		,(>= <=)		,0,
+10	,1.139000	,WLAN_CAL_11AG_54M_5260_Power_Ant0	,PASS		,14.15		,dBm		,13.50		,14.50		,(>= <=)		,0,
+11	,0.343000	,WLAN_CAL_11AG_54M_5320_Power_Ant0	,PASS		,13.84		,dBm		,13.50		,14.50		,(>= <=)		,0,
+12	,1.092000	,WLAN_CAL_11AG_54M_5500_Power_Ant0	,PASS		,14.14		,dBm		,13.50		,14.50		,(>= <=)		,0,
+13	,0.343000	,WLAN_CAL_11AG_54M_5580_Power_Ant0	,PASS		,13.59		,dBm		,13.50		,14.50		,(>= <=)		,0,
+14	,1.107000	,WLAN_CAL_11AG_54M_5600_Power_Ant0	,PASS		,13.88		,dBm		,13.50		,14.50		,(>= <=)		,0,
+15	,0.328000	,WLAN_CAL_11AG_54M_5680_Power_Ant0	,PASS		,13.83		,dBm		,13.50		,14.50		,(>= <=)		,0,
+16	,1.092000	,WLAN_CAL_11AG_54M_5700_Power_Ant0	,PASS		,13.86		,dBm		,13.50		,14.50		,(>= <=)		,0,
+17	,0.546000	,WLAN_CAL_11AG_54M_5785_Power_Ant0	,PASS		,13.84		,dBm		,13.50		,14.50		,(>= <=)		,0,
+18	,3.510000	,WLAN_CAL_11AG_54M_5805_Power_Ant0	,FAIL		,13.35		,dBm		, 0.50		,28.50		,(>= <=)		,5003,
+

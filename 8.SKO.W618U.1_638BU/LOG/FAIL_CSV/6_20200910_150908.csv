@@ -1,0 +1,27 @@
+Process ID	:,30de78f0700c4d321cfd2bd8
+Date		:,2020-09-10 15:09:08
+Elapsed time(s)	:,21.00
+Dut Sn:,
+Dut Mac: ,2C641FDFE8A6
+Tester Sn: ,WT208C-30473
+Test Summary	:,FAIL
+Num	,Date		,Measurement Name			,P/F		,Measurement	,Units		,Lower Limit	,Upper Limit	,LCEx			,Error Code,
+88	,0.952000	,WLAN_CAL_11AG_54M_2412_Freq_Ant0	,PASS		, 0.71		,ppm		,-2.00		, 2.00		,(>= <=)		,0,
+89	,1.076000	,WLAN_CAL_11AG_54M_2412_Power_Ant0	,PASS		,14.62		,dBm		,14.50		,15.50		,(>= <=)		,0,
+90	,0.312000	,WLAN_CAL_11AG_54M_2437_Power_Ant0	,PASS		,14.95		,dBm		,14.50		,15.50		,(>= <=)		,0,
+91	,0.343000	,WLAN_CAL_11AG_54M_2462_Power_Ant0	,PASS		,14.93		,dBm		,14.50		,15.50		,(>= <=)		,0,
+92	,0.343000	,WLAN_CAL_11AG_54M_2412_Power_Ant1	,PASS		,14.97		,dBm		,14.50		,15.50		,(>= <=)		,0,
+93	,0.343000	,WLAN_CAL_11AG_54M_2437_Power_Ant1	,PASS		,15.06		,dBm		,14.50		,15.50		,(>= <=)		,0,
+94	,0.312000	,WLAN_CAL_11AG_54M_2462_Power_Ant1	,PASS		,15.15		,dBm		,14.50		,15.50		,(>= <=)		,0,
+95	,1.155000	,WLAN_CAL_11AG_54M_5180_Power_Ant0	,PASS		,14.45		,dBm		,13.50		,14.50		,(>= <=)		,0,
+96	,0.312000	,WLAN_CAL_11AG_54M_5240_Power_Ant0	,PASS		,14.22		,dBm		,13.50		,14.50		,(>= <=)		,0,
+97	,1.123000	,WLAN_CAL_11AG_54M_5260_Power_Ant0	,PASS		,14.18		,dBm		,13.50		,14.50		,(>= <=)		,0,
+98	,0.281000	,WLAN_CAL_11AG_54M_5320_Power_Ant0	,PASS		,14.24		,dBm		,13.50		,14.50		,(>= <=)		,0,
+99	,1.201000	,WLAN_CAL_11AG_54M_5500_Power_Ant0	,PASS		,14.03		,dBm		,13.50		,14.50		,(>= <=)		,0,
+100	,0.343000	,WLAN_CAL_11AG_54M_5580_Power_Ant0	,PASS		,13.73		,dBm		,13.50		,14.50		,(>= <=)		,0,
+101	,0.733000	,WLAN_CAL_11AG_54M_5600_Power_Ant0	,PASS		,14.36		,dBm		,13.50		,14.50		,(>= <=)		,0,
+102	,0.359000	,WLAN_CAL_11AG_54M_5680_Power_Ant0	,PASS		,13.52		,dBm		,13.50		,14.50		,(>= <=)		,0,
+103	,3.260000	,WLAN_CAL_11AG_54M_5700_Power_Ant0	,PASS		,13.69		,dBm		,13.50		,14.50		,(>= <=)		,0,
+104	,0.296000	,WLAN_CAL_11AG_54M_5785_Power_Ant0	,PASS		,13.67		,dBm		,13.50		,14.50		,(>= <=)		,0,
+105	,3.463000	,WLAN_CAL_11AG_54M_5805_Power_Ant0	,FAIL		,13.06		,dBm		, 0.50		,28.50		,(>= <=)		,5003,
+

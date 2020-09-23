@@ -1,0 +1,27 @@
+Process ID	:,3c9e66945811576d38162b50
+Date		:,2020-09-10 07:02:46
+Elapsed time(s)	:,17.00
+Dut Sn:,
+Dut Mac: ,2C641FDFE617
+Tester Sn: ,WT208C-30473
+Test Summary	:,FAIL
+Num	,Date		,Measurement Name			,P/F		,Measurement	,Units		,Lower Limit	,Upper Limit	,LCEx			,Error Code,
+1864	,0.655000	,WLAN_CAL_11AG_54M_2412_Freq_Ant0	,PASS		,-1.75		,ppm		,-2.00		, 2.00		,(>= <=)		,0,
+1865	,1.045000	,WLAN_CAL_11AG_54M_2412_Power_Ant0	,PASS		,14.99		,dBm		,14.50		,15.50		,(>= <=)		,0,
+1866	,0.281000	,WLAN_CAL_11AG_54M_2437_Power_Ant0	,PASS		,15.18		,dBm		,14.50		,15.50		,(>= <=)		,0,
+1867	,0.312000	,WLAN_CAL_11AG_54M_2462_Power_Ant0	,PASS		,14.65		,dBm		,14.50		,15.50		,(>= <=)		,0,
+1868	,0.281000	,WLAN_CAL_11AG_54M_2412_Power_Ant1	,PASS		,14.77		,dBm		,14.50		,15.50		,(>= <=)		,0,
+1869	,0.280000	,WLAN_CAL_11AG_54M_2437_Power_Ant1	,PASS		,14.93		,dBm		,14.50		,15.50		,(>= <=)		,0,
+1870	,0.312000	,WLAN_CAL_11AG_54M_2462_Power_Ant1	,PASS		,15.09		,dBm		,14.50		,15.50		,(>= <=)		,0,
+1871	,0.889000	,WLAN_CAL_11AG_54M_5180_Power_Ant0	,PASS		,14.38		,dBm		,13.50		,14.50		,(>= <=)		,0,
+1872	,0.281000	,WLAN_CAL_11AG_54M_5240_Power_Ant0	,PASS		,14.02		,dBm		,13.50		,14.50		,(>= <=)		,0,
+1873	,0.530000	,WLAN_CAL_11AG_54M_5260_Power_Ant0	,PASS		,13.77		,dBm		,13.50		,14.50		,(>= <=)		,0,
+1874	,0.312000	,WLAN_CAL_11AG_54M_5320_Power_Ant0	,PASS		,13.65		,dBm		,13.50		,14.50		,(>= <=)		,0,
+1875	,0.671000	,WLAN_CAL_11AG_54M_5500_Power_Ant0	,PASS		,14.30		,dBm		,13.50		,14.50		,(>= <=)		,0,
+1876	,0.312000	,WLAN_CAL_11AG_54M_5580_Power_Ant0	,PASS		,13.98		,dBm		,13.50		,14.50		,(>= <=)		,0,
+1877	,0.671000	,WLAN_CAL_11AG_54M_5600_Power_Ant0	,PASS		,14.11		,dBm		,13.50		,14.50		,(>= <=)		,0,
+1878	,0.328000	,WLAN_CAL_11AG_54M_5680_Power_Ant0	,PASS		,13.96		,dBm		,13.50		,14.50		,(>= <=)		,0,
+1879	,0.670000	,WLAN_CAL_11AG_54M_5700_Power_Ant0	,PASS		,13.67		,dBm		,13.50		,14.50		,(>= <=)		,0,
+1880	,0.499000	,WLAN_CAL_11AG_54M_5785_Power_Ant0	,PASS		,13.67		,dBm		,13.50		,14.50		,(>= <=)		,0,
+1881	,3.042000	,WLAN_CAL_11AG_54M_5805_Power_Ant0	,FAIL		,13.25		,dBm		, 0.50		,28.50		,(>= <=)		,5003,
+

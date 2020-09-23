@@ -1,0 +1,27 @@
+Process ID	:,065758dd0c9c2a59356479ee
+Date		:,2020-09-13 03:32:50
+Elapsed time(s)	:,16.00
+Dut Sn:,
+Dut Mac: ,2C641FE02A1E
+Tester Sn: ,WT208C-30473
+Test Summary	:,FAIL
+Num	,Date		,Measurement Name			,P/F		,Measurement	,Units		,Lower Limit	,Upper Limit	,LCEx			,Error Code,
+19	,0.437000	,WLAN_CAL_11AG_54M_2412_Freq_Ant0	,PASS		,-0.80		,ppm		,-2.00		, 2.00		,(>= <=)		,0,
+20	,1.029000	,WLAN_CAL_11AG_54M_2412_Power_Ant0	,PASS		,15.03		,dBm		,14.50		,15.50		,(>= <=)		,0,
+21	,0.312000	,WLAN_CAL_11AG_54M_2437_Power_Ant0	,PASS		,15.21		,dBm		,14.50		,15.50		,(>= <=)		,0,
+22	,0.312000	,WLAN_CAL_11AG_54M_2462_Power_Ant0	,PASS		,14.88		,dBm		,14.50		,15.50		,(>= <=)		,0,
+23	,0.328000	,WLAN_CAL_11AG_54M_2412_Power_Ant1	,PASS		,14.73		,dBm		,14.50		,15.50		,(>= <=)		,0,
+24	,0.312000	,WLAN_CAL_11AG_54M_2437_Power_Ant1	,PASS		,15.00		,dBm		,14.50		,15.50		,(>= <=)		,0,
+25	,0.312000	,WLAN_CAL_11AG_54M_2462_Power_Ant1	,PASS		,15.18		,dBm		,14.50		,15.50		,(>= <=)		,0,
+26	,0.312000	,WLAN_CAL_11AG_54M_5180_Power_Ant0	,PASS		,14.36		,dBm		,13.50		,14.50		,(>= <=)		,0,
+27	,0.468000	,WLAN_CAL_11AG_54M_5240_Power_Ant0	,PASS		,14.02		,dBm		,13.50		,14.50		,(>= <=)		,0,
+28	,0.312000	,WLAN_CAL_11AG_54M_5260_Power_Ant0	,PASS		,14.20		,dBm		,13.50		,14.50		,(>= <=)		,0,
+29	,0.437000	,WLAN_CAL_11AG_54M_5320_Power_Ant0	,PASS		,13.94		,dBm		,13.50		,14.50		,(>= <=)		,0,
+30	,0.687000	,WLAN_CAL_11AG_54M_5500_Power_Ant0	,PASS		,14.48		,dBm		,13.50		,14.50		,(>= <=)		,0,
+31	,0.327000	,WLAN_CAL_11AG_54M_5580_Power_Ant0	,PASS		,14.06		,dBm		,13.50		,14.50		,(>= <=)		,0,
+32	,0.530000	,WLAN_CAL_11AG_54M_5600_Power_Ant0	,PASS		,13.97		,dBm		,13.50		,14.50		,(>= <=)		,0,
+33	,0.328000	,WLAN_CAL_11AG_54M_5680_Power_Ant0	,PASS		,14.00		,dBm		,13.50		,14.50		,(>= <=)		,0,
+34	,0.718000	,WLAN_CAL_11AG_54M_5700_Power_Ant0	,PASS		,13.71		,dBm		,13.50		,14.50		,(>= <=)		,0,
+35	,0.312000	,WLAN_CAL_11AG_54M_5785_Power_Ant0	,PASS		,14.05		,dBm		,13.50		,14.50		,(>= <=)		,0,
+36	,3.369000	,WLAN_CAL_11AG_54M_5805_Power_Ant0	,FAIL		,13.38		,dBm		, 0.50		,28.50		,(>= <=)		,5003,
+

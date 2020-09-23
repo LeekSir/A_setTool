@@ -82,16 +82,23 @@ public:
     QSpacerItem *horizontalSpacer_18;
     QGridLayout *gridLayout_15;
     QGridLayout *gridLayout_4;
-    QLabel *label_MES_Status;
-    QSpacerItem *verticalSpacer;
     QLabel *label_user;
+    QSpacerItem *verticalSpacer;
+    QLabel *label_MES_Status;
+    QSpacerItem *horizontalSpacer_2;
+    QSpacerItem *horizontalSpacer_3;
     QHBoxLayout *horizontalLayout_4;
     QSpacerItem *horizontalSpacer;
     QPushButton *pushButton_set;
     QWidget *special_set;
     QGridLayout *gridLayout_7;
     QGridLayout *gridLayout_2;
+    QHBoxLayout *horizontalLayout_13;
+    QSpacerItem *horizontalSpacer_5;
+    QVBoxLayout *verticalLayout_6;
+    QPushButton *pushButton_input;
     QSpacerItem *horizontalSpacer_8;
+    QSpacerItem *horizontalSpacer_16;
     QSplitter *splitter;
     QWidget *layoutWidget;
     QVBoxLayout *verticalLayout;
@@ -121,11 +128,6 @@ public:
     QCheckBox *checkBox_WT_WRITE_EFUSE;
     QLabel *label_20;
     QCheckBox *checkBox_Debug_log;
-    QSpacerItem *horizontalSpacer_16;
-    QHBoxLayout *horizontalLayout_13;
-    QSpacerItem *horizontalSpacer_5;
-    QVBoxLayout *verticalLayout_6;
-    QPushButton *pushButton_input;
     QWidget *tab;
     QGridLayout *gridLayout_21;
     QHBoxLayout *horizontalLayout_5;
@@ -135,15 +137,14 @@ public:
     QSpacerItem *horizontalSpacer_7;
     QGridLayout *gridLayout_19;
     QGridLayout *gridLayout_18;
-    QSpacerItem *verticalSpacer_3;
     QFormLayout *formLayout_2;
     QGridLayout *gridLayout_11;
     QHBoxLayout *horizontalLayout_9;
     QLabel *label_3;
-    QDoubleSpinBox *doubleSpinBox_WT_FIXED_ATTEN_2_4_CHAIN0;
+    QLineEdit *lineEdit_WT_FIXED_ATTEN_2_4_CHAIN0;
     QHBoxLayout *horizontalLayout_20;
     QLabel *label_19;
-    QDoubleSpinBox *doubleSpinBox_WT_FIXED_ATTEN_2_4_CHAIN1;
+    QLineEdit *lineEdit_WT_FIXED_ATTEN_2_4_CHAIN1;
     QGridLayout *gridLayout_13;
     QGridLayout *gridLayout_12;
     QSpacerItem *verticalSpacer_2;
@@ -185,15 +186,16 @@ public:
     QHBoxLayout *horizontalLayout_44;
     QDoubleSpinBox *doubleSpinBox_CH3_Port2;
     QSpacerItem *horizontalSpacer_11;
+    QSpacerItem *verticalSpacer_3;
     QSpacerItem *horizontalSpacer_9;
     QFormLayout *formLayout_3;
     QVBoxLayout *verticalLayout_9;
     QHBoxLayout *horizontalLayout_23;
     QLabel *label_26;
-    QDoubleSpinBox *doubleSpinBox_WT_FIXED_ATTEN_5_CHAIN0;
+    QLineEdit *lineEdit_WT_FIXED_ATTEN_5_CHAIN0;
     QHBoxLayout *horizontalLayout_24;
     QLabel *label_27;
-    QDoubleSpinBox *doubleSpinBox_WT_FIXED_ATTEN_5_CHAIN1;
+    QLineEdit *lineEdit_WT_FIXED_ATTEN_5_CHAIN1;
     QGridLayout *gridLayout_17;
     QGridLayout *gridLayout_16;
     QLabel *label_67;
@@ -263,10 +265,10 @@ public:
     QLabel *label_41;
     QDoubleSpinBox *doubleSpinBox_CH165_Port1;
     QSpacerItem *horizontalSpacer_13;
-    QSpacerItem *horizontalSpacer_6;
     QGridLayout *gridLayout_20;
     QSpacerItem *horizontalSpacer_4;
     QPushButton *pushButton_set_LineLoss;
+    QSpacerItem *horizontalSpacer_6;
     QMenuBar *menubar;
     QStatusBar *statusbar;
 
@@ -322,6 +324,7 @@ public:
         sizePolicy1.setHeightForWidth(tabWidget->sizePolicy().hasHeightForWidth());
         tabWidget->setSizePolicy(sizePolicy1);
         tabWidget->setMouseTracking(false);
+        tabWidget->setStyleSheet(QString::fromUtf8("#tabWidget{background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(9, 41, 4, 255), stop:0.085 rgba(2, 79, 0, 255), stop:0.19 rgba(50, 147, 22, 255), stop:0.275 rgba(236, 191, 49, 255), stop:0.39 rgba(243, 61, 34, 255), stop:0.555 rgba(135, 81, 60, 255), stop:0.667 rgba(121, 75, 255, 255), stop:0.825 rgba(164, 255, 244, 255), stop:0.885 rgba(104, 222, 71, 255), stop:1 rgba(93, 128, 0, 255));}"));
         base_set = new QWidget();
         base_set->setObjectName(QString::fromUtf8("base_set"));
         gridLayout_23 = new QGridLayout(base_set);
@@ -579,19 +582,27 @@ public:
         gridLayout_15->setObjectName(QString::fromUtf8("gridLayout_15"));
         gridLayout_4 = new QGridLayout();
         gridLayout_4->setObjectName(QString::fromUtf8("gridLayout_4"));
-        label_MES_Status = new QLabel(base_set);
-        label_MES_Status->setObjectName(QString::fromUtf8("label_MES_Status"));
-
-        gridLayout_4->addWidget(label_MES_Status, 0, 0, 1, 1);
-
-        verticalSpacer = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
-
-        gridLayout_4->addItem(verticalSpacer, 0, 1, 1, 1);
-
         label_user = new QLabel(base_set);
         label_user->setObjectName(QString::fromUtf8("label_user"));
 
-        gridLayout_4->addWidget(label_user, 0, 2, 1, 1);
+        gridLayout_4->addWidget(label_user, 0, 3, 1, 1);
+
+        verticalSpacer = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
+
+        gridLayout_4->addItem(verticalSpacer, 0, 2, 1, 1);
+
+        label_MES_Status = new QLabel(base_set);
+        label_MES_Status->setObjectName(QString::fromUtf8("label_MES_Status"));
+
+        gridLayout_4->addWidget(label_MES_Status, 0, 1, 1, 1);
+
+        horizontalSpacer_2 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        gridLayout_4->addItem(horizontalSpacer_2, 0, 0, 1, 1);
+
+        horizontalSpacer_3 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        gridLayout_4->addItem(horizontalSpacer_3, 0, 4, 1, 1);
 
 
         gridLayout_15->addLayout(gridLayout_4, 0, 0, 1, 1);
@@ -623,9 +634,38 @@ public:
         gridLayout_7->setObjectName(QString::fromUtf8("gridLayout_7"));
         gridLayout_2 = new QGridLayout();
         gridLayout_2->setObjectName(QString::fromUtf8("gridLayout_2"));
+        horizontalLayout_13 = new QHBoxLayout();
+        horizontalLayout_13->setObjectName(QString::fromUtf8("horizontalLayout_13"));
+        horizontalSpacer_5 = new QSpacerItem(348, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout_13->addItem(horizontalSpacer_5);
+
+
+        gridLayout_2->addLayout(horizontalLayout_13, 1, 0, 1, 2);
+
+        verticalLayout_6 = new QVBoxLayout();
+        verticalLayout_6->setObjectName(QString::fromUtf8("verticalLayout_6"));
+        pushButton_input = new QPushButton(special_set);
+        pushButton_input->setObjectName(QString::fromUtf8("pushButton_input"));
+        QSizePolicy sizePolicy3(QSizePolicy::Maximum, QSizePolicy::Maximum);
+        sizePolicy3.setHorizontalStretch(0);
+        sizePolicy3.setVerticalStretch(0);
+        sizePolicy3.setHeightForWidth(pushButton_input->sizePolicy().hasHeightForWidth());
+        pushButton_input->setSizePolicy(sizePolicy3);
+        pushButton_input->setMaximumSize(QSize(100, 50));
+
+        verticalLayout_6->addWidget(pushButton_input);
+
+
+        gridLayout_2->addLayout(verticalLayout_6, 1, 2, 1, 1);
+
         horizontalSpacer_8 = new QSpacerItem(26, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
 
         gridLayout_2->addItem(horizontalSpacer_8, 0, 0, 1, 1);
+
+        horizontalSpacer_16 = new QSpacerItem(26, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        gridLayout_2->addItem(horizontalSpacer_16, 0, 2, 1, 1);
 
         splitter = new QSplitter(special_set);
         splitter->setObjectName(QString::fromUtf8("splitter"));
@@ -637,11 +677,11 @@ public:
         verticalLayout->setContentsMargins(0, 0, 0, 0);
         label_17 = new QLabel(layoutWidget);
         label_17->setObjectName(QString::fromUtf8("label_17"));
-        QSizePolicy sizePolicy3(QSizePolicy::Preferred, QSizePolicy::Fixed);
-        sizePolicy3.setHorizontalStretch(0);
-        sizePolicy3.setVerticalStretch(0);
-        sizePolicy3.setHeightForWidth(label_17->sizePolicy().hasHeightForWidth());
-        label_17->setSizePolicy(sizePolicy3);
+        QSizePolicy sizePolicy4(QSizePolicy::Preferred, QSizePolicy::Fixed);
+        sizePolicy4.setHorizontalStretch(0);
+        sizePolicy4.setVerticalStretch(0);
+        sizePolicy4.setHeightForWidth(label_17->sizePolicy().hasHeightForWidth());
+        label_17->setSizePolicy(sizePolicy4);
         label_17->setFont(font);
 
         verticalLayout->addWidget(label_17);
@@ -650,11 +690,11 @@ public:
         horizontalLayout_2->setObjectName(QString::fromUtf8("horizontalLayout_2"));
         label_21 = new QLabel(layoutWidget);
         label_21->setObjectName(QString::fromUtf8("label_21"));
-        QSizePolicy sizePolicy4(QSizePolicy::Fixed, QSizePolicy::Fixed);
-        sizePolicy4.setHorizontalStretch(0);
-        sizePolicy4.setVerticalStretch(0);
-        sizePolicy4.setHeightForWidth(label_21->sizePolicy().hasHeightForWidth());
-        label_21->setSizePolicy(sizePolicy4);
+        QSizePolicy sizePolicy5(QSizePolicy::Fixed, QSizePolicy::Fixed);
+        sizePolicy5.setHorizontalStretch(0);
+        sizePolicy5.setVerticalStretch(0);
+        sizePolicy5.setHeightForWidth(label_21->sizePolicy().hasHeightForWidth());
+        label_21->setSizePolicy(sizePolicy5);
         label_21->setMinimumSize(QSize(70, 0));
         label_21->setMaximumSize(QSize(70, 16777215));
         label_21->setBaseSize(QSize(0, 0));
@@ -675,8 +715,8 @@ public:
         horizontalLayout_12->setObjectName(QString::fromUtf8("horizontalLayout_12"));
         label_22 = new QLabel(layoutWidget);
         label_22->setObjectName(QString::fromUtf8("label_22"));
-        sizePolicy4.setHeightForWidth(label_22->sizePolicy().hasHeightForWidth());
-        label_22->setSizePolicy(sizePolicy4);
+        sizePolicy5.setHeightForWidth(label_22->sizePolicy().hasHeightForWidth());
+        label_22->setSizePolicy(sizePolicy5);
         label_22->setMinimumSize(QSize(70, 0));
         label_22->setMaximumSize(QSize(70, 16777215));
 
@@ -696,8 +736,8 @@ public:
         horizontalLayout_18->setObjectName(QString::fromUtf8("horizontalLayout_18"));
         label_23 = new QLabel(layoutWidget);
         label_23->setObjectName(QString::fromUtf8("label_23"));
-        sizePolicy4.setHeightForWidth(label_23->sizePolicy().hasHeightForWidth());
-        label_23->setSizePolicy(sizePolicy4);
+        sizePolicy5.setHeightForWidth(label_23->sizePolicy().hasHeightForWidth());
+        label_23->setSizePolicy(sizePolicy5);
         label_23->setMinimumSize(QSize(70, 0));
         label_23->setMaximumSize(QSize(70, 16777215));
 
@@ -721,8 +761,8 @@ public:
         verticalLayout_2->setContentsMargins(0, 0, 0, 0);
         label_18 = new QLabel(layoutWidget1);
         label_18->setObjectName(QString::fromUtf8("label_18"));
-        sizePolicy3.setHeightForWidth(label_18->sizePolicy().hasHeightForWidth());
-        label_18->setSizePolicy(sizePolicy3);
+        sizePolicy4.setHeightForWidth(label_18->sizePolicy().hasHeightForWidth());
+        label_18->setSizePolicy(sizePolicy4);
         QFont font1;
         font1.setFamily(QString::fromUtf8("Adobe Arabic"));
         font1.setPointSize(18);
@@ -736,8 +776,8 @@ public:
         horizontalLayout_21->setObjectName(QString::fromUtf8("horizontalLayout_21"));
         label_24 = new QLabel(layoutWidget1);
         label_24->setObjectName(QString::fromUtf8("label_24"));
-        sizePolicy4.setHeightForWidth(label_24->sizePolicy().hasHeightForWidth());
-        label_24->setSizePolicy(sizePolicy4);
+        sizePolicy5.setHeightForWidth(label_24->sizePolicy().hasHeightForWidth());
+        label_24->setSizePolicy(sizePolicy5);
         label_24->setMinimumSize(QSize(70, 0));
         label_24->setMaximumSize(QSize(70, 16777215));
 
@@ -757,8 +797,8 @@ public:
         horizontalLayout_22->setObjectName(QString::fromUtf8("horizontalLayout_22"));
         label_25 = new QLabel(layoutWidget1);
         label_25->setObjectName(QString::fromUtf8("label_25"));
-        sizePolicy4.setHeightForWidth(label_25->sizePolicy().hasHeightForWidth());
-        label_25->setSizePolicy(sizePolicy4);
+        sizePolicy5.setHeightForWidth(label_25->sizePolicy().hasHeightForWidth());
+        label_25->setSizePolicy(sizePolicy5);
         label_25->setMinimumSize(QSize(70, 0));
         label_25->setMaximumSize(QSize(70, 16777215));
 
@@ -784,8 +824,8 @@ public:
         verticalLayout_15->setObjectName(QString::fromUtf8("verticalLayout_15"));
         label_64 = new QLabel(layoutWidget2);
         label_64->setObjectName(QString::fromUtf8("label_64"));
-        sizePolicy3.setHeightForWidth(label_64->sizePolicy().hasHeightForWidth());
-        label_64->setSizePolicy(sizePolicy3);
+        sizePolicy4.setHeightForWidth(label_64->sizePolicy().hasHeightForWidth());
+        label_64->setSizePolicy(sizePolicy4);
         label_64->setFont(font1);
 
         verticalLayout_15->addWidget(label_64);
@@ -800,8 +840,8 @@ public:
 
         label_20 = new QLabel(layoutWidget2);
         label_20->setObjectName(QString::fromUtf8("label_20"));
-        sizePolicy3.setHeightForWidth(label_20->sizePolicy().hasHeightForWidth());
-        label_20->setSizePolicy(sizePolicy3);
+        sizePolicy4.setHeightForWidth(label_20->sizePolicy().hasHeightForWidth());
+        label_20->setSizePolicy(sizePolicy4);
         label_20->setFont(font1);
 
         verticalLayout_3->addWidget(label_20);
@@ -814,35 +854,6 @@ public:
         splitter->addWidget(layoutWidget2);
 
         gridLayout_2->addWidget(splitter, 0, 1, 1, 1);
-
-        horizontalSpacer_16 = new QSpacerItem(26, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
-
-        gridLayout_2->addItem(horizontalSpacer_16, 0, 2, 1, 1);
-
-        horizontalLayout_13 = new QHBoxLayout();
-        horizontalLayout_13->setObjectName(QString::fromUtf8("horizontalLayout_13"));
-        horizontalSpacer_5 = new QSpacerItem(348, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
-
-        horizontalLayout_13->addItem(horizontalSpacer_5);
-
-
-        gridLayout_2->addLayout(horizontalLayout_13, 1, 0, 1, 2);
-
-        verticalLayout_6 = new QVBoxLayout();
-        verticalLayout_6->setObjectName(QString::fromUtf8("verticalLayout_6"));
-        pushButton_input = new QPushButton(special_set);
-        pushButton_input->setObjectName(QString::fromUtf8("pushButton_input"));
-        QSizePolicy sizePolicy5(QSizePolicy::Maximum, QSizePolicy::Maximum);
-        sizePolicy5.setHorizontalStretch(0);
-        sizePolicy5.setVerticalStretch(0);
-        sizePolicy5.setHeightForWidth(pushButton_input->sizePolicy().hasHeightForWidth());
-        pushButton_input->setSizePolicy(sizePolicy5);
-        pushButton_input->setMaximumSize(QSize(100, 50));
-
-        verticalLayout_6->addWidget(pushButton_input);
-
-
-        gridLayout_2->addLayout(verticalLayout_6, 1, 2, 1, 1);
 
 
         gridLayout_7->addLayout(gridLayout_2, 0, 0, 1, 1);
@@ -892,10 +903,6 @@ public:
         gridLayout_19->setObjectName(QString::fromUtf8("gridLayout_19"));
         gridLayout_18 = new QGridLayout();
         gridLayout_18->setObjectName(QString::fromUtf8("gridLayout_18"));
-        verticalSpacer_3 = new QSpacerItem(78, 108, QSizePolicy::Minimum, QSizePolicy::Expanding);
-
-        gridLayout_18->addItem(verticalSpacer_3, 1, 0, 1, 1);
-
         formLayout_2 = new QFormLayout();
         formLayout_2->setObjectName(QString::fromUtf8("formLayout_2"));
         gridLayout_11 = new QGridLayout();
@@ -909,14 +916,12 @@ public:
 
         horizontalLayout_9->addWidget(label_3);
 
-        doubleSpinBox_WT_FIXED_ATTEN_2_4_CHAIN0 = new QDoubleSpinBox(tab);
-        doubleSpinBox_WT_FIXED_ATTEN_2_4_CHAIN0->setObjectName(QString::fromUtf8("doubleSpinBox_WT_FIXED_ATTEN_2_4_CHAIN0"));
-        doubleSpinBox_WT_FIXED_ATTEN_2_4_CHAIN0->setMinimumSize(QSize(85, 0));
-        doubleSpinBox_WT_FIXED_ATTEN_2_4_CHAIN0->setMaximumSize(QSize(85, 16777215));
-        doubleSpinBox_WT_FIXED_ATTEN_2_4_CHAIN0->setMaximum(10.000000000000000);
-        doubleSpinBox_WT_FIXED_ATTEN_2_4_CHAIN0->setSingleStep(0.100000000000000);
+        lineEdit_WT_FIXED_ATTEN_2_4_CHAIN0 = new QLineEdit(tab);
+        lineEdit_WT_FIXED_ATTEN_2_4_CHAIN0->setObjectName(QString::fromUtf8("lineEdit_WT_FIXED_ATTEN_2_4_CHAIN0"));
+        lineEdit_WT_FIXED_ATTEN_2_4_CHAIN0->setMinimumSize(QSize(85, 0));
+        lineEdit_WT_FIXED_ATTEN_2_4_CHAIN0->setMaximumSize(QSize(85, 16777215));
 
-        horizontalLayout_9->addWidget(doubleSpinBox_WT_FIXED_ATTEN_2_4_CHAIN0);
+        horizontalLayout_9->addWidget(lineEdit_WT_FIXED_ATTEN_2_4_CHAIN0);
 
 
         gridLayout_11->addLayout(horizontalLayout_9, 0, 0, 1, 1);
@@ -930,14 +935,12 @@ public:
 
         horizontalLayout_20->addWidget(label_19);
 
-        doubleSpinBox_WT_FIXED_ATTEN_2_4_CHAIN1 = new QDoubleSpinBox(tab);
-        doubleSpinBox_WT_FIXED_ATTEN_2_4_CHAIN1->setObjectName(QString::fromUtf8("doubleSpinBox_WT_FIXED_ATTEN_2_4_CHAIN1"));
-        doubleSpinBox_WT_FIXED_ATTEN_2_4_CHAIN1->setMinimumSize(QSize(85, 0));
-        doubleSpinBox_WT_FIXED_ATTEN_2_4_CHAIN1->setMaximumSize(QSize(85, 16777215));
-        doubleSpinBox_WT_FIXED_ATTEN_2_4_CHAIN1->setMaximum(10.000000000000000);
-        doubleSpinBox_WT_FIXED_ATTEN_2_4_CHAIN1->setSingleStep(0.100000000000000);
+        lineEdit_WT_FIXED_ATTEN_2_4_CHAIN1 = new QLineEdit(tab);
+        lineEdit_WT_FIXED_ATTEN_2_4_CHAIN1->setObjectName(QString::fromUtf8("lineEdit_WT_FIXED_ATTEN_2_4_CHAIN1"));
+        lineEdit_WT_FIXED_ATTEN_2_4_CHAIN1->setMinimumSize(QSize(85, 0));
+        lineEdit_WT_FIXED_ATTEN_2_4_CHAIN1->setMaximumSize(QSize(85, 16777215));
 
-        horizontalLayout_20->addWidget(doubleSpinBox_WT_FIXED_ATTEN_2_4_CHAIN1);
+        horizontalLayout_20->addWidget(lineEdit_WT_FIXED_ATTEN_2_4_CHAIN1);
 
 
         gridLayout_11->addLayout(horizontalLayout_20, 1, 0, 1, 1);
@@ -1207,6 +1210,10 @@ public:
 
         gridLayout_18->addLayout(formLayout_2, 0, 0, 1, 1);
 
+        verticalSpacer_3 = new QSpacerItem(78, 108, QSizePolicy::Minimum, QSizePolicy::Expanding);
+
+        gridLayout_18->addItem(verticalSpacer_3, 1, 0, 1, 1);
+
 
         gridLayout_19->addLayout(gridLayout_18, 0, 0, 1, 1);
 
@@ -1227,14 +1234,12 @@ public:
 
         horizontalLayout_23->addWidget(label_26);
 
-        doubleSpinBox_WT_FIXED_ATTEN_5_CHAIN0 = new QDoubleSpinBox(tab);
-        doubleSpinBox_WT_FIXED_ATTEN_5_CHAIN0->setObjectName(QString::fromUtf8("doubleSpinBox_WT_FIXED_ATTEN_5_CHAIN0"));
-        doubleSpinBox_WT_FIXED_ATTEN_5_CHAIN0->setMinimumSize(QSize(85, 0));
-        doubleSpinBox_WT_FIXED_ATTEN_5_CHAIN0->setMaximumSize(QSize(85, 16777215));
-        doubleSpinBox_WT_FIXED_ATTEN_5_CHAIN0->setMaximum(15.000000000000000);
-        doubleSpinBox_WT_FIXED_ATTEN_5_CHAIN0->setSingleStep(0.100000000000000);
+        lineEdit_WT_FIXED_ATTEN_5_CHAIN0 = new QLineEdit(tab);
+        lineEdit_WT_FIXED_ATTEN_5_CHAIN0->setObjectName(QString::fromUtf8("lineEdit_WT_FIXED_ATTEN_5_CHAIN0"));
+        lineEdit_WT_FIXED_ATTEN_5_CHAIN0->setMinimumSize(QSize(85, 0));
+        lineEdit_WT_FIXED_ATTEN_5_CHAIN0->setMaximumSize(QSize(85, 16777215));
 
-        horizontalLayout_23->addWidget(doubleSpinBox_WT_FIXED_ATTEN_5_CHAIN0);
+        horizontalLayout_23->addWidget(lineEdit_WT_FIXED_ATTEN_5_CHAIN0);
 
 
         verticalLayout_9->addLayout(horizontalLayout_23);
@@ -1248,14 +1253,12 @@ public:
 
         horizontalLayout_24->addWidget(label_27);
 
-        doubleSpinBox_WT_FIXED_ATTEN_5_CHAIN1 = new QDoubleSpinBox(tab);
-        doubleSpinBox_WT_FIXED_ATTEN_5_CHAIN1->setObjectName(QString::fromUtf8("doubleSpinBox_WT_FIXED_ATTEN_5_CHAIN1"));
-        doubleSpinBox_WT_FIXED_ATTEN_5_CHAIN1->setMinimumSize(QSize(85, 0));
-        doubleSpinBox_WT_FIXED_ATTEN_5_CHAIN1->setMaximumSize(QSize(85, 16777215));
-        doubleSpinBox_WT_FIXED_ATTEN_5_CHAIN1->setMaximum(15.000000000000000);
-        doubleSpinBox_WT_FIXED_ATTEN_5_CHAIN1->setSingleStep(0.100000000000000);
+        lineEdit_WT_FIXED_ATTEN_5_CHAIN1 = new QLineEdit(tab);
+        lineEdit_WT_FIXED_ATTEN_5_CHAIN1->setObjectName(QString::fromUtf8("lineEdit_WT_FIXED_ATTEN_5_CHAIN1"));
+        lineEdit_WT_FIXED_ATTEN_5_CHAIN1->setMinimumSize(QSize(85, 0));
+        lineEdit_WT_FIXED_ATTEN_5_CHAIN1->setMaximumSize(QSize(85, 16777215));
 
-        horizontalLayout_24->addWidget(doubleSpinBox_WT_FIXED_ATTEN_5_CHAIN1);
+        horizontalLayout_24->addWidget(lineEdit_WT_FIXED_ATTEN_5_CHAIN1);
 
 
         verticalLayout_9->addLayout(horizontalLayout_24);
@@ -1722,10 +1725,6 @@ public:
 
         gridLayout_21->addLayout(gridLayout_19, 1, 0, 1, 1);
 
-        horizontalSpacer_6 = new QSpacerItem(163, 88, QSizePolicy::Expanding, QSizePolicy::Minimum);
-
-        gridLayout_21->addItem(horizontalSpacer_6, 1, 1, 1, 1);
-
         gridLayout_20 = new QGridLayout();
         gridLayout_20->setObjectName(QString::fromUtf8("gridLayout_20"));
         horizontalSpacer_4 = new QSpacerItem(278, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
@@ -1739,6 +1738,10 @@ public:
 
 
         gridLayout_21->addLayout(gridLayout_20, 2, 0, 1, 1);
+
+        horizontalSpacer_6 = new QSpacerItem(163, 88, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        gridLayout_21->addItem(horizontalSpacer_6, 1, 1, 1, 1);
 
         tabWidget->addTab(tab, QString());
 
@@ -1775,13 +1778,14 @@ public:
         label_16->setText(QCoreApplication::translate("factory_set", "\347\224\237\344\272\247\346\211\271\346\254\241\345\217\267", nullptr));
         label_63->setText(QCoreApplication::translate("factory_set", "\344\272\247\345\223\201\347\274\226\345\217\267", nullptr));
         label_13->setText(QCoreApplication::translate("factory_set", "\346\234\272\345\236\213", nullptr));
-        label_MES_Status->setText(QString());
         label_user->setText(QString());
+        label_MES_Status->setText(QString());
         pushButton_set->setText(QCoreApplication::translate("factory_set", "\351\205\215 \347\275\256", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(base_set), QCoreApplication::translate("factory_set", "\345\237\272\347\241\200\350\256\276\347\275\256", nullptr));
 #if QT_CONFIG(whatsthis)
         special_set->setWhatsThis(QCoreApplication::translate("factory_set", "<html><head/><body><p><br/></p></body></html>", nullptr));
 #endif // QT_CONFIG(whatsthis)
+        pushButton_input->setText(QCoreApplication::translate("factory_set", "\351\205\215 \347\275\256", nullptr));
         label_17->setText(QCoreApplication::translate("factory_set", "WT_DUT_MIMO:", nullptr));
         label_21->setText(QCoreApplication::translate("factory_set", "\350\207\252\345\212\250\346\265\213\350\257\225\357\274\232", nullptr));
         label_22->setText(QCoreApplication::translate("factory_set", "\346\230\257\345\220\246\350\277\236\346\216\245MES\357\274\232", nullptr));
@@ -1793,7 +1797,6 @@ public:
         checkBox_WT_WRITE_EFUSE->setText(QCoreApplication::translate("factory_set", "\345\206\231EFUSE", nullptr));
         label_20->setText(QCoreApplication::translate("factory_set", "debug.ini:", nullptr));
         checkBox_Debug_log->setText(QCoreApplication::translate("factory_set", "Debug_log", nullptr));
-        pushButton_input->setText(QCoreApplication::translate("factory_set", "\351\205\215 \347\275\256", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(special_set), QCoreApplication::translate("factory_set", "\344\273\252\345\231\250\350\256\276\347\275\256", nullptr));
         label_29->setText(QCoreApplication::translate("factory_set", "DUT\346\226\207\344\273\266\351\200\211\346\213\251\357\274\232", nullptr));
         comboBox_WT_ATTEN_DUT_Select->setItemText(0, QCoreApplication::translate("factory_set", "DUT_1", nullptr));
