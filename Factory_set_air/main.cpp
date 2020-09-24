@@ -18,7 +18,6 @@ int main(int argc, char *argv[])
         factory_set w;
         if(log.logining() == 0)//登陆
         {
-            //Sleep(2000);
             w.Usr_Type = true;
             w.setWindowTitle("产测软件配置工具(工程员)");
         }

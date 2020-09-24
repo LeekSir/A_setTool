@@ -118,10 +118,8 @@ bool factory_set::openfile_wefuse_display(QString box_id)
         while(!NctextStream.atEnd())
         {
             strtemp = NctextStream.readLine();
-            //if(strtemp.split("//").at(0).simplified() == box_id)
             if(strtemp.mid(0, box_id.length()) == box_id)
             {
-                //if()
                 qDebug() << "!!!!!!!!!!!!!!!!!!!!!!!";
                 Ncfile.close();
                 return true;
@@ -133,6 +131,7 @@ bool factory_set::openfile_wefuse_display(QString box_id)
     return false;
 
 }
+
 
 /**************************************************************************
 **
@@ -164,7 +163,6 @@ void factory_set::openfile_set_wefuse(QString box_id)
             {
                 if(ui->checkBox_WT_WRITE_EFUSE->checkState())
                 {
-                    qDebug() << "222222222222222222222";
                     temp += strtemp;
                     temp += QString('\n');
                 }
@@ -178,7 +176,6 @@ void factory_set::openfile_set_wefuse(QString box_id)
             {
                 if(!ui->checkBox_WT_WRITE_EFUSE->checkState())
                 {
-                    qDebug() << "3333333333333333333333";
                     temp += strtemp;
                     temp += QString('\n');
                 }
@@ -251,13 +248,11 @@ void factory_set::display_connect_mes()
     }
     if("1" == MES_STA)
     {
-        qDebug() << "################################";
         MES->load(":/image/MES_CONNECT.png");
         ui->label_MES_Status->setPixmap(QPixmap::fromImage(*MES));
     }
-    else// if("0" == MES_STA)
+    else
     {
-        qDebug() << "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@";
         MES->load(":/image/MES_DISCONNECT.png");
         ui->label_MES_Status->setPixmap(QPixmap::fromImage(*MES));
     }
@@ -386,7 +381,7 @@ void factory_set::display()
 
     ui->lineEdit_AutoTestVersion->setReadOnly(1);
     ui->lineEdit_WT_IS_NEED_LINKMES->setReadOnly(1);
-    //线损不可以修改项
+    //线损不可修改项
     ui->lineEdit_WT_FIXED_ATTEN_2_4_CHAIN0->setReadOnly(1);
     ui->lineEdit_WT_FIXED_ATTEN_2_4_CHAIN1->setReadOnly(1);
     ui->lineEdit_WT_FIXED_ATTEN_5_CHAIN0->setReadOnly(1);
@@ -425,20 +420,13 @@ void factory_set::display()
 
 
     QList<QFileInfo> *fileInfo=new QList<QFileInfo>(dir->entryInfoList(filter));
-    //ui->lineEdit_IP->setText(QString::number(fileInfo->count()));
-    qDebug()<< "###########################" << fileInfo->count();// << curPath.append("/image/");
+    qDebug()<< "###########################" << fileInfo->count();
     for(int i = 0;i<fileInfo->count(); i++)
     {
         QString temp = fileInfo->at(i).fileName();
-        //qDebug()<<fileInfo->at(i).filePath() << curPath << "&&&&&&&&&&&&&&&&&&&&&&&&&&&&";
         if(MoudleType + '.' + WT_IS_NEED_LINKMES + ".jpg" == temp)
         {
-            //ui->lineEdit_IP->setText(curPath);
-            qDebug() << "????????????????????????????" << QFile::copy("../image/" + temp,"../../userlogo.jpg");//<< QFile::copy(curPath + "/image/" + temp,curPath + "/userlogo.jpg");
-
-            //file2.copy(curPath);
-            //dir->rename(fileInfo->at(i).fileName(), "userlogo.jpg" );
-
+            qDebug() << "????????????????????????????" << QFile::copy("../image/" + temp,"../../userlogo.jpg");
 
         }
 
@@ -667,7 +655,7 @@ void factory_set::on_pushButton_set_clicked()
 
 
     }
-    Sleep(3000);
+    Sleep(2000);
     about_info("提示", "参数配置成功！");
 
     display();
@@ -833,7 +821,10 @@ void factory_set::on_pushButton_input_clicked()
     //WT_FLOW 写EFUSE
     openfile_set_wefuse("WT_WRITE_EFUSE\t\t");
 
-    Sleep(3000);
+    //write 端口号
+    openfile_set_show(filename_CVTE_MES, "WT_DUT_START_NUM", ui->lineEdit_WT_DUT_START_NUM);
+
+    Sleep(2000);
     about_info("提示", "参数配置成功！");
 
     display();
@@ -872,8 +863,7 @@ QString factory_set::openfile_display_lineloss(QString filename, QString show, i
             if(strtemp.mid(0, temp.length()) == temp)
             {
                  qDebug() << strtemp;
-                 temp = strtemp.split(QRegExp("\\s+"), QString::SkipEmptyParts).at(port_num);// + "#" + strtemp.split(' ').at(2).simplified();
-                 //QStringList list = strtemp.split(QRegExp("\\s+"), QString::SkipEmptyParts);
+                 temp = strtemp.split(QRegExp("\\s+"), QString::SkipEmptyParts).at(port_num);
                  qDebug() << temp;
                  Ncfile.close();
                  return temp;
@@ -1058,7 +1048,7 @@ void factory_set::on_pushButton_set_LineLoss_clicked()
     openfile_set_LineLoss("CH161", ui->doubleSpinBox_CH161_Port2, port_num);
     openfile_set_LineLoss("CH165", ui->doubleSpinBox_CH165_Port2, port_num);
     ui->pushButton_set_LineLoss->setChecked(true);
-    Sleep(3000);
+    Sleep(2000);
     about_info("提示", "参数配置成功！");
 
     on_pushButton_display_LineLoss_clicked();

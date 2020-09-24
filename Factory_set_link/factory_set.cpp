@@ -659,7 +659,7 @@ void factory_set::on_pushButton_set_clicked()
 
 
     }
-    Sleep(3000);
+    Sleep(2000);
     about_info("提示", "参数配置成功！");
 
     display();
@@ -825,7 +825,13 @@ void factory_set::on_pushButton_input_clicked()
     //WT_FLOW 写EFUSE
     openfile_set_wefuse("WT_WRITE_EFUSE\t\t");
 
-    Sleep(3000);
+
+    //write 端口号
+    openfile_set_show(filename_CVTE_MES, "WT_DUT_START_NUM", ui->lineEdit_WT_DUT_START_NUM);
+
+
+
+    Sleep(2000);
     about_info("提示", "参数配置成功！");
 
     display();
