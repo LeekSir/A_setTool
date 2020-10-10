@@ -9,7 +9,7 @@ factory_set::factory_set(QWidget *parent)
     , ui(new Ui::factory_set)
 {
     ui->setupUi(this);
-#if 0
+#if 1
     //测试
     filename_CVTE_MES = "CVTE_MES.ini";//"../CVTE_MES.ini";
     filename_WT_DUT_MIMO = "WT_DUT_MIMO.txt";//"../WT_SETUP/WT_DUT_MIMO.txt";
@@ -19,6 +19,7 @@ factory_set::factory_set(QWidget *parent)
     filename_SoftVer = "CVTE_SoftVer_Readme.txt";//"../CVTE_SoftVer_Readme.txt";
     filename_WT_ATTEN_DUT = "WT_ATTEN_DUT_1.txt";//"../WT_SETUP/WT_ATTEN_DUT_1.txt";
     filename_WT_WRITE_EFUSE = "WT_FLOW.txt";//"../WT_SETUP/WT_FLOW.txt";
+    filename_WT_MAC = "WT_MAC.txt";
 #else
     //发布
     filename_CVTE_MES = "../../CVTE_MES.ini";
@@ -29,15 +30,31 @@ factory_set::factory_set(QWidget *parent)
     filename_SoftVer = "../../CVTE_SoftVer_Readme.txt";
     filename_WT_ATTEN_DUT = "../../WT_SETUP/WT_ATTEN_DUT_1.txt";
     filename_WT_WRITE_EFUSE = "../../WT_SETUP/WT_FLOW.txt";
+    filename_WT_MAC = "../../WT_SETUP/WT_MAC.txt";
 #endif
-    //display();
+    QStringList arguments;
+    arguments << "/c" << "ping www.baidu.com";
+
+    QProgressDialog dialog(tr("文件复制进度"), tr("取消"), 0, 50000, this);
+    dialog.setWindowTitle(tr("进度对话框"));
+    dialog.setWindowModality(Qt::WindowModal);
+    dialog.show();
+    for(int i = 0; i < 50000; i++)//已知最大值不超过50000
+    {
+        dialog.setValue(i);
+        QCoreApplication::processEvents();
+        if(dialog.wasCanceled())
+            break;
+    }
+    dialog.setValue(50000);
+    qDebug()<<tr("复制结束！");
 }
 
 factory_set::~factory_set()
 {
     delete ui;
 }
-
+#if 0
 /**************************************************************************
 **
 ** NAME     openfile_display
@@ -287,6 +304,17 @@ void factory_set::display_connect_mes()
 #if 1
 void factory_set::display()
 {
+    if(this->Usr_Type)
+    {
+        this->setStyleSheet("#factory_set{background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(255, 0, 0, 255), stop:0.166 rgba(255, 255, 0, 255), stop:0.333 rgba(0, 255, 0, 255), stop:0.5 rgba(0, 255, 255, 255), stop:0.666 rgba(0, 0, 255, 255), stop:0.833 rgba(255, 0, 255, 255), stop:1 rgba(255, 0, 0, 255));}");
+        //ui->tabWidget->setStyleSheet("#tabWidget{background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(255, 0, 0, 255), stop:0.166 rgba(255, 255, 0, 255), stop:0.333 rgba(0, 255, 0, 255), stop:0.5 rgba(0, 255, 255, 255), stop:0.666 rgba(0, 0, 255, 255), stop:0.833 rgba(255, 0, 255, 255), stop:1 rgba(255, 0, 0, 255));}");
+    }
+    else
+    {
+        this->setStyleSheet("#factory_set{background-color: rgb(63, 150, 150);}");
+
+    }
+
     if(!this->Usr_Type)
     {
         //第一页
@@ -307,10 +335,15 @@ void factory_set::display()
         ui->lineEdit_AutoTestVersion->setReadOnly(1);
         //ui->lineEdit_ProdUrl->setReadOnly(1);
 
+
         //new
         ui->lineEdit_MoLotNo->setReadOnly(1);
         ui->lineEdit_PartNo->setReadOnly(1);
-        ui->lineEdit_ModuleType->setReadOnly(1);
+
+        //MAC
+        ui->lineEdit_WT_MAC_RANGE_BEGIN->setReadOnly(1);
+        ui->lineEdit_WT_MAC_RANGE_END->setReadOnly(1);
+        ui->lineEdit_WT_MAC_CURRENT->setReadOnly(1);
 
         //第二页
         ui->pushButton_input->setEnabled(0);
@@ -370,20 +403,8 @@ void factory_set::display()
         ui->doubleSpinBox_CH165_Port2->setReadOnly(1);
 
     }
-    else
-    {
-        //this->setWindowOpacity(0.9);
-        //this->setObjectName("dialog");
-        //this->setStyleSheet("QDialog#dialog{border-image:url(me.png)}");
-    }
 
-    /*if(!(ui->lineEdit_AutoTestVersion->text() == openfile_display(filename_CVTE_MES, "AutoTestVersion")))
-    {
-       QMessageBox::critical(0 , "警告信息" , "软件版本号不一致，请核对！",
-                             QMessageBox::Ok | QMessageBox::Default , QMessageBox::Cancel
-                             | QMessageBox::Escape , 	0 );
-    }*/
-
+    ui->lineEdit_ModuleType->setReadOnly(1);
     ui->lineEdit_AutoTestVersion->setReadOnly(1);
     ui->lineEdit_WT_IS_NEED_LINKMES->setReadOnly(1);
     //线损不可以修改项
@@ -391,7 +412,17 @@ void factory_set::display()
     ui->lineEdit_WT_FIXED_ATTEN_2_4_CHAIN1->setReadOnly(1);
     ui->lineEdit_WT_FIXED_ATTEN_5_CHAIN0->setReadOnly(1);
     ui->lineEdit_WT_FIXED_ATTEN_5_CHAIN1->setReadOnly(1);
-    QString filename = "CVTE_MES.ini";
+    //展示MAC号段及当前MAC
+    ui->lineEdit_WT_MAC_RANGE_BEGIN->setText(openfile_display(filename_WT_MAC, "WT_MAC_VENDOR_ID")
+     +openfile_display(filename_WT_MAC, "WT_MAC_RANGE_BEGIN_" + openfile_display(filename_WT_TESTER, "WT_DUT_START_NUM")));
+    ui->lineEdit_WT_MAC_RANGE_END->setText(openfile_display(filename_WT_MAC, "WT_MAC_VENDOR_ID")
+     +openfile_display(filename_WT_MAC, "WT_MAC_RANGE_END_" + openfile_display(filename_WT_TESTER, "WT_DUT_START_NUM")));
+    ui->lineEdit_WT_MAC_CURRENT->setText(openfile_display(filename_WT_MAC, "WT_MAC_VENDOR_ID")
+     +openfile_display(filename_WT_MAC, "WT_MAC_CURRENT_" + openfile_display(filename_WT_TESTER, "WT_DUT_START_NUM")));
+
+
+
+    //QString filename = "CVTE_MES.ini";
     //展示 CVTE_MES.ini
     ui->lineEdit_IP->setText(openfile_display(filename_CVTE_MES, "IP"));
     ui->lineEdit_Port->setText(openfile_display(filename_CVTE_MES, "Port"));
@@ -410,13 +441,13 @@ void factory_set::display()
     //ui->lineEdit_NgCount->setText(openfile_display(filename_CVTE_MES, "NgCount"));
     ui->lineEdit_MoLotNo->setText(openfile_display(filename_CVTE_MES, "MoLotNo"));
     ui->lineEdit_PartNo->setText(openfile_display(filename_CVTE_MES, "PartNo"));
-    ui->lineEdit_ModuleType->setText(openfile_display(filename_CVTE_MES, "ModuleType"));
+    ui->lineEdit_ModuleType->setText(openfile_display(filename_SoftVer, "AutoTestVersion").split('-').at(2));
 
 
     //增加显示MES连接与否，主要是配置产测软件
     QFile::remove("../../userlogo.jpg");
 
-    QString MoudleType = openfile_display(filename_CVTE_MES, "ModuleType");
+    QString MoudleType = ui->lineEdit_ModuleType->text();
     QString WT_IS_NEED_LINKMES =openfile_display(filename_WT_DUT_MIMO, "WT_IS_NEED_LINKMES");
     QString filePath = "../image";
     QString curPath = QDir::currentPath();
@@ -1134,3 +1165,4 @@ void factory_set::on_pushButton_refresh_clicked()
    Sleep(1000);
    about_info("提示", "刷新成功！");
 }
+#endif

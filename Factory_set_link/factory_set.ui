@@ -20,7 +20,7 @@
    <string>factory_set</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="../Factory_set_air/image.qrc">
+   <iconset resource="image.qrc">
     <normaloff>:/image/set.png</normaloff>:/image/set.png</iconset>
   </property>
   <property name="styleSheet">
@@ -28,64 +28,7 @@
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QGridLayout" name="gridLayout_24">
-    <item row="1" column="0">
-     <layout class="QHBoxLayout" name="horizontalLayout_26">
-      <item>
-       <spacer name="horizontalSpacer_15">
-        <property name="orientation">
-         <enum>Qt::Horizontal</enum>
-        </property>
-        <property name="sizeHint" stdset="0">
-         <size>
-          <width>338</width>
-          <height>20</height>
-         </size>
-        </property>
-       </spacer>
-      </item>
-      <item>
-       <widget class="QPushButton" name="pushButton_refresh">
-        <property name="minimumSize">
-         <size>
-          <width>130</width>
-          <height>35</height>
-         </size>
-        </property>
-        <property name="maximumSize">
-         <size>
-          <width>130</width>
-          <height>35</height>
-         </size>
-        </property>
-        <property name="font">
-         <font>
-          <family>Adobe Arabic</family>
-          <pointsize>16</pointsize>
-          <weight>75</weight>
-          <bold>true</bold>
-         </font>
-        </property>
-        <property name="text">
-         <string>刷 新</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <spacer name="horizontalSpacer_17">
-        <property name="orientation">
-         <enum>Qt::Horizontal</enum>
-        </property>
-        <property name="sizeHint" stdset="0">
-         <size>
-          <width>348</width>
-          <height>20</height>
-         </size>
-        </property>
-       </spacer>
-      </item>
-     </layout>
-    </item>
-    <item row="0" column="0">
+    <item row="2" column="0">
      <widget class="QTabWidget" name="tabWidget">
       <property name="sizePolicy">
        <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
@@ -97,7 +40,7 @@
        <bool>false</bool>
       </property>
       <property name="styleSheet">
-       <string notr="true">#tabWidget{background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(9, 41, 4, 255), stop:0.085 rgba(2, 79, 0, 255), stop:0.19 rgba(50, 147, 22, 255), stop:0.275 rgba(236, 191, 49, 255), stop:0.39 rgba(243, 61, 34, 255), stop:0.555 rgba(135, 81, 60, 255), stop:0.667 rgba(121, 75, 255, 255), stop:0.825 rgba(164, 255, 244, 255), stop:0.885 rgba(104, 222, 71, 255), stop:1 rgba(93, 128, 0, 255));}</string>
+       <string notr="true"/>
       </property>
       <property name="currentIndex">
        <number>2</number>
@@ -106,7 +49,7 @@
        <attribute name="title">
         <string>基础设置</string>
        </attribute>
-       <layout class="QGridLayout" name="gridLayout_23">
+       <layout class="QGridLayout" name="gridLayout_5">
         <item row="0" column="0">
          <layout class="QGridLayout" name="gridLayout_22">
           <item row="0" column="0">
@@ -297,6 +240,19 @@
                </widget>
               </item>
              </layout>
+            </item>
+            <item>
+             <spacer name="verticalSpacer_4">
+              <property name="orientation">
+               <enum>Qt::Vertical</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>20</width>
+                <height>40</height>
+               </size>
+              </property>
+             </spacer>
             </item>
            </layout>
           </item>
@@ -563,6 +519,143 @@
               </item>
               <item>
                <widget class="QLineEdit" name="lineEdit_ModuleType">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="minimumSize">
+                 <size>
+                  <width>300</width>
+                  <height>0</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>300</width>
+                  <height>16777215</height>
+                 </size>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+            <item>
+             <layout class="QHBoxLayout" name="horizontalLayout_15">
+              <item>
+               <widget class="QLabel" name="label_14">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="minimumSize">
+                 <size>
+                  <width>70</width>
+                  <height>0</height>
+                 </size>
+                </property>
+                <property name="text">
+                 <string>起止MAC号段</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLineEdit" name="lineEdit_WT_MAC_RANGE_BEGIN">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="minimumSize">
+                 <size>
+                  <width>138</width>
+                  <height>0</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>138</width>
+                  <height>16777215</height>
+                 </size>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLabel" name="label_46">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="minimumSize">
+                 <size>
+                  <width>10</width>
+                  <height>0</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>10</width>
+                  <height>16777215</height>
+                 </size>
+                </property>
+                <property name="text">
+                 <string>-</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLineEdit" name="lineEdit_WT_MAC_RANGE_END">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="minimumSize">
+                 <size>
+                  <width>138</width>
+                  <height>0</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>138</width>
+                  <height>16777215</height>
+                 </size>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+            <item>
+             <layout class="QHBoxLayout" name="horizontalLayout_60">
+              <item>
+               <widget class="QLabel" name="label_47">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="minimumSize">
+                 <size>
+                  <width>70</width>
+                  <height>0</height>
+                 </size>
+                </property>
+                <property name="text">
+                 <string>当前MAC</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLineEdit" name="lineEdit_WT_MAC_CURRENT">
                 <property name="sizePolicy">
                  <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
                   <horstretch>0</horstretch>
@@ -1375,7 +1468,7 @@
                        </size>
                       </property>
                       <property name="maximum">
-                       <double>20.000000000000000</double>
+                       <double>10.000000000000000</double>
                       </property>
                       <property name="singleStep">
                        <double>0.100000000000000</double>
@@ -1475,7 +1568,7 @@
                          </size>
                         </property>
                         <property name="maximum">
-                         <double>20.000000000000000</double>
+                         <double>10.000000000000000</double>
                         </property>
                         <property name="singleStep">
                          <double>0.100000000000000</double>
@@ -1520,7 +1613,7 @@
                          </size>
                         </property>
                         <property name="maximum">
-                         <double>20.000000000000000</double>
+                         <double>10.000000000000000</double>
                         </property>
                         <property name="singleStep">
                          <double>0.100000000000000</double>
@@ -1565,7 +1658,7 @@
                          </size>
                         </property>
                         <property name="maximum">
-                         <double>20.000000000000000</double>
+                         <double>10.000000000000000</double>
                         </property>
                         <property name="singleStep">
                          <double>0.100000000000000</double>
@@ -1604,7 +1697,7 @@
                          </size>
                         </property>
                         <property name="maximum">
-                         <double>20.000000000000000</double>
+                         <double>10.000000000000000</double>
                         </property>
                         <property name="singleStep">
                          <double>0.100000000000000</double>
@@ -1649,7 +1742,7 @@
                          </size>
                         </property>
                         <property name="maximum">
-                         <double>20.000000000000000</double>
+                         <double>10.000000000000000</double>
                         </property>
                         <property name="singleStep">
                          <double>0.100000000000000</double>
@@ -1679,7 +1772,7 @@
                          </size>
                         </property>
                         <property name="maximum">
-                         <double>20.000000000000000</double>
+                         <double>10.000000000000000</double>
                         </property>
                         <property name="singleStep">
                          <double>0.100000000000000</double>
@@ -1705,7 +1798,7 @@
                          </size>
                         </property>
                         <property name="maximum">
-                         <double>20.000000000000000</double>
+                         <double>10.000000000000000</double>
                         </property>
                         <property name="singleStep">
                          <double>0.100000000000000</double>
@@ -1731,7 +1824,7 @@
                          </size>
                         </property>
                         <property name="maximum">
-                         <double>20.000000000000000</double>
+                         <double>10.000000000000000</double>
                         </property>
                         <property name="singleStep">
                          <double>0.100000000000000</double>
@@ -1751,7 +1844,7 @@
                          </size>
                         </property>
                         <property name="maximum">
-                         <double>20.000000000000000</double>
+                         <double>10.000000000000000</double>
                         </property>
                         <property name="singleStep">
                          <double>0.100000000000000</double>
@@ -1800,7 +1893,7 @@
                          </size>
                         </property>
                         <property name="maximum">
-                         <double>20.000000000000000</double>
+                         <double>10.000000000000000</double>
                         </property>
                         <property name="singleStep">
                          <double>0.100000000000000</double>
@@ -1984,7 +2077,7 @@
                        </size>
                       </property>
                       <property name="maximum">
-                       <double>25.000000000000000</double>
+                       <double>15.000000000000000</double>
                       </property>
                       <property name="singleStep">
                        <double>0.100000000000000</double>
@@ -2010,7 +2103,7 @@
                        </size>
                       </property>
                       <property name="maximum">
-                       <double>25.000000000000000</double>
+                       <double>15.000000000000000</double>
                       </property>
                       <property name="singleStep">
                        <double>0.100000000000000</double>
@@ -2036,7 +2129,7 @@
                        </size>
                       </property>
                       <property name="maximum">
-                       <double>25.000000000000000</double>
+                       <double>15.000000000000000</double>
                       </property>
                       <property name="singleStep">
                        <double>0.100000000000000</double>
@@ -2062,7 +2155,7 @@
                        </size>
                       </property>
                       <property name="maximum">
-                       <double>25.000000000000000</double>
+                       <double>15.000000000000000</double>
                       </property>
                       <property name="singleStep">
                        <double>0.100000000000000</double>
@@ -2088,7 +2181,7 @@
                        </size>
                       </property>
                       <property name="maximum">
-                       <double>25.000000000000000</double>
+                       <double>15.000000000000000</double>
                       </property>
                       <property name="singleStep">
                        <double>0.100000000000000</double>
@@ -2108,7 +2201,7 @@
                        </size>
                       </property>
                       <property name="maximum">
-                       <double>25.000000000000000</double>
+                       <double>15.000000000000000</double>
                       </property>
                       <property name="singleStep">
                        <double>0.100000000000000</double>
@@ -2128,7 +2221,7 @@
                        </size>
                       </property>
                       <property name="maximum">
-                       <double>25.000000000000000</double>
+                       <double>15.000000000000000</double>
                       </property>
                       <property name="singleStep">
                        <double>0.100000000000000</double>
@@ -2148,7 +2241,7 @@
                        </size>
                       </property>
                       <property name="maximum">
-                       <double>25.000000000000000</double>
+                       <double>15.000000000000000</double>
                       </property>
                       <property name="singleStep">
                        <double>0.100000000000000</double>
@@ -2168,7 +2261,7 @@
                        </size>
                       </property>
                       <property name="maximum">
-                       <double>25.000000000000000</double>
+                       <double>15.000000000000000</double>
                       </property>
                       <property name="singleStep">
                        <double>0.100000000000000</double>
@@ -2188,7 +2281,7 @@
                        </size>
                       </property>
                       <property name="maximum">
-                       <double>25.000000000000000</double>
+                       <double>15.000000000000000</double>
                       </property>
                       <property name="singleStep">
                        <double>0.100000000000000</double>
@@ -2208,7 +2301,7 @@
                        </size>
                       </property>
                       <property name="maximum">
-                       <double>25.000000000000000</double>
+                       <double>15.000000000000000</double>
                       </property>
                       <property name="singleStep">
                        <double>0.100000000000000</double>
@@ -2228,7 +2321,7 @@
                        </size>
                       </property>
                       <property name="maximum">
-                       <double>25.000000000000000</double>
+                       <double>15.000000000000000</double>
                       </property>
                       <property name="singleStep">
                        <double>0.100000000000000</double>
@@ -2315,7 +2408,7 @@
                      </size>
                     </property>
                     <property name="maximum">
-                     <double>25.000000000000000</double>
+                     <double>15.000000000000000</double>
                     </property>
                     <property name="singleStep">
                      <double>0.100000000000000</double>
@@ -2360,7 +2453,7 @@
                      </size>
                     </property>
                     <property name="maximum">
-                     <double>25.000000000000000</double>
+                     <double>15.000000000000000</double>
                     </property>
                     <property name="singleStep">
                      <double>0.100000000000000</double>
@@ -2405,7 +2498,7 @@
                      </size>
                     </property>
                     <property name="maximum">
-                     <double>25.000000000000000</double>
+                     <double>15.000000000000000</double>
                     </property>
                     <property name="singleStep">
                      <double>0.100000000000000</double>
@@ -2450,7 +2543,7 @@
                      </size>
                     </property>
                     <property name="maximum">
-                     <double>25.000000000000000</double>
+                     <double>15.000000000000000</double>
                     </property>
                     <property name="singleStep">
                      <double>0.100000000000000</double>
@@ -2495,7 +2588,7 @@
                      </size>
                     </property>
                     <property name="maximum">
-                     <double>25.000000000000000</double>
+                     <double>15.000000000000000</double>
                     </property>
                     <property name="singleStep">
                      <double>0.100000000000000</double>
@@ -2534,7 +2627,7 @@
                      </size>
                     </property>
                     <property name="maximum">
-                     <double>25.000000000000000</double>
+                     <double>15.000000000000000</double>
                     </property>
                     <property name="singleStep">
                      <double>0.100000000000000</double>
@@ -2573,7 +2666,7 @@
                      </size>
                     </property>
                     <property name="maximum">
-                     <double>25.000000000000000</double>
+                     <double>15.000000000000000</double>
                     </property>
                     <property name="singleStep">
                      <double>0.100000000000000</double>
@@ -2612,7 +2705,7 @@
                      </size>
                     </property>
                     <property name="maximum">
-                     <double>25.000000000000000</double>
+                     <double>15.000000000000000</double>
                     </property>
                     <property name="singleStep">
                      <double>0.100000000000000</double>
@@ -2651,7 +2744,7 @@
                      </size>
                     </property>
                     <property name="maximum">
-                     <double>25.000000000000000</double>
+                     <double>15.000000000000000</double>
                     </property>
                     <property name="singleStep">
                      <double>0.100000000000000</double>
@@ -2690,7 +2783,7 @@
                      </size>
                     </property>
                     <property name="maximum">
-                     <double>25.000000000000000</double>
+                     <double>15.000000000000000</double>
                     </property>
                     <property name="singleStep">
                      <double>0.100000000000000</double>
@@ -2729,7 +2822,7 @@
                      </size>
                     </property>
                     <property name="maximum">
-                     <double>25.000000000000000</double>
+                     <double>15.000000000000000</double>
                     </property>
                     <property name="singleStep">
                      <double>0.100000000000000</double>
@@ -2768,7 +2861,7 @@
                      </size>
                     </property>
                     <property name="maximum">
-                     <double>25.000000000000000</double>
+                     <double>15.000000000000000</double>
                     </property>
                     <property name="singleStep">
                      <double>0.100000000000000</double>
@@ -2839,6 +2932,63 @@
       </widget>
      </widget>
     </item>
+    <item row="3" column="0">
+     <layout class="QHBoxLayout" name="horizontalLayout_26">
+      <item>
+       <spacer name="horizontalSpacer_15">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>338</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item>
+       <widget class="QPushButton" name="pushButton_refresh">
+        <property name="minimumSize">
+         <size>
+          <width>130</width>
+          <height>35</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>130</width>
+          <height>35</height>
+         </size>
+        </property>
+        <property name="font">
+         <font>
+          <family>Adobe Arabic</family>
+          <pointsize>16</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>刷 新</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <spacer name="horizontalSpacer_17">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>348</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+     </layout>
+    </item>
    </layout>
   </widget>
   <widget class="QMenuBar" name="menubar">
@@ -2853,6 +3003,8 @@
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
- <resources/>
+ <resources>
+  <include location="image.qrc"/>
+ </resources>
  <connections/>
 </ui>

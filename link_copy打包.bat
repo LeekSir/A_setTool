@@ -1,2 +1,2 @@
-copy .\build-Factory_set-Desktop_Qt_5_14_2_MinGW_64_bit-Release\release\Factory_set.exe .\A_setTool\A_setTool_link\A_setTool_64bit
-copy .\build-Factory_set-Desktop_Qt_5_14_2_MinGW_32_bit-Release\release\Factory_set.exe .\A_setTool\A_setTool_link\A_setTool_32bit
+copy .\build-Factory_set-Desktop_Qt_5_14_2_MinGW_64_bit-Release\release\Factory_set.exe .\8.SKO.W618U.1_638BU\A_setTool_link\A_setTool_64bit
+copy .\build-Factory_set-Desktop_Qt_5_14_2_MinGW_32_bit-Release\release\Factory_set.exe .\8.SKO.W618U.1_638BU\A_setTool_link\A_setTool_32bit

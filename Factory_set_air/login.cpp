@@ -10,7 +10,7 @@ login::login(QWidget *parent) :
     ui->setupUi(this);
     ui->lineEdit_UserName->setPlaceholderText("输入用户名(空为操作员)");
     ui->lineEdit_PassWord->setPlaceholderText("请输入密码(空为操作员)");
-
+    //thread.start();
 }
 
 login::~login()

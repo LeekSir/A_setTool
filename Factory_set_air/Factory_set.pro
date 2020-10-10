@@ -1,4 +1,6 @@
 QT       += core gui
+CONFIG += resources_big
+QT += axcontainer
 #RC_ICONS = process_icon.ico
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
@@ -19,11 +21,13 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
     login.cpp \
     main.cpp \
-    factory_set.cpp
+    factory_set.cpp \
+    mythread.cpp
 
 HEADERS += \
     factory_set.h \
-    login.h
+    login.h \
+    mythread.h
 
 FORMS += \
     factory_set.ui \

@@ -24,6 +24,7 @@ public:
     void display();
 
 private slots:
+    /*
     void on_pushButton_set_clicked();
 
     void on_pushButton_input_clicked();
@@ -33,8 +34,9 @@ private slots:
     void on_pushButton_display_LineLoss_clicked();
 
     void on_pushButton_refresh_clicked();
-
+*/
 private:
+    /*
     QString openfile_display(QString filename, QString show);
     void openfile_set_show(QString filename, QString line_id, QLineEdit* wirte_show);
     void openfile_set_debug(QString filename, bool check_box_sta);
@@ -47,7 +49,7 @@ private:
     void display_user_login();
 
     void display_connect_mes();
-
+*/
     Ui::factory_set *ui;
 
     QString filename_CVTE_MES;
@@ -58,6 +60,7 @@ private:
     QString filename_SoftVer;
     QString filename_WT_ATTEN_DUT;
     QString filename_WT_WRITE_EFUSE;
+    QString filename_WT_MAC;
 
 
 

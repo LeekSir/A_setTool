@@ -2,8 +2,12 @@
 #include "ui_factory_set.h"
 #include <QChar>
 #include <QLabel>
+#include <QAxObject>
+#include <QProcess>
 
-
+bool correct = true;
+bool correct_flag = false;//是否校准成功
+bool mythread_flag;
 factory_set::factory_set(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::factory_set)
@@ -17,8 +21,10 @@ factory_set::factory_set(QWidget *parent)
     filename_advance = "advance.ini";//"../advance.ini";
     filename_debug = "debug.ini";//"../debug.ini";
     filename_SoftVer = "CVTE_SoftVer_Readme.txt";//"../CVTE_SoftVer_Readme.txt";
-    filename_WT_ATTEN_DUT = "WT_ATTEN_DUT_1.txt";//"../WT_SETUP/WT_ATTEN_DUT_1.txt";
+    //filename_WT_ATTEN_DUT = "WT_ATTEN_DUT_1.txt";//"../WT_SETUP/WT_ATTEN_DUT_1.txt";
     filename_WT_WRITE_EFUSE = "WT_FLOW.txt";//"../WT_SETUP/WT_FLOW.txt";
+    filename_WT_MAC =  "WT_MAC.txt";
+    //filename_WT_ATTEN_DUT;//"../WT_SETUP/WT_ATTEN_DUT_1.txt";
 #else
     //发布
     filename_CVTE_MES = "../../CVTE_MES.ini";
@@ -27,15 +33,32 @@ factory_set::factory_set(QWidget *parent)
     filename_advance = "../../advance.ini";
     filename_debug = "../../debug.ini";
     filename_SoftVer = "../../CVTE_SoftVer_Readme.txt";
-    filename_WT_ATTEN_DUT = "../../WT_SETUP/WT_ATTEN_DUT_1.txt";
+    //filename_WT_ATTEN_DUT = "../../WT_SETUP/WT_ATTEN_DUT_";
     filename_WT_WRITE_EFUSE = "../../WT_SETUP/WT_FLOW.txt";
+    filename_WT_MAC = "../../WT_SETUP/WT_MAC.txt";
 #endif
     //display();
+    connect(&thread,SIGNAL(mySignal()), this, SLOT(mySlot()));
+
+    //thread.start();
+    mythread_flag = false;
+
+
+
+
 }
 
 factory_set::~factory_set()
 {
     delete ui;
+}
+
+
+
+void factory_set::mySlot()
+{
+    mythread_flag = true;
+    qDebug() << "hellohellohellohellohellohellohellohellohellohellohellohello";
 }
 
 /**************************************************************************
@@ -120,7 +143,7 @@ bool factory_set::openfile_wefuse_display(QString box_id)
             strtemp = NctextStream.readLine();
             if(strtemp.mid(0, box_id.length()) == box_id)
             {
-                qDebug() << "!!!!!!!!!!!!!!!!!!!!!!!";
+                //qDebug() << "!!!!!!!!!!!!!!!!!!!!!!!";
                 Ncfile.close();
                 return true;
             }
@@ -282,8 +305,19 @@ void factory_set::display_connect_mes()
 #if 1
 void factory_set::display()
 {
+    if(this->Usr_Type)
+    {
+        this->setStyleSheet("#factory_set{background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(255, 0, 0, 255), stop:0.166 rgba(255, 255, 0, 255), stop:0.333 rgba(0, 255, 0, 255), stop:0.5 rgba(0, 255, 255, 255), stop:0.666 rgba(0, 0, 255, 255), stop:0.833 rgba(255, 0, 255, 255), stop:1 rgba(255, 0, 0, 255));}");
+        //ui->tabWidget->setStyleSheet("#tabWidget{background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(255, 0, 0, 255), stop:0.166 rgba(255, 255, 0, 255), stop:0.333 rgba(0, 255, 0, 255), stop:0.5 rgba(0, 255, 255, 255), stop:0.666 rgba(0, 0, 255, 255), stop:0.833 rgba(255, 0, 255, 255), stop:1 rgba(255, 0, 0, 255));}");
+    }
+    else
+    {
+        this->setStyleSheet("#factory_set{background-color: rgb(63, 150, 150);}");
+    }
     if(!this->Usr_Type)
     {
+
+
         //第一页
         ui->pushButton_set->setEnabled(0);
         ui->lineEdit_IP->setReadOnly(1);
@@ -302,10 +336,15 @@ void factory_set::display()
         ui->lineEdit_AutoTestVersion->setReadOnly(1);
         //ui->lineEdit_ProdUrl->setReadOnly(1);
 
+        //MAC
+        ui->lineEdit_WT_MAC_RANGE_BEGIN->setReadOnly(1);
+        ui->lineEdit_WT_MAC_RANGE_END->setReadOnly(1);
+        ui->lineEdit_WT_MAC_CURRENT->setReadOnly(1);
+
         //new
         ui->lineEdit_MoLotNo->setReadOnly(1);
         ui->lineEdit_PartNo->setReadOnly(1);
-        ui->lineEdit_ModuleType->setReadOnly(1);
+
 
         //第二页
         ui->pushButton_input->setEnabled(0);
@@ -318,51 +357,6 @@ void factory_set::display()
         ui->checkBox_Debug_log->setEnabled(0);
         ui->checkBox_WT_WRITE_EFUSE->setEnabled(0);
 
-        //第三页
-        ui->pushButton_set_LineLoss->setEnabled(0);
-        //ui->comboBox_WT_ATTEN_DUT_Select->setEnabled(0);
-
-        //BT
-        ui->doubleSpinBox_WT_FIXED_ATTEN_BT->setReadOnly(1);
-
-        //2.4G
-        ui->doubleSpinBox_CH1_Port1->setReadOnly(1);
-        ui->doubleSpinBox_CH3_Port1->setReadOnly(1);
-        ui->doubleSpinBox_CH7_Port1->setReadOnly(1);
-        ui->doubleSpinBox_CH11_Port1->setReadOnly(1);
-        ui->doubleSpinBox_CH13_Port1->setReadOnly(1);
-
-        ui->doubleSpinBox_CH1_Port2->setReadOnly(1);
-        ui->doubleSpinBox_CH3_Port2->setReadOnly(1);
-        ui->doubleSpinBox_CH7_Port2->setReadOnly(1);
-        ui->doubleSpinBox_CH11_Port2->setReadOnly(1);
-        ui->doubleSpinBox_CH13_Port2->setReadOnly(1);
-        //5G
-        ui->doubleSpinBox_CH36_Port1->setReadOnly(1);
-        ui->doubleSpinBox_CH48_Port1->setReadOnly(1);
-        ui->doubleSpinBox_CH52_Port1->setReadOnly(1);
-        ui->doubleSpinBox_CH64_Port1->setReadOnly(1);
-        ui->doubleSpinBox_CH100_Port1->setReadOnly(1);
-        ui->doubleSpinBox_CH116_Port1->setReadOnly(1);
-        ui->doubleSpinBox_CH120_Port1->setReadOnly(1);
-        ui->doubleSpinBox_CH136_Port1->setReadOnly(1);
-        ui->doubleSpinBox_CH140_Port1->setReadOnly(1);
-        ui->doubleSpinBox_CH157_Port1->setReadOnly(1);
-        ui->doubleSpinBox_CH161_Port1->setReadOnly(1);
-        ui->doubleSpinBox_CH165_Port1->setReadOnly(1);
-
-        ui->doubleSpinBox_CH36_Port2->setReadOnly(1);
-        ui->doubleSpinBox_CH48_Port2->setReadOnly(1);
-        ui->doubleSpinBox_CH52_Port2->setReadOnly(1);
-        ui->doubleSpinBox_CH64_Port2->setReadOnly(1);
-        ui->doubleSpinBox_CH100_Port2->setReadOnly(1);
-        ui->doubleSpinBox_CH116_Port2->setReadOnly(1);
-        ui->doubleSpinBox_CH120_Port2->setReadOnly(1);
-        ui->doubleSpinBox_CH136_Port2->setReadOnly(1);
-        ui->doubleSpinBox_CH140_Port2->setReadOnly(1);
-        ui->doubleSpinBox_CH157_Port2->setReadOnly(1);
-        ui->doubleSpinBox_CH161_Port2->setReadOnly(1);
-        ui->doubleSpinBox_CH165_Port2->setReadOnly(1);
 
     }
     else
@@ -379,6 +373,56 @@ void factory_set::display()
                              | QMessageBox::Escape , 	0 );
     }*/
 
+    //屏蔽刷新按钮，有bug
+    //ui->pushButton_refresh->setEnabled(0);
+    //第三页
+    //ui->comboBox_WT_ATTEN_DUT_Select->setEnabled(0);
+    //校准线损进度条
+
+    //BT
+    ui->doubleSpinBox_WT_FIXED_ATTEN_BT->setReadOnly(1);
+
+    //2.4G
+    ui->doubleSpinBox_CH1_Port1->setReadOnly(1);
+    ui->doubleSpinBox_CH3_Port1->setReadOnly(1);
+    ui->doubleSpinBox_CH7_Port1->setReadOnly(1);
+    ui->doubleSpinBox_CH11_Port1->setReadOnly(1);
+    ui->doubleSpinBox_CH13_Port1->setReadOnly(1);
+
+    ui->doubleSpinBox_CH1_Port2->setReadOnly(1);
+    ui->doubleSpinBox_CH3_Port2->setReadOnly(1);
+    ui->doubleSpinBox_CH7_Port2->setReadOnly(1);
+    ui->doubleSpinBox_CH11_Port2->setReadOnly(1);
+    ui->doubleSpinBox_CH13_Port2->setReadOnly(1);
+    //5G
+    ui->doubleSpinBox_CH36_Port1->setReadOnly(1);
+    ui->doubleSpinBox_CH48_Port1->setReadOnly(1);
+    ui->doubleSpinBox_CH52_Port1->setReadOnly(1);
+    ui->doubleSpinBox_CH64_Port1->setReadOnly(1);
+    ui->doubleSpinBox_CH100_Port1->setReadOnly(1);
+    ui->doubleSpinBox_CH116_Port1->setReadOnly(1);
+    ui->doubleSpinBox_CH120_Port1->setReadOnly(1);
+    ui->doubleSpinBox_CH136_Port1->setReadOnly(1);
+    ui->doubleSpinBox_CH140_Port1->setReadOnly(1);
+    ui->doubleSpinBox_CH157_Port1->setReadOnly(1);
+    ui->doubleSpinBox_CH161_Port1->setReadOnly(1);
+    ui->doubleSpinBox_CH165_Port1->setReadOnly(1);
+
+    ui->doubleSpinBox_CH36_Port2->setReadOnly(1);
+    ui->doubleSpinBox_CH48_Port2->setReadOnly(1);
+    ui->doubleSpinBox_CH52_Port2->setReadOnly(1);
+    ui->doubleSpinBox_CH64_Port2->setReadOnly(1);
+    ui->doubleSpinBox_CH100_Port2->setReadOnly(1);
+    ui->doubleSpinBox_CH116_Port2->setReadOnly(1);
+    ui->doubleSpinBox_CH120_Port2->setReadOnly(1);
+    ui->doubleSpinBox_CH136_Port2->setReadOnly(1);
+    ui->doubleSpinBox_CH140_Port2->setReadOnly(1);
+    ui->doubleSpinBox_CH157_Port2->setReadOnly(1);
+    ui->doubleSpinBox_CH161_Port2->setReadOnly(1);
+    ui->doubleSpinBox_CH165_Port2->setReadOnly(1);
+
+    //
+    ui->lineEdit_ModuleType->setReadOnly(1);
     ui->lineEdit_AutoTestVersion->setReadOnly(1);
     ui->lineEdit_WT_IS_NEED_LINKMES->setReadOnly(1);
     //线损不可修改项
@@ -386,7 +430,15 @@ void factory_set::display()
     ui->lineEdit_WT_FIXED_ATTEN_2_4_CHAIN1->setReadOnly(1);
     ui->lineEdit_WT_FIXED_ATTEN_5_CHAIN0->setReadOnly(1);
     ui->lineEdit_WT_FIXED_ATTEN_5_CHAIN1->setReadOnly(1);
-    QString filename = "CVTE_MES.ini";
+
+    //展示MAC号段及当前MAC
+    ui->lineEdit_WT_MAC_RANGE_BEGIN->setText(openfile_display(filename_WT_MAC, "WT_MAC_VENDOR_ID")
+     +openfile_display(filename_WT_MAC, "WT_MAC_RANGE_BEGIN_" + openfile_display(filename_WT_TESTER, "WT_DUT_START_NUM")));
+    ui->lineEdit_WT_MAC_RANGE_END->setText(openfile_display(filename_WT_MAC, "WT_MAC_VENDOR_ID")
+     +openfile_display(filename_WT_MAC, "WT_MAC_RANGE_END_" + openfile_display(filename_WT_TESTER, "WT_DUT_START_NUM")));
+    ui->lineEdit_WT_MAC_CURRENT->setText(openfile_display(filename_WT_MAC, "WT_MAC_VENDOR_ID")
+     +openfile_display(filename_WT_MAC, "WT_MAC_CURRENT_" + openfile_display(filename_WT_TESTER, "WT_DUT_START_NUM")));
+
     //展示 CVTE_MES.ini
     ui->lineEdit_IP->setText(openfile_display(filename_CVTE_MES, "IP"));
     ui->lineEdit_Port->setText(openfile_display(filename_CVTE_MES, "Port"));
@@ -405,13 +457,13 @@ void factory_set::display()
     //ui->lineEdit_NgCount->setText(openfile_display(filename_CVTE_MES, "NgCount"));
     ui->lineEdit_MoLotNo->setText(openfile_display(filename_CVTE_MES, "MoLotNo"));
     ui->lineEdit_PartNo->setText(openfile_display(filename_CVTE_MES, "PartNo"));
-    ui->lineEdit_ModuleType->setText(openfile_display(filename_CVTE_MES, "ModuleType"));
+    ui->lineEdit_ModuleType->setText(openfile_display(filename_SoftVer, "AutoTestVersion").split('-').at(2));
 
 
     //增加显示MES连接与否，主要是配置产测软件
     QFile::remove("../../userlogo.jpg");
 
-    QString MoudleType = openfile_display(filename_CVTE_MES, "ModuleType");
+    QString MoudleType = ui->lineEdit_ModuleType->text();
     QString WT_IS_NEED_LINKMES =openfile_display(filename_WT_DUT_MIMO, "WT_IS_NEED_LINKMES");
     QString filePath = "../image";
     QString curPath = QDir::currentPath();
@@ -470,7 +522,7 @@ void factory_set::display()
     }
 
     //展示 WT_ATTEN_DUT 线损参数
-    on_pushButton_display_LineLoss_clicked();
+    display_LineLoss_clicked();
     //提示信息
     //ui->lineEdit_PopUpFunction->setPlaceholderText(openfile_display("advance.ini", "PopUpFunction"));
     //
@@ -906,11 +958,11 @@ void factory_set::openfile_set_LineLoss(QString Box_name, QDoubleSpinBox* SpinBo
         {
             strtemp = NctextStream.readLine();
             QStringList list;
-             qDebug() << "!!!!!!!!!!!!!!!" << strtemp.mid(0, 2);
+             //qDebug() << "!!!!!!!!!!!!!!!" << strtemp.mid(0, 2);
 
             if(strtemp.mid(0, 2) == "CH")
             {
-                qDebug() << "!!!!!!!!!!!!!!!";
+                //qDebug() << "!!!!!!!!!!!!!!!";
                 list = strtemp.split("//").at(0).split(QRegExp("\\s+"), QString::SkipEmptyParts);
             }
             else
@@ -997,10 +1049,83 @@ void factory_set::openfile_set_BT_show(QString filename, QString Box_id, QDouble
     }
 }
 
-void factory_set::on_pushButton_set_LineLoss_clicked()
+void factory_set::LineLoss_clicked()
 {
-    ui->pushButton_set_LineLoss->setChecked(true);
-    filename_WT_ATTEN_DUT = "../../WT_SETUP/WT_ATTEN_" + ui->comboBox_WT_ATTEN_DUT_Select->currentText() + ".txt";
+
+    //*************** 启动 copy.bat *****************
+    QString strInfo;
+    QProcess p(nullptr);
+
+    //第一次运行成功修改correct = false
+
+    openfile_deal_lineloss_log();
+    if(correct)
+    {
+        correct = false;
+    }
+    if(correct_flag)
+    {
+
+        //correct = true;
+        Sleep(1000);
+        about_info("提示", "线损校准成功！");
+
+        display_LineLoss_clicked();
+        //correct_flag = false;
+
+        p.start("./reset.bat");  //运行脚本文件
+        if(p.waitForFinished()){      //等待脚本运行完成，超时时间默认是3000s,超时返回0，正常返回1
+            strInfo = "完成！";
+            Sleep(1000);
+            about_info("提示", "原始文件reset成功！");
+        }else{
+            strInfo = "bat运行错误！";
+        }
+        return;
+    }
+    else
+    {
+        //Sleep(1000);
+        //about_info("提示", "已微调，待写入！");
+        set_LineLoss_correct();
+        //*************** 启动 correct.bat *****************
+
+        thread.start();       //运行校验线损脚本文件
+        if(p.waitForFinished(120000)){        //等待脚本运行完成，超时时间默认是3000s,超时返回0，正常返回1
+            strInfo = "完成！";
+            Sleep(1000);
+            about_info("提示", "线损运行成功！");
+
+            //*************** 启动 copy_new_log.bat *****************
+            p.start("./copy_new_log.bat");       //运行校验线损脚本文件
+            if(p.waitForFinished()){        //等待脚本运行完成，超时时间默认是3000s,超时返回0，正常返回1
+                strInfo = "完成！";
+                Sleep(1000);
+                about_info("提示", "log拷贝成功！");
+            }else{
+                strInfo = "bat运行错误！";
+            }
+
+
+        }else{
+            strInfo = "bat运行错误！";
+        }
+        //循环测试，自动化测试
+        LineLoss_clicked();
+
+        //***********************************************
+    }
+
+
+
+
+
+}
+
+//线损校准
+void factory_set::set_LineLoss_correct()
+{
+    //filename_WT_ATTEN_DUT = "../../WT_SETUP/WT_ATTEN_DUT_" + ui->lineEdit_WT_DUT_START_NUM->text() + ".txt";
 
     int port_num = 1;
 
@@ -1047,29 +1172,37 @@ void factory_set::on_pushButton_set_LineLoss_clicked()
     openfile_set_LineLoss("CH157", ui->doubleSpinBox_CH157_Port2, port_num);
     openfile_set_LineLoss("CH161", ui->doubleSpinBox_CH161_Port2, port_num);
     openfile_set_LineLoss("CH165", ui->doubleSpinBox_CH165_Port2, port_num);
-    ui->pushButton_set_LineLoss->setChecked(true);
     Sleep(2000);
-    about_info("提示", "参数配置成功！");
-
-    on_pushButton_display_LineLoss_clicked();
-    ui->pushButton_set_LineLoss->setChecked(false);
+    //about_info("提示", "校准参数写入成功！");
+    //display_LineLoss_clicked();
+    mythread_flag = false;
 }
 
 
 
 
 
-void factory_set::on_pushButton_display_LineLoss_clicked()
+void factory_set::display_LineLoss_clicked()
 {
     //展示 WT_ATTEN_DUT 线损参数
-    filename_WT_ATTEN_DUT = "../../WT_SETUP/WT_ATTEN_" + ui->comboBox_WT_ATTEN_DUT_Select->currentText() + ".txt";
 
+
+    filename_WT_ATTEN_DUT = "../../WT_SETUP/WT_ATTEN_DUT_" + ui->lineEdit_WT_DUT_START_NUM->text() + ".txt";
+    //filename_WT_ATTEN_DUT =  "WT_ATTEN_DUT_" + ui->lineEdit_WT_DUT_START_NUM->text() + ".txt";
+    if(ui->lineEdit_WT_DUT_START_NUM->text() != NULL)
+    {
+        ui->label_DUT_filename->setText("WT_ATTEN_DUT_" +ui->lineEdit_WT_DUT_START_NUM->text() + ".txt");
+    }
+    else
+    {
+        ui->label_DUT_filename->setText("文件未知");
+    }
 
     ui->lineEdit_WT_FIXED_ATTEN_2_4_CHAIN0->setText(openfile_display(filename_WT_ATTEN_DUT, "WT_FIXED_ATTEN_2_4_CHAIN0"));
     ui->lineEdit_WT_FIXED_ATTEN_2_4_CHAIN1->setText(openfile_display(filename_WT_ATTEN_DUT, "WT_FIXED_ATTEN_2_4_CHAIN1"));
     ui->lineEdit_WT_FIXED_ATTEN_5_CHAIN0->setText(openfile_display(filename_WT_ATTEN_DUT, "WT_FIXED_ATTEN_5_CHAIN0"));
     ui->lineEdit_WT_FIXED_ATTEN_5_CHAIN1->setText(openfile_display(filename_WT_ATTEN_DUT, "WT_FIXED_ATTEN_5_CHAIN1"));
-
+    qDebug() <<  openfile_display(filename_WT_ATTEN_DUT, "WT_FIXED_ATTEN_2_4_CHAIN0") <<"???????????? display_LineLoss_clicked ???????????????";
     //BT
     ui->doubleSpinBox_WT_FIXED_ATTEN_BT->setValue(openfile_display(filename_WT_ATTEN_DUT, "WT_FIXED_ATTEN_BT").toDouble());
 
@@ -1122,7 +1255,672 @@ void factory_set::on_pushButton_display_LineLoss_clicked()
 
 void factory_set::on_pushButton_refresh_clicked()
 {
-   display();
-   Sleep(1000);
-   about_info("提示", "刷新成功！");
+
+    /*display();
+    Sleep(1000);
+    about_info("提示", "刷新成功！");
+    */
+
+    QString strInfo;
+    QProcess p(nullptr);
+    p.start("./reset_setup.bat");  //运行脚本文件
+    if(p.waitForFinished())//等待脚本运行完成，超时时间默认是3000s,超时返回0，正常返回1
+    {
+        strInfo = "完成！";
+        Sleep(1000);
+        about_info("提示", "原始SETUP文件恢复成功！");
+    }
+    else
+    {
+        strInfo = "bat运行错误！";
+    }
+
+}
+
+void factory_set::on_pushButton_openfile_log_clicked()
+{
+    /*const QString fileName = QFileDialog::getOpenFileName(this);
+    if (!fileName.isEmpty())
+    {
+        QFile file(fileName);
+        if (!file.open(QFile::ReadOnly | QFile::Text)) {
+            QMessageBox::warning(this, tr("SDI"),
+                                 tr("Cannot read file %1:\n%2.")
+                                 .arg(QDir::toNativeSeparators(fileName), file.errorString()));
+            return;
+        }
+        ui->lineEdit_WT_TEST_LOG_PATH->setText(file.fileName());
+    }*/
+
+    QString srcDirPath = QFileDialog::getExistingDirectory(
+                   this, "choose src Directory",
+                    "/");
+
+        if (!srcDirPath.isEmpty())
+        {
+            //qDebug() << "srcDirPath=" << srcDirPath;
+            srcDirPath += "/";
+            ui->lineEdit_WT_TEST_LOG_PATH->setText(srcDirPath);
+        }
+
+        //openFile(fileName);
+}
+
+
+#if 0
+void factory_set::on_pushButton_xls_clicked()
+{
+    openfile_deal_lineloss_log();
+
+    QString strFilePathName = QFileDialog::getOpenFileName(this,QStringLiteral("选择Excel文件"),"",tr("Exel file(*.xls *.xlsx)"));
+    if(strFilePathName.isNull())
+    {
+        return ;
+    }
+    QAxObject *excel = new QAxObject(this);    //连接Excel控件
+    if (excel->setControl("Excel.Application"))
+    {
+
+    }
+    else
+    {
+        excel->setControl("ket.Application");  //连接Excel控件
+    }
+    excel->setProperty("Visible", false);  //不显示窗体
+    QAxObject* workbooks = excel->querySubObject("WorkBooks");  //获取工作簿集合
+    workbooks->dynamicCall("Open(const QString&)", strFilePathName); //打开打开已存在的工作簿
+    QAxObject* workbook = excel->querySubObject("ActiveWorkBook"); //获取当前工作簿
+    //QAxObject* sheets = workbook->querySubObject("Sheets");  //获取工作表集合，Sheets也可换用WorkSheets
+    QAxObject* sheet = workbook->querySubObject("WorkSheets(int)", 1);//获取工作表集合的工作表1，即sheet1
+    QAxObject* range = sheet->querySubObject("UsedRange"); //获取该sheet的使用范围对象
+    QVariant var = range->dynamicCall("Value");
+    delete range;
+    QVariantList varRows = var.toList();  //得到表格中的所有数据
+    if(varRows.isEmpty())
+    {
+        return;
+    }
+    const int rowCount = varRows.size();
+    QStringList m_userid,m_card_id,m_action;
+    for(int i = 1; i < rowCount; ++i)   //
+    {
+        QVariantList rowData = varRows[i].toList();
+        m_userid<<rowData[0].toString();
+        //m_card_id<<rowData[1].toString();
+        //m_action<<rowData[2].toString();
+        qDebug() << m_userid;
+        //rowData[0].setValue();
+    }
+
+}
+#endif
+
+
+/**************************************************************************
+**
+** NAME     openfile_deal_lineloss_log
+**
+** PARAMETERS:  QString filename, QString show
+**
+** RETURNS: QString
+**
+** DESCRIPTION  显示文件中的关键信息对应到相应的lineEdit_d_id.
+**
+** NOTES:       None.
+**************************************************************************/
+void factory_set::openfile_deal_lineloss_log(/*QString filename, QString show, int port_num*/)
+{
+    //每次置true
+    correct_flag = true;
+
+    QString filePath = "../log/";
+    QString RunFrameNcFile;
+    QString curPath = QDir::currentPath();
+    QDir *dir=new QDir(filePath);
+    QStringList filter;
+
+
+    QList<QFileInfo> *fileInfo=new QList<QFileInfo>(dir->entryInfoList(filter));
+
+    RunFrameNcFile = filePath + fileInfo->at(2).fileName();
+    QFile Ncfile(RunFrameNcFile);
+    Ncfile.open(QIODevice::ReadOnly);
+    if (Ncfile.isOpen())
+    {
+        QString strtemp;
+        QTextStream NctextStream(&Ncfile);
+
+        QString temp = "金板" + QString("\t\t\t\t\t\t\t") + "测试" + QString('\n');
+
+        while(!NctextStream.atEnd())
+        {
+            strtemp = NctextStream.readLine();
+            QStringList list;
+            if(strtemp.mid(0, 15).count("ANT") >= 1)
+            {
+                list = strtemp.split(QRegExp("\\s+"), QString::SkipEmptyParts);
+                temp += list.at(1) + "\t\t" + list.at(2) + "\t\t" + list.at(6).split('d').at(0);
+                temp += QString('\n');
+            }
+        }
+        Ncfile.close();
+        Ncfile.remove();
+        QFile Ncfile_select("../log/test_log.txt");
+        Ncfile_select.open(QIODevice::WriteOnly);
+        QTextStream in(&Ncfile_select);
+        in <<temp;
+        Ncfile_select.close();
+    }
+
+
+    QFile Ncfile_jinban("../log/standard.txt");
+    QFile Ncfile_test("../log/test_log.txt");
+    Ncfile_jinban.open(QIODevice::ReadOnly);
+    Ncfile_test.open(QIODevice::ReadOnly);
+    if (Ncfile_jinban.isOpen() && Ncfile_test.isOpen())
+    {
+        QString strtemp_jinban,strtemp_test;
+        QTextStream NctextStream_jinban(&Ncfile_jinban),NctextStream_test(&Ncfile_test);
+
+        QString temp = "金板" + QString("\t\t\t\t\t\t") + "测试n" + QString("\t\t") + "微调值" + QString('\n');
+        double loss_value, temp_value;
+        int ch = 0;
+        about_info("提示", "我是openfile_deal_lineloss_log！");
+        while(!NctextStream_jinban.atEnd() && !NctextStream_test.atEnd())
+        {
+            strtemp_jinban = NctextStream_jinban.readLine();
+            strtemp_test = NctextStream_test.readLine();
+            QStringList list_jinban,list_test;
+
+            if(correct)
+            {
+                correct_flag = false;
+                if(strtemp_test.mid(0, 3) == "ANT" && strtemp_jinban.mid(0, 3) == "ANT")
+                {
+                    list_test = strtemp_test.split(QRegExp("\\s+"), QString::SkipEmptyParts);
+                    list_jinban = strtemp_jinban.split(QRegExp("\\s+"), QString::SkipEmptyParts);
+                    temp += strtemp_jinban + "\t\t"  + list_test.at(2) + "\t\t" + QString::number((list_jinban.at(2).toDouble() - list_test.at(2).toDouble()),'f',2);
+                    temp += QString('\n');
+                    loss_value = list_jinban.at(2).toDouble() - list_test.at(2).toDouble();
+                    ch = list_jinban.at(1).toInt();
+                    if(list_jinban.at(0) == "ANT0")
+                    {
+                        switch(ch)
+                        {
+                            case 1 : ui->doubleSpinBox_CH1_Port1->setValue(loss_value);
+
+                                break;
+                            case 3 : ui->doubleSpinBox_CH3_Port1->setValue(loss_value);
+                                break;
+                            case 7 : ui->doubleSpinBox_CH7_Port1->setValue(loss_value);
+                                break;
+                            case 11 : ui->doubleSpinBox_CH11_Port1->setValue(loss_value);
+                                break;
+                            case 13 : ui->doubleSpinBox_CH13_Port1->setValue(loss_value);
+                                break;
+                            case 36 : ui->doubleSpinBox_CH36_Port1->setValue(loss_value);
+                                break;
+                            case 48 : ui->doubleSpinBox_CH48_Port1->setValue(loss_value);
+                                break;
+                            case 52 : ui->doubleSpinBox_CH52_Port1->setValue(loss_value);
+                                break;
+                            case 64 : ui->doubleSpinBox_CH64_Port1->setValue(loss_value);
+                                break;
+                            case 100 : ui->doubleSpinBox_CH100_Port1->setValue(loss_value);
+                                break;
+                            case 116 : ui->doubleSpinBox_CH116_Port1->setValue(loss_value);
+                                break;
+                            case 120 : ui->doubleSpinBox_CH120_Port1->setValue(loss_value);
+                                break;
+                            case 136 : ui->doubleSpinBox_CH136_Port1->setValue(loss_value);
+                                break;
+                            case 140 : ui->doubleSpinBox_CH140_Port1->setValue(loss_value);
+                                break;
+                            case 157 : ui->doubleSpinBox_CH157_Port1->setValue(loss_value);
+                                break;
+                            case 161 : ui->doubleSpinBox_CH161_Port1->setValue(loss_value);
+                                break;
+                            case 165 : ui->doubleSpinBox_CH165_Port1->setValue(loss_value);
+                                break;
+                            default:
+                                break;
+                        }
+                    }
+                    else
+                    {
+                        switch(ch)
+                        {
+                            case 1 : ui->doubleSpinBox_CH1_Port2->setValue(loss_value);
+                                break;
+                            case 3 : ui->doubleSpinBox_CH3_Port2->setValue(loss_value);
+                                break;
+                            case 7 : ui->doubleSpinBox_CH7_Port2->setValue(loss_value);
+                                break;
+                            case 11 : ui->doubleSpinBox_CH11_Port2->setValue(loss_value);
+                                break;
+                            case 13 : ui->doubleSpinBox_CH13_Port2->setValue(loss_value);
+                                break;
+                            case 36 : ui->doubleSpinBox_CH36_Port2->setValue(loss_value);
+                                break;
+                            case 48 : ui->doubleSpinBox_CH48_Port2->setValue(loss_value);
+                                break;
+                            case 52 : ui->doubleSpinBox_CH52_Port2->setValue(loss_value);
+                                break;
+                            case 64 : ui->doubleSpinBox_CH64_Port2->setValue(loss_value);
+                                break;
+                            case 100 : ui->doubleSpinBox_CH100_Port2->setValue(loss_value);
+                                break;
+                            case 116 : ui->doubleSpinBox_CH116_Port2->setValue(loss_value);
+                                break;
+                            case 120 : ui->doubleSpinBox_CH120_Port2->setValue(loss_value);
+                                break;
+                            case 136 : ui->doubleSpinBox_CH136_Port2->setValue(loss_value);
+                                break;
+                            case 140 : ui->doubleSpinBox_CH140_Port2->setValue(loss_value);
+                                break;
+                            case 157 : ui->doubleSpinBox_CH157_Port2->setValue(loss_value);
+                                break;
+                            case 161 : ui->doubleSpinBox_CH161_Port2->setValue(loss_value);
+                                break;
+                            case 165 : ui->doubleSpinBox_CH165_Port2->setValue(loss_value);
+                                break;
+                            default:
+                                break;
+                        }
+                    }
+                }
+
+            }
+            else
+            {
+#if 1
+                //微调操作
+                //qDebug() << "WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW 微调";
+                //qDebug() << "000000000"<<strtemp_test;
+                if(strtemp_test.mid(0, 3) == "ANT" && strtemp_jinban.mid(0, 3) == "ANT")
+                {
+
+
+                    list_test = strtemp_test.split(QRegExp("\\s+"), QString::SkipEmptyParts);
+                    list_jinban = strtemp_jinban.split(QRegExp("\\s+"), QString::SkipEmptyParts);
+
+
+                    temp_value = list_jinban.at(2).toDouble() - list_test.at(2).toDouble();
+
+
+                    if(qAbs(temp_value) > 0.5)
+                    {
+                        correct_flag = false;
+                        loss_value = list_jinban.at(4).toDouble() + temp_value/2;
+                    }
+                    temp += list_jinban.at(0) + "\t\t" + list_jinban.at(1) + "\t\t" + list_jinban.at(2) + "\t\t";
+                    temp += list_test.at(2) + "\t\t" + QString::number(loss_value,'f',2);
+                    //temp += strtemp_jinban + "\t\t"  + list_test.at(2) + "\t\t" + QString::number(loss_value,'f',2);
+                    temp += QString('\n');
+
+                    ch = list_jinban.at(1).toInt();
+                    if(list_jinban.at(0) == "ANT0")
+                    {
+                        qDebug() << "ch = "<<ch <<", loss_value = " <<loss_value << "我是爸爸" ;
+                        switch(ch)
+                        {
+                            case 1 : ui->doubleSpinBox_CH1_Port1->setValue(loss_value);
+
+                                break;
+                            case 3 : ui->doubleSpinBox_CH3_Port1->setValue(loss_value);
+                                break;
+                            case 7 : ui->doubleSpinBox_CH7_Port1->setValue(loss_value);
+                                break;
+                            case 11 : ui->doubleSpinBox_CH11_Port1->setValue(loss_value);
+                                break;
+                            case 13 : ui->doubleSpinBox_CH13_Port1->setValue(loss_value);
+                                break;
+                            case 36 : ui->doubleSpinBox_CH36_Port1->setValue(loss_value);
+                                break;
+                            case 48 : ui->doubleSpinBox_CH48_Port1->setValue(loss_value);
+                                break;
+                            case 52 : ui->doubleSpinBox_CH52_Port1->setValue(loss_value);
+                                break;
+                            case 64 : ui->doubleSpinBox_CH64_Port1->setValue(loss_value);
+                                break;
+                            case 100 : ui->doubleSpinBox_CH100_Port1->setValue(loss_value);
+                                break;
+                            case 116 : ui->doubleSpinBox_CH116_Port1->setValue(loss_value);
+                                break;
+                            case 120 : ui->doubleSpinBox_CH120_Port1->setValue(loss_value);
+                                break;
+                            case 136 : ui->doubleSpinBox_CH136_Port1->setValue(loss_value);
+                                break;
+                            case 140 : ui->doubleSpinBox_CH140_Port1->setValue(loss_value);
+                                break;
+                            case 157 : ui->doubleSpinBox_CH157_Port1->setValue(loss_value);
+                                break;
+                            case 161 : ui->doubleSpinBox_CH161_Port1->setValue(loss_value);
+                                break;
+                            case 165 : ui->doubleSpinBox_CH165_Port1->setValue(loss_value);
+                                break;
+                            default:
+                                break;
+                        }
+                    }
+                    else
+                    {
+                        switch(ch)
+                        {
+                            case 1 : ui->doubleSpinBox_CH1_Port2->setValue(loss_value);
+                                break;
+                            case 3 : ui->doubleSpinBox_CH3_Port2->setValue(loss_value);
+                                break;
+                            case 7 : ui->doubleSpinBox_CH7_Port2->setValue(loss_value);
+                                break;
+                            case 11 : ui->doubleSpinBox_CH11_Port2->setValue(loss_value);
+                                break;
+                            case 13 : ui->doubleSpinBox_CH13_Port2->setValue(loss_value);
+                                break;
+                            case 36 : ui->doubleSpinBox_CH36_Port2->setValue(loss_value);
+                                break;
+                            case 48 : ui->doubleSpinBox_CH48_Port2->setValue(loss_value);
+                                break;
+                            case 52 : ui->doubleSpinBox_CH52_Port2->setValue(loss_value);
+                                break;
+                            case 64 : ui->doubleSpinBox_CH64_Port2->setValue(loss_value);
+                                break;
+                            case 100 : ui->doubleSpinBox_CH100_Port2->setValue(loss_value);
+                                break;
+                            case 116 : ui->doubleSpinBox_CH116_Port2->setValue(loss_value);
+                                break;
+                            case 120 : ui->doubleSpinBox_CH120_Port2->setValue(loss_value);
+                                break;
+                            case 136 : ui->doubleSpinBox_CH136_Port2->setValue(loss_value);
+                                break;
+                            case 140 : ui->doubleSpinBox_CH140_Port2->setValue(loss_value);
+                                break;
+                            case 157 : ui->doubleSpinBox_CH157_Port2->setValue(loss_value);
+                                break;
+                            case 161 : ui->doubleSpinBox_CH161_Port2->setValue(loss_value);
+                                break;
+                            case 165 : ui->doubleSpinBox_CH165_Port2->setValue(loss_value);
+                                break;
+                            default:
+                                break;
+                        }
+                    }
+                }
+                #endif
+            }
+
+        }
+
+
+        Ncfile_jinban.close();
+        Ncfile_test.close();
+        Ncfile_test.remove();
+        QFile Ncfile_jinban("../log/standard.txt");
+        Ncfile_jinban.open(QIODevice::WriteOnly);
+        QTextStream in(&Ncfile_jinban);
+        in <<temp;
+        Ncfile_jinban.close();
+    }
+
+}
+
+void factory_set::dialog_process_bar()
+{
+    QProgressDialog dialog(tr("线损校准进度"), tr("取消"), 0, 2000000, this);
+    dialog.setWindowTitle(tr("线损校准"));
+    dialog.setWindowModality(Qt::WindowModal);
+    dialog.show();
+    for(int i = 0; i < 2000000; i++)//已知最大值不超过50000
+    {
+        if(mythread_flag)
+        {
+            thread.terminate();
+            openfile_deal_lineloss_log();
+            set_LineLoss_correct();
+
+            dialog.setValue(i+100000);
+            mythread_flag = false;
+            thread.start();
+            continue;
+        }
+        if(!thread.isRunning())
+        {
+            break;
+        }
+        dialog.setValue(i);
+        QCoreApplication::processEvents();
+        if(dialog.wasCanceled())
+            break;
+    }
+    dialog.setValue(2000000);
+
+
+}
+
+#if 0
+//需要加同步进度条
+void factory_set::on_pushButton_correct_clicked()
+{
+
+    //*************** 启动 copy.bat *****************
+    QString strInfo;
+    QProcess p(nullptr);
+    if(correct)
+    {
+        correct = false;
+        //1、拷入校准模式文件，拷出原始文件
+        p.start("./copy.bat");
+        if(p.waitForFinished())//等待脚本运行完成，超时时间默认是3000s,超时返回0，正常返回1
+        {
+            strInfo = "完成！";
+            Sleep(1000);
+            about_info("提示", "拷贝校准文件成功！");
+            ui->pushButton_correct->setText("校准进行中");
+            ui->pushButton_correct->setEnabled(0);
+        //2、开启计时进度条
+            //dialog_process_bar();
+        //3、跑校准模式和金板对比，并重复N次3
+            //第一遍不用循环
+
+            thread.start();
+            dialog_process_bar();
+            while(!mythread_flag);
+            openfile_deal_lineloss_log();
+            //set_LineLoss_correct();
+            /*about_info("提示", "我是爸爸！");
+            correct = false;
+            while(!correct_flag)
+            {
+                //dialog_process_bar();
+                //about_info("提示", "我是妈妈！");
+                thread.start();
+                openfile_deal_lineloss_log();
+
+                while(!mythread_flag);
+                set_LineLoss_correct();
+                about_info("提示", "我是爸爸！");
+                if(correct)
+                {
+                    correct = false;
+                }
+            }*/
+            about_info("提示", "跑完了哦！");
+        //4、测试数据和金板数据相差不大于正负0.5，校准成功
+            Sleep(1000);
+            display_LineLoss_clicked();
+            correct = true;
+            ui->pushButton_correct->setEnabled(1);
+        //5、拷入原始文件，替换校准文件
+            p.start("./reset.bat");  //运行脚本文件
+            if(p.waitForFinished())//等待脚本运行完成，超时时间默认是3000s,超时返回0，正常返回1
+            {
+                strInfo = "完成！";
+                Sleep(1000);
+                //about_info("提示", "原始文件reset成功！");
+                about_info("提示", "线损校准成功！");
+            }
+            else
+            {
+                strInfo = "bat运行错误！";
+            }
+        }
+    }
+
+
+}
+#endif
+
+//自动校线损，未加进度条
+void factory_set::on_pushButton_correct_clicked()
+{
+
+    //*************** 启动 copy.bat *****************
+    QString strInfo;
+    QProcess p(nullptr);
+    ui->label_about_correct->setText("校准中，请勿点击界面！");
+    QApplication::setOverrideCursor(QCursor(Qt::WaitCursor)); //设置鼠标为等待状态
+#if 0
+    //dialog_process_bar();
+    //***********修改中*************
+    thread.start();
+    about_info("提示", "进入校准模式成功！");
+    //修改按键
+    ui->pushButton_correct->setText("校准进行中");
+    ui->pushButton_correct->setEnabled(0);
+    //开启进度条
+    dialog_process_bar();
+
+    //线损校准完毕收尾工作
+    //5、拷入原始文件，替换校准文件
+    p.start("./reset.bat");  //运行脚本文件
+    if(p.waitForFinished())//等待脚本运行完成，超时时间默认是3000s,超时返回0，正常返回1
+    {
+        Sleep(1000);
+        about_info("提示", "原始文件reset成功！");
+    }
+
+    //**************************************************
+    //校准完线损后保存一份setup文件到指定文件夹，并在关键时刻恢复
+    p.start("./copy_setup.bat");  //运行脚本文件
+    if(p.waitForFinished())//等待脚本运行完成，超时时间默认是3000s,超时返回0，正常返回1
+    {
+        Sleep(1000);
+        about_info("提示", "setup文件夹拷贝成功！");
+    }
+
+    Sleep(1000);
+    display_LineLoss_clicked();
+    correct = true;
+    ui->pushButton_correct->setEnabled(1);
+    QApplication::restoreOverrideCursor();//恢复鼠标为箭头状态
+    about_info("提示", "线损校准successfully！");
+    //***********修改中*************
+#else
+    while(!correct_flag)
+    {
+        if(correct)
+        {
+            //1、拷入校准模式文件，拷出原始文件
+            p.start("./copy_correct.bat");
+            if(p.waitForFinished())//等待脚本运行完成，超时时间默认是3000s,超时返回0，正常返回1
+            {
+                strInfo = "完成！";
+                Sleep(1000);
+                about_info("提示", "进入校准模式成功！");
+                ui->pushButton_correct->setText("校准进行中");
+                ui->pushButton_correct->setEnabled(0);
+            //2、跑校准模式和金板对比，并重复N次
+                //第一遍不用循环
+                p.start("./correct.bat");       //运行校验线损脚本文件
+                if(p.waitForFinished(120000)){        //等待脚本运行完成，超时时间默认是3000s,超时返回0，正常返回1
+                    strInfo = "完成！";
+                    Sleep(1000);
+                    //about_info("提示", "线损运行成功！");
+
+                    //*************** 启动 copy_new_log.bat *****************
+                    p.start("./copy_new_log.bat");       //运行校验线损脚本文件
+                    if(p.waitForFinished()){        //等待脚本运行完成，超时时间默认是3000s,超时返回0，正常返回1
+                        strInfo = "完成！";
+                        Sleep(1000);
+                        //about_info("提示", "log拷贝成功！");
+                    }else{
+                        strInfo = "bat运行错误！";
+                    }
+                }else{
+                    strInfo = "bat运行错误！";
+                }
+                openfile_deal_lineloss_log();
+                if(correct_flag)
+                    break;
+                set_LineLoss_correct();
+                correct = false;
+                //about_info("提示", "第一次跑完了哦！");
+            }
+        }
+        else
+        {
+            //4、多次测试后，如测试数据和金板数据相差不大于正负0.5，则校准成功
+            p.start("./correct.bat");       //运行校验线损脚本文件
+            if(p.waitForFinished(120000)){        //等待脚本运行完成，超时时间默认是3000s,超时返回0，正常返回1
+                strInfo = "完成！";
+                Sleep(1000);
+                //about_info("提示", "线损运行成功！");
+
+                //*************** 启动 copy_new_log.bat *****************
+                p.start("./copy_new_log.bat");       //运行校验线损脚本文件
+                if(p.waitForFinished()){        //等待脚本运行完成，超时时间默认是3000s,超时返回0，正常返回1
+                    strInfo = "完成！";
+                    Sleep(1000);
+                    //about_info("提示", "log拷贝成功！");
+                }else{
+                    strInfo = "bat运行错误！";
+                }
+            }else{
+                strInfo = "bat运行错误！";
+            }
+            openfile_deal_lineloss_log();
+            if(correct_flag)
+                break;
+            set_LineLoss_correct();
+            //about_info("提示", "第N次跑完了哦！");
+            //correct_flag = true;
+        }
+    }
+
+    //5、拷入原始文件，替换校准文件
+    p.start("./reset.bat");  //运行脚本文件
+    if(p.waitForFinished())//等待脚本运行完成，超时时间默认是3000s,超时返回0，正常返回1
+    {
+        strInfo = "完成！";
+        Sleep(1000);
+        //about_info("提示", "原始文件reset成功！");
+    }
+    else
+    {
+        strInfo = "bat运行错误！";
+    }
+
+    Sleep(1000);
+    display_LineLoss_clicked();
+    correct = true;
+    ui->pushButton_correct->setEnabled(1);
+    ui->pushButton_correct->setText("校准开始");
+    QApplication::restoreOverrideCursor();//恢复鼠标为箭头状态
+
+    about_info("提示", "线损校准successfully！");
+
+    //**************************************************
+    //校准完线损后保存一份setup文件到指定文件夹，并在关键时刻恢复
+    p.start("./copy_setup.bat");  //运行脚本文件
+    if(p.waitForFinished())//等待脚本运行完成，超时时间默认是3000s,超时返回0，正常返回1
+    {
+        strInfo = "完成！";
+        Sleep(1000);
+        //about_info("提示", "setup文件夹拷贝成功！");
+    }
+    else
+    {
+        strInfo = "bat运行错误！";
+    }
+#endif
 }

@@ -265,6 +265,7 @@ Makefile: ../Factory_set_air/Factory_set.pro D:/Qt/Qt5.14.2/5.14.2/mingw73_64/mk
 		D:/Qt/Qt5.14.2/5.14.2/mingw73_64/mkspecs/features/moc.prf \
 		D:/Qt/Qt5.14.2/5.14.2/mingw73_64/mkspecs/features/win32/opengl.prf \
 		D:/Qt/Qt5.14.2/5.14.2/mingw73_64/mkspecs/features/uic.prf \
+		D:/Qt/Qt5.14.2/5.14.2/mingw73_64/mkspecs/features/win32/dumpcpp.prf \
 		D:/Qt/Qt5.14.2/5.14.2/mingw73_64/mkspecs/features/qmake_use.prf \
 		D:/Qt/Qt5.14.2/5.14.2/mingw73_64/mkspecs/features/file_copies.prf \
 		D:/Qt/Qt5.14.2/5.14.2/mingw73_64/mkspecs/features/win32/windows.prf \
@@ -273,6 +274,8 @@ Makefile: ../Factory_set_air/Factory_set.pro D:/Qt/Qt5.14.2/5.14.2/mingw73_64/mk
 		D:/Qt/Qt5.14.2/5.14.2/mingw73_64/mkspecs/features/yacc.prf \
 		D:/Qt/Qt5.14.2/5.14.2/mingw73_64/mkspecs/features/lex.prf \
 		../Factory_set_air/Factory_set.pro \
+		D:/Qt/Qt5.14.2/5.14.2/mingw73_64/lib/Qt5AxContainer.prl \
+		D:/Qt/Qt5.14.2/5.14.2/mingw73_64/lib/Qt5AxBase.prl \
 		D:/Qt/Qt5.14.2/5.14.2/mingw73_64/lib/Qt5Widgets.prl \
 		D:/Qt/Qt5.14.2/5.14.2/mingw73_64/lib/Qt5Gui.prl \
 		D:/Qt/Qt5.14.2/5.14.2/mingw73_64/lib/Qt5Core.prl \
@@ -475,6 +478,7 @@ D:/Qt/Qt5.14.2/5.14.2/mingw73_64/mkspecs/features/resources.prf:
 D:/Qt/Qt5.14.2/5.14.2/mingw73_64/mkspecs/features/moc.prf:
 D:/Qt/Qt5.14.2/5.14.2/mingw73_64/mkspecs/features/win32/opengl.prf:
 D:/Qt/Qt5.14.2/5.14.2/mingw73_64/mkspecs/features/uic.prf:
+D:/Qt/Qt5.14.2/5.14.2/mingw73_64/mkspecs/features/win32/dumpcpp.prf:
 D:/Qt/Qt5.14.2/5.14.2/mingw73_64/mkspecs/features/qmake_use.prf:
 D:/Qt/Qt5.14.2/5.14.2/mingw73_64/mkspecs/features/file_copies.prf:
 D:/Qt/Qt5.14.2/5.14.2/mingw73_64/mkspecs/features/win32/windows.prf:
@@ -483,6 +487,8 @@ D:/Qt/Qt5.14.2/5.14.2/mingw73_64/mkspecs/features/exceptions.prf:
 D:/Qt/Qt5.14.2/5.14.2/mingw73_64/mkspecs/features/yacc.prf:
 D:/Qt/Qt5.14.2/5.14.2/mingw73_64/mkspecs/features/lex.prf:
 ../Factory_set_air/Factory_set.pro:
+D:/Qt/Qt5.14.2/5.14.2/mingw73_64/lib/Qt5AxContainer.prl:
+D:/Qt/Qt5.14.2/5.14.2/mingw73_64/lib/Qt5AxBase.prl:
 D:/Qt/Qt5.14.2/5.14.2/mingw73_64/lib/Qt5Widgets.prl:
 D:/Qt/Qt5.14.2/5.14.2/mingw73_64/lib/Qt5Gui.prl:
 D:/Qt/Qt5.14.2/5.14.2/mingw73_64/lib/Qt5Core.prl:

@@ -1,4 +1,5 @@
 QT       += core gui
+CONFIG += resources_big
 #RC_ICONS = process_icon.ico
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets

@@ -3,6 +3,7 @@
 
 #include <QDialog>
 #include <QtWidgets>
+#include "mythread.h"
 
 namespace Ui {
 class login;
@@ -28,6 +29,7 @@ private slots:
 private:
     Ui::login *ui;
 
+    MyThread thread;
 };
 
 #endif // LOGIN_H

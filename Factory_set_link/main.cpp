@@ -16,6 +16,7 @@ int main(int argc, char *argv[])
 
 
         factory_set w;
+        qDebug() << "登陆登陆登陆登陆登陆";
         if(log.logining() == 0)//登陆
         {
             //Sleep(2000);
@@ -24,12 +25,15 @@ int main(int argc, char *argv[])
         }
         else
         {
+
             w.setWindowTitle("产测软件配置工具(操作员)");
         }
 
         qDebug() << w.Usr_Type;
-        w.display();
+        //w.display();
+        qDebug() << "产测软件配置工具(操作员)产测软件配置工具(操作员)";
         w.show();
+
         return a.exec();
     }
     else
