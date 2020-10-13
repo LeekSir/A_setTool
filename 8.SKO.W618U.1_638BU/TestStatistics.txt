@@ -1,10 +1,10 @@
 //测试结果统计
 =======================================
 WT_PASS_NUMBER			= 7589
-WT_FAIL_NUMBER			= 1940
+WT_FAIL_NUMBER			= 1948
 
 WT_PASS_NUMBER_1		= 0
-WT_FAIL_NUMBER_1		= 172
+WT_FAIL_NUMBER_1		= 180
 
 WT_PASS_NUMBER_2		= 0
 WT_FAIL_NUMBER_2		= 0

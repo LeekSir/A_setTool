@@ -2634,7 +2634,8 @@ debug/factory_set.o: ../Factory_set_air/factory_set.cpp ../Factory_set_air/facto
 		D:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/ActiveQt/QAxObject \
 		D:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/ActiveQt/qaxobject.h \
 		D:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/ActiveQt/qaxbase.h \
-		D:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/QProcess
+		D:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/QProcess \
+		D:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/QDateTime
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\factory_set.o ..\Factory_set_air\factory_set.cpp
 
 debug/mythread.o: ../Factory_set_air/mythread.cpp ../Factory_set_air/mythread.h \

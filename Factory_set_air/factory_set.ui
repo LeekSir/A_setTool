@@ -47,26 +47,18 @@
        <widget class="QPushButton" name="pushButton_refresh">
         <property name="minimumSize">
          <size>
-          <width>130</width>
+          <width>200</width>
           <height>35</height>
          </size>
         </property>
         <property name="maximumSize">
          <size>
-          <width>130</width>
+          <width>150</width>
           <height>35</height>
          </size>
         </property>
-        <property name="font">
-         <font>
-          <family>Adobe Arabic</family>
-          <pointsize>16</pointsize>
-          <weight>75</weight>
-          <bold>true</bold>
-         </font>
-        </property>
         <property name="text">
-         <string>一键恢复</string>
+         <string>一键恢复(文件损坏时使用)</string>
         </property>
        </widget>
       </item>
@@ -100,7 +92,7 @@
        <string notr="true">#tabWidget{background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(9, 41, 4, 255), stop:0.085 rgba(2, 79, 0, 255), stop:0.19 rgba(50, 147, 22, 255), stop:0.275 rgba(236, 191, 49, 255), stop:0.39 rgba(243, 61, 34, 255), stop:0.555 rgba(135, 81, 60, 255), stop:0.667 rgba(121, 75, 255, 255), stop:0.825 rgba(164, 255, 244, 255), stop:0.885 rgba(104, 222, 71, 255), stop:1 rgba(93, 128, 0, 255));}</string>
       </property>
       <property name="currentIndex">
-       <number>2</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="base_set">
        <attribute name="title">
@@ -815,6 +807,20 @@
             </item>
             <item>
              <widget class="QPushButton" name="pushButton_set">
+              <property name="minimumSize">
+               <size>
+                <width>100</width>
+                <height>40</height>
+               </size>
+              </property>
+              <property name="font">
+               <font>
+                <family>Adobe Arabic</family>
+                <pointsize>14</pointsize>
+                <weight>75</weight>
+                <bold>true</bold>
+               </font>
+              </property>
               <property name="text">
                <string>配 置</string>
               </property>
@@ -893,49 +899,9 @@
               <item>
                <layout class="QHBoxLayout" name="horizontalLayout_2">
                 <item>
-                 <widget class="QLabel" name="label_21">
-                  <property name="sizePolicy">
-                   <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-                    <horstretch>0</horstretch>
-                    <verstretch>0</verstretch>
-                   </sizepolicy>
-                  </property>
-                  <property name="minimumSize">
-                   <size>
-                    <width>70</width>
-                    <height>0</height>
-                   </size>
-                  </property>
-                  <property name="maximumSize">
-                   <size>
-                    <width>16777215</width>
-                    <height>16777215</height>
-                   </size>
-                  </property>
-                  <property name="baseSize">
-                   <size>
-                    <width>0</width>
-                    <height>0</height>
-                   </size>
-                  </property>
+                 <widget class="QCheckBox" name="checkBox_WT_AUTO_TEST_WHEN_DUT_READY">
                   <property name="text">
-                   <string>自动测试：</string>
-                  </property>
-                 </widget>
-                </item>
-                <item>
-                 <widget class="QLineEdit" name="lineEdit_WT_AUTO_TEST_WHEN_DUT_READY">
-                  <property name="minimumSize">
-                   <size>
-                    <width>250</width>
-                    <height>0</height>
-                   </size>
-                  </property>
-                  <property name="maximumSize">
-                   <size>
-                    <width>250</width>
-                    <height>16777215</height>
-                   </size>
+                   <string>是否设置自动测试</string>
                   </property>
                  </widget>
                 </item>
@@ -944,43 +910,9 @@
               <item>
                <layout class="QHBoxLayout" name="horizontalLayout_12">
                 <item>
-                 <widget class="QLabel" name="label_22">
-                  <property name="sizePolicy">
-                   <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-                    <horstretch>0</horstretch>
-                    <verstretch>0</verstretch>
-                   </sizepolicy>
-                  </property>
-                  <property name="minimumSize">
-                   <size>
-                    <width>70</width>
-                    <height>0</height>
-                   </size>
-                  </property>
-                  <property name="maximumSize">
-                   <size>
-                    <width>16777215</width>
-                    <height>16777215</height>
-                   </size>
-                  </property>
+                 <widget class="QCheckBox" name="checkBox_WT_IS_NEED_LINKMES">
                   <property name="text">
-                   <string>是否连接MES：</string>
-                  </property>
-                 </widget>
-                </item>
-                <item>
-                 <widget class="QLineEdit" name="lineEdit_WT_IS_NEED_LINKMES">
-                  <property name="minimumSize">
-                   <size>
-                    <width>250</width>
-                    <height>0</height>
-                   </size>
-                  </property>
-                  <property name="maximumSize">
-                   <size>
-                    <width>150</width>
-                    <height>16777215</height>
-                   </size>
+                   <string>是否连接MES</string>
                   </property>
                  </widget>
                 </item>
@@ -1195,7 +1127,7 @@
                 <item>
                  <widget class="QCheckBox" name="checkBox_WT_WRITE_EFUSE">
                   <property name="text">
-                   <string>写EFUSE</string>
+                   <string>是否写EFUSE</string>
                   </property>
                  </widget>
                 </item>
@@ -1225,7 +1157,7 @@
               <item>
                <widget class="QCheckBox" name="checkBox_Debug_log">
                 <property name="text">
-                 <string>Debug_log</string>
+                 <string>是否设置Debug_log</string>
                 </property>
                </widget>
               </item>
@@ -1259,8 +1191,16 @@
               <property name="maximumSize">
                <size>
                 <width>100</width>
-                <height>50</height>
+                <height>40</height>
                </size>
+              </property>
+              <property name="font">
+               <font>
+                <family>Adobe Arabic</family>
+                <pointsize>14</pointsize>
+                <weight>75</weight>
+                <bold>true</bold>
+               </font>
               </property>
               <property name="text">
                <string>配 置</string>
@@ -3277,6 +3217,20 @@
           </item>
           <item row="0" column="1">
            <widget class="QPushButton" name="pushButton_correct">
+            <property name="minimumSize">
+             <size>
+              <width>200</width>
+              <height>40</height>
+             </size>
+            </property>
+            <property name="font">
+             <font>
+              <family>Adobe Arabic</family>
+              <pointsize>14</pointsize>
+              <weight>75</weight>
+              <bold>true</bold>
+             </font>
+            </property>
             <property name="cursor">
              <cursorShape>ArrowCursor</cursorShape>
             </property>

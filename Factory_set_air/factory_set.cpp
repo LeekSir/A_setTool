@@ -4,6 +4,7 @@
 #include <QLabel>
 #include <QAxObject>
 #include <QProcess>
+#include <QDateTime>
 
 bool correct = true;
 bool correct_flag = false;//是否校准成功
@@ -317,6 +318,8 @@ void factory_set::display()
     if(!this->Usr_Type)
     {
 
+        //主界面一键恢复按钮，用来恢复setup和rename.bin
+        ui->pushButton_refresh->setEnabled(0);
 
         //第一页
         ui->pushButton_set->setEnabled(0);
@@ -348,7 +351,8 @@ void factory_set::display()
 
         //第二页
         ui->pushButton_input->setEnabled(0);
-        ui->lineEdit_WT_AUTO_TEST_WHEN_DUT_READY->setReadOnly(1);
+        //ui->lineEdit_WT_AUTO_TEST_WHEN_DUT_READY->setReadOnly(1);
+        ui->checkBox_WT_AUTO_TEST_WHEN_DUT_READY->setEnabled(0);
         ui->lineEdit_WT_TEST_LOG_PATH->setReadOnly(1);
         ui->lineEdit_WT_DUT_START_NUM->setReadOnly(1);
         ui->lineEdit_WT_IP_ADDRESS->setReadOnly(1);
@@ -357,6 +361,8 @@ void factory_set::display()
         ui->checkBox_Debug_log->setEnabled(0);
         ui->checkBox_WT_WRITE_EFUSE->setEnabled(0);
 
+        //第三页
+        ui->pushButton_correct->setEnabled(0);
 
     }
     else
@@ -373,10 +379,8 @@ void factory_set::display()
                              | QMessageBox::Escape , 	0 );
     }*/
 
-    //屏蔽刷新按钮，有bug
-    //ui->pushButton_refresh->setEnabled(0);
-    //第三页
-    //ui->comboBox_WT_ATTEN_DUT_Select->setEnabled(0);
+
+
     //校准线损进度条
 
     //BT
@@ -424,7 +428,8 @@ void factory_set::display()
     //
     ui->lineEdit_ModuleType->setReadOnly(1);
     ui->lineEdit_AutoTestVersion->setReadOnly(1);
-    ui->lineEdit_WT_IS_NEED_LINKMES->setReadOnly(1);
+    ui->checkBox_WT_IS_NEED_LINKMES->setEnabled(0);
+    //ui->lineEdit_WT_IS_NEED_LINKMES->setReadOnly(1);
     //线损不可修改项
     ui->lineEdit_WT_FIXED_ATTEN_2_4_CHAIN0->setReadOnly(1);
     ui->lineEdit_WT_FIXED_ATTEN_2_4_CHAIN1->setReadOnly(1);
@@ -489,8 +494,22 @@ void factory_set::display()
 
 
     //展示 WT_DUT_MIMO
-    ui->lineEdit_WT_AUTO_TEST_WHEN_DUT_READY->setText(openfile_display(filename_WT_DUT_MIMO, "WT_AUTO_TEST_WHEN_DUT_READY"));
-    ui->lineEdit_WT_IS_NEED_LINKMES->setText(openfile_display(filename_WT_DUT_MIMO, "WT_IS_NEED_LINKMES"));
+    //ui->lineEdit_WT_AUTO_TEST_WHEN_DUT_READY->setText(openfile_display(filename_WT_DUT_MIMO, "WT_AUTO_TEST_WHEN_DUT_READY"));
+    if("0" == openfile_display(filename_WT_DUT_MIMO, "WT_AUTO_TEST_WHEN_DUT_READY"))
+    {
+        ui->checkBox_WT_AUTO_TEST_WHEN_DUT_READY->setCheckState(Qt::CheckState::Unchecked);
+    }else
+    {
+        ui->checkBox_WT_AUTO_TEST_WHEN_DUT_READY->setCheckState(Qt::CheckState::Checked);
+    }
+    //ui->lineEdit_WT_IS_NEED_LINKMES->setText(openfile_display(filename_WT_DUT_MIMO, "WT_IS_NEED_LINKMES"));
+    if("0" == openfile_display(filename_WT_DUT_MIMO, "WT_IS_NEED_LINKMES"))
+    {
+        ui->checkBox_WT_IS_NEED_LINKMES->setCheckState(Qt::CheckState::Unchecked);
+    }else
+    {
+        ui->checkBox_WT_IS_NEED_LINKMES->setCheckState(Qt::CheckState::Checked);
+    }
     ui->lineEdit_WT_TEST_LOG_PATH->setText(openfile_display(filename_WT_DUT_MIMO, "WT_TEST_LOG_PATH"));
     //展示 WT_TESTER
     ui->lineEdit_WT_IP_ADDRESS->setText(openfile_display(filename_WT_TESTER, "WT_IP_ADDRESS"));
@@ -710,9 +729,71 @@ void factory_set::on_pushButton_set_clicked()
     Sleep(2000);
     about_info("提示", "参数配置成功！");
 
+    //**************************************************
+    //校准完线损后保存一份setup文件到指定文件夹，并在关键时刻恢复
+    QProcess p(nullptr);
+    p.start("./copy_setup.bat");  //运行脚本文件
+    if(p.waitForFinished())//等待脚本运行完成，超时时间默认是3000s,超时返回0，正常返回1
+    {
+        Sleep(1000);
+        //about_info("提示", "setup文件夹拷贝成功！");
+    }
+
     display();
 #endif
 }
+
+
+/**************************************************************************
+**
+** NAME     openfile_set_Check_box
+**
+** PARAMETERS:  QString filename, bool check_box_sta
+**
+** RETURNS:
+**
+** DESCRIPTION  设置DUT_MIMO文件信息.
+**
+** NOTES:       None.
+**************************************************************************/
+void factory_set::openfile_set_Check_box(QString filename, QString Check_box_id, bool check_box_sta)
+{
+    QString sta = "0";
+    if(check_box_sta)
+    {
+        sta = "1";
+    }
+    QString RunFrameNcFile = filename;
+    QFile Ncfile(RunFrameNcFile);
+    Ncfile.open(QIODevice::ReadOnly);
+    if (Ncfile.isOpen())
+    {
+        QString strtemp;
+        QTextStream NctextStream(&Ncfile);
+        //展示项
+        QString temp;
+        while(!NctextStream.atEnd())
+        {
+            strtemp = NctextStream.readLine();
+            if(strtemp.mid(0, Check_box_id.length()) == Check_box_id)
+            {
+                temp += Check_box_id + '=' + sta;
+                temp += QString('\n');
+            }
+            else
+            {
+                temp += strtemp;
+                temp += QString('\n');
+            }
+        }
+        Ncfile.close();
+        Ncfile.open(QIODevice::WriteOnly);
+        QTextStream in(&Ncfile);
+        in <<temp;
+        Ncfile.close();
+    }
+}
+
 
 /**************************************************************************
 **
@@ -781,6 +862,13 @@ void factory_set::openfile_set_debug(QString filename, bool check_box_sta)
 void factory_set::about_info(QString dlgTitle, QString strInfo)
 {
     QMessageBox::about(this, dlgTitle, strInfo);
+
+    //QMessageBox::warning(this, dlgTitle, strInfo);
+
+    /*QMessageBox *m_box = new QMessageBox(about,dlgTitle,strInfo);
+    m_box->setStandardButtons(0);
+    QTimer::singleShot(2000,m_box,SLOT(accept()));
+    m_box->exec();*/
 }
 
 /**************************************************************************
@@ -854,8 +942,11 @@ void factory_set::openfile_set_show(QString filename, QString line_id, QLineEdit
 void factory_set::on_pushButton_input_clicked()
 {
     //WT_DUT_MIMO
-    openfile_set_show(filename_WT_DUT_MIMO, "WT_AUTO_TEST_WHEN_DUT_READY", ui->lineEdit_WT_AUTO_TEST_WHEN_DUT_READY);
-    openfile_set_show(filename_WT_DUT_MIMO, "WT_IS_NEED_LINKMES", ui->lineEdit_WT_IS_NEED_LINKMES);
+    //openfile_set_show(filename_WT_DUT_MIMO, "WT_AUTO_TEST_WHEN_DUT_READY", ui->lineEdit_WT_AUTO_TEST_WHEN_DUT_READY);
+    //openfile_set_show(filename_WT_DUT_MIMO, "WT_IS_NEED_LINKMES", ui->lineEdit_WT_IS_NEED_LINKMES);
+    openfile_set_Check_box(filename_WT_DUT_MIMO, "WT_AUTO_TEST_WHEN_DUT_READY", ui->checkBox_WT_AUTO_TEST_WHEN_DUT_READY->checkState());
+    openfile_set_Check_box(filename_WT_DUT_MIMO, "WT_IS_NEED_LINKMES", ui->checkBox_WT_IS_NEED_LINKMES->checkState());
+
     openfile_set_show(filename_WT_DUT_MIMO, "WT_TEST_LOG_PATH", ui->lineEdit_WT_TEST_LOG_PATH);
 
 
@@ -874,11 +965,20 @@ void factory_set::on_pushButton_input_clicked()
     openfile_set_wefuse("WT_WRITE_EFUSE\t\t");
 
     //write 端口号
-    openfile_set_show(filename_CVTE_MES, "WT_DUT_START_NUM", ui->lineEdit_WT_DUT_START_NUM);
+    //openfile_set_show(filename_CVTE_MES, "WT_DUT_START_NUM", ui->lineEdit_WT_DUT_START_NUM);
 
     Sleep(2000);
     about_info("提示", "参数配置成功！");
 
+    //**************************************************
+    //校准完线损后保存一份setup文件到指定文件夹，并在关键时刻恢复
+    QProcess p(nullptr);
+    p.start("./copy_setup.bat");  //运行脚本文件
+    if(p.waitForFinished())//等待脚本运行完成，超时时间默认是3000s,超时返回0，正常返回1
+    {
+        Sleep(1000);
+        //about_info("提示", "setup文件夹拷贝成功！");
+    }
     display();
 
 }
@@ -1253,13 +1353,34 @@ void factory_set::display_LineLoss_clicked()
 
 }
 
+
+bool factory_set::Pass_log_clicked()
+{
+    QString filePath = "../log";
+    //QString filePath = "./log/PASS";
+    QDir *dir=new QDir(filePath);
+    QStringList filter;
+    QDateTime time;
+    QDateTime current_date_time =QDateTime::currentDateTime();
+    QList<QFileInfo> *fileInfo=new QList<QFileInfo>(dir->entryInfoList(filter));
+    for(int i = 0;i<fileInfo->count(); i++)
+    {
+
+
+        if( fileInfo->at(i).suffix() == "log" && fileInfo->at(i).lastModified().secsTo(current_date_time) < 30)
+        {
+            return true;
+        }
+    }
+    return false;
+}
+
+
+
 void factory_set::on_pushButton_refresh_clicked()
 {
 
-    /*display();
-    Sleep(1000);
-    about_info("提示", "刷新成功！");
-    */
+
 
     QString strInfo;
     QProcess p(nullptr);
@@ -1274,6 +1395,17 @@ void factory_set::on_pushButton_refresh_clicked()
     {
         strInfo = "bat运行错误！";
     }
+    /*
+    if(Pass_log_clicked())
+    {
+        qDebug() << "################################";
+    }
+    else
+    {
+        qDebug() << "????????????????????????????????";
+    }*/
+
+    display();
 
 }
 
@@ -1425,7 +1557,7 @@ void factory_set::openfile_deal_lineloss_log(/*QString filename, QString show, i
         QString temp = "金板" + QString("\t\t\t\t\t\t") + "测试n" + QString("\t\t") + "微调值" + QString('\n');
         double loss_value, temp_value;
         int ch = 0;
-        about_info("提示", "我是openfile_deal_lineloss_log！");
+        //about_info("提示", "我是openfile_deal_lineloss_log！");
         while(!NctextStream_jinban.atEnd() && !NctextStream_test.atEnd())
         {
             strtemp_jinban = NctextStream_jinban.readLine();
@@ -1775,10 +1907,12 @@ void factory_set::on_pushButton_correct_clicked()
 {
 
     //*************** 启动 copy.bat *****************
-    QString strInfo;
+    QStringList arguments;
+    QString strInfo, Port_Num;
+    Port_Num = "./correct.bat " + ui->lineEdit_WT_DUT_START_NUM->text();
     QProcess p(nullptr);
     ui->label_about_correct->setText("校准中，请勿点击界面！");
-    QApplication::setOverrideCursor(QCursor(Qt::WaitCursor)); //设置鼠标为等待状态
+
 #if 0
     //dialog_process_bar();
     //***********修改中*************
@@ -1816,39 +1950,52 @@ void factory_set::on_pushButton_correct_clicked()
     about_info("提示", "线损校准successfully！");
     //***********修改中*************
 #else
-    while(!correct_flag)
+    bool PASS_flag = true;
+    QString copy_new_log = "./copy_new_log.bat";// + ui->lineEdit_WT_TEST_LOG_PATH->text();
+    while(1/*!correct_flag*/)
     {
+
         if(correct)
         {
             //1、拷入校准模式文件，拷出原始文件
             p.start("./copy_correct.bat");
+            //备份金版数据
+
             if(p.waitForFinished())//等待脚本运行完成，超时时间默认是3000s,超时返回0，正常返回1
             {
+
                 strInfo = "完成！";
                 Sleep(1000);
                 about_info("提示", "进入校准模式成功！");
+                QApplication::setOverrideCursor(QCursor(Qt::WaitCursor)); //设置鼠标为等待状态
                 ui->pushButton_correct->setText("校准进行中");
                 ui->pushButton_correct->setEnabled(0);
             //2、跑校准模式和金板对比，并重复N次
                 //第一遍不用循环
-                p.start("./correct.bat");       //运行校验线损脚本文件
-                if(p.waitForFinished(120000)){        //等待脚本运行完成，超时时间默认是3000s,超时返回0，正常返回1
+                p.start(Port_Num);       //运行校验线损脚本文件
+                if(p.waitForFinished(120000))//等待脚本运行完成，超时时间默认是3000s,超时返回0，正常返回1
+                {
                     strInfo = "完成！";
                     Sleep(1000);
                     //about_info("提示", "线损运行成功！");
 
                     //*************** 启动 copy_new_log.bat *****************
-                    p.start("./copy_new_log.bat");       //运行校验线损脚本文件
-                    if(p.waitForFinished()){        //等待脚本运行完成，超时时间默认是3000s,超时返回0，正常返回1
+                    p.start(copy_new_log);       //运行校验线损脚本文件
+                    if(p.waitForFinished() ){        //等待脚本运行完成，超时时间默认是3000s,超时返回0，正常返回1
+
                         strInfo = "完成！";
                         Sleep(1000);
                         //about_info("提示", "log拷贝成功！");
-                    }else{
-                        strInfo = "bat运行错误！";
+                        if(!Pass_log_clicked())
+                        {
+                            PASS_flag = false;
+                            break;
+                        }
+
                     }
-                }else{
-                    strInfo = "bat运行错误！";
-                }
+
+                 }
+
                 openfile_deal_lineloss_log();
                 if(correct_flag)
                     break;
@@ -1860,17 +2007,24 @@ void factory_set::on_pushButton_correct_clicked()
         else
         {
             //4、多次测试后，如测试数据和金板数据相差不大于正负0.5，则校准成功
-            p.start("./correct.bat");       //运行校验线损脚本文件
+            //p.start("./correct.bat");       //运行校验线损脚本文件
+            p.start(Port_Num);
             if(p.waitForFinished(120000)){        //等待脚本运行完成，超时时间默认是3000s,超时返回0，正常返回1
                 strInfo = "完成！";
                 Sleep(1000);
                 //about_info("提示", "线损运行成功！");
 
                 //*************** 启动 copy_new_log.bat *****************
-                p.start("./copy_new_log.bat");       //运行校验线损脚本文件
+                //p.start("./copy_new_log.bat");       //运行校验线损脚本文件
+                p.start(copy_new_log);       //运行校验线损脚本文件
                 if(p.waitForFinished()){        //等待脚本运行完成，超时时间默认是3000s,超时返回0，正常返回1
                     strInfo = "完成！";
                     Sleep(1000);
+                    if(!Pass_log_clicked())
+                    {
+                        PASS_flag = false;
+                        break;
+                    }
                     //about_info("提示", "log拷贝成功！");
                 }else{
                     strInfo = "bat运行错误！";
@@ -1887,27 +2041,38 @@ void factory_set::on_pushButton_correct_clicked()
         }
     }
 
+    QApplication::restoreOverrideCursor();//恢复鼠标为箭头状态
+    if(!PASS_flag)
+    {
+        ui->label_about_correct->setText("校准 FAIL！");
+        about_info("提示", "PASS_log 获取失败！请检查配置并重新开始校准！");
+        PASS_flag = true;
+    }
+    else
+    {
+        ui->label_about_correct->setText("校准 PASS！");
+        ui->label_about_correct->setStyleSheet("color:green;");
+        about_info("提示", "线损校准 PASS！");
+        ui->label_about_correct->setText("");
+    }
+
     //5、拷入原始文件，替换校准文件
-    p.start("./reset.bat");  //运行脚本文件
+    p.start("./reset_correct.bat");  //运行脚本文件
+    //恢复金版数据
     if(p.waitForFinished())//等待脚本运行完成，超时时间默认是3000s,超时返回0，正常返回1
     {
         strInfo = "完成！";
         Sleep(1000);
-        //about_info("提示", "原始文件reset成功！");
-    }
-    else
-    {
-        strInfo = "bat运行错误！";
+        //about_info("提示", "原始文件reset成功！");   
     }
 
     Sleep(1000);
-    display_LineLoss_clicked();
+    //display_LineLoss_clicked();
+    display();
     correct = true;
     ui->pushButton_correct->setEnabled(1);
     ui->pushButton_correct->setText("校准开始");
-    QApplication::restoreOverrideCursor();//恢复鼠标为箭头状态
 
-    about_info("提示", "线损校准successfully！");
 
     //**************************************************
     //校准完线损后保存一份setup文件到指定文件夹，并在关键时刻恢复

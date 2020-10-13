@@ -94,7 +94,7 @@ WT_POW_CAL_DEFAULT_REG_5G_CH1       30        30        30       30          30 
 //
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-WT_AUTO_TEST_WHEN_DUT_READY 		= 0   			// ×¥¿¨ºó×Ô¶¯¿ªÊ¼²âÊÔ£¬ÖØÆôÈí¼þºóÉúÐ§
+WT_AUTO_TEST_WHEN_DUT_READY=0
 								//0:ÊÖ¶¯(Ä¬ÈÏÖµ)
 								//1:×Ô¶¯
 
@@ -102,7 +102,7 @@ WT_START_TEST_WHEN_POPUP_OK		= 0			//ÔÚÆôÓÃÁË×Ô¶¯×¥¿¨²âÊÔ£¬µ¯´°ºó×Ô¶¯¿ªÊ¼²âÊÔ£¬²
   								// 0£ºÐèÒªDUT READY(Ä¬ÈÏÖµ)
 								// 1£º²»ÐèÒªDUT READY
 
-WT_IS_NEED_LINKMES			= 0			//ÊÇ·ñÁ¬½ÓMES
+WT_IS_NEED_LINKMES=1
 								//0£º²»Á¬½Ó(Ä¬ÈÏÖµ)
 								//1: Á¬½Ó
 //WT_MES_LIB_NAME			= WT_MES.dll
@@ -118,7 +118,7 @@ WT_FAIL_LOG_NAME_FORMAT			= 0			//MAC´ÓÅäÖÃÎÄ¼þ¶ÁÈ¡Ê±FAILÊ±LOGÃüÃû·½Ê½,È¡Öµ·¶Î§(
 								//2: MAC+ÈÕÆÚÊ±¼ä+FAIL 
 								//3: SN+ÈÕÆÚÊ±¼ä+FAIL
 									
-WT_TEST_LOG_PATH =                                              //Ö¸¶¨LogÊä³öµÄÂ·¾¶¡£Ä¬ÈÏÎª¿ÕÊ±£¬Êä³öµ½LogÎÄ¼þ¼ÐÖÐ
+WT_TEST_LOG_PATH=E:/qt_code/8.SKO.W618U.1_638BU/123/                          //Ö¸¶¨LogÊä³öµÄÂ·¾¶¡£Ä¬ÈÏÎª¿ÕÊ±£¬Êä³öµ½LogÎÄ¼þ¼ÐÖÐ
 WT_IS_SHOW_EXTERNAL_PROGRAM_WINDOW 	= 1                     //ÊÇ·ñÏÔÊ¾Íâ²¿Ó¦ÓÃµÄ´°¿Ú  0£º ²»ÏÔÊ¾, 1: ÏÔÊ¾    
 WT_IS_CHECK_CAL_START_AND_END      	= 1                     //Ð´ÖµÇ°£¬¼ì²éÊÇ·ñÖ´ÐÐ WT_CAL_START/WT_CAL_END£¬  0£º²»¼ì²é£¬ 1¼ì²é                                                          
 

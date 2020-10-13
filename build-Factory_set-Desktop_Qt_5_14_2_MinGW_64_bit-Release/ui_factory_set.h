@@ -107,11 +107,9 @@ public:
     QVBoxLayout *verticalLayout;
     QLabel *label_17;
     QHBoxLayout *horizontalLayout_2;
-    QLabel *label_21;
-    QLineEdit *lineEdit_WT_AUTO_TEST_WHEN_DUT_READY;
+    QCheckBox *checkBox_WT_AUTO_TEST_WHEN_DUT_READY;
     QHBoxLayout *horizontalLayout_12;
-    QLabel *label_22;
-    QLineEdit *lineEdit_WT_IS_NEED_LINKMES;
+    QCheckBox *checkBox_WT_IS_NEED_LINKMES;
     QHBoxLayout *horizontalLayout_18;
     QLabel *label_23;
     QLineEdit *lineEdit_WT_TEST_LOG_PATH;
@@ -309,14 +307,8 @@ public:
 
         pushButton_refresh = new QPushButton(centralwidget);
         pushButton_refresh->setObjectName(QString::fromUtf8("pushButton_refresh"));
-        pushButton_refresh->setMinimumSize(QSize(130, 35));
-        pushButton_refresh->setMaximumSize(QSize(130, 35));
-        QFont font;
-        font.setFamily(QString::fromUtf8("Adobe Arabic"));
-        font.setPointSize(16);
-        font.setBold(true);
-        font.setWeight(75);
-        pushButton_refresh->setFont(font);
+        pushButton_refresh->setMinimumSize(QSize(200, 35));
+        pushButton_refresh->setMaximumSize(QSize(150, 35));
 
         horizontalLayout_26->addWidget(pushButton_refresh);
 
@@ -691,6 +683,13 @@ public:
 
         pushButton_set = new QPushButton(base_set);
         pushButton_set->setObjectName(QString::fromUtf8("pushButton_set"));
+        pushButton_set->setMinimumSize(QSize(100, 40));
+        QFont font;
+        font.setFamily(QString::fromUtf8("Adobe Arabic"));
+        font.setPointSize(14);
+        font.setBold(true);
+        font.setWeight(75);
+        pushButton_set->setFont(font);
 
         horizontalLayout_4->addWidget(pushButton_set);
 
@@ -731,49 +730,31 @@ public:
         label_17->setObjectName(QString::fromUtf8("label_17"));
         sizePolicy3.setHeightForWidth(label_17->sizePolicy().hasHeightForWidth());
         label_17->setSizePolicy(sizePolicy3);
-        label_17->setFont(font);
+        QFont font1;
+        font1.setFamily(QString::fromUtf8("Adobe Arabic"));
+        font1.setPointSize(16);
+        font1.setBold(true);
+        font1.setWeight(75);
+        label_17->setFont(font1);
 
         verticalLayout->addWidget(label_17);
 
         horizontalLayout_2 = new QHBoxLayout();
         horizontalLayout_2->setObjectName(QString::fromUtf8("horizontalLayout_2"));
-        label_21 = new QLabel(layoutWidget);
-        label_21->setObjectName(QString::fromUtf8("label_21"));
-        sizePolicy3.setHeightForWidth(label_21->sizePolicy().hasHeightForWidth());
-        label_21->setSizePolicy(sizePolicy3);
-        label_21->setMinimumSize(QSize(70, 0));
-        label_21->setMaximumSize(QSize(16777215, 16777215));
-        label_21->setBaseSize(QSize(0, 0));
+        checkBox_WT_AUTO_TEST_WHEN_DUT_READY = new QCheckBox(layoutWidget);
+        checkBox_WT_AUTO_TEST_WHEN_DUT_READY->setObjectName(QString::fromUtf8("checkBox_WT_AUTO_TEST_WHEN_DUT_READY"));
 
-        horizontalLayout_2->addWidget(label_21);
-
-        lineEdit_WT_AUTO_TEST_WHEN_DUT_READY = new QLineEdit(layoutWidget);
-        lineEdit_WT_AUTO_TEST_WHEN_DUT_READY->setObjectName(QString::fromUtf8("lineEdit_WT_AUTO_TEST_WHEN_DUT_READY"));
-        lineEdit_WT_AUTO_TEST_WHEN_DUT_READY->setMinimumSize(QSize(250, 0));
-        lineEdit_WT_AUTO_TEST_WHEN_DUT_READY->setMaximumSize(QSize(250, 16777215));
-
-        horizontalLayout_2->addWidget(lineEdit_WT_AUTO_TEST_WHEN_DUT_READY);
+        horizontalLayout_2->addWidget(checkBox_WT_AUTO_TEST_WHEN_DUT_READY);
 
 
         verticalLayout->addLayout(horizontalLayout_2);
 
         horizontalLayout_12 = new QHBoxLayout();
         horizontalLayout_12->setObjectName(QString::fromUtf8("horizontalLayout_12"));
-        label_22 = new QLabel(layoutWidget);
-        label_22->setObjectName(QString::fromUtf8("label_22"));
-        sizePolicy3.setHeightForWidth(label_22->sizePolicy().hasHeightForWidth());
-        label_22->setSizePolicy(sizePolicy3);
-        label_22->setMinimumSize(QSize(70, 0));
-        label_22->setMaximumSize(QSize(16777215, 16777215));
+        checkBox_WT_IS_NEED_LINKMES = new QCheckBox(layoutWidget);
+        checkBox_WT_IS_NEED_LINKMES->setObjectName(QString::fromUtf8("checkBox_WT_IS_NEED_LINKMES"));
 
-        horizontalLayout_12->addWidget(label_22);
-
-        lineEdit_WT_IS_NEED_LINKMES = new QLineEdit(layoutWidget);
-        lineEdit_WT_IS_NEED_LINKMES->setObjectName(QString::fromUtf8("lineEdit_WT_IS_NEED_LINKMES"));
-        lineEdit_WT_IS_NEED_LINKMES->setMinimumSize(QSize(250, 0));
-        lineEdit_WT_IS_NEED_LINKMES->setMaximumSize(QSize(150, 16777215));
-
-        horizontalLayout_12->addWidget(lineEdit_WT_IS_NEED_LINKMES);
+        horizontalLayout_12->addWidget(checkBox_WT_IS_NEED_LINKMES);
 
 
         verticalLayout->addLayout(horizontalLayout_12);
@@ -816,12 +797,12 @@ public:
         label_18->setObjectName(QString::fromUtf8("label_18"));
         sizePolicy3.setHeightForWidth(label_18->sizePolicy().hasHeightForWidth());
         label_18->setSizePolicy(sizePolicy3);
-        QFont font1;
-        font1.setFamily(QString::fromUtf8("Adobe Arabic"));
-        font1.setPointSize(18);
-        font1.setBold(true);
-        font1.setWeight(75);
-        label_18->setFont(font1);
+        QFont font2;
+        font2.setFamily(QString::fromUtf8("Adobe Arabic"));
+        font2.setPointSize(18);
+        font2.setBold(true);
+        font2.setWeight(75);
+        label_18->setFont(font2);
 
         verticalLayout_2->addWidget(label_18);
 
@@ -879,7 +860,7 @@ public:
         label_64->setObjectName(QString::fromUtf8("label_64"));
         sizePolicy3.setHeightForWidth(label_64->sizePolicy().hasHeightForWidth());
         label_64->setSizePolicy(sizePolicy3);
-        label_64->setFont(font1);
+        label_64->setFont(font2);
 
         verticalLayout_15->addWidget(label_64);
 
@@ -895,7 +876,7 @@ public:
         label_20->setObjectName(QString::fromUtf8("label_20"));
         sizePolicy3.setHeightForWidth(label_20->sizePolicy().hasHeightForWidth());
         label_20->setSizePolicy(sizePolicy3);
-        label_20->setFont(font1);
+        label_20->setFont(font2);
 
         verticalLayout_3->addWidget(label_20);
 
@@ -921,7 +902,8 @@ public:
         sizePolicy4.setVerticalStretch(0);
         sizePolicy4.setHeightForWidth(pushButton_input->sizePolicy().hasHeightForWidth());
         pushButton_input->setSizePolicy(sizePolicy4);
-        pushButton_input->setMaximumSize(QSize(100, 50));
+        pushButton_input->setMaximumSize(QSize(100, 40));
+        pushButton_input->setFont(font);
 
         verticalLayout_6->addWidget(pushButton_input);
 
@@ -946,7 +928,7 @@ public:
         label_DUT_filename->setObjectName(QString::fromUtf8("label_DUT_filename"));
         label_DUT_filename->setMinimumSize(QSize(200, 0));
         label_DUT_filename->setMaximumSize(QSize(16777215, 16777215));
-        label_DUT_filename->setFont(font1);
+        label_DUT_filename->setFont(font2);
 
         horizontalLayout_5->addWidget(label_DUT_filename);
 
@@ -1302,12 +1284,12 @@ public:
 
         label_about_correct = new QLabel(tab);
         label_about_correct->setObjectName(QString::fromUtf8("label_about_correct"));
-        QFont font2;
-        font2.setFamily(QString::fromUtf8("Adobe Arabic"));
-        font2.setPointSize(20);
-        font2.setBold(true);
-        font2.setWeight(75);
-        label_about_correct->setFont(font2);
+        QFont font3;
+        font3.setFamily(QString::fromUtf8("Adobe Arabic"));
+        font3.setPointSize(20);
+        font3.setBold(true);
+        font3.setWeight(75);
+        label_about_correct->setFont(font3);
         label_about_correct->setStyleSheet(QString::fromUtf8("color: rgb(255, 0, 0);"));
 
         gridLayout_18->addWidget(label_about_correct, 0, 1, 1, 1);
@@ -1904,6 +1886,8 @@ public:
 
         pushButton_correct = new QPushButton(tab);
         pushButton_correct->setObjectName(QString::fromUtf8("pushButton_correct"));
+        pushButton_correct->setMinimumSize(QSize(200, 40));
+        pushButton_correct->setFont(font);
         pushButton_correct->setCursor(QCursor(Qt::ArrowCursor));
 
         gridLayout_20->addWidget(pushButton_correct, 0, 1, 1, 1);
@@ -1930,7 +1914,7 @@ public:
 
         retranslateUi(factory_set);
 
-        tabWidget->setCurrentIndex(2);
+        tabWidget->setCurrentIndex(0);
 
 
         QMetaObject::connectSlotsByName(factory_set);
@@ -1939,7 +1923,7 @@ public:
     void retranslateUi(QMainWindow *factory_set)
     {
         factory_set->setWindowTitle(QCoreApplication::translate("factory_set", "factory_set", nullptr));
-        pushButton_refresh->setText(QCoreApplication::translate("factory_set", "\344\270\200\351\224\256\346\201\242\345\244\215", nullptr));
+        pushButton_refresh->setText(QCoreApplication::translate("factory_set", "\344\270\200\351\224\256\346\201\242\345\244\215(\346\226\207\344\273\266\346\215\237\345\235\217\346\227\266\344\275\277\347\224\250)", nullptr));
         label_11->setText(QCoreApplication::translate("factory_set", "\346\265\213\350\257\225\345\221\230\347\274\226\345\217\267", nullptr));
         label_12->setText(QCoreApplication::translate("factory_set", "\346\265\213\350\257\225\346\236\266\347\274\226\345\217\267", nullptr));
         label_10->setText(QCoreApplication::translate("factory_set", "\346\265\213\350\257\225\345\267\245\344\275\215\347\274\226\345\217\267", nullptr));
@@ -1961,17 +1945,17 @@ public:
         special_set->setWhatsThis(QCoreApplication::translate("factory_set", "<html><head/><body><p><br/></p></body></html>", nullptr));
 #endif // QT_CONFIG(whatsthis)
         label_17->setText(QCoreApplication::translate("factory_set", "WT_DUT_MIMO:", nullptr));
-        label_21->setText(QCoreApplication::translate("factory_set", "\350\207\252\345\212\250\346\265\213\350\257\225\357\274\232", nullptr));
-        label_22->setText(QCoreApplication::translate("factory_set", "\346\230\257\345\220\246\350\277\236\346\216\245MES\357\274\232", nullptr));
+        checkBox_WT_AUTO_TEST_WHEN_DUT_READY->setText(QCoreApplication::translate("factory_set", "\346\230\257\345\220\246\350\256\276\347\275\256\350\207\252\345\212\250\346\265\213\350\257\225", nullptr));
+        checkBox_WT_IS_NEED_LINKMES->setText(QCoreApplication::translate("factory_set", "\346\230\257\345\220\246\350\277\236\346\216\245MES", nullptr));
         label_23->setText(QCoreApplication::translate("factory_set", "log\344\277\235\345\255\230\350\267\257\345\276\204\357\274\232", nullptr));
         pushButton_openfile_log->setText(QCoreApplication::translate("factory_set", "...", nullptr));
         label_18->setText(QCoreApplication::translate("factory_set", "WT_TESTER:", nullptr));
         label_24->setText(QCoreApplication::translate("factory_set", "\346\265\213\350\257\225\344\273\252IP\357\274\232", nullptr));
         label_25->setText(QCoreApplication::translate("factory_set", "\350\265\267\345\247\213RF\347\253\257\345\217\243\357\274\232", nullptr));
         label_64->setText(QCoreApplication::translate("factory_set", "WT_FLOW:", nullptr));
-        checkBox_WT_WRITE_EFUSE->setText(QCoreApplication::translate("factory_set", "\345\206\231EFUSE", nullptr));
+        checkBox_WT_WRITE_EFUSE->setText(QCoreApplication::translate("factory_set", "\346\230\257\345\220\246\345\206\231EFUSE", nullptr));
         label_20->setText(QCoreApplication::translate("factory_set", "debug.ini:", nullptr));
-        checkBox_Debug_log->setText(QCoreApplication::translate("factory_set", "Debug_log", nullptr));
+        checkBox_Debug_log->setText(QCoreApplication::translate("factory_set", "\346\230\257\345\220\246\350\256\276\347\275\256Debug_log", nullptr));
         pushButton_input->setText(QCoreApplication::translate("factory_set", "\351\205\215 \347\275\256", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(special_set), QCoreApplication::translate("factory_set", "\344\273\252\345\231\250\350\256\276\347\275\256", nullptr));
         label_DUT_filename->setText(QCoreApplication::translate("factory_set", "DUT\346\226\207\344\273\266\345\220\215", nullptr));
