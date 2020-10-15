@@ -469,7 +469,7 @@ void factory_set::display()
     QFile::remove("../../userlogo.jpg");
 
     QString MoudleType = ui->lineEdit_ModuleType->text();
-    QString WT_IS_NEED_LINKMES =openfile_display(filename_WT_DUT_MIMO, "WT_IS_NEED_LINKMES");
+    //QString WT_IS_NEED_LINKMES =openfile_display(filename_WT_DUT_MIMO, "WT_IS_NEED_LINKMES");
     QString filePath = "../image";
     QString curPath = QDir::currentPath();
     QDir *dir=new QDir(filePath);
@@ -481,9 +481,10 @@ void factory_set::display()
     for(int i = 0;i<fileInfo->count(); i++)
     {
         QString temp = fileInfo->at(i).fileName();
-        if(MoudleType + '.' + WT_IS_NEED_LINKMES + ".jpg" == temp)
+        //if(MoudleType + '.' + WT_IS_NEED_LINKMES + ".jpg" == temp)
+        if(MoudleType + ".jpg" == temp)
         {
-            qDebug() << "????????????????????????????" << QFile::copy("../image/" + temp,"../../userlogo.jpg");
+            QFile::copy("../image/" + temp,"../../userlogo.jpg");
 
         }
 
@@ -1377,11 +1378,63 @@ bool factory_set::Pass_log_clicked()
 
 
 
-void factory_set::on_pushButton_refresh_clicked()
+/**************************************************************************
+**
+** NAME     file_one_set
+**
+** PARAMETERS:  void
+**
+** RETURNS:
+**
+** DESCRIPTION  文件单独设置.
+**
+** NOTES:       None.
+**************************************************************************/
+void factory_set::file_one_set(QString filename)
 {
 
+    QString RunFrameNcFile = filename;
+    QFile Ncfile(RunFrameNcFile);
+    Ncfile.open(QIODevice::ReadOnly);
+    if (Ncfile.isOpen())
+    {
+        //Ncfile.readAll();
+        qDebug() <<Ncfile.pos();
+        QString strtemp;
+        QTextStream NctextStream(&Ncfile);
+
+        //修改项
+        QString WT_MAC_CURRENT = "WT_MAC_CURRENT_" + ui->lineEdit_WT_DUT_START_NUM->text();
+        QString Alltemp;
+        while(!NctextStream.atEnd())
+        {
+            //qDebug() <<NctextStream.pos();
+            strtemp = NctextStream.readLine();
+            if(strtemp.mid(0, WT_MAC_CURRENT.length()) == WT_MAC_CURRENT)
+            {
+                Alltemp += WT_MAC_CURRENT + "\t=" + openfile_display(filename_CVTE_MES, "CurrentMac").mid(6,6);
+                Alltemp += QString('\n');
+            }
+            else
+            {
+                Alltemp += strtemp;
+                Alltemp += QString('\n');
+
+            }
+
+        }
+        Ncfile.close();
+        Ncfile.open(QIODevice::WriteOnly);
+        QTextStream in(&Ncfile);
+        in <<Alltemp;
+        Ncfile.close();
+    }
+    //about_info("提示", "写入MAC成功");
+}
 
 
+void factory_set::on_pushButton_refresh_clicked()
+{
     QString strInfo;
     QProcess p(nullptr);
     p.start("./reset_setup.bat");  //运行脚本文件
@@ -1395,15 +1448,8 @@ void factory_set::on_pushButton_refresh_clicked()
     {
         strInfo = "bat运行错误！";
     }
-    /*
-    if(Pass_log_clicked())
-    {
-        qDebug() << "################################";
-    }
-    else
-    {
-        qDebug() << "????????????????????????????????";
-    }*/
+
+    file_one_set(filename_WT_MAC);
 
     display();
 

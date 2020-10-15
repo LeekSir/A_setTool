@@ -2107,417 +2107,6 @@
           </item>
           <item row="0" column="1">
            <layout class="QGridLayout" name="gridLayout_17">
-            <item row="0" column="2">
-             <layout class="QGridLayout" name="gridLayout_16">
-              <item row="0" column="0">
-               <widget class="QLabel" name="label_67">
-                <property name="minimumSize">
-                 <size>
-                  <width>50</width>
-                  <height>0</height>
-                 </size>
-                </property>
-                <property name="maximumSize">
-                 <size>
-                  <width>50</width>
-                  <height>16777215</height>
-                 </size>
-                </property>
-                <property name="text">
-                 <string>  TX 1</string>
-                </property>
-               </widget>
-              </item>
-              <item row="1" column="0">
-               <layout class="QVBoxLayout" name="verticalLayout_13">
-                <item>
-                 <layout class="QHBoxLayout" name="horizontalLayout_48">
-                  <item>
-                   <widget class="QDoubleSpinBox" name="doubleSpinBox_CH36_Port2">
-                    <property name="sizePolicy">
-                     <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-                      <horstretch>0</horstretch>
-                      <verstretch>0</verstretch>
-                     </sizepolicy>
-                    </property>
-                    <property name="minimumSize">
-                     <size>
-                      <width>60</width>
-                      <height>0</height>
-                     </size>
-                    </property>
-                    <property name="maximumSize">
-                     <size>
-                      <width>60</width>
-                      <height>16777215</height>
-                     </size>
-                    </property>
-                    <property name="maximum">
-                     <double>25.000000000000000</double>
-                    </property>
-                    <property name="singleStep">
-                     <double>0.100000000000000</double>
-                    </property>
-                   </widget>
-                  </item>
-                 </layout>
-                </item>
-                <item>
-                 <layout class="QHBoxLayout" name="horizontalLayout_49">
-                  <item>
-                   <widget class="QDoubleSpinBox" name="doubleSpinBox_CH48_Port2">
-                    <property name="sizePolicy">
-                     <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-                      <horstretch>0</horstretch>
-                      <verstretch>0</verstretch>
-                     </sizepolicy>
-                    </property>
-                    <property name="minimumSize">
-                     <size>
-                      <width>60</width>
-                      <height>0</height>
-                     </size>
-                    </property>
-                    <property name="maximumSize">
-                     <size>
-                      <width>60</width>
-                      <height>16777215</height>
-                     </size>
-                    </property>
-                    <property name="maximum">
-                     <double>25.000000000000000</double>
-                    </property>
-                    <property name="singleStep">
-                     <double>0.100000000000000</double>
-                    </property>
-                   </widget>
-                  </item>
-                 </layout>
-                </item>
-                <item>
-                 <layout class="QHBoxLayout" name="horizontalLayout_50">
-                  <item>
-                   <widget class="QDoubleSpinBox" name="doubleSpinBox_CH52_Port2">
-                    <property name="sizePolicy">
-                     <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-                      <horstretch>0</horstretch>
-                      <verstretch>0</verstretch>
-                     </sizepolicy>
-                    </property>
-                    <property name="minimumSize">
-                     <size>
-                      <width>60</width>
-                      <height>0</height>
-                     </size>
-                    </property>
-                    <property name="maximumSize">
-                     <size>
-                      <width>60</width>
-                      <height>16777215</height>
-                     </size>
-                    </property>
-                    <property name="maximum">
-                     <double>25.000000000000000</double>
-                    </property>
-                    <property name="singleStep">
-                     <double>0.100000000000000</double>
-                    </property>
-                   </widget>
-                  </item>
-                 </layout>
-                </item>
-                <item>
-                 <layout class="QHBoxLayout" name="horizontalLayout_51">
-                  <item>
-                   <widget class="QDoubleSpinBox" name="doubleSpinBox_CH64_Port2">
-                    <property name="sizePolicy">
-                     <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-                      <horstretch>0</horstretch>
-                      <verstretch>0</verstretch>
-                     </sizepolicy>
-                    </property>
-                    <property name="minimumSize">
-                     <size>
-                      <width>60</width>
-                      <height>0</height>
-                     </size>
-                    </property>
-                    <property name="maximumSize">
-                     <size>
-                      <width>60</width>
-                      <height>16777215</height>
-                     </size>
-                    </property>
-                    <property name="maximum">
-                     <double>25.000000000000000</double>
-                    </property>
-                    <property name="singleStep">
-                     <double>0.100000000000000</double>
-                    </property>
-                   </widget>
-                  </item>
-                 </layout>
-                </item>
-                <item>
-                 <layout class="QHBoxLayout" name="horizontalLayout_52">
-                  <item>
-                   <widget class="QDoubleSpinBox" name="doubleSpinBox_CH100_Port2">
-                    <property name="sizePolicy">
-                     <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-                      <horstretch>0</horstretch>
-                      <verstretch>0</verstretch>
-                     </sizepolicy>
-                    </property>
-                    <property name="minimumSize">
-                     <size>
-                      <width>60</width>
-                      <height>0</height>
-                     </size>
-                    </property>
-                    <property name="maximumSize">
-                     <size>
-                      <width>60</width>
-                      <height>16777215</height>
-                     </size>
-                    </property>
-                    <property name="maximum">
-                     <double>25.000000000000000</double>
-                    </property>
-                    <property name="singleStep">
-                     <double>0.100000000000000</double>
-                    </property>
-                   </widget>
-                  </item>
-                 </layout>
-                </item>
-                <item>
-                 <layout class="QHBoxLayout" name="horizontalLayout_53">
-                  <item>
-                   <widget class="QDoubleSpinBox" name="doubleSpinBox_CH116_Port2">
-                    <property name="sizePolicy">
-                     <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-                      <horstretch>0</horstretch>
-                      <verstretch>0</verstretch>
-                     </sizepolicy>
-                    </property>
-                    <property name="minimumSize">
-                     <size>
-                      <width>60</width>
-                      <height>0</height>
-                     </size>
-                    </property>
-                    <property name="maximumSize">
-                     <size>
-                      <width>60</width>
-                      <height>16777215</height>
-                     </size>
-                    </property>
-                    <property name="maximum">
-                     <double>25.000000000000000</double>
-                    </property>
-                    <property name="singleStep">
-                     <double>0.100000000000000</double>
-                    </property>
-                   </widget>
-                  </item>
-                 </layout>
-                </item>
-                <item>
-                 <layout class="QHBoxLayout" name="horizontalLayout_54">
-                  <item>
-                   <widget class="QDoubleSpinBox" name="doubleSpinBox_CH120_Port2">
-                    <property name="sizePolicy">
-                     <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-                      <horstretch>0</horstretch>
-                      <verstretch>0</verstretch>
-                     </sizepolicy>
-                    </property>
-                    <property name="minimumSize">
-                     <size>
-                      <width>60</width>
-                      <height>0</height>
-                     </size>
-                    </property>
-                    <property name="maximumSize">
-                     <size>
-                      <width>60</width>
-                      <height>16777215</height>
-                     </size>
-                    </property>
-                    <property name="maximum">
-                     <double>25.000000000000000</double>
-                    </property>
-                    <property name="singleStep">
-                     <double>0.100000000000000</double>
-                    </property>
-                   </widget>
-                  </item>
-                 </layout>
-                </item>
-                <item>
-                 <layout class="QHBoxLayout" name="horizontalLayout_55">
-                  <item>
-                   <widget class="QDoubleSpinBox" name="doubleSpinBox_CH136_Port2">
-                    <property name="sizePolicy">
-                     <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-                      <horstretch>0</horstretch>
-                      <verstretch>0</verstretch>
-                     </sizepolicy>
-                    </property>
-                    <property name="minimumSize">
-                     <size>
-                      <width>60</width>
-                      <height>0</height>
-                     </size>
-                    </property>
-                    <property name="maximumSize">
-                     <size>
-                      <width>60</width>
-                      <height>16777215</height>
-                     </size>
-                    </property>
-                    <property name="maximum">
-                     <double>25.000000000000000</double>
-                    </property>
-                    <property name="singleStep">
-                     <double>0.100000000000000</double>
-                    </property>
-                   </widget>
-                  </item>
-                 </layout>
-                </item>
-                <item>
-                 <layout class="QHBoxLayout" name="horizontalLayout_56">
-                  <item>
-                   <widget class="QDoubleSpinBox" name="doubleSpinBox_CH140_Port2">
-                    <property name="sizePolicy">
-                     <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-                      <horstretch>0</horstretch>
-                      <verstretch>0</verstretch>
-                     </sizepolicy>
-                    </property>
-                    <property name="minimumSize">
-                     <size>
-                      <width>60</width>
-                      <height>0</height>
-                     </size>
-                    </property>
-                    <property name="maximumSize">
-                     <size>
-                      <width>60</width>
-                      <height>16777215</height>
-                     </size>
-                    </property>
-                    <property name="maximum">
-                     <double>25.000000000000000</double>
-                    </property>
-                    <property name="singleStep">
-                     <double>0.100000000000000</double>
-                    </property>
-                   </widget>
-                  </item>
-                 </layout>
-                </item>
-                <item>
-                 <layout class="QHBoxLayout" name="horizontalLayout_57">
-                  <item>
-                   <widget class="QDoubleSpinBox" name="doubleSpinBox_CH157_Port2">
-                    <property name="sizePolicy">
-                     <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-                      <horstretch>0</horstretch>
-                      <verstretch>0</verstretch>
-                     </sizepolicy>
-                    </property>
-                    <property name="minimumSize">
-                     <size>
-                      <width>60</width>
-                      <height>0</height>
-                     </size>
-                    </property>
-                    <property name="maximumSize">
-                     <size>
-                      <width>60</width>
-                      <height>16777215</height>
-                     </size>
-                    </property>
-                    <property name="maximum">
-                     <double>25.000000000000000</double>
-                    </property>
-                    <property name="singleStep">
-                     <double>0.100000000000000</double>
-                    </property>
-                   </widget>
-                  </item>
-                 </layout>
-                </item>
-                <item>
-                 <layout class="QHBoxLayout" name="horizontalLayout_58">
-                  <item>
-                   <widget class="QDoubleSpinBox" name="doubleSpinBox_CH161_Port2">
-                    <property name="sizePolicy">
-                     <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-                      <horstretch>0</horstretch>
-                      <verstretch>0</verstretch>
-                     </sizepolicy>
-                    </property>
-                    <property name="minimumSize">
-                     <size>
-                      <width>60</width>
-                      <height>0</height>
-                     </size>
-                    </property>
-                    <property name="maximumSize">
-                     <size>
-                      <width>60</width>
-                      <height>16777215</height>
-                     </size>
-                    </property>
-                    <property name="maximum">
-                     <double>25.000000000000000</double>
-                    </property>
-                    <property name="singleStep">
-                     <double>0.100000000000000</double>
-                    </property>
-                   </widget>
-                  </item>
-                 </layout>
-                </item>
-                <item>
-                 <layout class="QHBoxLayout" name="horizontalLayout_59">
-                  <item>
-                   <widget class="QDoubleSpinBox" name="doubleSpinBox_CH165_Port2">
-                    <property name="sizePolicy">
-                     <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-                      <horstretch>0</horstretch>
-                      <verstretch>0</verstretch>
-                     </sizepolicy>
-                    </property>
-                    <property name="minimumSize">
-                     <size>
-                      <width>60</width>
-                      <height>0</height>
-                     </size>
-                    </property>
-                    <property name="maximumSize">
-                     <size>
-                      <width>60</width>
-                      <height>16777215</height>
-                     </size>
-                    </property>
-                    <property name="maximum">
-                     <double>25.000000000000000</double>
-                    </property>
-                    <property name="singleStep">
-                     <double>0.100000000000000</double>
-                    </property>
-                   </widget>
-                  </item>
-                 </layout>
-                </item>
-               </layout>
-              </item>
-             </layout>
-            </item>
             <item row="0" column="1">
              <layout class="QGridLayout" name="gridLayout_8">
               <item row="0" column="0">
@@ -3182,6 +2771,417 @@
                </size>
               </property>
              </spacer>
+            </item>
+            <item row="0" column="2">
+             <layout class="QGridLayout" name="gridLayout_16">
+              <item row="0" column="0">
+               <widget class="QLabel" name="label_67">
+                <property name="minimumSize">
+                 <size>
+                  <width>50</width>
+                  <height>0</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>50</width>
+                  <height>16777215</height>
+                 </size>
+                </property>
+                <property name="text">
+                 <string>  TX 1</string>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="0">
+               <layout class="QVBoxLayout" name="verticalLayout_13">
+                <item>
+                 <layout class="QHBoxLayout" name="horizontalLayout_48">
+                  <item>
+                   <widget class="QDoubleSpinBox" name="doubleSpinBox_CH36_Port2">
+                    <property name="sizePolicy">
+                     <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                      <horstretch>0</horstretch>
+                      <verstretch>0</verstretch>
+                     </sizepolicy>
+                    </property>
+                    <property name="minimumSize">
+                     <size>
+                      <width>60</width>
+                      <height>0</height>
+                     </size>
+                    </property>
+                    <property name="maximumSize">
+                     <size>
+                      <width>60</width>
+                      <height>16777215</height>
+                     </size>
+                    </property>
+                    <property name="maximum">
+                     <double>25.000000000000000</double>
+                    </property>
+                    <property name="singleStep">
+                     <double>0.100000000000000</double>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </item>
+                <item>
+                 <layout class="QHBoxLayout" name="horizontalLayout_49">
+                  <item>
+                   <widget class="QDoubleSpinBox" name="doubleSpinBox_CH48_Port2">
+                    <property name="sizePolicy">
+                     <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                      <horstretch>0</horstretch>
+                      <verstretch>0</verstretch>
+                     </sizepolicy>
+                    </property>
+                    <property name="minimumSize">
+                     <size>
+                      <width>60</width>
+                      <height>0</height>
+                     </size>
+                    </property>
+                    <property name="maximumSize">
+                     <size>
+                      <width>60</width>
+                      <height>16777215</height>
+                     </size>
+                    </property>
+                    <property name="maximum">
+                     <double>25.000000000000000</double>
+                    </property>
+                    <property name="singleStep">
+                     <double>0.100000000000000</double>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </item>
+                <item>
+                 <layout class="QHBoxLayout" name="horizontalLayout_50">
+                  <item>
+                   <widget class="QDoubleSpinBox" name="doubleSpinBox_CH52_Port2">
+                    <property name="sizePolicy">
+                     <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                      <horstretch>0</horstretch>
+                      <verstretch>0</verstretch>
+                     </sizepolicy>
+                    </property>
+                    <property name="minimumSize">
+                     <size>
+                      <width>60</width>
+                      <height>0</height>
+                     </size>
+                    </property>
+                    <property name="maximumSize">
+                     <size>
+                      <width>60</width>
+                      <height>16777215</height>
+                     </size>
+                    </property>
+                    <property name="maximum">
+                     <double>25.000000000000000</double>
+                    </property>
+                    <property name="singleStep">
+                     <double>0.100000000000000</double>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </item>
+                <item>
+                 <layout class="QHBoxLayout" name="horizontalLayout_51">
+                  <item>
+                   <widget class="QDoubleSpinBox" name="doubleSpinBox_CH64_Port2">
+                    <property name="sizePolicy">
+                     <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                      <horstretch>0</horstretch>
+                      <verstretch>0</verstretch>
+                     </sizepolicy>
+                    </property>
+                    <property name="minimumSize">
+                     <size>
+                      <width>60</width>
+                      <height>0</height>
+                     </size>
+                    </property>
+                    <property name="maximumSize">
+                     <size>
+                      <width>60</width>
+                      <height>16777215</height>
+                     </size>
+                    </property>
+                    <property name="maximum">
+                     <double>25.000000000000000</double>
+                    </property>
+                    <property name="singleStep">
+                     <double>0.100000000000000</double>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </item>
+                <item>
+                 <layout class="QHBoxLayout" name="horizontalLayout_52">
+                  <item>
+                   <widget class="QDoubleSpinBox" name="doubleSpinBox_CH100_Port2">
+                    <property name="sizePolicy">
+                     <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                      <horstretch>0</horstretch>
+                      <verstretch>0</verstretch>
+                     </sizepolicy>
+                    </property>
+                    <property name="minimumSize">
+                     <size>
+                      <width>60</width>
+                      <height>0</height>
+                     </size>
+                    </property>
+                    <property name="maximumSize">
+                     <size>
+                      <width>60</width>
+                      <height>16777215</height>
+                     </size>
+                    </property>
+                    <property name="maximum">
+                     <double>25.000000000000000</double>
+                    </property>
+                    <property name="singleStep">
+                     <double>0.100000000000000</double>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </item>
+                <item>
+                 <layout class="QHBoxLayout" name="horizontalLayout_53">
+                  <item>
+                   <widget class="QDoubleSpinBox" name="doubleSpinBox_CH116_Port2">
+                    <property name="sizePolicy">
+                     <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                      <horstretch>0</horstretch>
+                      <verstretch>0</verstretch>
+                     </sizepolicy>
+                    </property>
+                    <property name="minimumSize">
+                     <size>
+                      <width>60</width>
+                      <height>0</height>
+                     </size>
+                    </property>
+                    <property name="maximumSize">
+                     <size>
+                      <width>60</width>
+                      <height>16777215</height>
+                     </size>
+                    </property>
+                    <property name="maximum">
+                     <double>25.000000000000000</double>
+                    </property>
+                    <property name="singleStep">
+                     <double>0.100000000000000</double>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </item>
+                <item>
+                 <layout class="QHBoxLayout" name="horizontalLayout_54">
+                  <item>
+                   <widget class="QDoubleSpinBox" name="doubleSpinBox_CH120_Port2">
+                    <property name="sizePolicy">
+                     <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                      <horstretch>0</horstretch>
+                      <verstretch>0</verstretch>
+                     </sizepolicy>
+                    </property>
+                    <property name="minimumSize">
+                     <size>
+                      <width>60</width>
+                      <height>0</height>
+                     </size>
+                    </property>
+                    <property name="maximumSize">
+                     <size>
+                      <width>60</width>
+                      <height>16777215</height>
+                     </size>
+                    </property>
+                    <property name="maximum">
+                     <double>25.000000000000000</double>
+                    </property>
+                    <property name="singleStep">
+                     <double>0.100000000000000</double>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </item>
+                <item>
+                 <layout class="QHBoxLayout" name="horizontalLayout_55">
+                  <item>
+                   <widget class="QDoubleSpinBox" name="doubleSpinBox_CH136_Port2">
+                    <property name="sizePolicy">
+                     <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                      <horstretch>0</horstretch>
+                      <verstretch>0</verstretch>
+                     </sizepolicy>
+                    </property>
+                    <property name="minimumSize">
+                     <size>
+                      <width>60</width>
+                      <height>0</height>
+                     </size>
+                    </property>
+                    <property name="maximumSize">
+                     <size>
+                      <width>60</width>
+                      <height>16777215</height>
+                     </size>
+                    </property>
+                    <property name="maximum">
+                     <double>25.000000000000000</double>
+                    </property>
+                    <property name="singleStep">
+                     <double>0.100000000000000</double>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </item>
+                <item>
+                 <layout class="QHBoxLayout" name="horizontalLayout_56">
+                  <item>
+                   <widget class="QDoubleSpinBox" name="doubleSpinBox_CH140_Port2">
+                    <property name="sizePolicy">
+                     <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                      <horstretch>0</horstretch>
+                      <verstretch>0</verstretch>
+                     </sizepolicy>
+                    </property>
+                    <property name="minimumSize">
+                     <size>
+                      <width>60</width>
+                      <height>0</height>
+                     </size>
+                    </property>
+                    <property name="maximumSize">
+                     <size>
+                      <width>60</width>
+                      <height>16777215</height>
+                     </size>
+                    </property>
+                    <property name="maximum">
+                     <double>25.000000000000000</double>
+                    </property>
+                    <property name="singleStep">
+                     <double>0.100000000000000</double>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </item>
+                <item>
+                 <layout class="QHBoxLayout" name="horizontalLayout_57">
+                  <item>
+                   <widget class="QDoubleSpinBox" name="doubleSpinBox_CH157_Port2">
+                    <property name="sizePolicy">
+                     <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                      <horstretch>0</horstretch>
+                      <verstretch>0</verstretch>
+                     </sizepolicy>
+                    </property>
+                    <property name="minimumSize">
+                     <size>
+                      <width>60</width>
+                      <height>0</height>
+                     </size>
+                    </property>
+                    <property name="maximumSize">
+                     <size>
+                      <width>60</width>
+                      <height>16777215</height>
+                     </size>
+                    </property>
+                    <property name="maximum">
+                     <double>25.000000000000000</double>
+                    </property>
+                    <property name="singleStep">
+                     <double>0.100000000000000</double>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </item>
+                <item>
+                 <layout class="QHBoxLayout" name="horizontalLayout_58">
+                  <item>
+                   <widget class="QDoubleSpinBox" name="doubleSpinBox_CH161_Port2">
+                    <property name="sizePolicy">
+                     <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                      <horstretch>0</horstretch>
+                      <verstretch>0</verstretch>
+                     </sizepolicy>
+                    </property>
+                    <property name="minimumSize">
+                     <size>
+                      <width>60</width>
+                      <height>0</height>
+                     </size>
+                    </property>
+                    <property name="maximumSize">
+                     <size>
+                      <width>60</width>
+                      <height>16777215</height>
+                     </size>
+                    </property>
+                    <property name="maximum">
+                     <double>25.000000000000000</double>
+                    </property>
+                    <property name="singleStep">
+                     <double>0.100000000000000</double>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </item>
+                <item>
+                 <layout class="QHBoxLayout" name="horizontalLayout_59">
+                  <item>
+                   <widget class="QDoubleSpinBox" name="doubleSpinBox_CH165_Port2">
+                    <property name="sizePolicy">
+                     <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                      <horstretch>0</horstretch>
+                      <verstretch>0</verstretch>
+                     </sizepolicy>
+                    </property>
+                    <property name="minimumSize">
+                     <size>
+                      <width>60</width>
+                      <height>0</height>
+                     </size>
+                    </property>
+                    <property name="maximumSize">
+                     <size>
+                      <width>60</width>
+                      <height>16777215</height>
+                     </size>
+                    </property>
+                    <property name="maximum">
+                     <double>25.000000000000000</double>
+                    </property>
+                    <property name="singleStep">
+                     <double>0.100000000000000</double>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </item>
+               </layout>
+              </item>
+             </layout>
             </item>
            </layout>
           </item>

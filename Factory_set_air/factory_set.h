@@ -67,6 +67,10 @@ private:
 
     void display_connect_mes();
 
+
+    void file_one_set(QString filename);
+
+
     Ui::factory_set *ui;
 
     QString filename_CVTE_MES;

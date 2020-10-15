@@ -68,7 +68,7 @@ WT_MAC_VENDOR_ID        = 8C882B        // 厂家ID，MAC前6位地址，16进制，长度为6
 // DUT1
 WT_MAC_RANGE_BEGIN_1 	= 000000        // 产品ID，MAC后6位地址，16进制，长度为6
 WT_MAC_RANGE_END_1 	= 1FFFFF
-WT_MAC_CURRENT_1	= 000000	// 当前的产品ID
+WT_MAC_CURRENT_1	=445566
 //******************************************************************************
 
 // DUT2

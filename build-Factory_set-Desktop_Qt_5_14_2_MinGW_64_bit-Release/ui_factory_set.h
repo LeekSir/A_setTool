@@ -205,33 +205,6 @@ public:
     QLabel *label_27;
     QLineEdit *lineEdit_WT_FIXED_ATTEN_5_CHAIN1;
     QGridLayout *gridLayout_17;
-    QGridLayout *gridLayout_16;
-    QLabel *label_67;
-    QVBoxLayout *verticalLayout_13;
-    QHBoxLayout *horizontalLayout_48;
-    QDoubleSpinBox *doubleSpinBox_CH36_Port2;
-    QHBoxLayout *horizontalLayout_49;
-    QDoubleSpinBox *doubleSpinBox_CH48_Port2;
-    QHBoxLayout *horizontalLayout_50;
-    QDoubleSpinBox *doubleSpinBox_CH52_Port2;
-    QHBoxLayout *horizontalLayout_51;
-    QDoubleSpinBox *doubleSpinBox_CH64_Port2;
-    QHBoxLayout *horizontalLayout_52;
-    QDoubleSpinBox *doubleSpinBox_CH100_Port2;
-    QHBoxLayout *horizontalLayout_53;
-    QDoubleSpinBox *doubleSpinBox_CH116_Port2;
-    QHBoxLayout *horizontalLayout_54;
-    QDoubleSpinBox *doubleSpinBox_CH120_Port2;
-    QHBoxLayout *horizontalLayout_55;
-    QDoubleSpinBox *doubleSpinBox_CH136_Port2;
-    QHBoxLayout *horizontalLayout_56;
-    QDoubleSpinBox *doubleSpinBox_CH140_Port2;
-    QHBoxLayout *horizontalLayout_57;
-    QDoubleSpinBox *doubleSpinBox_CH157_Port2;
-    QHBoxLayout *horizontalLayout_58;
-    QDoubleSpinBox *doubleSpinBox_CH161_Port2;
-    QHBoxLayout *horizontalLayout_59;
-    QDoubleSpinBox *doubleSpinBox_CH165_Port2;
     QGridLayout *gridLayout_8;
     QHBoxLayout *horizontalLayout_43;
     QSpacerItem *horizontalSpacer_14;
@@ -273,6 +246,33 @@ public:
     QLabel *label_41;
     QDoubleSpinBox *doubleSpinBox_CH165_Port1;
     QSpacerItem *horizontalSpacer_13;
+    QGridLayout *gridLayout_16;
+    QLabel *label_67;
+    QVBoxLayout *verticalLayout_13;
+    QHBoxLayout *horizontalLayout_48;
+    QDoubleSpinBox *doubleSpinBox_CH36_Port2;
+    QHBoxLayout *horizontalLayout_49;
+    QDoubleSpinBox *doubleSpinBox_CH48_Port2;
+    QHBoxLayout *horizontalLayout_50;
+    QDoubleSpinBox *doubleSpinBox_CH52_Port2;
+    QHBoxLayout *horizontalLayout_51;
+    QDoubleSpinBox *doubleSpinBox_CH64_Port2;
+    QHBoxLayout *horizontalLayout_52;
+    QDoubleSpinBox *doubleSpinBox_CH100_Port2;
+    QHBoxLayout *horizontalLayout_53;
+    QDoubleSpinBox *doubleSpinBox_CH116_Port2;
+    QHBoxLayout *horizontalLayout_54;
+    QDoubleSpinBox *doubleSpinBox_CH120_Port2;
+    QHBoxLayout *horizontalLayout_55;
+    QDoubleSpinBox *doubleSpinBox_CH136_Port2;
+    QHBoxLayout *horizontalLayout_56;
+    QDoubleSpinBox *doubleSpinBox_CH140_Port2;
+    QHBoxLayout *horizontalLayout_57;
+    QDoubleSpinBox *doubleSpinBox_CH157_Port2;
+    QHBoxLayout *horizontalLayout_58;
+    QDoubleSpinBox *doubleSpinBox_CH161_Port2;
+    QHBoxLayout *horizontalLayout_59;
+    QDoubleSpinBox *doubleSpinBox_CH165_Port2;
     QSpacerItem *horizontalSpacer_9;
     QGridLayout *gridLayout_20;
     QSpacerItem *horizontalSpacer_4;
@@ -1358,215 +1358,6 @@ public:
 
         gridLayout_17 = new QGridLayout();
         gridLayout_17->setObjectName(QString::fromUtf8("gridLayout_17"));
-        gridLayout_16 = new QGridLayout();
-        gridLayout_16->setObjectName(QString::fromUtf8("gridLayout_16"));
-        label_67 = new QLabel(tab);
-        label_67->setObjectName(QString::fromUtf8("label_67"));
-        label_67->setMinimumSize(QSize(50, 0));
-        label_67->setMaximumSize(QSize(50, 16777215));
-
-        gridLayout_16->addWidget(label_67, 0, 0, 1, 1);
-
-        verticalLayout_13 = new QVBoxLayout();
-        verticalLayout_13->setObjectName(QString::fromUtf8("verticalLayout_13"));
-        horizontalLayout_48 = new QHBoxLayout();
-        horizontalLayout_48->setObjectName(QString::fromUtf8("horizontalLayout_48"));
-        doubleSpinBox_CH36_Port2 = new QDoubleSpinBox(tab);
-        doubleSpinBox_CH36_Port2->setObjectName(QString::fromUtf8("doubleSpinBox_CH36_Port2"));
-        sizePolicy3.setHeightForWidth(doubleSpinBox_CH36_Port2->sizePolicy().hasHeightForWidth());
-        doubleSpinBox_CH36_Port2->setSizePolicy(sizePolicy3);
-        doubleSpinBox_CH36_Port2->setMinimumSize(QSize(60, 0));
-        doubleSpinBox_CH36_Port2->setMaximumSize(QSize(60, 16777215));
-        doubleSpinBox_CH36_Port2->setMaximum(25.000000000000000);
-        doubleSpinBox_CH36_Port2->setSingleStep(0.100000000000000);
-
-        horizontalLayout_48->addWidget(doubleSpinBox_CH36_Port2);
-
-
-        verticalLayout_13->addLayout(horizontalLayout_48);
-
-        horizontalLayout_49 = new QHBoxLayout();
-        horizontalLayout_49->setObjectName(QString::fromUtf8("horizontalLayout_49"));
-        doubleSpinBox_CH48_Port2 = new QDoubleSpinBox(tab);
-        doubleSpinBox_CH48_Port2->setObjectName(QString::fromUtf8("doubleSpinBox_CH48_Port2"));
-        sizePolicy3.setHeightForWidth(doubleSpinBox_CH48_Port2->sizePolicy().hasHeightForWidth());
-        doubleSpinBox_CH48_Port2->setSizePolicy(sizePolicy3);
-        doubleSpinBox_CH48_Port2->setMinimumSize(QSize(60, 0));
-        doubleSpinBox_CH48_Port2->setMaximumSize(QSize(60, 16777215));
-        doubleSpinBox_CH48_Port2->setMaximum(25.000000000000000);
-        doubleSpinBox_CH48_Port2->setSingleStep(0.100000000000000);
-
-        horizontalLayout_49->addWidget(doubleSpinBox_CH48_Port2);
-
-
-        verticalLayout_13->addLayout(horizontalLayout_49);
-
-        horizontalLayout_50 = new QHBoxLayout();
-        horizontalLayout_50->setObjectName(QString::fromUtf8("horizontalLayout_50"));
-        doubleSpinBox_CH52_Port2 = new QDoubleSpinBox(tab);
-        doubleSpinBox_CH52_Port2->setObjectName(QString::fromUtf8("doubleSpinBox_CH52_Port2"));
-        sizePolicy3.setHeightForWidth(doubleSpinBox_CH52_Port2->sizePolicy().hasHeightForWidth());
-        doubleSpinBox_CH52_Port2->setSizePolicy(sizePolicy3);
-        doubleSpinBox_CH52_Port2->setMinimumSize(QSize(60, 0));
-        doubleSpinBox_CH52_Port2->setMaximumSize(QSize(60, 16777215));
-        doubleSpinBox_CH52_Port2->setMaximum(25.000000000000000);
-        doubleSpinBox_CH52_Port2->setSingleStep(0.100000000000000);
-
-        horizontalLayout_50->addWidget(doubleSpinBox_CH52_Port2);
-
-
-        verticalLayout_13->addLayout(horizontalLayout_50);
-
-        horizontalLayout_51 = new QHBoxLayout();
-        horizontalLayout_51->setObjectName(QString::fromUtf8("horizontalLayout_51"));
-        doubleSpinBox_CH64_Port2 = new QDoubleSpinBox(tab);
-        doubleSpinBox_CH64_Port2->setObjectName(QString::fromUtf8("doubleSpinBox_CH64_Port2"));
-        sizePolicy3.setHeightForWidth(doubleSpinBox_CH64_Port2->sizePolicy().hasHeightForWidth());
-        doubleSpinBox_CH64_Port2->setSizePolicy(sizePolicy3);
-        doubleSpinBox_CH64_Port2->setMinimumSize(QSize(60, 0));
-        doubleSpinBox_CH64_Port2->setMaximumSize(QSize(60, 16777215));
-        doubleSpinBox_CH64_Port2->setMaximum(25.000000000000000);
-        doubleSpinBox_CH64_Port2->setSingleStep(0.100000000000000);
-
-        horizontalLayout_51->addWidget(doubleSpinBox_CH64_Port2);
-
-
-        verticalLayout_13->addLayout(horizontalLayout_51);
-
-        horizontalLayout_52 = new QHBoxLayout();
-        horizontalLayout_52->setObjectName(QString::fromUtf8("horizontalLayout_52"));
-        doubleSpinBox_CH100_Port2 = new QDoubleSpinBox(tab);
-        doubleSpinBox_CH100_Port2->setObjectName(QString::fromUtf8("doubleSpinBox_CH100_Port2"));
-        sizePolicy3.setHeightForWidth(doubleSpinBox_CH100_Port2->sizePolicy().hasHeightForWidth());
-        doubleSpinBox_CH100_Port2->setSizePolicy(sizePolicy3);
-        doubleSpinBox_CH100_Port2->setMinimumSize(QSize(60, 0));
-        doubleSpinBox_CH100_Port2->setMaximumSize(QSize(60, 16777215));
-        doubleSpinBox_CH100_Port2->setMaximum(25.000000000000000);
-        doubleSpinBox_CH100_Port2->setSingleStep(0.100000000000000);
-
-        horizontalLayout_52->addWidget(doubleSpinBox_CH100_Port2);
-
-
-        verticalLayout_13->addLayout(horizontalLayout_52);
-
-        horizontalLayout_53 = new QHBoxLayout();
-        horizontalLayout_53->setObjectName(QString::fromUtf8("horizontalLayout_53"));
-        doubleSpinBox_CH116_Port2 = new QDoubleSpinBox(tab);
-        doubleSpinBox_CH116_Port2->setObjectName(QString::fromUtf8("doubleSpinBox_CH116_Port2"));
-        sizePolicy3.setHeightForWidth(doubleSpinBox_CH116_Port2->sizePolicy().hasHeightForWidth());
-        doubleSpinBox_CH116_Port2->setSizePolicy(sizePolicy3);
-        doubleSpinBox_CH116_Port2->setMinimumSize(QSize(60, 0));
-        doubleSpinBox_CH116_Port2->setMaximumSize(QSize(60, 16777215));
-        doubleSpinBox_CH116_Port2->setMaximum(25.000000000000000);
-        doubleSpinBox_CH116_Port2->setSingleStep(0.100000000000000);
-
-        horizontalLayout_53->addWidget(doubleSpinBox_CH116_Port2);
-
-
-        verticalLayout_13->addLayout(horizontalLayout_53);
-
-        horizontalLayout_54 = new QHBoxLayout();
-        horizontalLayout_54->setObjectName(QString::fromUtf8("horizontalLayout_54"));
-        doubleSpinBox_CH120_Port2 = new QDoubleSpinBox(tab);
-        doubleSpinBox_CH120_Port2->setObjectName(QString::fromUtf8("doubleSpinBox_CH120_Port2"));
-        sizePolicy3.setHeightForWidth(doubleSpinBox_CH120_Port2->sizePolicy().hasHeightForWidth());
-        doubleSpinBox_CH120_Port2->setSizePolicy(sizePolicy3);
-        doubleSpinBox_CH120_Port2->setMinimumSize(QSize(60, 0));
-        doubleSpinBox_CH120_Port2->setMaximumSize(QSize(60, 16777215));
-        doubleSpinBox_CH120_Port2->setMaximum(25.000000000000000);
-        doubleSpinBox_CH120_Port2->setSingleStep(0.100000000000000);
-
-        horizontalLayout_54->addWidget(doubleSpinBox_CH120_Port2);
-
-
-        verticalLayout_13->addLayout(horizontalLayout_54);
-
-        horizontalLayout_55 = new QHBoxLayout();
-        horizontalLayout_55->setObjectName(QString::fromUtf8("horizontalLayout_55"));
-        doubleSpinBox_CH136_Port2 = new QDoubleSpinBox(tab);
-        doubleSpinBox_CH136_Port2->setObjectName(QString::fromUtf8("doubleSpinBox_CH136_Port2"));
-        sizePolicy3.setHeightForWidth(doubleSpinBox_CH136_Port2->sizePolicy().hasHeightForWidth());
-        doubleSpinBox_CH136_Port2->setSizePolicy(sizePolicy3);
-        doubleSpinBox_CH136_Port2->setMinimumSize(QSize(60, 0));
-        doubleSpinBox_CH136_Port2->setMaximumSize(QSize(60, 16777215));
-        doubleSpinBox_CH136_Port2->setMaximum(25.000000000000000);
-        doubleSpinBox_CH136_Port2->setSingleStep(0.100000000000000);
-
-        horizontalLayout_55->addWidget(doubleSpinBox_CH136_Port2);
-
-
-        verticalLayout_13->addLayout(horizontalLayout_55);
-
-        horizontalLayout_56 = new QHBoxLayout();
-        horizontalLayout_56->setObjectName(QString::fromUtf8("horizontalLayout_56"));
-        doubleSpinBox_CH140_Port2 = new QDoubleSpinBox(tab);
-        doubleSpinBox_CH140_Port2->setObjectName(QString::fromUtf8("doubleSpinBox_CH140_Port2"));
-        sizePolicy3.setHeightForWidth(doubleSpinBox_CH140_Port2->sizePolicy().hasHeightForWidth());
-        doubleSpinBox_CH140_Port2->setSizePolicy(sizePolicy3);
-        doubleSpinBox_CH140_Port2->setMinimumSize(QSize(60, 0));
-        doubleSpinBox_CH140_Port2->setMaximumSize(QSize(60, 16777215));
-        doubleSpinBox_CH140_Port2->setMaximum(25.000000000000000);
-        doubleSpinBox_CH140_Port2->setSingleStep(0.100000000000000);
-
-        horizontalLayout_56->addWidget(doubleSpinBox_CH140_Port2);
-
-
-        verticalLayout_13->addLayout(horizontalLayout_56);
-
-        horizontalLayout_57 = new QHBoxLayout();
-        horizontalLayout_57->setObjectName(QString::fromUtf8("horizontalLayout_57"));
-        doubleSpinBox_CH157_Port2 = new QDoubleSpinBox(tab);
-        doubleSpinBox_CH157_Port2->setObjectName(QString::fromUtf8("doubleSpinBox_CH157_Port2"));
-        sizePolicy3.setHeightForWidth(doubleSpinBox_CH157_Port2->sizePolicy().hasHeightForWidth());
-        doubleSpinBox_CH157_Port2->setSizePolicy(sizePolicy3);
-        doubleSpinBox_CH157_Port2->setMinimumSize(QSize(60, 0));
-        doubleSpinBox_CH157_Port2->setMaximumSize(QSize(60, 16777215));
-        doubleSpinBox_CH157_Port2->setMaximum(25.000000000000000);
-        doubleSpinBox_CH157_Port2->setSingleStep(0.100000000000000);
-
-        horizontalLayout_57->addWidget(doubleSpinBox_CH157_Port2);
-
-
-        verticalLayout_13->addLayout(horizontalLayout_57);
-
-        horizontalLayout_58 = new QHBoxLayout();
-        horizontalLayout_58->setObjectName(QString::fromUtf8("horizontalLayout_58"));
-        doubleSpinBox_CH161_Port2 = new QDoubleSpinBox(tab);
-        doubleSpinBox_CH161_Port2->setObjectName(QString::fromUtf8("doubleSpinBox_CH161_Port2"));
-        sizePolicy3.setHeightForWidth(doubleSpinBox_CH161_Port2->sizePolicy().hasHeightForWidth());
-        doubleSpinBox_CH161_Port2->setSizePolicy(sizePolicy3);
-        doubleSpinBox_CH161_Port2->setMinimumSize(QSize(60, 0));
-        doubleSpinBox_CH161_Port2->setMaximumSize(QSize(60, 16777215));
-        doubleSpinBox_CH161_Port2->setMaximum(25.000000000000000);
-        doubleSpinBox_CH161_Port2->setSingleStep(0.100000000000000);
-
-        horizontalLayout_58->addWidget(doubleSpinBox_CH161_Port2);
-
-
-        verticalLayout_13->addLayout(horizontalLayout_58);
-
-        horizontalLayout_59 = new QHBoxLayout();
-        horizontalLayout_59->setObjectName(QString::fromUtf8("horizontalLayout_59"));
-        doubleSpinBox_CH165_Port2 = new QDoubleSpinBox(tab);
-        doubleSpinBox_CH165_Port2->setObjectName(QString::fromUtf8("doubleSpinBox_CH165_Port2"));
-        sizePolicy3.setHeightForWidth(doubleSpinBox_CH165_Port2->sizePolicy().hasHeightForWidth());
-        doubleSpinBox_CH165_Port2->setSizePolicy(sizePolicy3);
-        doubleSpinBox_CH165_Port2->setMinimumSize(QSize(60, 0));
-        doubleSpinBox_CH165_Port2->setMaximumSize(QSize(60, 16777215));
-        doubleSpinBox_CH165_Port2->setMaximum(25.000000000000000);
-        doubleSpinBox_CH165_Port2->setSingleStep(0.100000000000000);
-
-        horizontalLayout_59->addWidget(doubleSpinBox_CH165_Port2);
-
-
-        verticalLayout_13->addLayout(horizontalLayout_59);
-
-
-        gridLayout_16->addLayout(verticalLayout_13, 1, 0, 1, 1);
-
-
-        gridLayout_17->addLayout(gridLayout_16, 0, 2, 1, 1);
-
         gridLayout_8 = new QGridLayout();
         gridLayout_8->setObjectName(QString::fromUtf8("gridLayout_8"));
         horizontalLayout_43 = new QHBoxLayout();
@@ -1868,6 +1659,215 @@ public:
 
         gridLayout_17->addItem(horizontalSpacer_13, 0, 0, 1, 1);
 
+        gridLayout_16 = new QGridLayout();
+        gridLayout_16->setObjectName(QString::fromUtf8("gridLayout_16"));
+        label_67 = new QLabel(tab);
+        label_67->setObjectName(QString::fromUtf8("label_67"));
+        label_67->setMinimumSize(QSize(50, 0));
+        label_67->setMaximumSize(QSize(50, 16777215));
+
+        gridLayout_16->addWidget(label_67, 0, 0, 1, 1);
+
+        verticalLayout_13 = new QVBoxLayout();
+        verticalLayout_13->setObjectName(QString::fromUtf8("verticalLayout_13"));
+        horizontalLayout_48 = new QHBoxLayout();
+        horizontalLayout_48->setObjectName(QString::fromUtf8("horizontalLayout_48"));
+        doubleSpinBox_CH36_Port2 = new QDoubleSpinBox(tab);
+        doubleSpinBox_CH36_Port2->setObjectName(QString::fromUtf8("doubleSpinBox_CH36_Port2"));
+        sizePolicy3.setHeightForWidth(doubleSpinBox_CH36_Port2->sizePolicy().hasHeightForWidth());
+        doubleSpinBox_CH36_Port2->setSizePolicy(sizePolicy3);
+        doubleSpinBox_CH36_Port2->setMinimumSize(QSize(60, 0));
+        doubleSpinBox_CH36_Port2->setMaximumSize(QSize(60, 16777215));
+        doubleSpinBox_CH36_Port2->setMaximum(25.000000000000000);
+        doubleSpinBox_CH36_Port2->setSingleStep(0.100000000000000);
+
+        horizontalLayout_48->addWidget(doubleSpinBox_CH36_Port2);
+
+
+        verticalLayout_13->addLayout(horizontalLayout_48);
+
+        horizontalLayout_49 = new QHBoxLayout();
+        horizontalLayout_49->setObjectName(QString::fromUtf8("horizontalLayout_49"));
+        doubleSpinBox_CH48_Port2 = new QDoubleSpinBox(tab);
+        doubleSpinBox_CH48_Port2->setObjectName(QString::fromUtf8("doubleSpinBox_CH48_Port2"));
+        sizePolicy3.setHeightForWidth(doubleSpinBox_CH48_Port2->sizePolicy().hasHeightForWidth());
+        doubleSpinBox_CH48_Port2->setSizePolicy(sizePolicy3);
+        doubleSpinBox_CH48_Port2->setMinimumSize(QSize(60, 0));
+        doubleSpinBox_CH48_Port2->setMaximumSize(QSize(60, 16777215));
+        doubleSpinBox_CH48_Port2->setMaximum(25.000000000000000);
+        doubleSpinBox_CH48_Port2->setSingleStep(0.100000000000000);
+
+        horizontalLayout_49->addWidget(doubleSpinBox_CH48_Port2);
+
+
+        verticalLayout_13->addLayout(horizontalLayout_49);
+
+        horizontalLayout_50 = new QHBoxLayout();
+        horizontalLayout_50->setObjectName(QString::fromUtf8("horizontalLayout_50"));
+        doubleSpinBox_CH52_Port2 = new QDoubleSpinBox(tab);
+        doubleSpinBox_CH52_Port2->setObjectName(QString::fromUtf8("doubleSpinBox_CH52_Port2"));
+        sizePolicy3.setHeightForWidth(doubleSpinBox_CH52_Port2->sizePolicy().hasHeightForWidth());
+        doubleSpinBox_CH52_Port2->setSizePolicy(sizePolicy3);
+        doubleSpinBox_CH52_Port2->setMinimumSize(QSize(60, 0));
+        doubleSpinBox_CH52_Port2->setMaximumSize(QSize(60, 16777215));
+        doubleSpinBox_CH52_Port2->setMaximum(25.000000000000000);
+        doubleSpinBox_CH52_Port2->setSingleStep(0.100000000000000);
+
+        horizontalLayout_50->addWidget(doubleSpinBox_CH52_Port2);
+
+
+        verticalLayout_13->addLayout(horizontalLayout_50);
+
+        horizontalLayout_51 = new QHBoxLayout();
+        horizontalLayout_51->setObjectName(QString::fromUtf8("horizontalLayout_51"));
+        doubleSpinBox_CH64_Port2 = new QDoubleSpinBox(tab);
+        doubleSpinBox_CH64_Port2->setObjectName(QString::fromUtf8("doubleSpinBox_CH64_Port2"));
+        sizePolicy3.setHeightForWidth(doubleSpinBox_CH64_Port2->sizePolicy().hasHeightForWidth());
+        doubleSpinBox_CH64_Port2->setSizePolicy(sizePolicy3);
+        doubleSpinBox_CH64_Port2->setMinimumSize(QSize(60, 0));
+        doubleSpinBox_CH64_Port2->setMaximumSize(QSize(60, 16777215));
+        doubleSpinBox_CH64_Port2->setMaximum(25.000000000000000);
+        doubleSpinBox_CH64_Port2->setSingleStep(0.100000000000000);
+
+        horizontalLayout_51->addWidget(doubleSpinBox_CH64_Port2);
+
+
+        verticalLayout_13->addLayout(horizontalLayout_51);
+
+        horizontalLayout_52 = new QHBoxLayout();
+        horizontalLayout_52->setObjectName(QString::fromUtf8("horizontalLayout_52"));
+        doubleSpinBox_CH100_Port2 = new QDoubleSpinBox(tab);
+        doubleSpinBox_CH100_Port2->setObjectName(QString::fromUtf8("doubleSpinBox_CH100_Port2"));
+        sizePolicy3.setHeightForWidth(doubleSpinBox_CH100_Port2->sizePolicy().hasHeightForWidth());
+        doubleSpinBox_CH100_Port2->setSizePolicy(sizePolicy3);
+        doubleSpinBox_CH100_Port2->setMinimumSize(QSize(60, 0));
+        doubleSpinBox_CH100_Port2->setMaximumSize(QSize(60, 16777215));
+        doubleSpinBox_CH100_Port2->setMaximum(25.000000000000000);
+        doubleSpinBox_CH100_Port2->setSingleStep(0.100000000000000);
+
+        horizontalLayout_52->addWidget(doubleSpinBox_CH100_Port2);
+
+
+        verticalLayout_13->addLayout(horizontalLayout_52);
+
+        horizontalLayout_53 = new QHBoxLayout();
+        horizontalLayout_53->setObjectName(QString::fromUtf8("horizontalLayout_53"));
+        doubleSpinBox_CH116_Port2 = new QDoubleSpinBox(tab);
+        doubleSpinBox_CH116_Port2->setObjectName(QString::fromUtf8("doubleSpinBox_CH116_Port2"));
+        sizePolicy3.setHeightForWidth(doubleSpinBox_CH116_Port2->sizePolicy().hasHeightForWidth());
+        doubleSpinBox_CH116_Port2->setSizePolicy(sizePolicy3);
+        doubleSpinBox_CH116_Port2->setMinimumSize(QSize(60, 0));
+        doubleSpinBox_CH116_Port2->setMaximumSize(QSize(60, 16777215));
+        doubleSpinBox_CH116_Port2->setMaximum(25.000000000000000);
+        doubleSpinBox_CH116_Port2->setSingleStep(0.100000000000000);
+
+        horizontalLayout_53->addWidget(doubleSpinBox_CH116_Port2);
+
+
+        verticalLayout_13->addLayout(horizontalLayout_53);
+
+        horizontalLayout_54 = new QHBoxLayout();
+        horizontalLayout_54->setObjectName(QString::fromUtf8("horizontalLayout_54"));
+        doubleSpinBox_CH120_Port2 = new QDoubleSpinBox(tab);
+        doubleSpinBox_CH120_Port2->setObjectName(QString::fromUtf8("doubleSpinBox_CH120_Port2"));
+        sizePolicy3.setHeightForWidth(doubleSpinBox_CH120_Port2->sizePolicy().hasHeightForWidth());
+        doubleSpinBox_CH120_Port2->setSizePolicy(sizePolicy3);
+        doubleSpinBox_CH120_Port2->setMinimumSize(QSize(60, 0));
+        doubleSpinBox_CH120_Port2->setMaximumSize(QSize(60, 16777215));
+        doubleSpinBox_CH120_Port2->setMaximum(25.000000000000000);
+        doubleSpinBox_CH120_Port2->setSingleStep(0.100000000000000);
+
+        horizontalLayout_54->addWidget(doubleSpinBox_CH120_Port2);
+
+
+        verticalLayout_13->addLayout(horizontalLayout_54);
+
+        horizontalLayout_55 = new QHBoxLayout();
+        horizontalLayout_55->setObjectName(QString::fromUtf8("horizontalLayout_55"));
+        doubleSpinBox_CH136_Port2 = new QDoubleSpinBox(tab);
+        doubleSpinBox_CH136_Port2->setObjectName(QString::fromUtf8("doubleSpinBox_CH136_Port2"));
+        sizePolicy3.setHeightForWidth(doubleSpinBox_CH136_Port2->sizePolicy().hasHeightForWidth());
+        doubleSpinBox_CH136_Port2->setSizePolicy(sizePolicy3);
+        doubleSpinBox_CH136_Port2->setMinimumSize(QSize(60, 0));
+        doubleSpinBox_CH136_Port2->setMaximumSize(QSize(60, 16777215));
+        doubleSpinBox_CH136_Port2->setMaximum(25.000000000000000);
+        doubleSpinBox_CH136_Port2->setSingleStep(0.100000000000000);
+
+        horizontalLayout_55->addWidget(doubleSpinBox_CH136_Port2);
+
+
+        verticalLayout_13->addLayout(horizontalLayout_55);
+
+        horizontalLayout_56 = new QHBoxLayout();
+        horizontalLayout_56->setObjectName(QString::fromUtf8("horizontalLayout_56"));
+        doubleSpinBox_CH140_Port2 = new QDoubleSpinBox(tab);
+        doubleSpinBox_CH140_Port2->setObjectName(QString::fromUtf8("doubleSpinBox_CH140_Port2"));
+        sizePolicy3.setHeightForWidth(doubleSpinBox_CH140_Port2->sizePolicy().hasHeightForWidth());
+        doubleSpinBox_CH140_Port2->setSizePolicy(sizePolicy3);
+        doubleSpinBox_CH140_Port2->setMinimumSize(QSize(60, 0));
+        doubleSpinBox_CH140_Port2->setMaximumSize(QSize(60, 16777215));
+        doubleSpinBox_CH140_Port2->setMaximum(25.000000000000000);
+        doubleSpinBox_CH140_Port2->setSingleStep(0.100000000000000);
+
+        horizontalLayout_56->addWidget(doubleSpinBox_CH140_Port2);
+
+
+        verticalLayout_13->addLayout(horizontalLayout_56);
+
+        horizontalLayout_57 = new QHBoxLayout();
+        horizontalLayout_57->setObjectName(QString::fromUtf8("horizontalLayout_57"));
+        doubleSpinBox_CH157_Port2 = new QDoubleSpinBox(tab);
+        doubleSpinBox_CH157_Port2->setObjectName(QString::fromUtf8("doubleSpinBox_CH157_Port2"));
+        sizePolicy3.setHeightForWidth(doubleSpinBox_CH157_Port2->sizePolicy().hasHeightForWidth());
+        doubleSpinBox_CH157_Port2->setSizePolicy(sizePolicy3);
+        doubleSpinBox_CH157_Port2->setMinimumSize(QSize(60, 0));
+        doubleSpinBox_CH157_Port2->setMaximumSize(QSize(60, 16777215));
+        doubleSpinBox_CH157_Port2->setMaximum(25.000000000000000);
+        doubleSpinBox_CH157_Port2->setSingleStep(0.100000000000000);
+
+        horizontalLayout_57->addWidget(doubleSpinBox_CH157_Port2);
+
+
+        verticalLayout_13->addLayout(horizontalLayout_57);
+
+        horizontalLayout_58 = new QHBoxLayout();
+        horizontalLayout_58->setObjectName(QString::fromUtf8("horizontalLayout_58"));
+        doubleSpinBox_CH161_Port2 = new QDoubleSpinBox(tab);
+        doubleSpinBox_CH161_Port2->setObjectName(QString::fromUtf8("doubleSpinBox_CH161_Port2"));
+        sizePolicy3.setHeightForWidth(doubleSpinBox_CH161_Port2->sizePolicy().hasHeightForWidth());
+        doubleSpinBox_CH161_Port2->setSizePolicy(sizePolicy3);
+        doubleSpinBox_CH161_Port2->setMinimumSize(QSize(60, 0));
+        doubleSpinBox_CH161_Port2->setMaximumSize(QSize(60, 16777215));
+        doubleSpinBox_CH161_Port2->setMaximum(25.000000000000000);
+        doubleSpinBox_CH161_Port2->setSingleStep(0.100000000000000);
+
+        horizontalLayout_58->addWidget(doubleSpinBox_CH161_Port2);
+
+
+        verticalLayout_13->addLayout(horizontalLayout_58);
+
+        horizontalLayout_59 = new QHBoxLayout();
+        horizontalLayout_59->setObjectName(QString::fromUtf8("horizontalLayout_59"));
+        doubleSpinBox_CH165_Port2 = new QDoubleSpinBox(tab);
+        doubleSpinBox_CH165_Port2->setObjectName(QString::fromUtf8("doubleSpinBox_CH165_Port2"));
+        sizePolicy3.setHeightForWidth(doubleSpinBox_CH165_Port2->sizePolicy().hasHeightForWidth());
+        doubleSpinBox_CH165_Port2->setSizePolicy(sizePolicy3);
+        doubleSpinBox_CH165_Port2->setMinimumSize(QSize(60, 0));
+        doubleSpinBox_CH165_Port2->setMaximumSize(QSize(60, 16777215));
+        doubleSpinBox_CH165_Port2->setMaximum(25.000000000000000);
+        doubleSpinBox_CH165_Port2->setSingleStep(0.100000000000000);
+
+        horizontalLayout_59->addWidget(doubleSpinBox_CH165_Port2);
+
+
+        verticalLayout_13->addLayout(horizontalLayout_59);
+
+
+        gridLayout_16->addLayout(verticalLayout_13, 1, 0, 1, 1);
+
+
+        gridLayout_17->addLayout(gridLayout_16, 0, 2, 1, 1);
+
 
         formLayout_3->setLayout(0, QFormLayout::FieldRole, gridLayout_17);
 
@@ -1972,7 +1972,6 @@ public:
         label_about_correct->setText(QString());
         label_26->setText(QCoreApplication::translate("factory_set", "5G_CHAIN0", nullptr));
         label_27->setText(QCoreApplication::translate("factory_set", "5G_CHAIN1", nullptr));
-        label_67->setText(QCoreApplication::translate("factory_set", "  TX 1", nullptr));
         label_68->setText(QCoreApplication::translate("factory_set", " TX 0", nullptr));
         label_31->setText(QCoreApplication::translate("factory_set", "CH36  ", nullptr));
         label_32->setText(QCoreApplication::translate("factory_set", "CH48 ", nullptr));
@@ -1986,6 +1985,7 @@ public:
         label_43->setText(QCoreApplication::translate("factory_set", "CH157", nullptr));
         label_44->setText(QCoreApplication::translate("factory_set", "CH161", nullptr));
         label_41->setText(QCoreApplication::translate("factory_set", "CH165", nullptr));
+        label_67->setText(QCoreApplication::translate("factory_set", "  TX 1", nullptr));
         pushButton_correct->setText(QCoreApplication::translate("factory_set", "\346\240\241\345\207\206\345\274\200\345\247\213", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tab), QCoreApplication::translate("factory_set", "\347\272\277\346\215\237", nullptr));
     } // retranslateUi
