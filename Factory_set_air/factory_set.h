@@ -43,11 +43,16 @@ private slots:
 
     void on_pushButton_correct_clicked();
 
+    void display_refresh();//3s定时更新直通率
+
+    void on_pushButton_open_factory_tool_clicked();
+
 private:
     QString openfile_display(QString filename, QString show);
     void openfile_set_show(QString filename, QString line_id, QLineEdit* wirte_show);
     void openfile_set_debug(QString filename, bool check_box_sta);
     void about_info(QString dlgTitle, QString strInfo);
+    void about_info_auto(QString dlgTitle, QString strInfo);
     QString openfile_display_lineloss(QString filename, QString show, int port_num);
     void openfile_set_LineLoss(QString Box_name, QDoubleSpinBox* wirte_show, int port_num);
 
@@ -65,6 +70,7 @@ private:
 
 
 
+
     void display_connect_mes();
 
 
@@ -79,7 +85,7 @@ private:
     QString filename_advance;
     QString filename_debug;
     QString filename_SoftVer;
-    QString filename_WT_ATTEN_DUT;
+
     QString filename_WT_WRITE_EFUSE;
     QString filename_WT_MAC;
 
@@ -90,6 +96,8 @@ private:
 
     //添加线程私有对象
     MyThread thread;
+    //添加定时器
+    QTimer *timer;
 
 
 

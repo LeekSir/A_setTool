@@ -5,10 +5,18 @@
 #include <QAxObject>
 #include <QProcess>
 #include <QDateTime>
+#include <QTimer>
 
 bool correct = true;
 bool correct_flag = false;//是否校准成功
 bool mythread_flag;
+QString correct_Port_Num;
+bool PASS_flag = true;
+
+QMutex mutex;
+
+QString filename_WT_ATTEN_DUT;
+
 factory_set::factory_set(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::factory_set)
@@ -45,6 +53,9 @@ factory_set::factory_set(QWidget *parent)
     mythread_flag = false;
 
 
+    timer = new QTimer(this);
+    connect(timer, SIGNAL(timeout()), this, SLOT(display_refresh()));
+
 
 
 }
@@ -59,7 +70,6 @@ factory_set::~factory_set()
 void factory_set::mySlot()
 {
     mythread_flag = true;
-    qDebug() << "hellohellohellohellohellohellohellohellohellohellohellohello";
 }
 
 /**************************************************************************
@@ -180,11 +190,16 @@ void factory_set::openfile_set_wefuse(QString box_id)
         QTextStream NctextStream(&Ncfile);
 
         QString temp;
+        bool key_flag = false;
+        QString ignore_box_id = "//";// + box_id;
         while(!NctextStream.atEnd())
         {
             strtemp = NctextStream.readLine();
-            if(strtemp.mid(0, box_id.length()) == box_id)
+            if(strtemp.indexOf(box_id) != -1 && strtemp.split(QRegExp("\\s+"), QString::SkipEmptyParts).at(0) == box_id)
+            //if(strtemp.mid(0, box_id.length()) == box_id)
+            //if(strtemp.split(QRegExp("\\s+"), QString::SkipEmptyParts).at(0) == box_id)
             {
+                key_flag = true;
                 if(ui->checkBox_WT_WRITE_EFUSE->checkState())
                 {
                     temp += strtemp;
@@ -196,8 +211,11 @@ void factory_set::openfile_set_wefuse(QString box_id)
                     temp += QString('\n');
                 }
             }
-            else if(strtemp.mid(2, box_id.length()) == box_id)
+            //else if(strtemp.split(QRegExp("\\s+"), QString::SkipEmptyParts).at(0).mid(2, box_id.length()) == box_id)
+            //else if(strtemp.mid(2, box_id.length()) == box_id)
+            else if(strtemp.indexOf(box_id) != -1 && strtemp.indexOf(box_id) != -1 && strtemp.split(QRegExp("\\s+"), QString::SkipEmptyParts).at(0).mid(0,2) == ignore_box_id)
             {
+                key_flag = true;
                 if(!ui->checkBox_WT_WRITE_EFUSE->checkState())
                 {
                     temp += strtemp;
@@ -213,6 +231,20 @@ void factory_set::openfile_set_wefuse(QString box_id)
             else
             {
                 temp += strtemp;
+                temp += QString('\n');
+            }
+
+        }
+        if(!key_flag)
+        {
+            if(ui->checkBox_WT_WRITE_EFUSE->checkState())
+            {
+                temp += box_id + "\t\t //写efuse";
+                temp += QString('\n');
+            }
+            else
+            {
+                temp += ignore_box_id + box_id + "\t\t //写efuse";
                 temp += QString('\n');
             }
         }
@@ -351,6 +383,7 @@ void factory_set::display()
 
         //第二页
         ui->pushButton_input->setEnabled(0);
+        ui->pushButton_openfile_log->setEnabled(0);
         //ui->lineEdit_WT_AUTO_TEST_WHEN_DUT_READY->setReadOnly(1);
         ui->checkBox_WT_AUTO_TEST_WHEN_DUT_READY->setEnabled(0);
         ui->lineEdit_WT_TEST_LOG_PATH->setReadOnly(1);
@@ -436,13 +469,25 @@ void factory_set::display()
     ui->lineEdit_WT_FIXED_ATTEN_5_CHAIN0->setReadOnly(1);
     ui->lineEdit_WT_FIXED_ATTEN_5_CHAIN1->setReadOnly(1);
 
-    //展示MAC号段及当前MAC
-    ui->lineEdit_WT_MAC_RANGE_BEGIN->setText(openfile_display(filename_WT_MAC, "WT_MAC_VENDOR_ID")
-     +openfile_display(filename_WT_MAC, "WT_MAC_RANGE_BEGIN_" + openfile_display(filename_WT_TESTER, "WT_DUT_START_NUM")));
-    ui->lineEdit_WT_MAC_RANGE_END->setText(openfile_display(filename_WT_MAC, "WT_MAC_VENDOR_ID")
-     +openfile_display(filename_WT_MAC, "WT_MAC_RANGE_END_" + openfile_display(filename_WT_TESTER, "WT_DUT_START_NUM")));
-    ui->lineEdit_WT_MAC_CURRENT->setText(openfile_display(filename_WT_MAC, "WT_MAC_VENDOR_ID")
-     +openfile_display(filename_WT_MAC, "WT_MAC_CURRENT_" + openfile_display(filename_WT_TESTER, "WT_DUT_START_NUM")));
+    //展示MAC号段及当前MAC,当MAC地址来源为配置文件时显示
+    if(openfile_display(filename_WT_MAC, "WT_MAC_SOURCE") == "0")
+    {
+        ui->lineEdit_WT_MAC_RANGE_BEGIN->setText(openfile_display(filename_WT_MAC, "WT_MAC_VENDOR_ID")
+         +openfile_display(filename_WT_MAC, "WT_MAC_RANGE_BEGIN_" + openfile_display(filename_WT_TESTER, "WT_DUT_START_NUM")));
+        ui->lineEdit_WT_MAC_RANGE_END->setText(openfile_display(filename_WT_MAC, "WT_MAC_VENDOR_ID")
+         +openfile_display(filename_WT_MAC, "WT_MAC_RANGE_END_" + openfile_display(filename_WT_TESTER, "WT_DUT_START_NUM")));
+        ui->lineEdit_WT_MAC_CURRENT->setText(openfile_display(filename_WT_MAC, "WT_MAC_VENDOR_ID")
+         +openfile_display(filename_WT_MAC, "WT_MAC_CURRENT_" + openfile_display(filename_WT_TESTER, "WT_DUT_START_NUM")));
+    }
+    else
+    {
+        ui->lineEdit_WT_MAC_RANGE_BEGIN->setText("外部输入");
+        ui->lineEdit_WT_MAC_RANGE_END->setText("外部输入");
+        ui->lineEdit_WT_MAC_CURRENT->setText("外部输入");
+    }
+
+
+
 
     //展示 CVTE_MES.ini
     ui->lineEdit_IP->setText(openfile_display(filename_CVTE_MES, "IP"));
@@ -466,7 +511,7 @@ void factory_set::display()
 
 
     //增加显示MES连接与否，主要是配置产测软件
-    QFile::remove("../../userlogo.jpg");
+    //QFile::remove("../../userlogo.jpg");
 
     QString MoudleType = ui->lineEdit_ModuleType->text();
     //QString WT_IS_NEED_LINKMES =openfile_display(filename_WT_DUT_MIMO, "WT_IS_NEED_LINKMES");
@@ -531,7 +576,7 @@ void factory_set::display()
     }
 
     //展示 WT_FLOW
-    if(openfile_wefuse_display("WT_WRITE_EFUSE\t\t"))
+    if(openfile_wefuse_display("WT_WRITE_EFUSE"))//\t\t"))
     {
         ui->checkBox_WT_WRITE_EFUSE->setCheckState(Qt::CheckState::Checked);
     }
@@ -550,11 +595,81 @@ void factory_set::display()
     display_user_login();
 
 
+/*
+    //展示直通率
+    QString WT_PASS_NUMBER = "WT_PASS_NUMBER_" + ui->lineEdit_WT_DUT_START_NUM->text();
+    QString WT_FAIL_NUMBER = "WT_FAIL_NUMBER_" + ui->lineEdit_WT_DUT_START_NUM->text();
+    double first_PASS = openfile_display("../../TestStatistics.txt", WT_PASS_NUMBER).toDouble()/
+            (openfile_display("../../TestStatistics.txt", WT_FAIL_NUMBER).toDouble()+
+             openfile_display("../../TestStatistics.txt", WT_PASS_NUMBER).toDouble());
+    //ui->lineEdit_WT_MAC_CURRENT->setText(QString::number(first_PASS*100,'f',2) + '%');
+    if(!this->Usr_Type)
+    {
+        ui->label_user->setText("直通率：" + QString::number(first_PASS*100,'f',1) + '%');
+    }
+    else
+    {
+        ui->label_MES_Status->setText("直通率：" + QString::number(first_PASS*100,'f',1) + '%');
 
+    }
+*/
+    timer->start(3000);
 
 
 }
 #endif
+
+void factory_set::display_refresh()
+{
+#if 1
+    //展示MAC号段及当前MAC,当MAC地址来源为配置文件时显示
+    if(openfile_display(filename_WT_MAC, "WT_MAC_SOURCE") == "0")
+    {
+        ui->lineEdit_WT_MAC_CURRENT->setText(openfile_display(filename_WT_MAC, "WT_MAC_VENDOR_ID")
+         +openfile_display(filename_WT_MAC, "WT_MAC_CURRENT_" + openfile_display(filename_WT_TESTER, "WT_DUT_START_NUM")));
+    }
+
+    //展示直通率
+    QString WT_PASS_NUMBER = "WT_PASS_NUMBER_" + ui->lineEdit_WT_DUT_START_NUM->text();
+    QString WT_FAIL_NUMBER = "WT_FAIL_NUMBER_" + ui->lineEdit_WT_DUT_START_NUM->text();
+    double first_PASS = openfile_display("../../TestStatistics.txt", WT_PASS_NUMBER).toDouble()/
+            (openfile_display("../../TestStatistics.txt", WT_FAIL_NUMBER).toDouble()+
+             openfile_display("../../TestStatistics.txt", WT_PASS_NUMBER).toDouble());
+    //ui->lineEdit_WT_MAC_CURRENT->setText(QString::number(first_PASS*100,'f',2) + '%');
+    if(!this->Usr_Type)
+    {
+        /*if(first_PASS*100 <= openfile_display(filename_CVTE_MES, "first_PASS_yield").toDouble())
+        {
+            ui->label_user->setStyleSheet("color:red;");
+            QMessageBox::warning(NULL, "警告", "直通率低于90%，严重影响生产！请立即点检产线配置！");
+        }
+        else
+        {
+            ui->label_user->setStyleSheet("color:green;");
+        }*/
+        ui->label_user->setText("直通率：" + QString::number(first_PASS*100,'f',1) + '%');
+
+    }
+    else
+    {
+        /*if(first_PASS*100 <= openfile_display(filename_CVTE_MES, "first_PASS_yield").toDouble())
+        {
+            ui->label_MES_Status->setStyleSheet("color:red;");
+            QMessageBox::warning(NULL, "警告", "直通率低于90%，严重影响生产！请立即点检产线配置！");
+        }
+        else
+        {
+            ui->label_MES_Status->setStyleSheet("color:green;");
+        }*/
+        ui->label_MES_Status->setText("直通率：" + QString::number(first_PASS*100,'f',1) + '%');
+
+    }
+
+
+
+
+#endif
+}
 
 
 /**************************************************************************
@@ -872,6 +987,16 @@ void factory_set::about_info(QString dlgTitle, QString strInfo)
     m_box->exec();*/
 }
 
+//信息提示窗口
+void factory_set::about_info_auto(QString dlgTitle, QString strInfo)
+{
+    QMessageBox *m_box = new QMessageBox(QMessageBox::NoIcon,dlgTitle,strInfo);
+    m_box->setStandardButtons(0);
+    QTimer::singleShot(2000,m_box,SLOT(accept()));
+    m_box->exec();
+}
+
+
 /**************************************************************************
 **
 ** NAME     openfile_set_show
@@ -963,7 +1088,7 @@ void factory_set::on_pushButton_input_clicked()
     openfile_set_debug(filename_debug, ui->checkBox_Debug_log->checkState());
 
     //WT_FLOW 写EFUSE
-    openfile_set_wefuse("WT_WRITE_EFUSE\t\t");
+    openfile_set_wefuse("WT_WRITE_EFUSE");
 
     //write 端口号
     //openfile_set_show(filename_CVTE_MES, "WT_DUT_START_NUM", ui->lineEdit_WT_DUT_START_NUM);
@@ -1276,7 +1401,7 @@ void factory_set::set_LineLoss_correct()
     Sleep(2000);
     //about_info("提示", "校准参数写入成功！");
     //display_LineLoss_clicked();
-    mythread_flag = false;
+    //mythread_flag = false;
 }
 
 
@@ -1452,7 +1577,6 @@ void factory_set::on_pushButton_refresh_clicked()
     file_one_set(filename_WT_MAC);
 
     display();
-
 }
 
 void factory_set::on_pushButton_openfile_log_clicked()
@@ -1844,114 +1968,127 @@ void factory_set::openfile_deal_lineloss_log(/*QString filename, QString show, i
 
 void factory_set::dialog_process_bar()
 {
-    QProgressDialog dialog(tr("线损校准进度"), tr("取消"), 0, 2000000, this);
+    int time = 12000000;//36000000;
+    QProgressDialog dialog(tr("线损校准进度"), tr("取消"), 0, time, this);
     dialog.setWindowTitle(tr("线损校准"));
-    dialog.setWindowModality(Qt::WindowModal);
-    dialog.show();
-    for(int i = 0; i < 2000000; i++)//已知最大值不超过50000
-    {
-        if(mythread_flag)
-        {
-            thread.terminate();
-            openfile_deal_lineloss_log();
-            set_LineLoss_correct();
 
-            dialog.setValue(i+100000);
-            mythread_flag = false;
-            thread.start();
-            continue;
-        }
-        if(!thread.isRunning())
+    dialog.setStyleSheet("QProgressBar{border:1px solid #FFFFFF;"
+                              "height:30;"
+                              "background:red;"
+                              "text-align:center;"
+                              "color:rgb(255,255,0);"
+                              "border-radius:10px;}"
+                              "QProgressBar::chunk{"
+                              "border-radius:3px;"    // 斑马线圆角
+                              "border:0.5px "
+                              "solid green;" // 黑边，默认无边
+                              "background-color:green;}");
+    dialog.setWindowModality(Qt::WindowModal);
+    dialog.setModal(true);
+    dialog.show();
+
+    int i = 0;
+    for( ; i < time; i++)//已知最大值不超过50000
+    {
+        //mutex.lock();
+        if(i % 500 == 0 && mythread_flag)
         {
-            break;
+            if(!PASS_flag || correct_flag)
+            {
+               dialog.setValue(time);
+               break;
+            }
         }
+
+        //mutex.unlock();
         dialog.setValue(i);
         QCoreApplication::processEvents();
         if(dialog.wasCanceled())
-            break;
-    }
-    dialog.setValue(2000000);
-
-
-}
-
-#if 0
-//需要加同步进度条
-void factory_set::on_pushButton_correct_clicked()
-{
-
-    //*************** 启动 copy.bat *****************
-    QString strInfo;
-    QProcess p(nullptr);
-    if(correct)
-    {
-        correct = false;
-        //1、拷入校准模式文件，拷出原始文件
-        p.start("./copy.bat");
-        if(p.waitForFinished())//等待脚本运行完成，超时时间默认是3000s,超时返回0，正常返回1
         {
-            strInfo = "完成！";
-            Sleep(1000);
-            about_info("提示", "拷贝校准文件成功！");
-            ui->pushButton_correct->setText("校准进行中");
-            ui->pushButton_correct->setEnabled(0);
-        //2、开启计时进度条
-            //dialog_process_bar();
-        //3、跑校准模式和金板对比，并重复N次3
-            //第一遍不用循环
-
-            thread.start();
-            dialog_process_bar();
-            while(!mythread_flag);
-            openfile_deal_lineloss_log();
-            //set_LineLoss_correct();
-            /*about_info("提示", "我是爸爸！");
-            correct = false;
-            while(!correct_flag)
-            {
-                //dialog_process_bar();
-                //about_info("提示", "我是妈妈！");
-                thread.start();
-                openfile_deal_lineloss_log();
-
-                while(!mythread_flag);
-                set_LineLoss_correct();
-                about_info("提示", "我是爸爸！");
-                if(correct)
-                {
-                    correct = false;
-                }
-            }*/
-            about_info("提示", "跑完了哦！");
-        //4、测试数据和金板数据相差不大于正负0.5，校准成功
-            Sleep(1000);
-            display_LineLoss_clicked();
-            correct = true;
-            ui->pushButton_correct->setEnabled(1);
-        //5、拷入原始文件，替换校准文件
-            p.start("./reset.bat");  //运行脚本文件
-            if(p.waitForFinished())//等待脚本运行完成，超时时间默认是3000s,超时返回0，正常返回1
-            {
-                strInfo = "完成！";
-                Sleep(1000);
-                //about_info("提示", "原始文件reset成功！");
-                about_info("提示", "线损校准成功！");
-            }
-            else
-            {
-                strInfo = "bat运行错误！";
-            }
+            PASS_flag = false;
+            break;
         }
+
     }
+    if(i == time)
+    {
+        PASS_flag = false;
+    }
+    //dialog.setValue(time);
+    dialog.setValue(0);
 
 
 }
-#endif
 
-//自动校线损，未加进度条
+
+
 void factory_set::on_pushButton_correct_clicked()
 {
+#if 1
+    //自动校线损，加进度条
+    //*************** 启动 copy.bat *****************
+    QStringList arguments;
+    correct_Port_Num = "./correct.bat " + ui->lineEdit_WT_DUT_START_NUM->text();
+    QProcess p(nullptr);
+    ui->label_about_correct->setText("校准中，请勿点击界面！");
 
+    //about_info_auto("提示", "进入校准模式成功！");
+    timer->stop();
+    //QApplication::setOverrideCursor(QCursor(Qt::WaitCursor)); //设置鼠标为等待状态
+    ui->pushButton_correct->setText("校准进行中");
+    ui->pushButton_correct->setEnabled(0);
+
+    thread.start();
+    dialog_process_bar();
+    thread.quit();
+
+
+
+    //QApplication::restoreOverrideCursor();//恢复鼠标为箭头状态
+    if(PASS_flag && correct_flag)
+    {
+        ui->label_about_correct->setText("校准 PASS！");
+        ui->label_about_correct->setStyleSheet("color:green;");
+        about_info("提示", "线损校准 PASS！");
+        ui->label_about_correct->setText("已校准！");
+    }
+    else
+    {
+        ui->label_about_correct->setText("校准 FAIL！");
+        about_info("提示", "PASS_log 获取失败！请检查配置并重新开始校准！");
+        PASS_flag = true;
+    }
+
+    //5、拷入原始文件，替换校准文件
+    p.start("./reset_correct.bat");  //运行脚本文件
+    //恢复金版数据
+    if(p.waitForFinished())//等待脚本运行完成，超时时间默认是3000s,超时返回0，正常返回1
+    {
+        //Sleep(1000);
+        //about_info("提示", "原始文件reset成功！");
+    }
+
+    //Sleep(1000);
+    //display_LineLoss_clicked();
+    display();
+    timer->start(3000);
+    correct = true;
+    //correct_flag = true;
+    mythread_flag=false;
+    ui->pushButton_correct->setEnabled(1);
+    ui->pushButton_correct->setText("校准开始");
+
+
+    //**************************************************
+    //校准完线损后保存一份setup文件到指定文件夹，并在关键时刻恢复
+    p.start("./copy_setup.bat");  //运行脚本文件
+    if(p.waitForFinished())//等待脚本运行完成，超时时间默认是3000s,超时返回0，正常返回1
+    {
+        //Sleep(1000);
+        //about_info("提示", "setup文件夹拷贝成功！");
+    }
+#else
+    //自动校线损，未加进度条
     //*************** 启动 copy.bat *****************
     QStringList arguments;
     QString strInfo, Port_Num;
@@ -1959,44 +2096,7 @@ void factory_set::on_pushButton_correct_clicked()
     QProcess p(nullptr);
     ui->label_about_correct->setText("校准中，请勿点击界面！");
 
-#if 0
-    //dialog_process_bar();
-    //***********修改中*************
-    thread.start();
-    about_info("提示", "进入校准模式成功！");
-    //修改按键
-    ui->pushButton_correct->setText("校准进行中");
-    ui->pushButton_correct->setEnabled(0);
-    //开启进度条
-    dialog_process_bar();
-
-    //线损校准完毕收尾工作
-    //5、拷入原始文件，替换校准文件
-    p.start("./reset.bat");  //运行脚本文件
-    if(p.waitForFinished())//等待脚本运行完成，超时时间默认是3000s,超时返回0，正常返回1
-    {
-        Sleep(1000);
-        about_info("提示", "原始文件reset成功！");
-    }
-
-    //**************************************************
-    //校准完线损后保存一份setup文件到指定文件夹，并在关键时刻恢复
-    p.start("./copy_setup.bat");  //运行脚本文件
-    if(p.waitForFinished())//等待脚本运行完成，超时时间默认是3000s,超时返回0，正常返回1
-    {
-        Sleep(1000);
-        about_info("提示", "setup文件夹拷贝成功！");
-    }
-
-    Sleep(1000);
-    display_LineLoss_clicked();
-    correct = true;
-    ui->pushButton_correct->setEnabled(1);
-    QApplication::restoreOverrideCursor();//恢复鼠标为箭头状态
-    about_info("提示", "线损校准successfully！");
-    //***********修改中*************
-#else
-    bool PASS_flag = true;
+    bool PASS_flag_old = true;
     QString copy_new_log = "./copy_new_log.bat";// + ui->lineEdit_WT_TEST_LOG_PATH->text();
     while(1/*!correct_flag*/)
     {
@@ -2034,7 +2134,7 @@ void factory_set::on_pushButton_correct_clicked()
                         //about_info("提示", "log拷贝成功！");
                         if(!Pass_log_clicked())
                         {
-                            PASS_flag = false;
+                            PASS_flag_old = false;
                             break;
                         }
 
@@ -2068,7 +2168,7 @@ void factory_set::on_pushButton_correct_clicked()
                     Sleep(1000);
                     if(!Pass_log_clicked())
                     {
-                        PASS_flag = false;
+                        PASS_flag_old = false;
                         break;
                     }
                     //about_info("提示", "log拷贝成功！");
@@ -2092,7 +2192,7 @@ void factory_set::on_pushButton_correct_clicked()
     {
         ui->label_about_correct->setText("校准 FAIL！");
         about_info("提示", "PASS_log 获取失败！请检查配置并重新开始校准！");
-        PASS_flag = true;
+        PASS_flag_old = true;
     }
     else
     {
@@ -2109,7 +2209,7 @@ void factory_set::on_pushButton_correct_clicked()
     {
         strInfo = "完成！";
         Sleep(1000);
-        //about_info("提示", "原始文件reset成功！");   
+        //about_info("提示", "原始文件reset成功！");
     }
 
     Sleep(1000);
@@ -2134,4 +2234,28 @@ void factory_set::on_pushButton_correct_clicked()
         strInfo = "bat运行错误！";
     }
 #endif
+}
+
+void factory_set::on_pushButton_open_factory_tool_clicked()
+{
+    QProcess p(this);
+    QStringList arguments;
+    //arguments << "/c" << "ping www.baidu.com";
+    //arguments << "cd ../../ " << " && " << "E:/qt_code/8.SKO.W618U.1_638BU/WLAN_Console.exe -p 1";
+    QString cmd = ui->lineEdit_ModuleType->text() + ".exe";
+    //QString cmd = "SKO.W618U.1_638BU.exe";
+    arguments << "/c" << "cd ../../ && " + cmd;
+
+    QProcess process(this);
+    //process.start("./correct.bat");
+    process.startDetached("cmd.exe", arguments);
+    process.waitForStarted();
+    process.waitForFinished();
+    /*if(process.waitForFinished())   //等待脚本运行完成，超时时间默认是3000s,超时返回0，正常返回1
+    {
+        process.start("./copy_new_log.bat");       //运行校验线损脚本文件
+        if(process.waitForFinished()){        //等待脚本运行完成，超时时间默认是3000s,超时返回0，正常返回1
+            emit mySignal();
+        }
+    }*/
 }

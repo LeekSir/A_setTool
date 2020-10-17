@@ -36,102 +36,80 @@
 //	CHAIN0	CHAIN1
 //
 //******************************************************************************
-//[程序内置的常用变量]：
-//$result$, $DUTIP$, $WIFI_MAC_2_4G$, $LAN_MAC$, $WAN_MAC$, $WIFI_MAC_5G$, $BT_MAC$, $DUT_SN$
-//******************************************************************************
-
 //WT_ENABLE_NIC					//启用网卡
 
-WT_CONNECT_TESTER				//连接测试仪
-
-WT_INSERT_DUT					//连接DUT
+  WT_CONNECT_TESTER				//连接测试仪
+		
+  WT_INSERT_DUT					//连接DUT
 
 //WT_DELAY  100					//延时处理 单位毫秒
 
 //WT_SHOW_MSGBOX				//提示框					
 
+//******************************************************************************
+// Start calibration test categories
+// Power/Freq Calibration Example: 
+// 	Freq Calibration Example: 	WT_CAL_FREQ [FREQ][DATA RATE] [CHAIN]
+//	POW Calibration Example: 	WT_CAL_PWR [FREQ] [DATA RATE] [CHAIN]
+// ******************************************************************************
+// WT_CAL_START
+		
+	// WT_CAL_FREQ		1    	54M		CHAIN0
+
+	// WT_CAL_PWR  		4 	11M		CHAIN0
+	// WT_CAL_PWR  		10 	11M             CHAIN0
+	// WT_CAL_PWR  		13	11M             CHAIN0	
+
+	// WT_CAL_PWR  		4 	HT40-MCS7	CHAIN0
+	// WT_CAL_PWR  		10 	HT40-MCS7       CHAIN0
+	
+// WT_CAL_END
+
+	WT_READ_THERMAL		//校准结束后立即读取温补值
+
 //------------------------------------------------------------------------------------
 // TX&RX Verifing 
-// Example: CMD [FREQ] [DATA RATE] [CHAIN]
-// Example: WT_VERIFY_TX_ALL [FREQ] [DATA RATE] [CHAIN] [TARGET POWER][RANGE_MIN][RANGE_MAX]
+// TX Example:	     WT_VERIFY_TX_ALL [FREQ] [DATA RATE] [CHAIN]
+// RX Example: 	     WT_VERIFY_RX_PER [FREQ] [DATA RATE] [CHAIN]
+// RX Sweep Example: WT_VERIFY_RX_SWEEP  [FREQ] [DATA RATE] [CHAIN] [START POW] [END POW] [STEP]
 //------------------------------------------------------------------------------------
-	
-	WT_VERIFY_TX_ALL	1	54M  		CHAIN0
-	WT_VERIFY_TX_ALL	3	54M    	    CHAIN0
-	WT_VERIFY_TX_ALL	7	54M	  		CHAIN0
-	WT_VERIFY_TX_ALL	11	54M  		CHAIN0
-	WT_VERIFY_TX_ALL	13	54M  		CHAIN0
-		
-	WT_VERIFY_TX_ALL  	36	54M			CHAIN0
-	WT_VERIFY_TX_ALL  	48	54M			CHAIN0
-	WT_VERIFY_TX_ALL  	52	54M			CHAIN0
-	WT_VERIFY_TX_ALL  	64	54M			CHAIN0
-	WT_VERIFY_TX_ALL  	100	54M		    CHAIN0
-	WT_VERIFY_TX_ALL  	116	54M		    CHAIN0
-	WT_VERIFY_TX_ALL  	120	54M		    CHAIN0
-	WT_VERIFY_TX_ALL  	136	54M		    CHAIN0
-	WT_VERIFY_TX_ALL  	140	54M		    CHAIN0
-	WT_VERIFY_TX_ALL  	157	54M		    CHAIN0
-	WT_VERIFY_TX_ALL  	161	54M		    CHAIN0
-	WT_VERIFY_TX_ALL  	165	54M		    CHAIN0
-		
-
-	WT_VERIFY_TX_ALL	1	54M  		CHAIN1
-	WT_VERIFY_TX_ALL	3	54M    	    CHAIN1
-	WT_VERIFY_TX_ALL	7	54M	  		CHAIN1
-	WT_VERIFY_TX_ALL	11	54M  		CHAIN1
-	WT_VERIFY_TX_ALL	13	54M  		CHAIN1
-		
-	WT_VERIFY_TX_ALL  	36	54M			CHAIN1
-	WT_VERIFY_TX_ALL  	48	54M			CHAIN1
-	WT_VERIFY_TX_ALL  	52	54M			CHAIN1
-	WT_VERIFY_TX_ALL  	64	54M			CHAIN1
-	WT_VERIFY_TX_ALL  	100	54M		    CHAIN1
-	WT_VERIFY_TX_ALL  	116	54M		    CHAIN1
-	WT_VERIFY_TX_ALL  	120	54M		    CHAIN1
-	WT_VERIFY_TX_ALL  	136	54M		    CHAIN1
-	WT_VERIFY_TX_ALL  	140	54M		    CHAIN1
-	WT_VERIFY_TX_ALL  	157	54M		    CHAIN1
-	WT_VERIFY_TX_ALL  	161	54M		    CHAIN1
-	WT_VERIFY_TX_ALL  	165	54M		    CHAIN1
+	WT_VERIFY_TX_ALL	1	HT20-MCS7  	CHAIN0
+	WT_VERIFY_TX_ALL	4	HT20-MCS7  	CHAIN0
+	WT_VERIFY_TX_ALL	7	HT20-MCS7  	CHAIN0
+	WT_VERIFY_TX_ALL	10	HT20-MCS7  	CHAIN0
+	WT_VERIFY_TX_ALL	13	HT20-MCS7  	CHAIN0
 
 
-	
-    // WT_INSERT_DUT BT					                //打开蓝牙
-	// WT_VERIFY_BT_TX		2442	1DH1 		CHAIN0
-    // WT_REMOVE_DUT BT					               //关闭蓝牙
-	
 //------------------------------------------------------------------------------------
-	
-WT_SHOW_VERIFY_SUMMARY				//显示Verify汇总结果
-WT_REMOVE_DUT            			//关闭DUT
-WT_DISCONNECT_TESTER				//断开仪器连接  
+//    	WT_VERIFY_RX_SWEEP	2412	54M		CHAIN0   -65  -75   -1     // 扫描灵敏度                                                                               
+//******************************************************************************
+
+        WT_SHOW_VERIFY_SUMMARY				//显示Verify汇总结果
+
+
+//******************************************************************************
+
+        WT_REMOVE_DUT           			//关闭DUT
+
+        WT_DISCONNECT_TESTER				//断开仪器连接 
+
+//      WT_DISABLE_NIC			        	//关闭网卡
 
 
 
-
-
-
-
-//WT_DISABLE_NIC				//禁用网卡
-
-//WT_USER_EXT_APP	User_Application  param1 param2 ...	  	  // 执行用户扩展程序,支持传入多个参数
+//      WT_USER_EXT_APP	  User_Application  param1 param2 ...	  // 执行用户扩展程序,支持传入多个参数
                                                                   // User_Application；APP名字
 								  // param1:传入的参数。
-								  // 特殊参数：$result，当前FLOW测试结果；$DUTIP，当前DUT IP; $TESTERIP,仪器IP; $TESTPORT, 仪器端口号
+								  // 特殊参数：$result，当前FLOW测试结果；$DUTIP，当前DUT IP; $TESTERIP,仪器IP;         $TESTPORT, 仪器端口号
 								  // 功能参数[-F] 测试FAIL不执行
 								  // 功能参数[-P] 测试PASS不执行
 
-//WT_USER_COMMAND [Command] [ok]	[timeout] [option]	 	  //发送用户自定义命令							
+//      WT_USER_COMMAND 	[Command] [ok]	[timeout]	  //发送用户自定义命令
 								  // command: 待发送命令
 								  // ack: 返回字符
 								  // timeout: 指令延时
-								  // Option:
-                                                                  // 不填[-P]或[-F]表示不管测试PASS或FAILed都执行
-                                                                  // [-P] 测试PASS不执行 
-                                                                  // [-F] 测试FAIL不执行 
 
-//WT_OPETATE_EXTERNAL_DEV [type] [command] [ack] 	 		  // type:设备类型，目前只支持串口：COM；
+//      WT_OPETATE_EXTERNAL_DEV [type] [command] [ack] 	          // type:设备类型，目前只支持串口：COM；
 								  // command: 待发送命令
 								  // ack: 返回字符
 						 

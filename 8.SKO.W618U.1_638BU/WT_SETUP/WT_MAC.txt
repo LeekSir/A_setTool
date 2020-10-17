@@ -40,7 +40,7 @@ WT_MAC_SHOW			= 0	//选择GUI上显示的MAC
 					//3:5GWIFI
 					//4:BT
 
-WT_MAC_SOURCE			= 1 	// MAC地址来源
+WT_MAC_SOURCE			= 0 	// MAC地址来源
 					// 0: 当前配置文件(默认值)
 					// 1：外部输入，如扫描枪、键盘
 					// 2: 外部服务器
@@ -98,7 +98,7 @@ WT_MAC_CURRENT_5	= 800000	// 当前的产品ID
 // DUT6
 WT_MAC_RANGE_BEGIN_6 	= A00000        // 产品ID，MAC后6位地址，16进制，长度为6
 WT_MAC_RANGE_END_6	= BFFFFF
-WT_MAC_CURRENT_6	= A00000	// 当前的产品ID
+WT_MAC_CURRENT_6	=
 //******************************************************************************
 
 // DUT7

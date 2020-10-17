@@ -36,10 +36,6 @@ class Ui_factory_set
 public:
     QWidget *centralwidget;
     QGridLayout *gridLayout_24;
-    QHBoxLayout *horizontalLayout_26;
-    QSpacerItem *horizontalSpacer_15;
-    QPushButton *pushButton_refresh;
-    QSpacerItem *horizontalSpacer_17;
     QTabWidget *tabWidget;
     QWidget *base_set;
     QGridLayout *gridLayout_5;
@@ -276,8 +272,13 @@ public:
     QSpacerItem *horizontalSpacer_9;
     QGridLayout *gridLayout_20;
     QSpacerItem *horizontalSpacer_4;
-    QPushButton *pushButton_correct;
     QSpacerItem *horizontalSpacer_21;
+    QPushButton *pushButton_correct;
+    QPushButton *pushButton_open_factory_tool;
+    QHBoxLayout *horizontalLayout_26;
+    QSpacerItem *horizontalSpacer_15;
+    QPushButton *pushButton_refresh;
+    QSpacerItem *horizontalSpacer_17;
     QMenuBar *menubar;
     QStatusBar *statusbar;
 
@@ -299,26 +300,6 @@ public:
         centralwidget->setObjectName(QString::fromUtf8("centralwidget"));
         gridLayout_24 = new QGridLayout(centralwidget);
         gridLayout_24->setObjectName(QString::fromUtf8("gridLayout_24"));
-        horizontalLayout_26 = new QHBoxLayout();
-        horizontalLayout_26->setObjectName(QString::fromUtf8("horizontalLayout_26"));
-        horizontalSpacer_15 = new QSpacerItem(338, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
-
-        horizontalLayout_26->addItem(horizontalSpacer_15);
-
-        pushButton_refresh = new QPushButton(centralwidget);
-        pushButton_refresh->setObjectName(QString::fromUtf8("pushButton_refresh"));
-        pushButton_refresh->setMinimumSize(QSize(200, 35));
-        pushButton_refresh->setMaximumSize(QSize(150, 35));
-
-        horizontalLayout_26->addWidget(pushButton_refresh);
-
-        horizontalSpacer_17 = new QSpacerItem(348, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
-
-        horizontalLayout_26->addItem(horizontalSpacer_17);
-
-
-        gridLayout_24->addLayout(horizontalLayout_26, 1, 0, 1, 1);
-
         tabWidget = new QTabWidget(centralwidget);
         tabWidget->setObjectName(QString::fromUtf8("tabWidget"));
         QSizePolicy sizePolicy1(QSizePolicy::Expanding, QSizePolicy::Expanding);
@@ -652,6 +633,12 @@ public:
         gridLayout_4->setObjectName(QString::fromUtf8("gridLayout_4"));
         label_user = new QLabel(base_set);
         label_user->setObjectName(QString::fromUtf8("label_user"));
+        QFont font;
+        font.setFamily(QString::fromUtf8("Adobe Arabic"));
+        font.setPointSize(36);
+        font.setBold(true);
+        font.setWeight(75);
+        label_user->setFont(font);
 
         gridLayout_4->addWidget(label_user, 0, 3, 1, 1);
 
@@ -661,6 +648,7 @@ public:
 
         label_MES_Status = new QLabel(base_set);
         label_MES_Status->setObjectName(QString::fromUtf8("label_MES_Status"));
+        label_MES_Status->setFont(font);
 
         gridLayout_4->addWidget(label_MES_Status, 0, 1, 1, 1);
 
@@ -684,12 +672,12 @@ public:
         pushButton_set = new QPushButton(base_set);
         pushButton_set->setObjectName(QString::fromUtf8("pushButton_set"));
         pushButton_set->setMinimumSize(QSize(100, 40));
-        QFont font;
-        font.setFamily(QString::fromUtf8("Adobe Arabic"));
-        font.setPointSize(14);
-        font.setBold(true);
-        font.setWeight(75);
-        pushButton_set->setFont(font);
+        QFont font1;
+        font1.setFamily(QString::fromUtf8("Adobe Arabic"));
+        font1.setPointSize(14);
+        font1.setBold(true);
+        font1.setWeight(75);
+        pushButton_set->setFont(font1);
 
         horizontalLayout_4->addWidget(pushButton_set);
 
@@ -730,12 +718,12 @@ public:
         label_17->setObjectName(QString::fromUtf8("label_17"));
         sizePolicy3.setHeightForWidth(label_17->sizePolicy().hasHeightForWidth());
         label_17->setSizePolicy(sizePolicy3);
-        QFont font1;
-        font1.setFamily(QString::fromUtf8("Adobe Arabic"));
-        font1.setPointSize(16);
-        font1.setBold(true);
-        font1.setWeight(75);
-        label_17->setFont(font1);
+        QFont font2;
+        font2.setFamily(QString::fromUtf8("Adobe Arabic"));
+        font2.setPointSize(16);
+        font2.setBold(true);
+        font2.setWeight(75);
+        label_17->setFont(font2);
 
         verticalLayout->addWidget(label_17);
 
@@ -797,12 +785,12 @@ public:
         label_18->setObjectName(QString::fromUtf8("label_18"));
         sizePolicy3.setHeightForWidth(label_18->sizePolicy().hasHeightForWidth());
         label_18->setSizePolicy(sizePolicy3);
-        QFont font2;
-        font2.setFamily(QString::fromUtf8("Adobe Arabic"));
-        font2.setPointSize(18);
-        font2.setBold(true);
-        font2.setWeight(75);
-        label_18->setFont(font2);
+        QFont font3;
+        font3.setFamily(QString::fromUtf8("Adobe Arabic"));
+        font3.setPointSize(18);
+        font3.setBold(true);
+        font3.setWeight(75);
+        label_18->setFont(font3);
 
         verticalLayout_2->addWidget(label_18);
 
@@ -860,7 +848,7 @@ public:
         label_64->setObjectName(QString::fromUtf8("label_64"));
         sizePolicy3.setHeightForWidth(label_64->sizePolicy().hasHeightForWidth());
         label_64->setSizePolicy(sizePolicy3);
-        label_64->setFont(font2);
+        label_64->setFont(font3);
 
         verticalLayout_15->addWidget(label_64);
 
@@ -876,7 +864,7 @@ public:
         label_20->setObjectName(QString::fromUtf8("label_20"));
         sizePolicy3.setHeightForWidth(label_20->sizePolicy().hasHeightForWidth());
         label_20->setSizePolicy(sizePolicy3);
-        label_20->setFont(font2);
+        label_20->setFont(font3);
 
         verticalLayout_3->addWidget(label_20);
 
@@ -903,7 +891,7 @@ public:
         sizePolicy4.setHeightForWidth(pushButton_input->sizePolicy().hasHeightForWidth());
         pushButton_input->setSizePolicy(sizePolicy4);
         pushButton_input->setMaximumSize(QSize(100, 40));
-        pushButton_input->setFont(font);
+        pushButton_input->setFont(font1);
 
         verticalLayout_6->addWidget(pushButton_input);
 
@@ -928,7 +916,7 @@ public:
         label_DUT_filename->setObjectName(QString::fromUtf8("label_DUT_filename"));
         label_DUT_filename->setMinimumSize(QSize(200, 0));
         label_DUT_filename->setMaximumSize(QSize(16777215, 16777215));
-        label_DUT_filename->setFont(font2);
+        label_DUT_filename->setFont(font3);
 
         horizontalLayout_5->addWidget(label_DUT_filename);
 
@@ -1284,12 +1272,12 @@ public:
 
         label_about_correct = new QLabel(tab);
         label_about_correct->setObjectName(QString::fromUtf8("label_about_correct"));
-        QFont font3;
-        font3.setFamily(QString::fromUtf8("Adobe Arabic"));
-        font3.setPointSize(20);
-        font3.setBold(true);
-        font3.setWeight(75);
-        label_about_correct->setFont(font3);
+        QFont font4;
+        font4.setFamily(QString::fromUtf8("Adobe Arabic"));
+        font4.setPointSize(20);
+        font4.setBold(true);
+        font4.setWeight(75);
+        label_about_correct->setFont(font4);
         label_about_correct->setStyleSheet(QString::fromUtf8("color: rgb(255, 0, 0);"));
 
         gridLayout_18->addWidget(label_about_correct, 0, 1, 1, 1);
@@ -1884,17 +1872,22 @@ public:
 
         gridLayout_20->addItem(horizontalSpacer_4, 0, 0, 1, 1);
 
+        horizontalSpacer_21 = new QSpacerItem(388, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        gridLayout_20->addItem(horizontalSpacer_21, 0, 2, 1, 1);
+
         pushButton_correct = new QPushButton(tab);
         pushButton_correct->setObjectName(QString::fromUtf8("pushButton_correct"));
         pushButton_correct->setMinimumSize(QSize(200, 40));
-        pushButton_correct->setFont(font);
+        pushButton_correct->setFont(font1);
         pushButton_correct->setCursor(QCursor(Qt::ArrowCursor));
 
         gridLayout_20->addWidget(pushButton_correct, 0, 1, 1, 1);
 
-        horizontalSpacer_21 = new QSpacerItem(388, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+        pushButton_open_factory_tool = new QPushButton(tab);
+        pushButton_open_factory_tool->setObjectName(QString::fromUtf8("pushButton_open_factory_tool"));
 
-        gridLayout_20->addItem(horizontalSpacer_21, 0, 2, 1, 1);
+        gridLayout_20->addWidget(pushButton_open_factory_tool, 0, 3, 1, 1);
 
 
         gridLayout_23->addLayout(gridLayout_20, 2, 0, 1, 4);
@@ -1903,10 +1896,30 @@ public:
 
         gridLayout_24->addWidget(tabWidget, 0, 0, 1, 1);
 
+        horizontalLayout_26 = new QHBoxLayout();
+        horizontalLayout_26->setObjectName(QString::fromUtf8("horizontalLayout_26"));
+        horizontalSpacer_15 = new QSpacerItem(338, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout_26->addItem(horizontalSpacer_15);
+
+        pushButton_refresh = new QPushButton(centralwidget);
+        pushButton_refresh->setObjectName(QString::fromUtf8("pushButton_refresh"));
+        pushButton_refresh->setMinimumSize(QSize(200, 35));
+        pushButton_refresh->setMaximumSize(QSize(150, 35));
+
+        horizontalLayout_26->addWidget(pushButton_refresh);
+
+        horizontalSpacer_17 = new QSpacerItem(348, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout_26->addItem(horizontalSpacer_17);
+
+
+        gridLayout_24->addLayout(horizontalLayout_26, 1, 0, 1, 1);
+
         factory_set->setCentralWidget(centralwidget);
         menubar = new QMenuBar(factory_set);
         menubar->setObjectName(QString::fromUtf8("menubar"));
-        menubar->setGeometry(QRect(0, 0, 884, 23));
+        menubar->setGeometry(QRect(0, 0, 884, 26));
         factory_set->setMenuBar(menubar);
         statusbar = new QStatusBar(factory_set);
         statusbar->setObjectName(QString::fromUtf8("statusbar"));
@@ -1923,7 +1936,6 @@ public:
     void retranslateUi(QMainWindow *factory_set)
     {
         factory_set->setWindowTitle(QCoreApplication::translate("factory_set", "factory_set", nullptr));
-        pushButton_refresh->setText(QCoreApplication::translate("factory_set", "\344\270\200\351\224\256\346\201\242\345\244\215(\346\226\207\344\273\266\346\215\237\345\235\217\346\227\266\344\275\277\347\224\250)", nullptr));
         label_11->setText(QCoreApplication::translate("factory_set", "\346\265\213\350\257\225\345\221\230\347\274\226\345\217\267", nullptr));
         label_12->setText(QCoreApplication::translate("factory_set", "\346\265\213\350\257\225\346\236\266\347\274\226\345\217\267", nullptr));
         label_10->setText(QCoreApplication::translate("factory_set", "\346\265\213\350\257\225\345\267\245\344\275\215\347\274\226\345\217\267", nullptr));
@@ -1987,7 +1999,9 @@ public:
         label_41->setText(QCoreApplication::translate("factory_set", "CH165", nullptr));
         label_67->setText(QCoreApplication::translate("factory_set", "  TX 1", nullptr));
         pushButton_correct->setText(QCoreApplication::translate("factory_set", "\346\240\241\345\207\206\345\274\200\345\247\213", nullptr));
+        pushButton_open_factory_tool->setText(QCoreApplication::translate("factory_set", "\346\211\223\345\274\200\344\272\247\346\265\213\345\267\245\345\205\267", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tab), QCoreApplication::translate("factory_set", "\347\272\277\346\215\237", nullptr));
+        pushButton_refresh->setText(QCoreApplication::translate("factory_set", "\344\270\200\351\224\256\346\201\242\345\244\215(\346\226\207\344\273\266\346\215\237\345\235\217\346\227\266\344\275\277\347\224\250)", nullptr));
     } // retranslateUi
 
 };

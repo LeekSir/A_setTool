@@ -28,55 +28,6 @@
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QGridLayout" name="gridLayout_24">
-    <item row="1" column="0">
-     <layout class="QHBoxLayout" name="horizontalLayout_26">
-      <item>
-       <spacer name="horizontalSpacer_15">
-        <property name="orientation">
-         <enum>Qt::Horizontal</enum>
-        </property>
-        <property name="sizeHint" stdset="0">
-         <size>
-          <width>338</width>
-          <height>20</height>
-         </size>
-        </property>
-       </spacer>
-      </item>
-      <item>
-       <widget class="QPushButton" name="pushButton_refresh">
-        <property name="minimumSize">
-         <size>
-          <width>200</width>
-          <height>35</height>
-         </size>
-        </property>
-        <property name="maximumSize">
-         <size>
-          <width>150</width>
-          <height>35</height>
-         </size>
-        </property>
-        <property name="text">
-         <string>一键恢复(文件损坏时使用)</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <spacer name="horizontalSpacer_17">
-        <property name="orientation">
-         <enum>Qt::Horizontal</enum>
-        </property>
-        <property name="sizeHint" stdset="0">
-         <size>
-          <width>348</width>
-          <height>20</height>
-         </size>
-        </property>
-       </spacer>
-      </item>
-     </layout>
-    </item>
     <item row="0" column="0">
      <widget class="QTabWidget" name="tabWidget">
       <property name="sizePolicy">
@@ -737,6 +688,14 @@
            <layout class="QGridLayout" name="gridLayout_4">
             <item row="0" column="3">
              <widget class="QLabel" name="label_user">
+              <property name="font">
+               <font>
+                <family>Adobe Arabic</family>
+                <pointsize>36</pointsize>
+                <weight>75</weight>
+                <bold>true</bold>
+               </font>
+              </property>
               <property name="text">
                <string/>
               </property>
@@ -757,6 +716,14 @@
             </item>
             <item row="0" column="1">
              <widget class="QLabel" name="label_MES_Status">
+              <property name="font">
+               <font>
+                <family>Adobe Arabic</family>
+                <pointsize>36</pointsize>
+                <weight>75</weight>
+                <bold>true</bold>
+               </font>
+              </property>
               <property name="text">
                <string/>
               </property>
@@ -3215,6 +3182,19 @@
             </property>
            </spacer>
           </item>
+          <item row="0" column="2">
+           <spacer name="horizontalSpacer_21">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>388</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
           <item row="0" column="1">
            <widget class="QPushButton" name="pushButton_correct">
             <property name="minimumSize">
@@ -3239,24 +3219,67 @@
             </property>
            </widget>
           </item>
-          <item row="0" column="2">
-           <spacer name="horizontalSpacer_21">
-            <property name="orientation">
-             <enum>Qt::Horizontal</enum>
+          <item row="0" column="3">
+           <widget class="QPushButton" name="pushButton_open_factory_tool">
+            <property name="text">
+             <string>打开产测工具</string>
             </property>
-            <property name="sizeHint" stdset="0">
-             <size>
-              <width>388</width>
-              <height>20</height>
-             </size>
-            </property>
-           </spacer>
+           </widget>
           </item>
          </layout>
         </item>
        </layout>
       </widget>
      </widget>
+    </item>
+    <item row="1" column="0">
+     <layout class="QHBoxLayout" name="horizontalLayout_26">
+      <item>
+       <spacer name="horizontalSpacer_15">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>338</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item>
+       <widget class="QPushButton" name="pushButton_refresh">
+        <property name="minimumSize">
+         <size>
+          <width>200</width>
+          <height>35</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>150</width>
+          <height>35</height>
+         </size>
+        </property>
+        <property name="text">
+         <string>一键恢复(文件损坏时使用)</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <spacer name="horizontalSpacer_17">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>348</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+     </layout>
     </item>
    </layout>
   </widget>
@@ -3266,7 +3289,7 @@
      <x>0</x>
      <y>0</y>
      <width>884</width>
-     <height>23</height>
+     <height>26</height>
     </rect>
    </property>
   </widget>
