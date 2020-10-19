@@ -412,6 +412,10 @@ void factory_set::display()
                              | QMessageBox::Escape , 	0 );
     }*/
 
+    //设置MAC为只读
+    ui->lineEdit_WT_MAC_RANGE_BEGIN->setEnabled(0);
+    ui->lineEdit_WT_MAC_RANGE_END->setEnabled(0);
+    ui->lineEdit_WT_MAC_CURRENT->setEnabled(0);
 
     //设置只读wefuse
     ui->checkBox_WT_WRITE_EFUSE->setEnabled(0);
