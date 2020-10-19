@@ -392,7 +392,7 @@ void factory_set::display()
         //ui->lineEdit_PopUpFunction->setReadOnly(1);
         //ui->lineEdit_PopUpEnable->setReadOnly(1);
         ui->checkBox_Debug_log->setEnabled(0);
-        ui->checkBox_WT_WRITE_EFUSE->setEnabled(0);
+
 
         //第三页
         ui->pushButton_correct->setEnabled(0);
@@ -412,8 +412,9 @@ void factory_set::display()
                              | QMessageBox::Escape , 	0 );
     }*/
 
-
-
+    //设置MAC不可写
+    //设置写efuse只读
+    ui->checkBox_WT_WRITE_EFUSE->setEnabled(0);
     //校准线损进度条
 
     //BT
@@ -469,6 +470,10 @@ void factory_set::display()
     ui->lineEdit_WT_FIXED_ATTEN_5_CHAIN0->setReadOnly(1);
     ui->lineEdit_WT_FIXED_ATTEN_5_CHAIN1->setReadOnly(1);
 
+    //设置MAC不可写
+    ui->lineEdit_WT_MAC_RANGE_BEGIN->setReadOnly(0);
+    ui->lineEdit_WT_MAC_RANGE_END->setReadOnly(0);
+    ui->lineEdit_WT_MAC_CURRENT->setReadOnly(0);
     //展示MAC号段及当前MAC,当MAC地址来源为配置文件时显示
     if(openfile_display(filename_WT_MAC, "WT_MAC_SOURCE") == "0")
     {
