@@ -392,7 +392,7 @@ void factory_set::display()
         //ui->lineEdit_PopUpFunction->setReadOnly(1);
         //ui->lineEdit_PopUpEnable->setReadOnly(1);
         ui->checkBox_Debug_log->setEnabled(0);
-        ui->checkBox_WT_WRITE_EFUSE->setEnabled(0);
+
 
         //第三页
         ui->pushButton_correct->setEnabled(0);
@@ -413,7 +413,8 @@ void factory_set::display()
     }*/
 
 
-
+    //设置只读wefuse
+    ui->checkBox_WT_WRITE_EFUSE->setEnabled(0);
     //校准线损进度条
 
     //BT

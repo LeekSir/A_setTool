@@ -7,4 +7,10 @@ Release History(发布历史):
 1、去除产测软件logo MES离线在线显示，后续修复bug再更改回来
 2、修复恢复文件MAC不对应问题
 
+版本v1.2
+1、增加校线损进度条，修复卡死bug，修复修改wefuse bug
+2、修复无法重复校线损bug
+3、修改第一页IP、端口号为MES_IP\MES_端口号
+4、修改第二页wefuse为只读
+
 

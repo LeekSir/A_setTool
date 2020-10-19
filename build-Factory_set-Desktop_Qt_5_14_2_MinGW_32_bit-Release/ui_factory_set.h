@@ -1919,7 +1919,7 @@ public:
         factory_set->setCentralWidget(centralwidget);
         menubar = new QMenuBar(factory_set);
         menubar->setObjectName(QString::fromUtf8("menubar"));
-        menubar->setGeometry(QRect(0, 0, 884, 26));
+        menubar->setGeometry(QRect(0, 0, 884, 23));
         factory_set->setMenuBar(menubar);
         statusbar = new QStatusBar(factory_set);
         statusbar->setObjectName(QString::fromUtf8("statusbar"));
@@ -1940,8 +1940,8 @@ public:
         label_12->setText(QCoreApplication::translate("factory_set", "\346\265\213\350\257\225\346\236\266\347\274\226\345\217\267", nullptr));
         label_10->setText(QCoreApplication::translate("factory_set", "\346\265\213\350\257\225\345\267\245\344\275\215\347\274\226\345\217\267", nullptr));
         label_9->setText(QCoreApplication::translate("factory_set", "\344\272\247\345\223\201\347\272\277\347\274\226\345\217\267", nullptr));
-        label->setText(QCoreApplication::translate("factory_set", "IP", nullptr));
-        label_2->setText(QCoreApplication::translate("factory_set", "Port", nullptr));
+        label->setText(QCoreApplication::translate("factory_set", "MES_IP", nullptr));
+        label_2->setText(QCoreApplication::translate("factory_set", "MES_Port", nullptr));
         label_15->setText(QCoreApplication::translate("factory_set", "\350\275\257\344\273\266\347\211\210\346\234\254\344\277\241\346\201\257", nullptr));
         label_16->setText(QCoreApplication::translate("factory_set", "\347\224\237\344\272\247\346\211\271\346\254\241\345\217\267", nullptr));
         label_63->setText(QCoreApplication::translate("factory_set", "\344\272\247\345\223\201\344\273\243\347\240\201", nullptr));
