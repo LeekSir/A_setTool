@@ -323,6 +323,12 @@ void factory_set::display_connect_mes()
 
 }
 
+void factory_set::SetReadOnly(QCheckBox* checkBox, bool readOnly)
+{
+   checkBox->setAttribute(Qt::WA_TransparentForMouseEvents, readOnly);
+   checkBox->setFocusPolicy(readOnly ? Qt::NoFocus : Qt::StrongFocus);
+}
+
 /**************************************************************************
 **
 ** NAME     display
@@ -385,13 +391,15 @@ void factory_set::display()
         ui->pushButton_input->setEnabled(0);
         ui->pushButton_openfile_log->setEnabled(0);
         //ui->lineEdit_WT_AUTO_TEST_WHEN_DUT_READY->setReadOnly(1);
-        ui->checkBox_WT_AUTO_TEST_WHEN_DUT_READY->setEnabled(0);
+        //ui->checkBox_WT_AUTO_TEST_WHEN_DUT_READY->setEnabled(0);
+        SetReadOnly(ui->checkBox_WT_AUTO_TEST_WHEN_DUT_READY, 1);
         ui->lineEdit_WT_TEST_LOG_PATH->setReadOnly(1);
         ui->lineEdit_WT_DUT_START_NUM->setReadOnly(1);
         ui->lineEdit_WT_IP_ADDRESS->setReadOnly(1);
         //ui->lineEdit_PopUpFunction->setReadOnly(1);
         //ui->lineEdit_PopUpEnable->setReadOnly(1);
-        ui->checkBox_Debug_log->setEnabled(0);
+        //ui->checkBox_Debug_log->setEnabled(0);
+        SetReadOnly(ui->checkBox_Debug_log, 1);
 
 
         //第三页
@@ -413,12 +421,14 @@ void factory_set::display()
     }*/
 
     //设置MAC为只读
-    ui->lineEdit_WT_MAC_RANGE_BEGIN->setEnabled(0);
-    ui->lineEdit_WT_MAC_RANGE_END->setEnabled(0);
-    ui->lineEdit_WT_MAC_CURRENT->setEnabled(0);
+    ui->lineEdit_WT_MAC_RANGE_BEGIN->setReadOnly(1);
+    ui->lineEdit_WT_MAC_RANGE_END->setReadOnly(1);
+    ui->lineEdit_WT_MAC_CURRENT->setReadOnly(1);
+
 
     //设置只读wefuse
-    ui->checkBox_WT_WRITE_EFUSE->setEnabled(0);
+    //ui->checkBox_WT_WRITE_EFUSE->setEnabled(0);
+    SetReadOnly(ui->checkBox_WT_WRITE_EFUSE, 1);
     //校准线损进度条
 
     //BT
@@ -466,7 +476,8 @@ void factory_set::display()
     //
     ui->lineEdit_ModuleType->setReadOnly(1);
     ui->lineEdit_AutoTestVersion->setReadOnly(1);
-    ui->checkBox_WT_IS_NEED_LINKMES->setEnabled(0);
+    //ui->checkBox_WT_IS_NEED_LINKMES->setEnabled(0);
+    SetReadOnly(ui->checkBox_WT_IS_NEED_LINKMES, 1);
     //ui->lineEdit_WT_IS_NEED_LINKMES->setReadOnly(1);
     //线损不可修改项
     ui->lineEdit_WT_FIXED_ATTEN_2_4_CHAIN0->setReadOnly(1);

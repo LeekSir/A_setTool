@@ -67,7 +67,7 @@ private:
     bool Pass_log_clicked();
 
     void openfile_set_Check_box(QString filename, QString Check_box_id, bool check_box_sta);
-
+    void SetReadOnly(QCheckBox* checkBox, bool readOnly);
 
 
 
