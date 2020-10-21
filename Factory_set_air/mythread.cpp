@@ -93,7 +93,7 @@ void MyThread::run()
                     {
 
                         PASS_flag = false;
-                        about_info_auto("警告", "PASS_log 生成失败！", 2000);
+                        //about_info_auto("警告", "PASS_log 生成失败！", 2000);
                         break;
                     }
                     p.start("./copy_new_log.bat");          //运行校验线损脚本文件
@@ -119,7 +119,7 @@ void MyThread::run()
                 //Sleep(1000);
                 if(!Pass_log_clicked())
                 {
-                    about_info_auto("警告", "PASS_log 生成失败！", 2000);
+                    //about_info_auto("警告", "PASS_log 生成失败！", 2000);
                     PASS_flag = false;
                     break;
                 }
