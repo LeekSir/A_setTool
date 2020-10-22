@@ -30,6 +30,7 @@ private:
     bool folder_isEmpty(QString folder_Path);
     void about_info_auto(QString dlgTitle, QString strInfo, int timeout);
     void about_info(QString dlgTitle, QString strInfo);
+    QString openfile_display_lineloss(QString show, int port_num);
 
     bool Pass_log_clicked();
 

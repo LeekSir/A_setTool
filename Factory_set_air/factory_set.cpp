@@ -1984,7 +1984,7 @@ void factory_set::openfile_deal_lineloss_log(/*QString filename, QString show, i
 
 void factory_set::dialog_process_bar()
 {
-    int time = 12000000;//36000000;
+    int time = 1200000000;//12000000;//36000000;
     QProgressDialog dialog(tr("线损校准进度"), tr("取消"), 0, time, this);
     dialog.setWindowTitle(tr("线损校准"));
 
@@ -2001,6 +2001,11 @@ void factory_set::dialog_process_bar()
                               "background-color:green;}");
     dialog.setWindowModality(Qt::WindowModal);
     dialog.setModal(true);
+
+    //滚动进度条
+    dialog.setMinimum(0);
+    dialog.setMaximum(0);
+
     dialog.show();
 
     int i = 0;
