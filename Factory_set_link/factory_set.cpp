@@ -32,28 +32,131 @@ factory_set::factory_set(QWidget *parent)
     filename_WT_WRITE_EFUSE = "../../WT_SETUP/WT_FLOW.txt";
     filename_WT_MAC = "../../WT_SETUP/WT_MAC.txt";
 #endif
-    QStringList arguments;
-    arguments << "/c" << "ping www.baidu.com";
-
-    QProgressDialog dialog(tr("文件复制进度"), tr("取消"), 0, 50000, this);
-    dialog.setWindowTitle(tr("进度对话框"));
-    dialog.setWindowModality(Qt::WindowModal);
-    dialog.show();
-    for(int i = 0; i < 50000; i++)//已知最大值不超过50000
-    {
-        dialog.setValue(i);
-        QCoreApplication::processEvents();
-        if(dialog.wasCanceled())
-            break;
-    }
-    dialog.setValue(50000);
-    qDebug()<<tr("复制结束！");
 }
 
 factory_set::~factory_set()
 {
     delete ui;
 }
+
+
+DWORD factory_set::OnAesUncrypt(LPVOID InBuffer,DWORD InLength,LPVOID OutBuffer)
+{
+    //传入的InLength大小是加密时返回的OutLength+16，即outBuffer的大小
+    DWORD OutLength=0,ExtraBytes=0;
+    if (m_lpAes==NULL||OutBuffer==NULL)
+    {
+        return 0;
+    }
+    //密文是从第16个字节开始的，故解密时，前16个字节忽略，直接从第16个字节开始解密
+    UCHAR *lpCurInBuff=(UCHAR *)InBuffer+16;
+    UCHAR *lpCurOutBuff=(UCHAR *)OutBuffer;
+    long blocknum=InLength/16;
+    long leftnum=InLength%16;
+    if(leftnum){//传入的密文大小必须是16的整数倍个字节
+                return 0;
+    }
+
+    //每次解密16个字节，循环全部解出
+    for(long i=0;i<blocknum;i++)
+    {
+        m_lpAes->InvCipher(lpCurInBuff,lpCurOutBuff);
+        lpCurInBuff+=16;
+        lpCurOutBuff+=16;
+        OutLength+=16;
+    }
+
+    //ExtraBytesSize指针指向的是InBuffer的第四个字节处
+    UCHAR* ExtraBytesSize =(UCHAR *) InBuffer+4;
+    //将InBuffer的第4-8个字节中的内容复制给ExtraBytes。此时ExtraBytes代表的是加密是额外加密的字节数
+    memcpy(&ExtraBytes,ExtraBytesSize,4);
+    //将额外加密的那部分内容，即ExtraBytes个字节的内容置为0
+    memset(lpCurOutBuff-ExtraBytes,0,ExtraBytes);
+    return (OutLength);
+
+}
+
+//加密
+
+//打开文件，将文件中的内容返回一个QbyteArray的数组
+QByteArray factory_set::OpenFile(QString fileName){
+    QFile file(fileName);
+    file.open(( QIODevice::ReadWrite));
+    QByteArray temp = file.read(file.bytesAvailable());
+    file.close();
+    return temp;
+}
+
+//将一个QbyteArray数组写入到指定文件中去。
+//使用二进制数组进行文件的读写能够有效避免各种由于编码格式和类型转换造成的问题
+void factory_set::WriteFile(QString fileName, QByteArray data){
+    QFile file(fileName);
+    file.open(( QIODevice::ReadWrite|QIODevice::Truncate));
+    file.write(data);
+    file.close();
+    return ;
+}
+
+void factory_set::FileEncryptor(QString inFileName,QString outFileName) {
+
+    QByteArray temp = OpenFile(inFileName);
+    qDebug()<<"temp:"<<temp;
+    char mingwen[1024] ;
+    //将temp字节数组中的所有数据复制给mingwen数组
+    memcpy(mingwen,temp.data(),temp.size());
+    DWORD size = strlen(mingwen);
+    qDebug()<<"size:"<<size;
+    char miwen[1024]={0};
+    UCHAR key[1024] = "xyz";
+    UCHAR *p = key;
+    InitializePrivateKey(16, p); //进行初始化
+
+    OnAesEncrypt((LPVOID)mingwen, strlen(mingwen), (LPVOID)miwen); //进行加密
+    qDebug()<<miwen;
+    QByteArray miwenData;
+    DWORD byteSize = 0;
+    //将密文的前四个字符复制给bytesize的地址
+    memcpy(&byteSize,miwen,4);
+    qDebug()<<"bytesize:"<<byteSize;
+    miwenData.resize(byteSize+16);
+    //将密文的前byteSize+16个字符复制给miwenDate
+    memcpy(miwenData.data(),miwen,byteSize+16);
+
+    WriteFile(outFileName,miwenData);
+
+    return ;
+}
+
+
+void factory_set::FileDecryptor(QString inFileName,QString outFileName){
+
+    QByteArray temp = OpenFile(inFileName);
+
+    char miwen[1024]={0};
+    char jiemi[1024]={0};
+    //将temp字节数组中的所有数据复制给miwen char类型数组
+    memcpy(miwen,temp.data(),temp.size());
+    DWORD byteSize = 0;
+    //miwen的大小存放在miwen的前四个字节中，将miwen大小赋值给byteSize
+    memcpy(&byteSize,miwen,4);
+    UCHAR key[1024] = "xyz";
+    UCHAR *p = key;
+    InitializePrivateKey(16, p); //进行初始化
+    OnAesUncrypt((LPVOID)miwen, (DWORD)byteSize,(LPVOID)jiemi); //进行解密
+
+    //解密结果写入文件中
+    WriteFile(outFileName,jiemi);
+
+    return ;
+}
+
+
+
+
+
+
+
+
 #if 0
 /**************************************************************************
 **

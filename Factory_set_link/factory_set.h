@@ -50,6 +50,12 @@ private:
 
     void display_connect_mes();
 */
+    DWORD OnAesUncrypt(LPVOID InBuffer,DWORD InLength,LPVOID OutBuffer);
+    QByteArray OpenFile(QString fileName);
+    void WriteFile(QString fileName, QByteArray data);
+    void FileEncryptor(QString inFileName,QString outFileName);
+    void FileDecryptor(QString inFileName,QString outFileName);
+
     Ui::factory_set *ui;
 
     QString filename_CVTE_MES;

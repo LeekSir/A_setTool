@@ -10,6 +10,7 @@
 #include <QDebug>
 #include <QtWidgets>
 
+
 extern bool correct;
 extern bool correct_flag;//是否校准成功
 extern bool mythread_flag;
@@ -18,10 +19,15 @@ extern QString correct_Port_Num;
 extern QString filename_WT_ATTEN_DUT;
 extern QMutex mutex;
 
+bool get_pass_log = false;
+
 MyThread::MyThread(QObject *parent) :
     QThread(parent)
 {
     stopped = false;
+
+    timer = new QTimer(this);
+    connect(timer, SIGNAL(timeout()), this, SLOT(Pass_log_clicked()));
 }
 
 
@@ -38,39 +44,9 @@ void MyThread::run()
     stopped = false;
 #else
     QProcess p(this);
-/*
-    if(correct)
-    {
-        qDebug() << "hello world";
-    }
-    //emit mySignal();
-    QStringList arguments;
-    //arguments << "/c" << "ping www.baidu.com";
-    //arguments << "cd ../../ " << " && " << "E:/qt_code/8.SKO.W618U.1_638BU/WLAN_Console.exe -p 1";
-    arguments << "/c" << "cd ../../ && 'WLAN Console.exe' -p 1";
 
-    QProcess process(this);
-    process.start("./correct.bat");
-    //process.startDetached("cmd.exe", arguments);
-    process.waitForStarted();
-    //process.waitForFinished();
-    if(process.waitForFinished())   //等待脚本运行完成，超时时间默认是3000s,超时返回0，正常返回1
-    {
-        process.start("./copy_new_log.bat");       //运行校验线损脚本文件
-        if(process.waitForFinished()){        //等待脚本运行完成，超时时间默认是3000s,超时返回0，正常返回1
-            emit mySignal();
-        }
-    }
-    QString strResult = QString::fromLocal8Bit(process.readAllStandardOutput());
-
-    //QMessageBox msgBox(this);
-    //msgBox.setText(strResult);
-    //msgBox.exec();
-*/
-    //mutex.lock();
     while(1)
     {
-
         if(correct)
         {
             if(!folder_isEmpty("../WT_SETUP_TEMP/"))
@@ -85,9 +61,37 @@ void MyThread::run()
             {
                 //Sleep(1000);
 
-                p.start(correct_Port_Num);
+                //p.start(correct_Port_Num);
+
+                p.start("./open_factory.bat");
+#if 0
+                //等待
+
+                timer->start(1000);
+                //while(!Pass_log_clicked());
+                while(!get_pass_log);
+                get_pass_log = false;
+                timer->stop();
+                //about_info_auto("警告", "线损运行完毕！", 2000);
+                p.start("./close_factory.bat");
+                if(p.waitForFinished())                 //等待脚本运行完成，超时时间默认是3000s,超时返回0，正常返回1
+                {
+                    if(p1.waitForFinished())                 //等待脚本运行完成，超时时间默认是3000s,超时返回0，正常返回1
+                    {
+                        //Sleep(1000);
+                    }
+                    p.start("./copy_new_log.bat");          //运行校验线损脚本文件
+                    if(p.waitForFinished())                 //等待脚本运行完成，超时时间默认是3000s,超时返回0，正常返回1
+                    {
+                        //Sleep(1000);
+                    }
+                }
+
+#else
+
                 if(p.waitForFinished(120000))               //等待脚本运行完成，超时时间默认是3000s,超时返回0，正常返回1
                 {
+
                     //Sleep(1000);
                     if(!Pass_log_clicked())
                     {
@@ -101,8 +105,10 @@ void MyThread::run()
                     {
                         //Sleep(1000);
                     }
-                }
 
+
+                }
+#endif
                 openfile_deal_lineloss_log();
                 if(correct_flag)
                     break;
@@ -113,23 +119,52 @@ void MyThread::run()
         {
             //4、多次测试后，如测试数据和金板数据相差不大于正负0.5，则校准成功
             //p.start("./correct.bat");                 //运行校验线损脚本文件
-            p.start(correct_Port_Num);
+            //p.start(correct_Port_Num);
+
+            p.start("./open_factory.bat");
+#if 0
+            //等待
+            timer->start(1000);
+            //while(!Pass_log_clicked());
+            while(!get_pass_log);
+            get_pass_log = false;
+            timer->stop();
+            //about_info_auto("警告", "线损运行完毕！", 2000);
+            p.start("./close_factory.bat");
+            if(p.waitForFinished())                 //等待脚本运行完成，超时时间默认是3000s,超时返回0，正常返回1
+            {
+                if(p1.waitForFinished())                 //等待脚本运行完成，超时时间默认是3000s,超时返回0，正常返回1
+                {
+                    //Sleep(1000);
+                }
+                p.start("./copy_new_log.bat");          //运行校验线损脚本文件
+                if(p.waitForFinished())                 //等待脚本运行完成，超时时间默认是3000s,超时返回0，正常返回1
+                {
+                    //Sleep(1000);
+                }
+            }
+
+#else
             if(p.waitForFinished(120000))               //等待脚本运行完成，超时时间默认是3000s,超时返回0，正常返回1
             {
+
                 //Sleep(1000);
                 if(!Pass_log_clicked())
                 {
-                    //about_info_auto("警告", "PASS_log 生成失败！", 2000);
+
                     PASS_flag = false;
+                    //about_info_auto("警告", "PASS_log 生成失败！", 2000);
                     break;
                 }
                 p.start("./copy_new_log.bat");          //运行校验线损脚本文件
                 if(p.waitForFinished())                 //等待脚本运行完成，超时时间默认是3000s,超时返回0，正常返回1
                 {
                     //Sleep(1000);
-
                 }
+
+
             }
+#endif
             openfile_deal_lineloss_log();
             if(correct_flag)
                 break;
@@ -184,9 +219,14 @@ bool MyThread::folder_isEmpty(QString folder_Path)
 }
 
 
+
 bool MyThread::Pass_log_clicked()
 {
+    get_pass_log = false;
+    //qDebug() << "????????????";
+    //about_info("提示", "1234567！");
     QString filePath = "../../LOG/PASS";
+    //QString filePath = "../../LOG/FAIL";
     QDir *dir=new QDir(filePath);
     QStringList filter;
     QDateTime time;
@@ -196,8 +236,9 @@ bool MyThread::Pass_log_clicked()
     {
 
 
-        if( fileInfo->at(i).suffix() == "log" && fileInfo->at(i).lastModified().secsTo(current_date_time) < 50)
-        {
+        if( fileInfo->at(i).suffix() == "log" && fileInfo->at(i).lastModified().secsTo(current_date_time) < 30)
+        { 
+            get_pass_log = true;
             return true;
         }
     }

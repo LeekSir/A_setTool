@@ -1495,7 +1495,7 @@ void factory_set::display_LineLoss_clicked()
 
 }
 
-
+/*
 bool factory_set::Pass_log_clicked()
 {
     QString filePath = "../log";
@@ -1515,7 +1515,7 @@ bool factory_set::Pass_log_clicked()
         }
     }
     return false;
-}
+}*/
 
 
 
@@ -2047,6 +2047,13 @@ void factory_set::on_pushButton_correct_clicked()
     correct_Port_Num = "./correct.bat " + ui->lineEdit_WT_DUT_START_NUM->text();
     QProcess p(nullptr);
     ui->label_about_correct->setText("校准中，请勿点击界面！");
+    //关闭MAC弹窗
+    bool PopUpEnable_flag = false;
+    if(openfile_display("../../advance.ini", "PopUpEnable") == '1')
+    {
+        PopUpEnable_flag = true;
+        openfile_set_Check_box("../../advance.ini", "PopUpEnable", 0);
+    }
 
     //about_info_auto("提示", "进入校准模式成功！");
     timer->stop();
@@ -2073,6 +2080,12 @@ void factory_set::on_pushButton_correct_clicked()
         ui->label_about_correct->setText("校准 FAIL！");
         about_info("提示", "PASS_log 获取失败！请检查配置并重新开始校准！");
         PASS_flag = true;
+    }
+
+    //恢复MAC扫描框
+    if(PopUpEnable_flag)
+    {
+        openfile_set_Check_box("../../advance.ini", "PopUpEnable", 1);
     }
 
     //5、拷入原始文件，替换校准文件
