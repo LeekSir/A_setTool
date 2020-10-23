@@ -12,6 +12,7 @@ bool correct_flag = false;//是否校准成功
 bool mythread_flag;
 QString correct_Port_Num;
 bool PASS_flag = true;
+QString cmd;
 
 QMutex mutex;
 
@@ -2276,7 +2277,7 @@ void factory_set::on_pushButton_open_factory_tool_clicked()
     QStringList arguments;
     //arguments << "/c" << "ping www.baidu.com";
     //arguments << "cd ../../ " << " && " << "E:/qt_code/8.SKO.W618U.1_638BU/WLAN_Console.exe -p 1";
-    QString cmd = ui->lineEdit_ModuleType->text() + ".exe";
+    cmd = ui->lineEdit_ModuleType->text() + ".exe";
     //QString cmd = "SKO.W618U.1_638BU.exe";
     arguments << "/c" << "cd ../../ && " + cmd;
 

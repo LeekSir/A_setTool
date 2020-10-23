@@ -18,6 +18,7 @@ extern bool PASS_flag;
 extern QString correct_Port_Num;
 extern QString filename_WT_ATTEN_DUT;
 extern QMutex mutex;
+extern QString cmd;
 
 bool get_pass_log = false;
 
@@ -33,11 +34,14 @@ MyThread::MyThread(QObject *parent) :
 
 void MyThread::run()
 {
+//半自动，
 #if 0
     QProcess p(this);
 
     while(1)
     {
+        QStringList arguments;
+        arguments << "/c" << "cd ../../ && " + cmd;
         if(correct)
         {
             if(!folder_isEmpty("../WT_SETUP_TEMP/"))
@@ -50,36 +54,7 @@ void MyThread::run()
             //备份金版数据
             if(p.waitForFinished())                     //等待脚本运行完成，超时时间默认是3000s,超时返回0，正常返回1
             {
-                //Sleep(1000);
-
-                //p.start(correct_Port_Num);
-
-                p.start("./open_factory.bat");
-#if 0
-                //等待
-
-                timer->start(1000);
-                //while(!Pass_log_clicked());
-                while(!get_pass_log);
-                get_pass_log = false;
-                timer->stop();
-                //about_info_auto("警告", "线损运行完毕！", 2000);
-                p.start("./close_factory.bat");
-                if(p.waitForFinished())                 //等待脚本运行完成，超时时间默认是3000s,超时返回0，正常返回1
-                {
-                    if(p1.waitForFinished())                 //等待脚本运行完成，超时时间默认是3000s,超时返回0，正常返回1
-                    {
-                        //Sleep(1000);
-                    }
-                    p.start("./copy_new_log.bat");          //运行校验线损脚本文件
-                    if(p.waitForFinished())                 //等待脚本运行完成，超时时间默认是3000s,超时返回0，正常返回1
-                    {
-                        //Sleep(1000);
-                    }
-                }
-
-#else
-
+                p.start("cmd.exe", arguments);
                 if(p.waitForFinished(120000))               //等待脚本运行完成，超时时间默认是3000s,超时返回0，正常返回1
                 {
 
@@ -88,7 +63,6 @@ void MyThread::run()
                     {
 
                         PASS_flag = false;
-                        //about_info_auto("警告", "PASS_log 生成失败！", 2000);
                         break;
                     }
                     p.start("./copy_new_log.bat");          //运行校验线损脚本文件
@@ -99,7 +73,6 @@ void MyThread::run()
 
 
                 }
-#endif
                 openfile_deal_lineloss_log();
                 if(correct_flag)
                     break;
@@ -109,33 +82,7 @@ void MyThread::run()
         else
         {
             //4、多次测试后，如测试数据和金板数据相差不大于正负0.5，则校准成功
-            //p.start("./correct.bat");                 //运行校验线损脚本文件
-            //p.start(correct_Port_Num);
-
-            p.start("./open_factory.bat");
-#if 0
-            //等待
-            timer->start(1000);
-            //while(!Pass_log_clicked());
-            while(!get_pass_log);
-            get_pass_log = false;
-            timer->stop();
-            //about_info_auto("警告", "线损运行完毕！", 2000);
-            p.start("./close_factory.bat");
-            if(p.waitForFinished())                 //等待脚本运行完成，超时时间默认是3000s,超时返回0，正常返回1
-            {
-                if(p1.waitForFinished())                 //等待脚本运行完成，超时时间默认是3000s,超时返回0，正常返回1
-                {
-                    //Sleep(1000);
-                }
-                p.start("./copy_new_log.bat");          //运行校验线损脚本文件
-                if(p.waitForFinished())                 //等待脚本运行完成，超时时间默认是3000s,超时返回0，正常返回1
-                {
-                    //Sleep(1000);
-                }
-            }
-
-#else
+            p.start("cmd.exe", arguments);
             if(p.waitForFinished(120000))               //等待脚本运行完成，超时时间默认是3000s,超时返回0，正常返回1
             {
 
@@ -144,7 +91,6 @@ void MyThread::run()
                 {
 
                     PASS_flag = false;
-                    //about_info_auto("警告", "PASS_log 生成失败！", 2000);
                     break;
                 }
                 p.start("./copy_new_log.bat");          //运行校验线损脚本文件
@@ -155,7 +101,6 @@ void MyThread::run()
 
 
             }
-#endif
             openfile_deal_lineloss_log();
             if(correct_flag)
                 break;
@@ -164,6 +109,7 @@ void MyThread::run()
     }
     //mutex.unlock();
     emit mySignal();
+//全自动
 #else
     QProcess p(this);
 
