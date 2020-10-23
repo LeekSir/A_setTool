@@ -1927,7 +1927,7 @@ public:
 
         retranslateUi(factory_set);
 
-        tabWidget->setCurrentIndex(2);
+        tabWidget->setCurrentIndex(0);
 
 
         QMetaObject::connectSlotsByName(factory_set);

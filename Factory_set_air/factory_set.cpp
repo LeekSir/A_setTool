@@ -532,7 +532,7 @@ void factory_set::display()
     ui->lineEdit_MoLotNo->setText(openfile_display(filename_CVTE_MES, "MoLotNo"));
     ui->lineEdit_PartNo->setText(openfile_display(filename_CVTE_MES, "PartNo"));
     ui->lineEdit_ModuleType->setText(openfile_display(filename_SoftVer, "AutoTestVersion").split('-').at(2));
-
+    cmd = ui->lineEdit_ModuleType->text() + ".exe";
 
     //增加显示MES连接与否，主要是配置产测软件
     //QFile::remove("../../userlogo.jpg");
@@ -2091,6 +2091,7 @@ void factory_set::on_pushButton_correct_clicked()
     else
     {
         ui->label_about_correct->setText("校准 FAIL！");
+        ui->label_about_correct->setStyleSheet("color:red;");
         about_info("提示", "PASS_log 获取失败！请检查配置并重新开始校准！");
         PASS_flag = true;
     }
@@ -2284,9 +2285,10 @@ void factory_set::on_pushButton_open_factory_tool_clicked()
     QStringList arguments;
     //arguments << "/c" << "ping www.baidu.com";
     //arguments << "cd ../../ " << " && " << "E:/qt_code/8.SKO.W618U.1_638BU/WLAN_Console.exe -p 1";
-    cmd = ui->lineEdit_ModuleType->text() + ".exe";
+
     //QString cmd = "SKO.W618U.1_638BU.exe";
     arguments << "/c" << "cd ../../ && " + cmd;
+
 
     QProcess process(this);
     //process.start("./correct.bat");

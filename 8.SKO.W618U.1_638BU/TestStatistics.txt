@@ -1,8 +1,8 @@
 //测试结果统计
 =======================================
 <<<<<<< HEAD
-WT_PASS_NUMBER			= 7589
-WT_FAIL_NUMBER			= 1436
+WT_PASS_NUMBER			= 0
+WT_FAIL_NUMBER			= 0
 =======
 WT_PASS_NUMBER			= 0
 WT_FAIL_NUMBER			= 0
