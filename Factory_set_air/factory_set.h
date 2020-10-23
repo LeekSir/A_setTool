@@ -64,10 +64,10 @@ private:
     void LineLoss_clicked();
     void dialog_process_bar();//进度条
 
-    bool Pass_log_clicked();
+    //bool Pass_log_clicked();
 
     void openfile_set_Check_box(QString filename, QString Check_box_id, bool check_box_sta);
-
+    void SetReadOnly(QCheckBox* checkBox, bool readOnly);
 
 
 

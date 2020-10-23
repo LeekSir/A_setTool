@@ -12,6 +12,7 @@ bool correct_flag = false;//是否校准成功
 bool mythread_flag;
 QString correct_Port_Num;
 bool PASS_flag = true;
+QString cmd;
 
 QMutex mutex;
 
@@ -323,6 +324,12 @@ void factory_set::display_connect_mes()
 
 }
 
+void factory_set::SetReadOnly(QCheckBox* checkBox, bool readOnly)
+{
+   checkBox->setAttribute(Qt::WA_TransparentForMouseEvents, readOnly);
+   checkBox->setFocusPolicy(readOnly ? Qt::NoFocus : Qt::StrongFocus);
+}
+
 /**************************************************************************
 **
 ** NAME     display
@@ -385,13 +392,16 @@ void factory_set::display()
         ui->pushButton_input->setEnabled(0);
         ui->pushButton_openfile_log->setEnabled(0);
         //ui->lineEdit_WT_AUTO_TEST_WHEN_DUT_READY->setReadOnly(1);
-        ui->checkBox_WT_AUTO_TEST_WHEN_DUT_READY->setEnabled(0);
+        //ui->checkBox_WT_AUTO_TEST_WHEN_DUT_READY->setEnabled(0);
+        SetReadOnly(ui->checkBox_WT_AUTO_TEST_WHEN_DUT_READY, 1);
         ui->lineEdit_WT_TEST_LOG_PATH->setReadOnly(1);
         ui->lineEdit_WT_DUT_START_NUM->setReadOnly(1);
         ui->lineEdit_WT_IP_ADDRESS->setReadOnly(1);
         //ui->lineEdit_PopUpFunction->setReadOnly(1);
         //ui->lineEdit_PopUpEnable->setReadOnly(1);
-        ui->checkBox_Debug_log->setEnabled(0);
+        //ui->checkBox_Debug_log->setEnabled(0);
+        SetReadOnly(ui->checkBox_Debug_log, 1);
+
 
 
         //第三页
@@ -412,9 +422,17 @@ void factory_set::display()
                              | QMessageBox::Escape , 	0 );
     }*/
 
-    //设置MAC不可写
-    //设置写efuse只读
-    ui->checkBox_WT_WRITE_EFUSE->setEnabled(0);
+
+    //设置MAC为只读
+    ui->lineEdit_WT_MAC_RANGE_BEGIN->setReadOnly(1);
+    ui->lineEdit_WT_MAC_RANGE_END->setReadOnly(1);
+    ui->lineEdit_WT_MAC_CURRENT->setReadOnly(1);
+
+
+    //设置只读wefuse
+    //ui->checkBox_WT_WRITE_EFUSE->setEnabled(0);
+    SetReadOnly(ui->checkBox_WT_WRITE_EFUSE, 1);
+
     //校准线损进度条
 
     //BT
@@ -462,7 +480,8 @@ void factory_set::display()
     //
     ui->lineEdit_ModuleType->setReadOnly(1);
     ui->lineEdit_AutoTestVersion->setReadOnly(1);
-    ui->checkBox_WT_IS_NEED_LINKMES->setEnabled(0);
+    //ui->checkBox_WT_IS_NEED_LINKMES->setEnabled(0);
+    SetReadOnly(ui->checkBox_WT_IS_NEED_LINKMES, 1);
     //ui->lineEdit_WT_IS_NEED_LINKMES->setReadOnly(1);
     //线损不可修改项
     ui->lineEdit_WT_FIXED_ATTEN_2_4_CHAIN0->setReadOnly(1);
@@ -1484,7 +1503,7 @@ void factory_set::display_LineLoss_clicked()
 
 }
 
-
+/*
 bool factory_set::Pass_log_clicked()
 {
     QString filePath = "../log";
@@ -1504,7 +1523,7 @@ bool factory_set::Pass_log_clicked()
         }
     }
     return false;
-}
+}*/
 
 
 
@@ -1973,7 +1992,7 @@ void factory_set::openfile_deal_lineloss_log(/*QString filename, QString show, i
 
 void factory_set::dialog_process_bar()
 {
-    int time = 12000000;//36000000;
+    int time = 1200000000;//12000000;//36000000;
     QProgressDialog dialog(tr("线损校准进度"), tr("取消"), 0, time, this);
     dialog.setWindowTitle(tr("线损校准"));
 
@@ -1990,6 +2009,11 @@ void factory_set::dialog_process_bar()
                               "background-color:green;}");
     dialog.setWindowModality(Qt::WindowModal);
     dialog.setModal(true);
+
+    //滚动进度条
+    dialog.setMinimum(0);
+    dialog.setMaximum(0);
+
     dialog.show();
 
     int i = 0;
@@ -2036,6 +2060,13 @@ void factory_set::on_pushButton_correct_clicked()
     correct_Port_Num = "./correct.bat " + ui->lineEdit_WT_DUT_START_NUM->text();
     QProcess p(nullptr);
     ui->label_about_correct->setText("校准中，请勿点击界面！");
+    //关闭MAC弹窗
+    bool PopUpEnable_flag = false;
+    if(openfile_display("../../advance.ini", "PopUpEnable") == '1')
+    {
+        PopUpEnable_flag = true;
+        openfile_set_Check_box("../../advance.ini", "PopUpEnable", 0);
+    }
 
     //about_info_auto("提示", "进入校准模式成功！");
     timer->stop();
@@ -2062,6 +2093,12 @@ void factory_set::on_pushButton_correct_clicked()
         ui->label_about_correct->setText("校准 FAIL！");
         about_info("提示", "PASS_log 获取失败！请检查配置并重新开始校准！");
         PASS_flag = true;
+    }
+
+    //恢复MAC扫描框
+    if(PopUpEnable_flag)
+    {
+        openfile_set_Check_box("../../advance.ini", "PopUpEnable", 1);
     }
 
     //5、拷入原始文件，替换校准文件
@@ -2247,7 +2284,7 @@ void factory_set::on_pushButton_open_factory_tool_clicked()
     QStringList arguments;
     //arguments << "/c" << "ping www.baidu.com";
     //arguments << "cd ../../ " << " && " << "E:/qt_code/8.SKO.W618U.1_638BU/WLAN_Console.exe -p 1";
-    QString cmd = ui->lineEdit_ModuleType->text() + ".exe";
+    cmd = ui->lineEdit_ModuleType->text() + ".exe";
     //QString cmd = "SKO.W618U.1_638BU.exe";
     arguments << "/c" << "cd ../../ && " + cmd;
 

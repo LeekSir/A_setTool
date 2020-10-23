@@ -10,6 +10,7 @@
 #include <QDebug>
 #include <QtWidgets>
 
+
 extern bool correct;
 extern bool correct_flag;//是否校准成功
 extern bool mythread_flag;
@@ -17,60 +18,30 @@ extern bool PASS_flag;
 extern QString correct_Port_Num;
 extern QString filename_WT_ATTEN_DUT;
 extern QMutex mutex;
+extern QString cmd;
+
+bool get_pass_log = false;
 
 MyThread::MyThread(QObject *parent) :
     QThread(parent)
 {
     stopped = false;
+
+    timer = new QTimer(this);
+    connect(timer, SIGNAL(timeout()), this, SLOT(Pass_log_clicked()));
 }
 
 
 void MyThread::run()
 {
+//半自动，
 #if 0
-    qreal i = 0;
-    while (!stopped)
-    {
-        qDebug() << QString("in MyThread: %1").arg(i);
-        msleep(1000);
-        i++;
-    }
-    stopped = false;
-#else
     QProcess p(this);
-/*
-    if(correct)
-    {
-        qDebug() << "hello world";
-    }
-    //emit mySignal();
-    QStringList arguments;
-    //arguments << "/c" << "ping www.baidu.com";
-    //arguments << "cd ../../ " << " && " << "E:/qt_code/8.SKO.W618U.1_638BU/WLAN_Console.exe -p 1";
-    arguments << "/c" << "cd ../../ && 'WLAN Console.exe' -p 1";
 
-    QProcess process(this);
-    process.start("./correct.bat");
-    //process.startDetached("cmd.exe", arguments);
-    process.waitForStarted();
-    //process.waitForFinished();
-    if(process.waitForFinished())   //等待脚本运行完成，超时时间默认是3000s,超时返回0，正常返回1
-    {
-        process.start("./copy_new_log.bat");       //运行校验线损脚本文件
-        if(process.waitForFinished()){        //等待脚本运行完成，超时时间默认是3000s,超时返回0，正常返回1
-            emit mySignal();
-        }
-    }
-    QString strResult = QString::fromLocal8Bit(process.readAllStandardOutput());
-
-    //QMessageBox msgBox(this);
-    //msgBox.setText(strResult);
-    //msgBox.exec();
-*/
-    //mutex.lock();
     while(1)
     {
-
+        QStringList arguments;
+        arguments << "/c" << "cd ../../ && " + cmd;
         if(correct)
         {
             if(!folder_isEmpty("../WT_SETUP_TEMP/"))
@@ -83,17 +54,15 @@ void MyThread::run()
             //备份金版数据
             if(p.waitForFinished())                     //等待脚本运行完成，超时时间默认是3000s,超时返回0，正常返回1
             {
-                //Sleep(1000);
-
-                p.start(correct_Port_Num);
+                p.start("cmd.exe", arguments);
                 if(p.waitForFinished(120000))               //等待脚本运行完成，超时时间默认是3000s,超时返回0，正常返回1
                 {
+
                     //Sleep(1000);
                     if(!Pass_log_clicked())
                     {
 
                         PASS_flag = false;
-                        about_info_auto("警告", "PASS_log 生成失败！", 2000);
                         break;
                     }
                     p.start("./copy_new_log.bat");          //运行校验线损脚本文件
@@ -101,8 +70,9 @@ void MyThread::run()
                     {
                         //Sleep(1000);
                     }
-                }
 
+
+                }
                 openfile_deal_lineloss_log();
                 if(correct_flag)
                     break;
@@ -112,14 +82,14 @@ void MyThread::run()
         else
         {
             //4、多次测试后，如测试数据和金板数据相差不大于正负0.5，则校准成功
-            //p.start("./correct.bat");                 //运行校验线损脚本文件
-            p.start(correct_Port_Num);
+            p.start("cmd.exe", arguments);
             if(p.waitForFinished(120000))               //等待脚本运行完成，超时时间默认是3000s,超时返回0，正常返回1
             {
+
                 //Sleep(1000);
                 if(!Pass_log_clicked())
                 {
-                    about_info_auto("警告", "PASS_log 生成失败！", 2000);
+
                     PASS_flag = false;
                     break;
                 }
@@ -127,8 +97,9 @@ void MyThread::run()
                 if(p.waitForFinished())                 //等待脚本运行完成，超时时间默认是3000s,超时返回0，正常返回1
                 {
                     //Sleep(1000);
-
                 }
+
+
             }
             openfile_deal_lineloss_log();
             if(correct_flag)
@@ -137,6 +108,73 @@ void MyThread::run()
         }
     }
     //mutex.unlock();
+    emit mySignal();
+//全自动
+#else
+    QProcess p(this);
+
+    while(1)
+    {
+        if(correct)
+        {
+            if(!folder_isEmpty("../WT_SETUP_TEMP/"))
+            {
+                p.start("./reset_correct.bat");
+                p.waitForFinished();
+            }
+            //1、拷入校准模式文件，拷出原始文件
+            p.start("./copy_correct.bat");
+            //备份金版数据
+            if(p.waitForFinished())                     //等待脚本运行完成，超时时间默认是3000s,超时返回0，正常返回1
+            {
+                p.start(correct_Port_Num);
+                if(p.waitForFinished(120000))               //等待脚本运行完成，超时时间默认是3000s,超时返回0，正常返回1
+                {
+
+                    //Sleep(1000);
+                    if(!Pass_log_clicked())
+                    {
+
+                        PASS_flag = false;
+                        break;
+                    }
+                    p.start("./copy_new_log.bat");          //运行校验线损脚本文件
+                    if(p.waitForFinished())                 //等待脚本运行完成，超时时间默认是3000s,超时返回0，正常返回1
+                    {
+                        //Sleep(1000);
+                    }
+                }
+                openfile_deal_lineloss_log();
+                if(correct_flag)
+                    break;
+                correct = false;
+            }
+        }
+        else
+        {
+            //4、多次测试后，如测试数据和金板数据相差不大于正负0.5，则校准成功
+            p.start(correct_Port_Num);  //运行校验线损脚本文件
+            if(p.waitForFinished(120000))               //等待脚本运行完成，超时时间默认是3000s,超时返回0，正常返回1
+            {
+                if(!Pass_log_clicked())
+                {
+
+                    PASS_flag = false;
+                    break;
+                }
+                p.start("./copy_new_log.bat");          //运行校验线损脚本文件
+                if(p.waitForFinished())                 //等待脚本运行完成，超时时间默认是3000s,超时返回0，正常返回1
+                {
+                    //Sleep(1000);
+                }
+
+
+            }
+            openfile_deal_lineloss_log();
+            if(correct_flag)
+                break;
+        }
+    }
     emit mySignal();
 #endif
 }
@@ -184,9 +222,14 @@ bool MyThread::folder_isEmpty(QString folder_Path)
 }
 
 
+
 bool MyThread::Pass_log_clicked()
 {
+    get_pass_log = false;
+    //qDebug() << "????????????";
+    //about_info("提示", "1234567！");
     QString filePath = "../../LOG/PASS";
+    //QString filePath = "../../LOG/FAIL";
     QDir *dir=new QDir(filePath);
     QStringList filter;
     QDateTime time;
@@ -196,8 +239,9 @@ bool MyThread::Pass_log_clicked()
     {
 
 
-        if( fileInfo->at(i).suffix() == "log" && fileInfo->at(i).lastModified().secsTo(current_date_time) < 50)
-        {
+        if( fileInfo->at(i).suffix() == "log" && fileInfo->at(i).lastModified().secsTo(current_date_time) < 30)
+        { 
+            get_pass_log = true;
             return true;
         }
     }
@@ -241,15 +285,26 @@ void MyThread::openfile_deal_lineloss_log(/*QString filename, QString show, int 
         QTextStream NctextStream(&Ncfile);
 
         QString temp = "金板" + QString("\t\t\t\t\t\t\t") + "测试" + QString('\n');
-
+        bool old_new_flag = false;
+        int i = 0;
         while(!NctextStream.atEnd())
         {
             strtemp = NctextStream.readLine();
             QStringList list;
-            if(strtemp.mid(0, 15).count("ANT") >= 1)
+            if(strtemp.mid(0, 30).count("ANT0") >= 1 || strtemp.mid(0, 30).count("ANT1") >= 1)
             {
                 list = strtemp.split(QRegExp("\\s+"), QString::SkipEmptyParts);
-                temp += list.at(1) + "\t\t" + list.at(2) + "\t\t" + list.at(6).split('d').at(0);
+
+                //因为新旧产测软件的汇总数据差异，需要做筛选
+                for(; i<list.size() && !old_new_flag; i++)
+                {
+                    if(list.at(i).count("ANT") == 1)
+                    {
+                        old_new_flag = true;
+                        break;
+                    }
+                }
+                temp += list.at(i) + "\t\t" + list.at(i+1) + "\t\t" + list.at(i+5).split('d').at(0);
                 temp += QString('\n');
             }
         }
@@ -263,9 +318,11 @@ void MyThread::openfile_deal_lineloss_log(/*QString filename, QString show, int 
     }
     else
     {
+        correct_flag = false;
         about_info_auto("警告", "PASS_log 打开失败！", 2000);
         qDebug() << "log 文件打开失败";
     }
+
 
 
     QFile Ncfile_jinban("../log/standard.txt");
@@ -274,6 +331,7 @@ void MyThread::openfile_deal_lineloss_log(/*QString filename, QString show, int 
     Ncfile_test.open(QIODevice::ReadOnly);
 
     int port_num;
+
     if (Ncfile_jinban.isOpen() && Ncfile_test.isOpen())
     {
         QString strtemp_jinban,strtemp_test;
@@ -305,51 +363,51 @@ void MyThread::openfile_deal_lineloss_log(/*QString filename, QString show, int 
                     else
                     {
                         correct_flag = false;
-                        loss_value = list_jinban.at(2).toDouble() - list_test.at(2).toDouble();
+                        //loss_value = list_jinban.at(2).toDouble() - list_test.at(2).toDouble();
                     }
-                    //loss_value = list_jinban.at(2).toDouble() - list_test.at(2).toDouble();
+                    loss_value = list_jinban.at(2).toDouble() - list_test.at(2).toDouble();
                     ch = list_jinban.at(1).toInt();
                     if(list_jinban.at(0) == "ANT0")
                     {
                         port_num = 1;
                         switch(ch)
                         {
-                        case 1 : openfile_set_LineLoss("CH1", loss_value, port_num);
-                            break;
-                        case 3 : openfile_set_LineLoss("CH3", loss_value, port_num);
-                            break;
-                        case 7 : openfile_set_LineLoss("CH7", loss_value, port_num);
-                            break;
-                        case 11 : openfile_set_LineLoss("CH11", loss_value, port_num);
-                            break;
-                        case 13 : openfile_set_LineLoss("CH13", loss_value, port_num);
-                            break;
-                        case 36 : openfile_set_LineLoss("CH36", loss_value, port_num);
-                            break;
-                        case 48 : openfile_set_LineLoss("CH48", loss_value, port_num);
-                            break;
-                        case 52 : openfile_set_LineLoss("CH52", loss_value, port_num);
-                            break;
-                        case 64 : openfile_set_LineLoss("CH64", loss_value, port_num);
-                            break;
-                        case 100 : openfile_set_LineLoss("CH100", loss_value, port_num);
-                            break;
-                        case 116 : openfile_set_LineLoss("CH116", loss_value, port_num);
-                            break;
-                        case 120 : openfile_set_LineLoss("CH120", loss_value, port_num);
-                            break;
-                        case 136 : openfile_set_LineLoss("CH136", loss_value, port_num);
-                            break;
-                        case 140 : openfile_set_LineLoss("CH140", loss_value, port_num);
-                            break;
-                        case 157 : openfile_set_LineLoss("CH157", loss_value, port_num);
-                            break;
-                        case 161 : openfile_set_LineLoss("CH161", loss_value, port_num);
-                            break;
-                        case 165 : openfile_set_LineLoss("CH165", loss_value, port_num);
-                            break;
-                        default:
-                            break;
+                            case 1 : openfile_set_LineLoss("CH1", loss_value + openfile_display_lineloss("CH1", port_num).toDouble(), port_num);
+                                break;
+                            case 3 : openfile_set_LineLoss("CH3", loss_value + openfile_display_lineloss("CH3", port_num).toDouble(), port_num);
+                                break;
+                            case 7 : openfile_set_LineLoss("CH7", loss_value + openfile_display_lineloss("CH7", port_num).toDouble(), port_num);
+                                break;
+                            case 11 : openfile_set_LineLoss("CH11", loss_value + openfile_display_lineloss("CH11", port_num).toDouble(), port_num);
+                                break;
+                            case 13 : openfile_set_LineLoss("CH13", loss_value + openfile_display_lineloss("CH13", port_num).toDouble(), port_num);
+                                break;
+                            case 36 : openfile_set_LineLoss("CH36", loss_value + openfile_display_lineloss("CH36", port_num).toDouble(), port_num);
+                                break;
+                            case 48 : openfile_set_LineLoss("CH48", loss_value + openfile_display_lineloss("CH48", port_num).toDouble(), port_num);
+                                break;
+                            case 52 : openfile_set_LineLoss("CH52", loss_value + openfile_display_lineloss("CH52", port_num).toDouble(), port_num);
+                                break;
+                            case 64 : openfile_set_LineLoss("CH64", loss_value + openfile_display_lineloss("CH64", port_num).toDouble(), port_num);
+                                break;
+                            case 100 : openfile_set_LineLoss("CH100", loss_value + openfile_display_lineloss("CH100", port_num).toDouble(), port_num);
+                                break;
+                            case 116 : openfile_set_LineLoss("CH116", loss_value + openfile_display_lineloss("CH116", port_num).toDouble(), port_num);
+                                break;
+                            case 120 : openfile_set_LineLoss("CH120", loss_value + openfile_display_lineloss("CH120", port_num).toDouble(), port_num);
+                                break;
+                            case 136 : openfile_set_LineLoss("CH136", loss_value + openfile_display_lineloss("CH136", port_num).toDouble(), port_num);
+                                break;
+                            case 140 : openfile_set_LineLoss("CH140", loss_value + openfile_display_lineloss("CH140", port_num).toDouble(), port_num);
+                                break;
+                            case 157 : openfile_set_LineLoss("CH157", loss_value + openfile_display_lineloss("CH157", port_num).toDouble(), port_num);
+                                break;
+                            case 161 : openfile_set_LineLoss("CH161", loss_value + openfile_display_lineloss("CH161", port_num).toDouble(), port_num);
+                                break;
+                            case 165 : openfile_set_LineLoss("CH165", loss_value + openfile_display_lineloss("CH165", port_num).toDouble(), port_num);
+                                break;
+                            default:
+                                break;
                         }
                     }
                     else
@@ -357,39 +415,39 @@ void MyThread::openfile_deal_lineloss_log(/*QString filename, QString show, int 
                         port_num = 2;
                         switch(ch)
                         {
-                            case 1 : openfile_set_LineLoss("CH1", loss_value, port_num);
+                            case 1 : openfile_set_LineLoss("CH1", loss_value + openfile_display_lineloss("CH1", port_num).toDouble(), port_num);
                                 break;
-                            case 3 : openfile_set_LineLoss("CH3", loss_value, port_num);
+                            case 3 : openfile_set_LineLoss("CH3", loss_value + openfile_display_lineloss("CH3", port_num).toDouble(), port_num);
                                 break;
-                            case 7 : openfile_set_LineLoss("CH7", loss_value, port_num);
+                            case 7 : openfile_set_LineLoss("CH7", loss_value + openfile_display_lineloss("CH7", port_num).toDouble(), port_num);
                                 break;
-                            case 11 : openfile_set_LineLoss("CH11", loss_value, port_num);
+                            case 11 : openfile_set_LineLoss("CH11", loss_value + openfile_display_lineloss("CH11", port_num).toDouble(), port_num);
                                 break;
-                            case 13 : openfile_set_LineLoss("CH13", loss_value, port_num);
+                            case 13 : openfile_set_LineLoss("CH13", loss_value + openfile_display_lineloss("CH13", port_num).toDouble(), port_num);
                                 break;
-                            case 36 : openfile_set_LineLoss("CH36", loss_value, port_num);
+                            case 36 : openfile_set_LineLoss("CH36", loss_value + openfile_display_lineloss("CH36", port_num).toDouble(), port_num);
                                 break;
-                            case 48 : openfile_set_LineLoss("CH48", loss_value, port_num);
+                            case 48 : openfile_set_LineLoss("CH48", loss_value + openfile_display_lineloss("CH48", port_num).toDouble(), port_num);
                                 break;
-                            case 52 : openfile_set_LineLoss("CH52", loss_value, port_num);
+                            case 52 : openfile_set_LineLoss("CH52", loss_value + openfile_display_lineloss("CH52", port_num).toDouble(), port_num);
                                 break;
-                            case 64 : openfile_set_LineLoss("CH64", loss_value, port_num);
+                            case 64 : openfile_set_LineLoss("CH64", loss_value + openfile_display_lineloss("CH64", port_num).toDouble(), port_num);
                                 break;
-                            case 100 : openfile_set_LineLoss("CH100", loss_value, port_num);
+                            case 100 : openfile_set_LineLoss("CH100", loss_value + openfile_display_lineloss("CH100", port_num).toDouble(), port_num);
                                 break;
-                            case 116 : openfile_set_LineLoss("CH116", loss_value, port_num);
+                            case 116 : openfile_set_LineLoss("CH116", loss_value + openfile_display_lineloss("CH116", port_num).toDouble(), port_num);
                                 break;
-                            case 120 : openfile_set_LineLoss("CH120", loss_value, port_num);
+                            case 120 : openfile_set_LineLoss("CH120", loss_value + openfile_display_lineloss("CH120", port_num).toDouble(), port_num);
                                 break;
-                            case 136 : openfile_set_LineLoss("CH136", loss_value, port_num);
+                            case 136 : openfile_set_LineLoss("CH136", loss_value + openfile_display_lineloss("CH136", port_num).toDouble(), port_num);
                                 break;
-                            case 140 : openfile_set_LineLoss("CH140", loss_value, port_num);
+                            case 140 : openfile_set_LineLoss("CH140", loss_value + openfile_display_lineloss("CH140", port_num).toDouble(), port_num);
                                 break;
-                            case 157 : openfile_set_LineLoss("CH157", loss_value, port_num);
+                            case 157 : openfile_set_LineLoss("CH157", loss_value + openfile_display_lineloss("CH157", port_num).toDouble(), port_num);
                                 break;
-                            case 161 : openfile_set_LineLoss("CH161", loss_value, port_num);
+                            case 161 : openfile_set_LineLoss("CH161", loss_value + openfile_display_lineloss("CH161", port_num).toDouble(), port_num);
                                 break;
-                            case 165 : openfile_set_LineLoss("CH165", loss_value, port_num);
+                            case 165 : openfile_set_LineLoss("CH165", loss_value + openfile_display_lineloss("CH165", port_num).toDouble(), port_num);
                                 break;
                             default:
                                 break;
@@ -544,7 +602,7 @@ void MyThread::openfile_deal_lineloss_log(/*QString filename, QString show, int 
 
         Ncfile_jinban.close();
         Ncfile_test.close();
-        Ncfile_test.remove();
+        //Ncfile_test.remove();
         QFile Ncfile_jinban("../log/standard.txt");
         Ncfile_jinban.open(QIODevice::WriteOnly);
         QTextStream in(&Ncfile_jinban);
@@ -553,6 +611,7 @@ void MyThread::openfile_deal_lineloss_log(/*QString filename, QString show, int 
     }
     else
     {
+        correct_flag = false;
         about_info_auto("警告", "金版数据 | test_log 打开失败！", 2000);
         qDebug() << "text 和金板 文件打开失败";
     }
@@ -638,3 +697,44 @@ void MyThread::openfile_set_LineLoss(QString Box_name, double loss_value, int po
     }
 }
 
+/**************************************************************************
+**
+** NAME     openfile_display
+**
+** PARAMETERS:  QString filename, QString show
+**
+** RETURNS: QString
+**
+** DESCRIPTION  显示文件中的关键信息对应到相应的lineEdit_d_id.
+**
+** NOTES:       None.
+**************************************************************************/
+QString MyThread::openfile_display_lineloss(QString show, int port_num)
+{
+    QString RunFrameNcFile = filename_WT_ATTEN_DUT;
+    QFile Ncfile(RunFrameNcFile);
+    Ncfile.open(QIODevice::ReadOnly);
+    if (Ncfile.isOpen())
+    {
+        QString strtemp;
+        QTextStream NctextStream(&Ncfile);
+        //展示项
+        QString temp = show;
+        while(!NctextStream.atEnd())
+        {
+            strtemp = NctextStream.readLine();
+            //temp = strtemp.split(QRegExp("\\s+"), QString::SkipEmptyParts).at(0);
+            if(strtemp.mid(0, temp.length()) == temp)
+            {
+                 qDebug() << strtemp;
+                 temp = strtemp.split(QRegExp("\\s+"), QString::SkipEmptyParts).at(port_num);
+                 qDebug() << temp;
+                 Ncfile.close();
+                 return temp;
+            }
+        }
+        Ncfile.close();
+    }
+    return NULL;
+
+}

@@ -623,6 +623,7 @@ debug/moc_factory_set.cpp: ../Factory_set_air/factory_set.h \
 		D:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/qtwidgetsversion.h \
 		../Factory_set_air/mythread.h \
 		D:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/QThread \
+		D:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/QTimer \
 		debug/moc_predefs.h \
 		D:/Qt/Qt5.14.2/5.14.2/mingw73_64/bin/moc.exe
 	D:\Qt\Qt5.14.2\5.14.2\mingw73_64\bin\moc.exe $(DEFINES) --include E:/qt_code/build-Factory_set-Desktop_Qt_5_14_2_MinGW_64_bit-Release/debug/moc_predefs.h -ID:/Qt/Qt5.14.2/5.14.2/mingw73_64/mkspecs/win32-g++ -IE:/qt_code/Factory_set_air -ID:/Qt/Qt5.14.2/5.14.2/mingw73_64/include -ID:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/ActiveQt -ID:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets -ID:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtGui -ID:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtANGLE -ID:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore -I. -ID:/Qt/Qt5.14.2/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++ -ID:/Qt/Qt5.14.2/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/x86_64-w64-mingw32 -ID:/Qt/Qt5.14.2/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/backward -ID:/Qt/Qt5.14.2/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include -ID:/Qt/Qt5.14.2/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include-fixed -ID:/Qt/Qt5.14.2/Tools/mingw730_64/x86_64-w64-mingw32/include ..\Factory_set_air\factory_set.h -o debug\moc_factory_set.cpp
@@ -1101,6 +1102,7 @@ debug/moc_login.cpp: ../Factory_set_air/login.h \
 		D:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/qtwidgetsversion.h \
 		../Factory_set_air/mythread.h \
 		D:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/QThread \
+		D:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/QTimer \
 		debug/moc_predefs.h \
 		D:/Qt/Qt5.14.2/5.14.2/mingw73_64/bin/moc.exe
 	D:\Qt\Qt5.14.2\5.14.2\mingw73_64\bin\moc.exe $(DEFINES) --include E:/qt_code/build-Factory_set-Desktop_Qt_5_14_2_MinGW_64_bit-Release/debug/moc_predefs.h -ID:/Qt/Qt5.14.2/5.14.2/mingw73_64/mkspecs/win32-g++ -IE:/qt_code/Factory_set_air -ID:/Qt/Qt5.14.2/5.14.2/mingw73_64/include -ID:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/ActiveQt -ID:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets -ID:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtGui -ID:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtANGLE -ID:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore -I. -ID:/Qt/Qt5.14.2/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++ -ID:/Qt/Qt5.14.2/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/x86_64-w64-mingw32 -ID:/Qt/Qt5.14.2/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/backward -ID:/Qt/Qt5.14.2/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include -ID:/Qt/Qt5.14.2/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include-fixed -ID:/Qt/Qt5.14.2/Tools/mingw730_64/x86_64-w64-mingw32/include ..\Factory_set_air\login.h -o debug\moc_login.cpp
@@ -1160,6 +1162,9 @@ debug/moc_mythread.cpp: ../Factory_set_air/mythread.h \
 		D:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qvarlengtharray.h \
 		D:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qcontainerfwd.h \
 		D:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qobject_impl.h \
+		D:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/QTimer \
+		D:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qtimer.h \
+		D:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qbasictimer.h \
 		debug/moc_predefs.h \
 		D:/Qt/Qt5.14.2/5.14.2/mingw73_64/bin/moc.exe
 	D:\Qt\Qt5.14.2\5.14.2\mingw73_64\bin\moc.exe $(DEFINES) --include E:/qt_code/build-Factory_set-Desktop_Qt_5_14_2_MinGW_64_bit-Release/debug/moc_predefs.h -ID:/Qt/Qt5.14.2/5.14.2/mingw73_64/mkspecs/win32-g++ -IE:/qt_code/Factory_set_air -ID:/Qt/Qt5.14.2/5.14.2/mingw73_64/include -ID:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/ActiveQt -ID:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets -ID:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtGui -ID:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtANGLE -ID:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore -I. -ID:/Qt/Qt5.14.2/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++ -ID:/Qt/Qt5.14.2/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/x86_64-w64-mingw32 -ID:/Qt/Qt5.14.2/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include/c++/backward -ID:/Qt/Qt5.14.2/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include -ID:/Qt/Qt5.14.2/Tools/mingw730_64/lib/gcc/x86_64-w64-mingw32/7.3.0/include-fixed -ID:/Qt/Qt5.14.2/Tools/mingw730_64/x86_64-w64-mingw32/include ..\Factory_set_air\mythread.h -o debug\moc_mythread.cpp
@@ -1667,6 +1672,7 @@ debug/login.o: ../Factory_set_air/login.cpp ../Factory_set_air/login.h \
 		D:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/qtwidgetsversion.h \
 		../Factory_set_air/mythread.h \
 		D:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/QThread \
+		D:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/QTimer \
 		ui_login.h \
 		D:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/QDebug
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\login.o ..\Factory_set_air\login.cpp
@@ -2147,6 +2153,7 @@ debug/main.o: ../Factory_set_air/main.cpp ../Factory_set_air/factory_set.h \
 		D:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/qtwidgetsversion.h \
 		../Factory_set_air/mythread.h \
 		D:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/QThread \
+		D:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/QTimer \
 		D:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/QApplication \
 		../Factory_set_air/login.h \
 		D:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/QDialog
@@ -2628,6 +2635,7 @@ debug/factory_set.o: ../Factory_set_air/factory_set.cpp ../Factory_set_air/facto
 		D:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/qtwidgetsversion.h \
 		../Factory_set_air/mythread.h \
 		D:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/QThread \
+		D:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/QTimer \
 		ui_factory_set.h \
 		D:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/QChar \
 		D:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/QLabel \
@@ -2635,8 +2643,7 @@ debug/factory_set.o: ../Factory_set_air/factory_set.cpp ../Factory_set_air/facto
 		D:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/ActiveQt/qaxobject.h \
 		D:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/ActiveQt/qaxbase.h \
 		D:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/QProcess \
-		D:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/QDateTime \
-		D:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/QTimer
+		D:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/QDateTime
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\factory_set.o ..\Factory_set_air\factory_set.cpp
 
 debug/mythread.o: ../Factory_set_air/mythread.cpp ../Factory_set_air/mythread.h \
@@ -2694,6 +2701,9 @@ debug/mythread.o: ../Factory_set_air/mythread.cpp ../Factory_set_air/mythread.h 
 		D:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qvarlengtharray.h \
 		D:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qcontainerfwd.h \
 		D:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qobject_impl.h \
+		D:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/QTimer \
+		D:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qtimer.h \
+		D:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qbasictimer.h \
 		../Factory_set_air/factory_set.h \
 		D:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/QMainWindow \
 		D:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/qmainwindow.h \
@@ -2769,7 +2779,6 @@ debug/mythread.o: ../Factory_set_air/mythread.cpp ../Factory_set_air/mythread.h 
 		D:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qanimationgroup.h \
 		D:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qarraydataops.h \
 		D:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qarraydatapointer.h \
-		D:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qbasictimer.h \
 		D:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qbitarray.h \
 		D:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qbuffer.h \
 		D:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qbytearraymatcher.h \
@@ -2870,7 +2879,6 @@ debug/mythread.o: ../Factory_set_air/mythread.cpp ../Factory_set_air/mythread.h 
 		D:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qthreadpool.h \
 		D:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qthreadstorage.h \
 		D:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qtimeline.h \
-		D:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qtimer.h \
 		D:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qtimezone.h \
 		D:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qtranslator.h \
 		D:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/qtransposeproxymodel.h \
