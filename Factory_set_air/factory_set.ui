@@ -320,11 +320,7 @@
                  </size>
                 </property>
                 <property name="text">
-<<<<<<< HEAD
-                 <string>MES_端口</string>
-=======
                  <string>MES_Port</string>
->>>>>>> develop
                 </property>
                </widget>
               </item>
