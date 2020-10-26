@@ -35,7 +35,7 @@ MyThread::MyThread(QObject *parent) :
 void MyThread::run()
 {
 //半自动，
-#if 1
+#if 0
     QProcess p(this);
 
     while(1)

@@ -1011,7 +1011,7 @@ public:
         doubleSpinBox_CH1_Port1->setSizePolicy(sizePolicy3);
         doubleSpinBox_CH1_Port1->setMinimumSize(QSize(60, 0));
         doubleSpinBox_CH1_Port1->setMaximumSize(QSize(60, 16777215));
-        doubleSpinBox_CH1_Port1->setMaximum(15.000000000000000);
+        doubleSpinBox_CH1_Port1->setMaximum(30.000000000000000);
         doubleSpinBox_CH1_Port1->setSingleStep(0.100000000000000);
 
         horizontalLayout_25->addWidget(doubleSpinBox_CH1_Port1);
@@ -1034,7 +1034,7 @@ public:
         doubleSpinBox_CH3_Port1->setSizePolicy(sizePolicy3);
         doubleSpinBox_CH3_Port1->setMinimumSize(QSize(60, 0));
         doubleSpinBox_CH3_Port1->setMaximumSize(QSize(60, 16777215));
-        doubleSpinBox_CH3_Port1->setMaximum(15.000000000000000);
+        doubleSpinBox_CH3_Port1->setMaximum(30.000000000000000);
         doubleSpinBox_CH3_Port1->setSingleStep(0.100000000000000);
 
         horizontalLayout_27->addWidget(doubleSpinBox_CH3_Port1);
@@ -1057,7 +1057,7 @@ public:
         doubleSpinBox_CH7_Port1->setSizePolicy(sizePolicy3);
         doubleSpinBox_CH7_Port1->setMinimumSize(QSize(60, 0));
         doubleSpinBox_CH7_Port1->setMaximumSize(QSize(60, 16777215));
-        doubleSpinBox_CH7_Port1->setMaximum(15.000000000000000);
+        doubleSpinBox_CH7_Port1->setMaximum(30.000000000000000);
         doubleSpinBox_CH7_Port1->setSingleStep(0.100000000000000);
 
         horizontalLayout_32->addWidget(doubleSpinBox_CH7_Port1);
@@ -1080,7 +1080,7 @@ public:
         doubleSpinBox_CH11_Port1->setSizePolicy(sizePolicy3);
         doubleSpinBox_CH11_Port1->setMinimumSize(QSize(60, 0));
         doubleSpinBox_CH11_Port1->setMaximumSize(QSize(60, 16777215));
-        doubleSpinBox_CH11_Port1->setMaximum(15.000000000000000);
+        doubleSpinBox_CH11_Port1->setMaximum(30.000000000000000);
         doubleSpinBox_CH11_Port1->setSingleStep(0.100000000000000);
 
         horizontalLayout_34->addWidget(doubleSpinBox_CH11_Port1);
@@ -1103,7 +1103,7 @@ public:
         doubleSpinBox_CH13_Port1->setSizePolicy(sizePolicy3);
         doubleSpinBox_CH13_Port1->setMinimumSize(QSize(60, 0));
         doubleSpinBox_CH13_Port1->setMaximumSize(QSize(60, 16777215));
-        doubleSpinBox_CH13_Port1->setMaximum(15.000000000000000);
+        doubleSpinBox_CH13_Port1->setMaximum(30.000000000000000);
         doubleSpinBox_CH13_Port1->setSingleStep(0.100000000000000);
 
         horizontalLayout_37->addWidget(doubleSpinBox_CH13_Port1);
@@ -1124,7 +1124,7 @@ public:
         doubleSpinBox_CH13_Port2->setSizePolicy(sizePolicy3);
         doubleSpinBox_CH13_Port2->setMinimumSize(QSize(60, 0));
         doubleSpinBox_CH13_Port2->setMaximumSize(QSize(60, 16777215));
-        doubleSpinBox_CH13_Port2->setMaximum(15.000000000000000);
+        doubleSpinBox_CH13_Port2->setMaximum(30.000000000000000);
         doubleSpinBox_CH13_Port2->setSingleStep(0.100000000000000);
 
         horizontalLayout_47->addWidget(doubleSpinBox_CH13_Port2);
@@ -1140,7 +1140,7 @@ public:
         doubleSpinBox_CH1_Port2->setSizePolicy(sizePolicy3);
         doubleSpinBox_CH1_Port2->setMinimumSize(QSize(60, 0));
         doubleSpinBox_CH1_Port2->setMaximumSize(QSize(60, 16777215));
-        doubleSpinBox_CH1_Port2->setMaximum(15.000000000000000);
+        doubleSpinBox_CH1_Port2->setMaximum(30.000000000000000);
         doubleSpinBox_CH1_Port2->setSingleStep(0.100000000000000);
 
         horizontalLayout_8->addWidget(doubleSpinBox_CH1_Port2);
@@ -1156,7 +1156,7 @@ public:
         doubleSpinBox_CH7_Port2->setSizePolicy(sizePolicy3);
         doubleSpinBox_CH7_Port2->setMinimumSize(QSize(60, 0));
         doubleSpinBox_CH7_Port2->setMaximumSize(QSize(60, 16777215));
-        doubleSpinBox_CH7_Port2->setMaximum(15.000000000000000);
+        doubleSpinBox_CH7_Port2->setMaximum(30.000000000000000);
         doubleSpinBox_CH7_Port2->setSingleStep(0.100000000000000);
 
         horizontalLayout_45->addWidget(doubleSpinBox_CH7_Port2);
@@ -1172,7 +1172,7 @@ public:
         doubleSpinBox_CH11_Port2->setSizePolicy(sizePolicy3);
         doubleSpinBox_CH11_Port2->setMinimumSize(QSize(60, 0));
         doubleSpinBox_CH11_Port2->setMaximumSize(QSize(60, 16777215));
-        doubleSpinBox_CH11_Port2->setMaximum(15.000000000000000);
+        doubleSpinBox_CH11_Port2->setMaximum(30.000000000000000);
         doubleSpinBox_CH11_Port2->setSingleStep(0.100000000000000);
 
         horizontalLayout_46->addWidget(doubleSpinBox_CH11_Port2);
@@ -1200,7 +1200,7 @@ public:
         doubleSpinBox_CH3_Port2->setSizePolicy(sizePolicy3);
         doubleSpinBox_CH3_Port2->setMinimumSize(QSize(60, 0));
         doubleSpinBox_CH3_Port2->setMaximumSize(QSize(60, 16777215));
-        doubleSpinBox_CH3_Port2->setMaximum(15.000000000000000);
+        doubleSpinBox_CH3_Port2->setMaximum(30.000000000000000);
         doubleSpinBox_CH3_Port2->setSingleStep(0.100000000000000);
 
         horizontalLayout_44->addWidget(doubleSpinBox_CH3_Port2);
@@ -1379,7 +1379,7 @@ public:
         doubleSpinBox_CH36_Port1->setSizePolicy(sizePolicy3);
         doubleSpinBox_CH36_Port1->setMinimumSize(QSize(60, 0));
         doubleSpinBox_CH36_Port1->setMaximumSize(QSize(60, 16777215));
-        doubleSpinBox_CH36_Port1->setMaximum(25.000000000000000);
+        doubleSpinBox_CH36_Port1->setMaximum(30.000000000000000);
         doubleSpinBox_CH36_Port1->setSingleStep(0.100000000000000);
 
         gridLayout_14->addWidget(doubleSpinBox_CH36_Port1, 0, 1, 1, 1);
@@ -1402,7 +1402,7 @@ public:
         doubleSpinBox_CH48_Port1->setSizePolicy(sizePolicy3);
         doubleSpinBox_CH48_Port1->setMinimumSize(QSize(60, 0));
         doubleSpinBox_CH48_Port1->setMaximumSize(QSize(60, 16777215));
-        doubleSpinBox_CH48_Port1->setMaximum(25.000000000000000);
+        doubleSpinBox_CH48_Port1->setMaximum(30.000000000000000);
         doubleSpinBox_CH48_Port1->setSingleStep(0.100000000000000);
 
         horizontalLayout_29->addWidget(doubleSpinBox_CH48_Port1);
@@ -1425,7 +1425,7 @@ public:
         doubleSpinBox_CH52_Port1->setSizePolicy(sizePolicy3);
         doubleSpinBox_CH52_Port1->setMinimumSize(QSize(60, 0));
         doubleSpinBox_CH52_Port1->setMaximumSize(QSize(60, 16777215));
-        doubleSpinBox_CH52_Port1->setMaximum(25.000000000000000);
+        doubleSpinBox_CH52_Port1->setMaximum(30.000000000000000);
         doubleSpinBox_CH52_Port1->setSingleStep(0.100000000000000);
 
         horizontalLayout_30->addWidget(doubleSpinBox_CH52_Port1);
@@ -1448,7 +1448,7 @@ public:
         doubleSpinBox_CH64_Port1->setSizePolicy(sizePolicy3);
         doubleSpinBox_CH64_Port1->setMinimumSize(QSize(60, 0));
         doubleSpinBox_CH64_Port1->setMaximumSize(QSize(60, 16777215));
-        doubleSpinBox_CH64_Port1->setMaximum(25.000000000000000);
+        doubleSpinBox_CH64_Port1->setMaximum(30.000000000000000);
         doubleSpinBox_CH64_Port1->setSingleStep(0.100000000000000);
 
         horizontalLayout_31->addWidget(doubleSpinBox_CH64_Port1);
@@ -1471,7 +1471,7 @@ public:
         doubleSpinBox_CH100_Port1->setSizePolicy(sizePolicy3);
         doubleSpinBox_CH100_Port1->setMinimumSize(QSize(60, 0));
         doubleSpinBox_CH100_Port1->setMaximumSize(QSize(60, 16777215));
-        doubleSpinBox_CH100_Port1->setMaximum(25.000000000000000);
+        doubleSpinBox_CH100_Port1->setMaximum(30.000000000000000);
         doubleSpinBox_CH100_Port1->setSingleStep(0.100000000000000);
 
         horizontalLayout_33->addWidget(doubleSpinBox_CH100_Port1);
@@ -1494,7 +1494,7 @@ public:
         doubleSpinBox_CH116_Port1->setSizePolicy(sizePolicy3);
         doubleSpinBox_CH116_Port1->setMinimumSize(QSize(60, 0));
         doubleSpinBox_CH116_Port1->setMaximumSize(QSize(60, 16777215));
-        doubleSpinBox_CH116_Port1->setMaximum(25.000000000000000);
+        doubleSpinBox_CH116_Port1->setMaximum(30.000000000000000);
         doubleSpinBox_CH116_Port1->setSingleStep(0.100000000000000);
 
         horizontalLayout_35->addWidget(doubleSpinBox_CH116_Port1);
@@ -1517,7 +1517,7 @@ public:
         doubleSpinBox_CH120_Port1->setSizePolicy(sizePolicy3);
         doubleSpinBox_CH120_Port1->setMinimumSize(QSize(60, 0));
         doubleSpinBox_CH120_Port1->setMaximumSize(QSize(60, 16777215));
-        doubleSpinBox_CH120_Port1->setMaximum(25.000000000000000);
+        doubleSpinBox_CH120_Port1->setMaximum(30.000000000000000);
         doubleSpinBox_CH120_Port1->setSingleStep(0.100000000000000);
 
         horizontalLayout_36->addWidget(doubleSpinBox_CH120_Port1);
@@ -1540,7 +1540,7 @@ public:
         doubleSpinBox_CH136_Port1->setSizePolicy(sizePolicy3);
         doubleSpinBox_CH136_Port1->setMinimumSize(QSize(60, 0));
         doubleSpinBox_CH136_Port1->setMaximumSize(QSize(60, 16777215));
-        doubleSpinBox_CH136_Port1->setMaximum(25.000000000000000);
+        doubleSpinBox_CH136_Port1->setMaximum(30.000000000000000);
         doubleSpinBox_CH136_Port1->setSingleStep(0.100000000000000);
 
         horizontalLayout_39->addWidget(doubleSpinBox_CH136_Port1);
@@ -1563,7 +1563,7 @@ public:
         doubleSpinBox_CH140_Port1->setSizePolicy(sizePolicy3);
         doubleSpinBox_CH140_Port1->setMinimumSize(QSize(60, 0));
         doubleSpinBox_CH140_Port1->setMaximumSize(QSize(60, 16777215));
-        doubleSpinBox_CH140_Port1->setMaximum(25.000000000000000);
+        doubleSpinBox_CH140_Port1->setMaximum(30.000000000000000);
         doubleSpinBox_CH140_Port1->setSingleStep(0.100000000000000);
 
         horizontalLayout_42->addWidget(doubleSpinBox_CH140_Port1);
@@ -1586,7 +1586,7 @@ public:
         doubleSpinBox_CH157_Port1->setSizePolicy(sizePolicy3);
         doubleSpinBox_CH157_Port1->setMinimumSize(QSize(60, 0));
         doubleSpinBox_CH157_Port1->setMaximumSize(QSize(60, 16777215));
-        doubleSpinBox_CH157_Port1->setMaximum(25.000000000000000);
+        doubleSpinBox_CH157_Port1->setMaximum(30.000000000000000);
         doubleSpinBox_CH157_Port1->setSingleStep(0.100000000000000);
 
         horizontalLayout_40->addWidget(doubleSpinBox_CH157_Port1);
@@ -1609,7 +1609,7 @@ public:
         doubleSpinBox_CH161_Port1->setSizePolicy(sizePolicy3);
         doubleSpinBox_CH161_Port1->setMinimumSize(QSize(60, 0));
         doubleSpinBox_CH161_Port1->setMaximumSize(QSize(60, 16777215));
-        doubleSpinBox_CH161_Port1->setMaximum(25.000000000000000);
+        doubleSpinBox_CH161_Port1->setMaximum(30.000000000000000);
         doubleSpinBox_CH161_Port1->setSingleStep(0.100000000000000);
 
         horizontalLayout_41->addWidget(doubleSpinBox_CH161_Port1);
@@ -1632,7 +1632,7 @@ public:
         doubleSpinBox_CH165_Port1->setSizePolicy(sizePolicy3);
         doubleSpinBox_CH165_Port1->setMinimumSize(QSize(60, 0));
         doubleSpinBox_CH165_Port1->setMaximumSize(QSize(60, 16777215));
-        doubleSpinBox_CH165_Port1->setMaximum(25.000000000000000);
+        doubleSpinBox_CH165_Port1->setMaximum(30.000000000000000);
         doubleSpinBox_CH165_Port1->setSingleStep(0.100000000000000);
 
         horizontalLayout_38->addWidget(doubleSpinBox_CH165_Port1);
@@ -1666,7 +1666,7 @@ public:
         doubleSpinBox_CH36_Port2->setSizePolicy(sizePolicy3);
         doubleSpinBox_CH36_Port2->setMinimumSize(QSize(60, 0));
         doubleSpinBox_CH36_Port2->setMaximumSize(QSize(60, 16777215));
-        doubleSpinBox_CH36_Port2->setMaximum(25.000000000000000);
+        doubleSpinBox_CH36_Port2->setMaximum(30.000000000000000);
         doubleSpinBox_CH36_Port2->setSingleStep(0.100000000000000);
 
         horizontalLayout_48->addWidget(doubleSpinBox_CH36_Port2);
@@ -1682,7 +1682,7 @@ public:
         doubleSpinBox_CH48_Port2->setSizePolicy(sizePolicy3);
         doubleSpinBox_CH48_Port2->setMinimumSize(QSize(60, 0));
         doubleSpinBox_CH48_Port2->setMaximumSize(QSize(60, 16777215));
-        doubleSpinBox_CH48_Port2->setMaximum(25.000000000000000);
+        doubleSpinBox_CH48_Port2->setMaximum(30.000000000000000);
         doubleSpinBox_CH48_Port2->setSingleStep(0.100000000000000);
 
         horizontalLayout_49->addWidget(doubleSpinBox_CH48_Port2);
@@ -1698,7 +1698,7 @@ public:
         doubleSpinBox_CH52_Port2->setSizePolicy(sizePolicy3);
         doubleSpinBox_CH52_Port2->setMinimumSize(QSize(60, 0));
         doubleSpinBox_CH52_Port2->setMaximumSize(QSize(60, 16777215));
-        doubleSpinBox_CH52_Port2->setMaximum(25.000000000000000);
+        doubleSpinBox_CH52_Port2->setMaximum(30.000000000000000);
         doubleSpinBox_CH52_Port2->setSingleStep(0.100000000000000);
 
         horizontalLayout_50->addWidget(doubleSpinBox_CH52_Port2);
@@ -1714,7 +1714,7 @@ public:
         doubleSpinBox_CH64_Port2->setSizePolicy(sizePolicy3);
         doubleSpinBox_CH64_Port2->setMinimumSize(QSize(60, 0));
         doubleSpinBox_CH64_Port2->setMaximumSize(QSize(60, 16777215));
-        doubleSpinBox_CH64_Port2->setMaximum(25.000000000000000);
+        doubleSpinBox_CH64_Port2->setMaximum(30.000000000000000);
         doubleSpinBox_CH64_Port2->setSingleStep(0.100000000000000);
 
         horizontalLayout_51->addWidget(doubleSpinBox_CH64_Port2);
@@ -1730,7 +1730,7 @@ public:
         doubleSpinBox_CH100_Port2->setSizePolicy(sizePolicy3);
         doubleSpinBox_CH100_Port2->setMinimumSize(QSize(60, 0));
         doubleSpinBox_CH100_Port2->setMaximumSize(QSize(60, 16777215));
-        doubleSpinBox_CH100_Port2->setMaximum(25.000000000000000);
+        doubleSpinBox_CH100_Port2->setMaximum(30.000000000000000);
         doubleSpinBox_CH100_Port2->setSingleStep(0.100000000000000);
 
         horizontalLayout_52->addWidget(doubleSpinBox_CH100_Port2);
@@ -1746,7 +1746,7 @@ public:
         doubleSpinBox_CH116_Port2->setSizePolicy(sizePolicy3);
         doubleSpinBox_CH116_Port2->setMinimumSize(QSize(60, 0));
         doubleSpinBox_CH116_Port2->setMaximumSize(QSize(60, 16777215));
-        doubleSpinBox_CH116_Port2->setMaximum(25.000000000000000);
+        doubleSpinBox_CH116_Port2->setMaximum(30.000000000000000);
         doubleSpinBox_CH116_Port2->setSingleStep(0.100000000000000);
 
         horizontalLayout_53->addWidget(doubleSpinBox_CH116_Port2);
@@ -1762,7 +1762,7 @@ public:
         doubleSpinBox_CH120_Port2->setSizePolicy(sizePolicy3);
         doubleSpinBox_CH120_Port2->setMinimumSize(QSize(60, 0));
         doubleSpinBox_CH120_Port2->setMaximumSize(QSize(60, 16777215));
-        doubleSpinBox_CH120_Port2->setMaximum(25.000000000000000);
+        doubleSpinBox_CH120_Port2->setMaximum(30.000000000000000);
         doubleSpinBox_CH120_Port2->setSingleStep(0.100000000000000);
 
         horizontalLayout_54->addWidget(doubleSpinBox_CH120_Port2);
@@ -1778,7 +1778,7 @@ public:
         doubleSpinBox_CH136_Port2->setSizePolicy(sizePolicy3);
         doubleSpinBox_CH136_Port2->setMinimumSize(QSize(60, 0));
         doubleSpinBox_CH136_Port2->setMaximumSize(QSize(60, 16777215));
-        doubleSpinBox_CH136_Port2->setMaximum(25.000000000000000);
+        doubleSpinBox_CH136_Port2->setMaximum(30.000000000000000);
         doubleSpinBox_CH136_Port2->setSingleStep(0.100000000000000);
 
         horizontalLayout_55->addWidget(doubleSpinBox_CH136_Port2);
@@ -1794,7 +1794,7 @@ public:
         doubleSpinBox_CH140_Port2->setSizePolicy(sizePolicy3);
         doubleSpinBox_CH140_Port2->setMinimumSize(QSize(60, 0));
         doubleSpinBox_CH140_Port2->setMaximumSize(QSize(60, 16777215));
-        doubleSpinBox_CH140_Port2->setMaximum(25.000000000000000);
+        doubleSpinBox_CH140_Port2->setMaximum(30.000000000000000);
         doubleSpinBox_CH140_Port2->setSingleStep(0.100000000000000);
 
         horizontalLayout_56->addWidget(doubleSpinBox_CH140_Port2);
@@ -1810,7 +1810,7 @@ public:
         doubleSpinBox_CH157_Port2->setSizePolicy(sizePolicy3);
         doubleSpinBox_CH157_Port2->setMinimumSize(QSize(60, 0));
         doubleSpinBox_CH157_Port2->setMaximumSize(QSize(60, 16777215));
-        doubleSpinBox_CH157_Port2->setMaximum(25.000000000000000);
+        doubleSpinBox_CH157_Port2->setMaximum(30.000000000000000);
         doubleSpinBox_CH157_Port2->setSingleStep(0.100000000000000);
 
         horizontalLayout_57->addWidget(doubleSpinBox_CH157_Port2);
@@ -1826,7 +1826,7 @@ public:
         doubleSpinBox_CH161_Port2->setSizePolicy(sizePolicy3);
         doubleSpinBox_CH161_Port2->setMinimumSize(QSize(60, 0));
         doubleSpinBox_CH161_Port2->setMaximumSize(QSize(60, 16777215));
-        doubleSpinBox_CH161_Port2->setMaximum(25.000000000000000);
+        doubleSpinBox_CH161_Port2->setMaximum(30.000000000000000);
         doubleSpinBox_CH161_Port2->setSingleStep(0.100000000000000);
 
         horizontalLayout_58->addWidget(doubleSpinBox_CH161_Port2);
@@ -1842,7 +1842,7 @@ public:
         doubleSpinBox_CH165_Port2->setSizePolicy(sizePolicy3);
         doubleSpinBox_CH165_Port2->setMinimumSize(QSize(60, 0));
         doubleSpinBox_CH165_Port2->setMaximumSize(QSize(60, 16777215));
-        doubleSpinBox_CH165_Port2->setMaximum(25.000000000000000);
+        doubleSpinBox_CH165_Port2->setMaximum(30.000000000000000);
         doubleSpinBox_CH165_Port2->setSingleStep(0.100000000000000);
 
         horizontalLayout_59->addWidget(doubleSpinBox_CH165_Port2);
