@@ -1,0 +1,26 @@
+2020-10-27 11:45:37.499 Debug: this is QtDebugMsg
+2020-10-27 11:45:37.502 
+2020-10-27 11:45:37.503 Warning: this is QtWarningMsg
+2020-10-27 11:45:37.505 Critical: this is QtCriticalMsg
+2020-10-27 11:45:37.506 Warning: QObject::connect: No such slot MyThread::Pass_log_clicked()
+2020-10-27 11:45:37.608 Warning: libpng warning: iCCP: known incorrect sRGB profile
+2020-10-27 11:46:29.354 Debug: this is QtDebugMsg
+2020-10-27 11:46:29.357 
+2020-10-27 11:46:29.358 Warning: this is QtWarningMsg
+2020-10-27 11:46:29.361 Critical: this is QtCriticalMsg
+2020-10-27 11:46:29.363 Warning: QObject::connect: No such slot MyThread::Pass_log_clicked()
+2020-10-27 11:46:29.373 Warning: libpng warning: iCCP: known incorrect sRGB profile
+2020-10-27 11:46:44.834 Debug: this is QtDebugMsg
+2020-10-27 11:46:44.839 
+2020-10-27 11:46:44.841 Warning: this is QtWarningMsg
+2020-10-27 11:46:44.843 Critical: this is QtCriticalMsg
+2020-10-27 11:46:44.845 Warning: QObject::connect: No such slot MyThread::Pass_log_clicked()
+2020-10-27 11:46:44.856 Warning: libpng warning: iCCP: known incorrect sRGB profile
+2020-10-27 11:47:38.226 Debug: this is QtDebugMsg
+2020-10-27 11:47:38.229 
+2020-10-27 11:47:38.231 Warning: this is QtWarningMsg
+2020-10-27 11:47:38.233 Critical: this is QtCriticalMsg
+2020-10-27 11:47:38.236 Warning: QObject::connect: No such slot MyThread::Pass_log_clicked()
+2020-10-27 11:47:38.247 Warning: libpng warning: iCCP: known incorrect sRGB profile
+2020-10-27 11:47:43.009 Warning: QObject::connect: No such slot MyThread::Pass_log_clicked()
+2020-10-27 11:47:43.064 Debug: false

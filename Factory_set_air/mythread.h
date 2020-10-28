@@ -31,6 +31,7 @@ private:
     void about_info_auto(QString dlgTitle, QString strInfo, int timeout);
     void about_info(QString dlgTitle, QString strInfo);
     QString openfile_display_lineloss(QString show, int port_num);
+    void openfile_set_BT_value(QString Box_id, double loss_value);
 
     bool Pass_log_clicked();
 

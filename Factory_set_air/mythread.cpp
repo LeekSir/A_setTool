@@ -307,6 +307,21 @@ void MyThread::openfile_deal_lineloss_log(/*QString filename, QString show, int 
                 temp += list.at(i) + "\t\t" + list.at(i+1) + "\t\t" + list.at(i+5).split('d').at(0);
                 temp += QString('\n');
             }
+            if(strtemp.mid(0, 30).count("42") >= 1 && strtemp.mid(0, 30).count("2444") >= 1 && strtemp.mid(0, 30).count("1DH1"))
+            {
+                list = strtemp.split(QRegExp("\\s+"), QString::SkipEmptyParts);
+
+                //因为新旧产测软件的汇总数据差异，需要做筛选
+                for(; i<list.size(); i++)
+                {
+                    if(list.at(i).count("dbm") == 1)
+                    {
+                        break;
+                    }
+                }
+                temp += "BT\t\t" + list.at(0) + "\t\t" + list.at(i).split('d').at(0);
+                temp += QString('\n');
+            }
         }
         Ncfile.close();
         Ncfile.remove();
@@ -349,7 +364,7 @@ void MyThread::openfile_deal_lineloss_log(/*QString filename, QString show, int 
 
             if(correct)
             {
-                if(strtemp_test.mid(0, 3) == "ANT" && strtemp_jinban.mid(0, 3) == "ANT")
+                if((strtemp_test.mid(0, 3) == "ANT" && strtemp_jinban.mid(0, 3) == "ANT") || (strtemp_test.mid(0, 2) == "BT" && strtemp_jinban.mid(0, 2) == "BT"))
                 {
                     list_test = strtemp_test.split(QRegExp("\\s+"), QString::SkipEmptyParts);
                     list_jinban = strtemp_jinban.split(QRegExp("\\s+"), QString::SkipEmptyParts);
@@ -366,6 +381,13 @@ void MyThread::openfile_deal_lineloss_log(/*QString filename, QString show, int 
                         //loss_value = list_jinban.at(2).toDouble() - list_test.at(2).toDouble();
                     }
                     loss_value = list_jinban.at(2).toDouble() - list_test.at(2).toDouble();
+
+                    //写蓝牙线损数据
+                    if(list_test.at(0) == "BT" && list_jinban.at(0) == "BT")
+                    {
+                        openfile_set_BT_value("WT_FIXED_ATTEN_BT", loss_value);
+                        break;
+                    }
                     ch = list_jinban.at(1).toInt();
                     if(list_jinban.at(0) == "ANT0")
                     {
@@ -505,6 +527,12 @@ void MyThread::openfile_deal_lineloss_log(/*QString filename, QString show, int 
                         continue;
                     }
 
+                    //写蓝牙线损数据
+                    if(list_test.at(0) == "BT" && list_jinban.at(0) == "BT")
+                    {
+                        openfile_set_BT_value("WT_FIXED_ATTEN_BT", loss_value);
+                        break;
+                    }
 
                     ch = list_jinban.at(1).toInt();
                     if(list_jinban.at(0) == "ANT0")
@@ -737,4 +765,51 @@ QString MyThread::openfile_display_lineloss(QString show, int port_num)
     }
     return NULL;
 
+}
+
+/**************************************************************************
+**
+** NAME     openfile_set_BT_value
+**
+** PARAMETERS:  (QString Box_id, double lineloss)
+**
+** RETURNS:
+**
+** DESCRIPTION  设置第二页中的相关参数.
+**
+** NOTES:       None.
+**************************************************************************/
+void MyThread::openfile_set_BT_value(QString Box_id, double loss_value)
+{
+    QString RunFrameNcFile = filename_WT_ATTEN_DUT;
+    QFile Ncfile(RunFrameNcFile);
+    Ncfile.open(QIODevice::ReadOnly);
+    if (Ncfile.isOpen())
+    {
+        QString strtemp;
+        QTextStream NctextStream(&Ncfile);
+
+        QString temp;
+        while(!NctextStream.atEnd())
+        {
+            strtemp = NctextStream.readLine();
+            if(strtemp.mid(0, Box_id.length()) == Box_id)
+            {
+                qDebug() << strtemp;
+                temp += Box_id + "\t=\t" + QString::number(loss_value,'f',1);
+                temp += QString('\n');
+            }
+            else
+            {
+
+                temp += strtemp;
+                temp += QString('\n');
+            }
+        }
+        Ncfile.close();
+        Ncfile.open(QIODevice::WriteOnly);
+        QTextStream in(&Ncfile);
+        in <<temp;
+        Ncfile.close();
+    }
 }
