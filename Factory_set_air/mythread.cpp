@@ -307,14 +307,14 @@ void MyThread::openfile_deal_lineloss_log(/*QString filename, QString show, int 
                 temp += list.at(i) + "\t\t" + list.at(i+1) + "\t\t" + list.at(i+5).split('d').at(0);
                 temp += QString('\n');
             }
-            if(strtemp.mid(0, 30).count("42") >= 1 && strtemp.mid(0, 30).count("2444") >= 1 && strtemp.mid(0, 30).count("1DH1"))
+            if(strtemp.mid(0, 30).count("42") == 1 && strtemp.mid(0, 30).count("2444") == 1 && strtemp.mid(0, 30).count("1DH1") == 1)
             {
                 list = strtemp.split(QRegExp("\\s+"), QString::SkipEmptyParts);
 
                 //因为新旧产测软件的汇总数据差异，需要做筛选
                 for(; i<list.size(); i++)
                 {
-                    if(list.at(i).count("dbm") == 1)
+                    if(list.at(i).count("dBm") == 1)
                     {
                         break;
                     }
@@ -385,7 +385,7 @@ void MyThread::openfile_deal_lineloss_log(/*QString filename, QString show, int 
                     //写蓝牙线损数据
                     if(list_test.at(0) == "BT" && list_jinban.at(0) == "BT")
                     {
-                        openfile_set_BT_value("WT_FIXED_ATTEN_BT", loss_value);
+                        openfile_set_BT_value("WT_FIXED_ATTEN_BT", loss_value + openfile_display("WT_FIXED_ATTEN_BT").toDouble());
                         break;
                     }
                     ch = list_jinban.at(1).toInt();
@@ -813,3 +813,52 @@ void MyThread::openfile_set_BT_value(QString Box_id, double loss_value)
         Ncfile.close();
     }
 }
+
+/**************************************************************************
+**
+** NAME     openfile_display
+**
+** PARAMETERS:  QString filename, QString show
+**
+** RETURNS: QString
+**
+** DESCRIPTION  显示文件中的关键信息对应到相应的lineEdit_d_id.
+**
+** NOTES:       None.
+**************************************************************************/
+QString MyThread::openfile_display(QString show)
+{
+    QString RunFrameNcFile = filename_WT_ATTEN_DUT;
+    QFile Ncfile(RunFrameNcFile);
+    if(!Ncfile.open(QIODevice::ReadOnly))
+    {
+        return NULL;
+    }
+
+    if (Ncfile.isOpen())
+    {
+        QString strtemp;
+        QTextStream NctextStream(&Ncfile);
+        //展示项
+        QString temp = show;
+        while(!NctextStream.atEnd())
+        {
+            strtemp = NctextStream.readLine();
+            if(strtemp.mid(0, temp.length()) == temp)
+            {
+                 temp = (strtemp.split("//").at(0)).split('=').at(1).simplified();
+                 if(temp.length() == 0)
+                 {
+                     //temp = "此项为空";
+                 }
+                 qDebug() << temp;
+                 Ncfile.close();
+                 return temp;
+            }
+        }
+        Ncfile.close();
+    }
+    return NULL;
+
+}
+

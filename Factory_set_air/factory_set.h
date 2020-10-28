@@ -68,6 +68,7 @@ private:
 
     void openfile_set_Check_box(QString filename, QString Check_box_id, bool check_box_sta);
     void SetReadOnly(QCheckBox* checkBox, bool readOnly);
+    bool display_GoldBar_MAC(QString MAC);
 
 
 

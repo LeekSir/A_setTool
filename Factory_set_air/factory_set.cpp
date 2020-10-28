@@ -361,7 +361,7 @@ void factory_set::display()
         ui->pushButton_refresh->setEnabled(0);
 
         //第一页
-        ui->pushButton_set->setEnabled(0);
+        //ui->pushButton_set->setEnabled(0);
         ui->lineEdit_IP->setReadOnly(1);
         ui->lineEdit_Port->setReadOnly(1);
         ui->lineEdit_WksNo->setReadOnly(1);
@@ -405,6 +405,7 @@ void factory_set::display()
 
 
         //第三页
+        ui->lineEdit_GoldBar_MAC->setReadOnly(1);
         ui->pushButton_correct->setEnabled(0);
 
     }
@@ -2050,10 +2051,52 @@ void factory_set::dialog_process_bar()
 }
 
 
+/**************************************************************************
+**
+** NAME     display_GoldBar_MAC
+**
+** PARAMETERS:  (QString MAC)
+**
+** RETURNS:
+**
+** DESCRIPTION  显示多块金板MAC，用来选择校准使用的对应金板数据
+**
+** NOTES:       None.
+**************************************************************************/
+bool factory_set::display_GoldBar_MAC(QString MAC)
+{
+    QString filePath = "../GoldenBin/";
+    QDir *dir=new QDir(filePath);
+    QStringList filter;
+
+
+    QList<QFileInfo> *fileInfo=new QList<QFileInfo>(dir->entryInfoList(filter));
+    qDebug()<< "###########################" << fileInfo->count();
+    for(int i = 0;i<fileInfo->count(); i++)
+    {
+        QString temp = fileInfo->at(i).fileName();
+        //if(MoudleType + '.' + WT_IS_NEED_LINKMES + ".jpg" == temp)
+        //if(MoudleType + ".jpg" == temp)
+        if(fileInfo->at(i).suffix() == "txt" && fileInfo->at(i).fileName().split('.').at(0) == MAC)
+        {
+            QFile::copy(filePath + temp,"../standard.txt");
+            return true;
+        }
+
+    }
+    return false;
+}
+
 
 void factory_set::on_pushButton_correct_clicked()
 {
 #if 1
+    if(!display_GoldBar_MAC(ui->lineEdit_GoldBar_MAC->text()))
+    {
+        about_info("提示", "此MAC查无对应金板！");
+        return;
+    }
+
     //自动校线损，加进度条
     //*************** 启动 copy.bat *****************
     QStringList arguments;
