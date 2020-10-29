@@ -1,0 +1,15 @@
+Warning: File:() Line:(0) libpng warning: iCCP: known incorrect sRGB profile (2020-10-29 11:23:33 周四)
+Debug: File:() Line:(0) logining successfully!!! "cvte" "666666" (2020-10-29 11:23:38 周四)
+Debug: File:() Line:(0) true (2020-10-29 11:23:38 周四)
+Debug: File:() Line:(0) ########################### 5 (2020-10-29 11:23:51 周四)
+Debug: File:() Line:(0) ########################### 5 (2020-10-29 11:23:57 周四)
+Warning: File:() Line:(0) QObject: Cannot create children for a parent that is in a different thread.
+(Parent is MyThread(0x67fd20), parent's thread is QThread(0x1d7f80), current thread is MyThread(0x67fd20) (2020-10-29 11:23:57 周四)
+Fatal: File:() Line:(0) QThread: Destroyed while thread is still running (2020-10-29 11:24:18 周四)
+Warning: File:() Line:(0) libpng warning: iCCP: known incorrect sRGB profile (2020-10-29 11:30:52 周四)
+Debug: File:() Line:(0) logining successfully!!! "cvte" "666666" (2020-10-29 11:30:57 周四)
+Debug: File:() Line:(0) true (2020-10-29 11:30:57 周四)
+Debug: File:() Line:(0) ########################### 5 (2020-10-29 11:31:03 周四)
+Warning: File:() Line:(0) QObject: Cannot create children for a parent that is in a different thread.
+(Parent is MyThread(0x67fd20), parent's thread is QThread(0x16e7f80), current thread is MyThread(0x67fd20) (2020-10-29 11:31:03 周四)
+Warning: File:() Line:(0) libpng warning: iCCP: known incorrect sRGB profile (2020-10-29 11:50:35 周四)

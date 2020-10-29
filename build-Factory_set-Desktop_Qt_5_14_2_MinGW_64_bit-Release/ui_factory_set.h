@@ -1285,7 +1285,7 @@ public:
         doubleSpinBox_WT_FIXED_ATTEN_BT->setObjectName(QString::fromUtf8("doubleSpinBox_WT_FIXED_ATTEN_BT"));
         doubleSpinBox_WT_FIXED_ATTEN_BT->setMinimumSize(QSize(85, 0));
         doubleSpinBox_WT_FIXED_ATTEN_BT->setMaximumSize(QSize(85, 16777215));
-        doubleSpinBox_WT_FIXED_ATTEN_BT->setMaximum(15.000000000000000);
+        doubleSpinBox_WT_FIXED_ATTEN_BT->setMaximum(30.000000000000000);
         doubleSpinBox_WT_FIXED_ATTEN_BT->setSingleStep(0.100000000000000);
 
         horizontalLayout_19->addWidget(doubleSpinBox_WT_FIXED_ATTEN_BT);
