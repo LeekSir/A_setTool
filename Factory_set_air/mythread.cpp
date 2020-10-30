@@ -36,7 +36,7 @@ MyThread::MyThread(QObject *parent) :
 void MyThread::run()
 {
 //半自动，
-#if 1
+#if 0
     QProcess p(this);
 
     while(1)
@@ -317,7 +317,7 @@ void MyThread::openfile_deal_lineloss_log(/*QString filename, QString show, int 
 
             }
             if((strtemp.mid(0, 30).count("42") == 1 && strtemp.mid(0, 30).count("2444") == 1 && strtemp.mid(0, 30).count("1DH1") == 1)
-                    || (strtemp.mid(0, 50).count("15") == 1 && strtemp.mid(0, 50).count("ANT0") == 1 && strtemp.mid(0, 50).count("42") == 1 && strtemp.mid(0, 50).count("2444") == 1 && strtemp.mid(0, 50).count("1DH1") == 1))
+                    || (strtemp.mid(0, 50).count("ANT0") == 1 && strtemp.mid(0, 50).count("42") == 1 && strtemp.mid(0, 50).count("2444") == 1 && strtemp.mid(0, 50).count("1DH1") == 1))
             {
                 list = strtemp.split(QRegExp("\\s+"), QString::SkipEmptyParts);
 
@@ -819,7 +819,7 @@ void MyThread::openfile_deal_lineloss_log(/*QString filename, QString show, int 
                                 break;
                             case 13 : openfile_set_LineLoss("CH13", loss_value, port_num);
                                 break;
-                            case 14 : openfile_set_LineLoss("CH11", loss_value, port_num);
+                            case 14 : openfile_set_LineLoss("CH14", loss_value, port_num);
                                 break;
                             //5G
                             case 36 : openfile_set_LineLoss("CH36", loss_value, port_num);
@@ -962,7 +962,7 @@ void MyThread::openfile_deal_lineloss_log(/*QString filename, QString show, int 
                                 break;
                             case 13 : openfile_set_LineLoss("CH13", loss_value, port_num);
                                 break;
-                            case 14 : openfile_set_LineLoss("CH11", loss_value, port_num);
+                            case 14 : openfile_set_LineLoss("CH14", loss_value, port_num);
                                 break;
                             //5G
                             case 36 : openfile_set_LineLoss("CH36", loss_value, port_num);

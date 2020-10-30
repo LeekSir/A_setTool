@@ -2167,7 +2167,7 @@ void factory_set::on_pushButton_correct_clicked()
 
 
     //QApplication::restoreOverrideCursor();//恢复鼠标为箭头状态
-    if(PASS_flag && correct_flag && air_link_flag)
+    if(PASS_flag && correct_flag)// && air_link_flag)
     {
         ui->label_about_correct->setText("校准 PASS！");
         ui->label_about_correct->setStyleSheet("color:green;");
@@ -2178,14 +2178,14 @@ void factory_set::on_pushButton_correct_clicked()
     {
         ui->label_about_correct->setText("校准 FAIL！");
 
-        if(!air_link_flag)
+        /*if(!air_link_flag)
         {
             about_info("提示", "线损值超过阈值，请及时检查配置环境并重新开始校准！");
         }
         else
         {
             about_info("提示", "PASS_log 获取失败！请检查配置并重新开始校准！");
-        }
+        }*/
         PASS_flag = true;
         //air_link_flag = true;
 
