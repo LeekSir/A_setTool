@@ -13,6 +13,8 @@ QT_BEGIN_NAMESPACE
 namespace Ui { class factory_set; }
 QT_END_NAMESPACE
 
+
+void customMessageHandler(QtMsgType type, const QMessageLogContext &context, const QString &msg);
 class factory_set : public QMainWindow
 {
     Q_OBJECT
@@ -26,6 +28,7 @@ public:
 
     void set_LineLoss_correct();
     void openfile_deal_lineloss_log(/*QString filename, QString show, int port_num*/);
+    //
 
 public slots:
        // 声明槽函数 mySlot()

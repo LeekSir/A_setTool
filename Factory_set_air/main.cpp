@@ -8,6 +8,11 @@
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
+    qInstallMessageHandler(customMessageHandler);
+    /*qDebug() << "this is QtDebugMsg";
+    qInfo() << "this is QtInfoMsg";
+    qWarning() << "this is QtWarningMsg";
+    qCritical() << "this is QtCriticalMsg";*/
     login log;
     log.setWindowTitle("用户登陆");
     log.show();

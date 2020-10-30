@@ -19,3 +19,5 @@ Warning: File:() Line:(0) libpng warning: iCCP: known incorrect sRGB profile (20
 Warning: File:() Line:(0) QObject::connect: No such slot MyThread::Pass_log_clicked() (2020-10-27 15:43:55 周二)
 Warning: File:() Line:(0) libpng warning: iCCP: known incorrect sRGB profile (2020-10-27 15:43:55 周二)
 Warning: File:() Line:(0) libpng warning: iCCP: known incorrect sRGB profile (2020-10-27 15:46:17 周二)
+Warning: File:() Line:(0) libpng warning: iCCP: known incorrect sRGB profile (2020-10-30 11:59:26 周五)
+Warning: File:() Line:(0) libpng warning: iCCP: known incorrect sRGB profile (2020-10-30 17:02:15 周五)

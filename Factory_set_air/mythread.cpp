@@ -15,6 +15,8 @@ extern bool correct;
 extern bool correct_flag;//是否校准成功
 extern bool mythread_flag;
 extern bool PASS_flag;
+extern bool air_link_flag;
+
 extern QString correct_Port_Num;
 extern QString filename_WT_ATTEN_DUT;
 extern QMutex mutex;
@@ -28,14 +30,13 @@ MyThread::MyThread(QObject *parent) :
     stopped = false;
 
     timer = new QTimer(this);
-    connect(timer, SIGNAL(timeout()), this, SLOT(Pass_log_clicked()));
+    //connect(timer, SIGNAL(timeout()), this, SLOT(Pass_log_clicked()));
 }
-
 
 void MyThread::run()
 {
 //半自动，
-#if 0
+#if 1
     QProcess p(this);
 
     while(1)
@@ -188,6 +189,8 @@ void MyThread::stop()
 
 }
 
+
+
 //信息提示窗口
 void MyThread::about_info(QString dlgTitle, QString strInfo)
 {
@@ -266,6 +269,7 @@ void MyThread::openfile_deal_lineloss_log(/*QString filename, QString show, int 
 {
     //每次置true
     correct_flag = true;
+    air_link_flag=false;
 
     QString filePath = "../log/";
     QString RunFrameNcFile;
@@ -293,6 +297,7 @@ void MyThread::openfile_deal_lineloss_log(/*QString filename, QString show, int 
             QStringList list;
             if(strtemp.mid(0, 30).count("ANT0") >= 1 || strtemp.mid(0, 30).count("ANT1") >= 1)
             {
+
                 list = strtemp.split(QRegExp("\\s+"), QString::SkipEmptyParts);
 
                 //因为新旧产测软件的汇总数据差异，需要做筛选
@@ -376,6 +381,8 @@ void MyThread::openfile_deal_lineloss_log(/*QString filename, QString show, int 
                     temp += strtemp_jinban + "\t\t"  + list_test.at(2) + "\t\t" + QString::number((list_jinban.at(2).toDouble() - list_test.at(2).toDouble()),'f',2);
                     temp += QString('\n');
                     //if(list_jinban.at(2).toDouble() - list_test.at(2).toDouble())
+
+                    ch = list_jinban.at(1).toInt();
                     if(qAbs(list_jinban.at(2).toDouble() - list_test.at(2).toDouble()) <= 0.5)
                     {
                         continue;
@@ -386,14 +393,13 @@ void MyThread::openfile_deal_lineloss_log(/*QString filename, QString show, int 
                         //loss_value = list_jinban.at(2).toDouble() - list_test.at(2).toDouble();
                     }
                     loss_value = list_jinban.at(2).toDouble() - list_test.at(2).toDouble();
-
                     //写蓝牙线损数据
                     if(list_test.at(0) == "BT" && list_jinban.at(0) == "BT")
                     {
-                        openfile_set_BT_value("WT_FIXED_ATTEN_BT", loss_value + openfile_display("WT_FIXED_ATTEN_BT").toDouble());
+                        openfile_set_BT_value("WT_FIXED_ATTEN_BT", loss_value + openfile_display(filename_WT_ATTEN_DUT,"WT_FIXED_ATTEN_BT").toDouble());
                         break;
                     }
-                    ch = list_jinban.at(1).toInt();
+
                     if(list_jinban.at(0) == "ANT0")
                     {
                         port_num = 1;
@@ -712,6 +718,8 @@ void MyThread::openfile_deal_lineloss_log(/*QString filename, QString show, int 
                         correct_flag = false;
                         loss_value = list_jinban.at(4).toDouble() + temp_value/2;
                     }*/
+                    ch = list_jinban.at(1).toInt();
+
                     temp += list_jinban.at(0) + "\t\t" + list_jinban.at(1) + "\t\t" + list_jinban.at(2) + "\t\t";
                     if(qAbs(temp_value) > 0.5)
                     {
@@ -722,9 +730,52 @@ void MyThread::openfile_deal_lineloss_log(/*QString filename, QString show, int 
                     }
                     else
                     {
+                        //进行传导和耦合的判断，并设定线损阈值
+                        /*QString air_link=openfile_display("../CFG_FILE/air_link.txt", "air_link");
+                        double line_Loss_0 = openfile_display_lineloss("CH" + list_jinban.at(1), 1).toDouble();
+                        double line_Loss_1 = openfile_display_lineloss("CH" + list_jinban.at(1), 2).toDouble();
+                        qDebug() << "line_Loss_0 = " << line_Loss_0 << "; line_Loss_1 = " << line_Loss_1;
+                        if(ch <= 13)
+                        {
+                            if((air_link == '0'))// && line_Loss_0 < 10 && line_Loss_1 < 10) || (air_link == '1' && line_Loss_0.toDouble() < 15 && line_Loss_1 < 15))
+                            {
+                                if(line_Loss_0 > 10 || line_Loss_1 > 10)
+                                {
+                                    air_link_flag=false;
+                                }
+                            }
+                            else if(air_link == '1')
+                            {
+                                if(line_Loss_0 > 15 || line_Loss_1 > 15)
+                                {
+                                    air_link_flag=false;
+                                }
+                            }
+                        }
+                        else
+                        {
+                            if((air_link == '0'))// && line_Loss_0 < 10 && line_Loss_1 < 10) || (air_link == '1' && line_Loss_0.toDouble() < 15 && line_Loss_1 < 15))
+                            {
+                                if(line_Loss_0 > 15 || line_Loss_1 > 15)
+                                {
+                                    air_link_flag=false;
+                                }
+                            }
+                            else if(air_link == '1')
+                            {
+                                if(line_Loss_0 > 20 || line_Loss_1 > 20)
+                                {
+                                    air_link_flag=false;
+                                }
+                            }
+
+                        }*/
                         //loss_value = list_jinban.at(4).toDouble();
                         temp += list_test.at(2) + "\t\t" + QString::number(loss_value,'f',2);
                         temp += QString('\n');
+
+
+
                         continue;
                     }
 
@@ -735,13 +786,13 @@ void MyThread::openfile_deal_lineloss_log(/*QString filename, QString show, int 
                         break;
                     }
 
-                    ch = list_jinban.at(1).toInt();
+
                     if(list_jinban.at(0) == "ANT0")
                     {
                         port_num = 1;
                         switch(ch)
                         {
-                            //5G
+                            //2.4G
                             case 1 : openfile_set_LineLoss("CH1", loss_value, port_num);
                                 break;
                             case 2 : openfile_set_LineLoss("CH2", loss_value, port_num);
@@ -877,14 +928,14 @@ void MyThread::openfile_deal_lineloss_log(/*QString filename, QString show, int 
                                 break;
                             default:
                                 break;
-                        }
+                            }
                     }
                     else
                     {
                         port_num = 2;
                         switch(ch)
                         {
-                            //5G
+                            //2.4G
                             case 1 : openfile_set_LineLoss("CH1", loss_value, port_num);
                                 break;
                             case 2 : openfile_set_LineLoss("CH2", loss_value, port_num);
@@ -1155,9 +1206,59 @@ QString MyThread::openfile_display_lineloss(QString show, int port_num)
             //temp = strtemp.split(QRegExp("\\s+"), QString::SkipEmptyParts).at(0);
             if(strtemp.mid(0, temp.length()) == temp)
             {
-                 qDebug() << strtemp;
+                 //qDebug() << strtemp;
                  temp = strtemp.split(QRegExp("\\s+"), QString::SkipEmptyParts).at(port_num);
-                 qDebug() << temp;
+                 //qDebug() << temp;
+                 Ncfile.close();
+                 return temp;
+            }
+        }
+        Ncfile.close();
+    }
+    return NULL;
+
+}
+
+
+
+/**************************************************************************
+**
+** NAME     openfile_display
+**
+** PARAMETERS:  QString filename, QString show
+**
+** RETURNS: QString
+**
+** DESCRIPTION  显示文件中的关键信息对应到相应的lineEdit_d_id.
+**
+** NOTES:       None.
+**************************************************************************/
+QString MyThread::openfile_display(QString filename, QString show)
+{
+    QString RunFrameNcFile = filename;
+    QFile Ncfile(RunFrameNcFile);
+    if(!Ncfile.open(QIODevice::ReadOnly))
+    {
+        return NULL;
+    }
+
+    if (Ncfile.isOpen())
+    {
+        QString strtemp;
+        QTextStream NctextStream(&Ncfile);
+        //展示项
+        QString temp = show;
+        while(!NctextStream.atEnd())
+        {
+            strtemp = NctextStream.readLine();
+            if(strtemp.mid(0, temp.length()) == temp)
+            {
+                 temp = (strtemp.split("//").at(0)).split('=').at(1).simplified();
+                 if(temp.length() == 0)
+                 {
+                     //temp = "此项为空";
+                 }
+                 //qDebug() << temp;
                  Ncfile.close();
                  return temp;
             }
@@ -1215,51 +1316,4 @@ void MyThread::openfile_set_BT_value(QString Box_id, double loss_value)
     }
 }
 
-/**************************************************************************
-**
-** NAME     openfile_display
-**
-** PARAMETERS:  QString filename, QString show
-**
-** RETURNS: QString
-**
-** DESCRIPTION  显示文件中的关键信息对应到相应的lineEdit_d_id.
-**
-** NOTES:       None.
-**************************************************************************/
-QString MyThread::openfile_display(QString show)
-{
-    QString RunFrameNcFile = filename_WT_ATTEN_DUT;
-    QFile Ncfile(RunFrameNcFile);
-    if(!Ncfile.open(QIODevice::ReadOnly))
-    {
-        return NULL;
-    }
-
-    if (Ncfile.isOpen())
-    {
-        QString strtemp;
-        QTextStream NctextStream(&Ncfile);
-        //展示项
-        QString temp = show;
-        while(!NctextStream.atEnd())
-        {
-            strtemp = NctextStream.readLine();
-            if(strtemp.mid(0, temp.length()) == temp)
-            {
-                 temp = (strtemp.split("//").at(0)).split('=').at(1).simplified();
-                 if(temp.length() == 0)
-                 {
-                     //temp = "此项为空";
-                 }
-                 qDebug() << temp;
-                 Ncfile.close();
-                 return temp;
-            }
-        }
-        Ncfile.close();
-    }
-    return NULL;
-
-}
 

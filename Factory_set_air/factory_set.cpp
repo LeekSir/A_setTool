@@ -12,6 +12,7 @@ bool correct_flag = false;//是否校准成功
 bool mythread_flag;
 QString correct_Port_Num;
 bool PASS_flag = true;
+bool air_link_flag = true;
 QString cmd;
 
 QMutex mutex;
@@ -67,6 +68,47 @@ factory_set::~factory_set()
 }
 
 
+//void customMessageHandler(QtMsgType type, const QMessageLogContext &context, const QString &msg)
+void customMessageHandler(QtMsgType type, const QMessageLogContext &context, const QString &msg)
+{
+    static QMutex mutex;
+    mutex.lock();
+
+    QString text;
+    switch(type)
+    {
+    case QtDebugMsg:
+        text = QString("Debug:");
+        break;
+
+    case QtWarningMsg:
+        text = QString("Warning:");
+        break;
+
+    case QtCriticalMsg:
+        text = QString("Critical:");
+        break;
+
+    case QtFatalMsg:
+        text = QString("Fatal:");
+    }
+
+    QString context_info = QString("File:(%1) Line:(%2)").arg(QString(context.file)).arg(context.line);
+    QString current_date_time = QDateTime::currentDateTime().toString("yyyy-MM-dd hh:mm:ss ddd");
+    QString current_date = QString("(%1)").arg(current_date_time);
+    QString message = QString("%1 %2 %3 %4").arg(text).arg(context_info).arg(msg).arg(current_date);
+
+    QFile file("../log.txt");
+    file.open(QIODevice::WriteOnly | QIODevice::Append);
+    QTextStream text_stream(&file);
+    text_stream << message << "\r\n";
+    file.flush();
+    file.close();
+
+    mutex.unlock();
+}
+
+
 
 void factory_set::mySlot()
 {
@@ -110,7 +152,7 @@ QString factory_set::openfile_display(QString filename, QString show)
                  {
                      //temp = "此项为空";
                  }
-                 qDebug() << temp;
+                 //qDebug() << temp;
                  Ncfile.close();
                  return temp;
             }
@@ -140,7 +182,7 @@ bool factory_set::openfile_wefuse_display(QString box_id)
     QFile Ncfile(RunFrameNcFile);
     if(!Ncfile.open(QIODevice::ReadOnly))
     {
-        qDebug() << "ERRERRERRERREERRR";
+        //qDebug() << "ERRERRERRERREERRR";
         return NULL;
     }
 
@@ -224,7 +266,7 @@ void factory_set::openfile_set_wefuse(QString box_id)
                 }
                 else
                 {
-                    qDebug() << strtemp.mid(2, strtemp.length()-2);
+                    //qDebug() << strtemp.mid(2, strtemp.length()-2);
                     temp += strtemp.mid(2, strtemp.length()-2);
                     temp += QString('\n');
                 }
@@ -273,7 +315,7 @@ void factory_set::openfile_set_wefuse(QString box_id)
 void factory_set::display_user_login()
 {
     QImage *USER = new QImage;
-    qDebug() << "helloworld##############";
+    //qDebug() << "helloworld##############";
     if(this->Usr_Type)
     {
         USER->load(":/image/USER.png");
@@ -535,6 +577,7 @@ void factory_set::display()
     ui->lineEdit_ModuleType->setText(openfile_display(filename_SoftVer, "AutoTestVersion").split('-').at(0));
     cmd = ui->lineEdit_ModuleType->text() + ".exe";
 
+
     //增加显示MES连接与否，主要是配置产测软件
     //QFile::remove("../../userlogo.jpg");
 
@@ -547,7 +590,7 @@ void factory_set::display()
 
 
     QList<QFileInfo> *fileInfo=new QList<QFileInfo>(dir->entryInfoList(filter));
-    qDebug()<< "###########################" << fileInfo->count();
+    //qDebug()<< "###########################" << fileInfo->count();
     for(int i = 0;i<fileInfo->count(); i++)
     {
         QString temp = fileInfo->at(i).fileName();
@@ -607,7 +650,7 @@ void factory_set::display()
     }
     else
     {
-        qDebug() << "111111111111111111";
+        //qDebug() << "111111111111111111";
         ui->checkBox_WT_WRITE_EFUSE->setCheckState(Qt::CheckState::Unchecked);
     }
 
@@ -719,7 +762,7 @@ void factory_set::on_pushButton_set_clicked()
     if (Ncfile.isOpen())
     {
         //Ncfile.readAll();
-        qDebug() <<Ncfile.pos();
+        //qDebug() <<Ncfile.pos();
         QString strtemp;
         QTextStream NctextStream(&Ncfile);
 
@@ -1050,7 +1093,7 @@ void factory_set::openfile_set_show(QString filename, QString line_id, QLineEdit
             strtemp = NctextStream.readLine();
             if(strtemp.mid(0, line_id.length()) == line_id)
             {
-                qDebug() << strtemp;
+                //qDebug() << strtemp;
                 if(strtemp.indexOf("//", 0) != -1)
                 {
                     temp += line_id + '=' + wirte_show->text() + "                          //" + strtemp.split("//").at(1);
@@ -1165,9 +1208,9 @@ QString factory_set::openfile_display_lineloss(QString filename, QString show, i
             //temp = strtemp.split(QRegExp("\\s+"), QString::SkipEmptyParts).at(0);
             if(strtemp.mid(0, temp.length()) == temp)
             {
-                 qDebug() << strtemp;
+                 //qDebug() << strtemp;
                  temp = strtemp.split(QRegExp("\\s+"), QString::SkipEmptyParts).at(port_num);
-                 qDebug() << temp;
+                 //qDebug() << temp;
                  Ncfile.close();
                  return temp;
             }
@@ -1281,7 +1324,7 @@ void factory_set::openfile_set_BT_show(QString filename, QString Box_id, QDouble
             strtemp = NctextStream.readLine();
             if(strtemp.mid(0, Box_id.length()) == Box_id)
             {
-                qDebug() << strtemp;
+                //qDebug() << strtemp;
                 temp += Box_id + "\t=\t" + QString::number(SpinBox->value(),'f',1);
                 temp += QString('\n');
             }
@@ -1453,7 +1496,7 @@ void factory_set::display_LineLoss_clicked()
     ui->lineEdit_WT_FIXED_ATTEN_2_4_CHAIN1->setText(openfile_display(filename_WT_ATTEN_DUT, "WT_FIXED_ATTEN_2_4_CHAIN1"));
     ui->lineEdit_WT_FIXED_ATTEN_5_CHAIN0->setText(openfile_display(filename_WT_ATTEN_DUT, "WT_FIXED_ATTEN_5_CHAIN0"));
     ui->lineEdit_WT_FIXED_ATTEN_5_CHAIN1->setText(openfile_display(filename_WT_ATTEN_DUT, "WT_FIXED_ATTEN_5_CHAIN1"));
-    qDebug() <<  openfile_display(filename_WT_ATTEN_DUT, "WT_FIXED_ATTEN_2_4_CHAIN0") <<"???????????? display_LineLoss_clicked ???????????????";
+    //qDebug() <<  openfile_display(filename_WT_ATTEN_DUT, "WT_FIXED_ATTEN_2_4_CHAIN0") <<"???????????? display_LineLoss_clicked ???????????????";
     //BT
     ui->doubleSpinBox_WT_FIXED_ATTEN_BT->setValue(openfile_display(filename_WT_ATTEN_DUT, "WT_FIXED_ATTEN_BT").toDouble());
 
@@ -1549,7 +1592,7 @@ void factory_set::file_one_set(QString filename)
     if (Ncfile.isOpen())
     {
         //Ncfile.readAll();
-        qDebug() <<Ncfile.pos();
+        //qDebug() <<Ncfile.pos();
         QString strtemp;
         QTextStream NctextStream(&Ncfile);
 
@@ -1888,7 +1931,7 @@ void factory_set::openfile_deal_lineloss_log(/*QString filename, QString show, i
                     ch = list_jinban.at(1).toInt();
                     if(list_jinban.at(0) == "ANT0")
                     {
-                        qDebug() << "ch = "<<ch <<", loss_value = " <<loss_value << "我是爸爸" ;
+                        //qDebug() << "ch = "<<ch <<", loss_value = " <<loss_value << "我是爸爸" ;
                         switch(ch)
                         {
                             case 1 : ui->doubleSpinBox_CH1_Port1->setValue(loss_value);
@@ -2124,7 +2167,7 @@ void factory_set::on_pushButton_correct_clicked()
 
 
     //QApplication::restoreOverrideCursor();//恢复鼠标为箭头状态
-    if(PASS_flag && correct_flag)
+    if(PASS_flag && correct_flag && air_link_flag)
     {
         ui->label_about_correct->setText("校准 PASS！");
         ui->label_about_correct->setStyleSheet("color:green;");
@@ -2134,9 +2177,18 @@ void factory_set::on_pushButton_correct_clicked()
     else
     {
         ui->label_about_correct->setText("校准 FAIL！");
-        ui->label_about_correct->setStyleSheet("color:red;");
-        about_info("提示", "PASS_log 获取失败！请检查配置并重新开始校准！");
+
+        if(!air_link_flag)
+        {
+            about_info("提示", "线损值超过阈值，请及时检查配置环境并重新开始校准！");
+        }
+        else
+        {
+            about_info("提示", "PASS_log 获取失败！请检查配置并重新开始校准！");
+        }
         PASS_flag = true;
+        //air_link_flag = true;
+
     }
 
     //删除standard.txt
