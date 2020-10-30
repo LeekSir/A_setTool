@@ -114,7 +114,6 @@ CH177   0		0       	0		0		0		0		0    		0	// 5885 MHz
 
 WT_DELTA_ATTEN_5_END
 
-
 WT_DELTA_ATTEN_BT_BEGIN
 BT_CH0  	        0	// 2402 MHz
 BT_CH1  	        0	// 2403 MHz
