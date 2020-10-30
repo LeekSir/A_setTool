@@ -532,7 +532,7 @@ void factory_set::display()
     //ui->lineEdit_NgCount->setText(openfile_display(filename_CVTE_MES, "NgCount"));
     ui->lineEdit_MoLotNo->setText(openfile_display(filename_CVTE_MES, "MoLotNo"));
     ui->lineEdit_PartNo->setText(openfile_display(filename_CVTE_MES, "PartNo"));
-    ui->lineEdit_ModuleType->setText(openfile_display(filename_SoftVer, "AutoTestVersion").split('-').at(2));
+    ui->lineEdit_ModuleType->setText(openfile_display(filename_SoftVer, "AutoTestVersion").split('-').at(0));
     cmd = ui->lineEdit_ModuleType->text() + ".exe";
 
     //增加显示MES连接与否，主要是配置产测软件
@@ -2138,6 +2138,9 @@ void factory_set::on_pushButton_correct_clicked()
         about_info("提示", "PASS_log 获取失败！请检查配置并重新开始校准！");
         PASS_flag = true;
     }
+
+    //删除standard.txt
+    QFile::remove("../standard.txt");
 
     //恢复MAC扫描框
     if(PopUpEnable_flag)

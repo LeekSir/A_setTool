@@ -304,10 +304,15 @@ void MyThread::openfile_deal_lineloss_log(/*QString filename, QString show, int 
                         break;
                     }
                 }
-                temp += list.at(i) + "\t\t" + list.at(i+1) + "\t\t" + list.at(i+5).split('d').at(0);
-                temp += QString('\n');
+                if(list.at(i+3) != "1DH1")
+                {
+                    temp += list.at(i) + "\t\t" + list.at(i+1) + "\t\t" + list.at(i+5).split('d').at(0);
+                    temp += QString('\n');
+                }
+
             }
-            if(strtemp.mid(0, 30).count("42") == 1 && strtemp.mid(0, 30).count("2444") == 1 && strtemp.mid(0, 30).count("1DH1") == 1)
+            if((strtemp.mid(0, 30).count("42") == 1 && strtemp.mid(0, 30).count("2444") == 1 && strtemp.mid(0, 30).count("1DH1") == 1)
+                    || (strtemp.mid(0, 50).count("15") == 1 && strtemp.mid(0, 50).count("ANT0") == 1 && strtemp.mid(0, 50).count("42") == 1 && strtemp.mid(0, 50).count("2444") == 1 && strtemp.mid(0, 50).count("1DH1") == 1))
             {
                 list = strtemp.split(QRegExp("\\s+"), QString::SkipEmptyParts);
 
@@ -319,7 +324,7 @@ void MyThread::openfile_deal_lineloss_log(/*QString filename, QString show, int 
                         break;
                     }
                 }
-                temp += "BT\t\t" + list.at(0) + "\t\t" + list.at(i).split('d').at(0);
+                temp += "BT\t\t42\t\t" + list.at(i).split('d').at(0);
                 temp += QString('\n');
             }
         }
