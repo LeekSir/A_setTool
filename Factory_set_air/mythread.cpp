@@ -36,7 +36,7 @@ MyThread::MyThread(QObject *parent) :
 void MyThread::run()
 {
 //半自动，
-#if 0
+#if 1
     QProcess p(this);
 
     while(1)
@@ -267,9 +267,7 @@ bool MyThread::Pass_log_clicked()
 **************************************************************************/
 void MyThread::openfile_deal_lineloss_log(/*QString filename, QString show, int port_num*/)
 {
-    //每次置true
-    correct_flag = true;
-    air_link_flag=false;
+
 
     QString filePath = "../log/";
     QString RunFrameNcFile;
@@ -365,6 +363,10 @@ void MyThread::openfile_deal_lineloss_log(/*QString filename, QString show, int 
         QString temp = "金板" + QString("\t\t\t\t\t\t") + "测试n" + QString("\t\t") + "微调值" + QString('\n');
         double loss_value, temp_value;
         int ch = 0;
+
+        //每次置true
+        correct_flag = true;
+        air_link_flag=false;
 
         while(!NctextStream_jinban.atEnd() && !NctextStream_test.atEnd())
         {
@@ -731,22 +733,45 @@ void MyThread::openfile_deal_lineloss_log(/*QString filename, QString show, int 
                     else
                     {
                         //进行传导和耦合的判断，并设定线损阈值
-                        /*QString air_link=openfile_display("../CFG_FILE/air_link.txt", "air_link");
-                        double line_Loss_0 = openfile_display_lineloss("CH" + list_jinban.at(1), 1).toDouble();
-                        double line_Loss_1 = openfile_display_lineloss("CH" + list_jinban.at(1), 2).toDouble();
-                        qDebug() << "line_Loss_0 = " << line_Loss_0 << "; line_Loss_1 = " << line_Loss_1;
-                        if(ch <= 13)
+                        QString air_link=openfile_display("../CFG_FILE/air_link.txt", "air_link");
+                        double line_Loss_0 = 0;openfile_display_lineloss("CH" + list_jinban.at(1), 1).toDouble();
+                        double line_Loss_1 = 0;openfile_display_lineloss("CH" + list_jinban.at(1), 2).toDouble();
+                        double bt_Loss = 0;
+                        //选择取出相关值进行阈值比较
+                        if(list_jinban.at(0) == "ANT0")
                         {
-                            if((air_link == '0'))// && line_Loss_0 < 10 && line_Loss_1 < 10) || (air_link == '1' && line_Loss_0.toDouble() < 15 && line_Loss_1 < 15))
+                            line_Loss_0 = openfile_display_lineloss("CH" + list_jinban.at(1), 1).toDouble();
+                        }
+                        if(list_jinban.at(0) == "ANT1")
+                        {
+                            line_Loss_1 = openfile_display_lineloss("CH" + list_jinban.at(1), 2).toDouble();
+                        }
+                        if(list_jinban.at(0) == "BT")
+                        {
+                            bt_Loss = openfile_display(filename_WT_ATTEN_DUT,"WT_FIXED_ATTEN_BT").toDouble();
+                        }
+                        qDebug() << "line_Loss_0 = " << line_Loss_0 << "; line_Loss_1 = " << line_Loss_1;
+                        if(air_link == "0")
+                        {
+                            if(ch <= 13)
                             {
-                                if(line_Loss_0 > 10 || line_Loss_1 > 10)
+                                if(line_Loss_0 > openfile_display("../CFG_FILE/air_link.txt", "link_2.4G").toDouble() || line_Loss_1 > openfile_display("../CFG_FILE/air_link.txt", "link_2.4G").toDouble())// && line_Loss_0 < 10 && line_Loss_1 < 10) || (air_link == '1' && line_Loss_0.toDouble() < 15 && line_Loss_1 < 15))
                                 {
                                     air_link_flag=false;
                                 }
+
                             }
-                            else if(air_link == '1')
+                            else if(ch == 42 && list_jinban.at(0) == "BT")
                             {
-                                if(line_Loss_0 > 15 || line_Loss_1 > 15)
+                                if(bt_Loss > openfile_display("../CFG_FILE/air_link.txt", "link_bt").toDouble())// && line_Loss_0 < 10 && line_Loss_1 < 10) || (air_link == '1' && line_Loss_0.toDouble() < 15 && line_Loss_1 < 15))
+                                {
+                                    air_link_flag=false;
+                                }
+
+                            }
+                            else
+                            {
+                                if(line_Loss_0 > openfile_display("../CFG_FILE/air_link.txt", "link_5G").toDouble() || line_Loss_1 > openfile_display("../CFG_FILE/air_link.txt", "link_5G").toDouble())// && line_Loss_0 < 10 && line_Loss_1 < 10) || (air_link == '1' && line_Loss_0.toDouble() < 15 && line_Loss_1 < 15))
                                 {
                                     air_link_flag=false;
                                 }
@@ -754,22 +779,31 @@ void MyThread::openfile_deal_lineloss_log(/*QString filename, QString show, int 
                         }
                         else
                         {
-                            if((air_link == '0'))// && line_Loss_0 < 10 && line_Loss_1 < 10) || (air_link == '1' && line_Loss_0.toDouble() < 15 && line_Loss_1 < 15))
+                            if(ch <= 13)
                             {
-                                if(line_Loss_0 > 15 || line_Loss_1 > 15)
+                                if(line_Loss_0 > openfile_display("../CFG_FILE/air_link.txt", "air_2.4G").toDouble() || line_Loss_1 > openfile_display("../CFG_FILE/air_link.txt", "air_2").toDouble())// && line_Loss_0 < 10 && line_Loss_1 < 10) || (air_link == '1' && line_Loss_0.toDouble() < 15 && line_Loss_1 < 15))
                                 {
                                     air_link_flag=false;
                                 }
-                            }
-                            else if(air_link == '1')
-                            {
-                                if(line_Loss_0 > 20 || line_Loss_1 > 20)
-                                {
-                                    air_link_flag=false;
-                                }
-                            }
 
-                        }*/
+                            }
+                            else if(ch == 42 && list_jinban.at(0) == "BT")
+                            {
+                                if(bt_Loss > openfile_display("../CFG_FILE/air_link.txt", "air_bt").toDouble())// && line_Loss_0 < 10 && line_Loss_1 < 10) || (air_link == '1' && line_Loss_0.toDouble() < 15 && line_Loss_1 < 15))
+                                {
+                                    air_link_flag=false;
+                                }
+
+                            }
+                            else
+                            {
+                                if(line_Loss_0 > openfile_display("../CFG_FILE/air_link.txt", "air_5G").toDouble() || line_Loss_1 > openfile_display("../CFG_FILE/air_link.txt", "air_5G").toDouble())// && line_Loss_0 < 10 && line_Loss_1 < 10) || (air_link == '1' && line_Loss_0.toDouble() < 15 && line_Loss_1 < 15))
+                                {
+                                    air_link_flag=false;
+                                }
+                            }
+                        }
+
                         //loss_value = list_jinban.at(4).toDouble();
                         temp += list_test.at(2) + "\t\t" + QString::number(loss_value,'f',2);
                         temp += QString('\n');

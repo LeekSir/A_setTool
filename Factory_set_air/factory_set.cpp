@@ -484,13 +484,17 @@ void factory_set::display()
     //2.4G
     ui->doubleSpinBox_CH1_Port1->setReadOnly(1);
     ui->doubleSpinBox_CH3_Port1->setReadOnly(1);
+    ui->doubleSpinBox_CH4_Port1->setReadOnly(1);
     ui->doubleSpinBox_CH7_Port1->setReadOnly(1);
+    ui->doubleSpinBox_CH10_Port1->setReadOnly(1);
     ui->doubleSpinBox_CH11_Port1->setReadOnly(1);
     ui->doubleSpinBox_CH13_Port1->setReadOnly(1);
 
     ui->doubleSpinBox_CH1_Port2->setReadOnly(1);
     ui->doubleSpinBox_CH3_Port2->setReadOnly(1);
+    ui->doubleSpinBox_CH4_Port2->setReadOnly(1);
     ui->doubleSpinBox_CH7_Port2->setReadOnly(1);
+    ui->doubleSpinBox_CH10_Port2->setReadOnly(1);
     ui->doubleSpinBox_CH11_Port2->setReadOnly(1);
     ui->doubleSpinBox_CH13_Port2->setReadOnly(1);
     //5G
@@ -506,6 +510,16 @@ void factory_set::display()
     ui->doubleSpinBox_CH157_Port1->setReadOnly(1);
     ui->doubleSpinBox_CH161_Port1->setReadOnly(1);
     ui->doubleSpinBox_CH165_Port1->setReadOnly(1);
+    //新增5G信道
+    ui->doubleSpinBox_CH38_Port1->setReadOnly(1);
+    ui->doubleSpinBox_CH46_Port1->setReadOnly(1);
+    ui->doubleSpinBox_CH54_Port1->setReadOnly(1);
+    ui->doubleSpinBox_CH62_Port1->setReadOnly(1);
+    ui->doubleSpinBox_CH102_Port1->setReadOnly(1);
+    ui->doubleSpinBox_CH118_Port1->setReadOnly(1);
+    ui->doubleSpinBox_CH142_Port1->setReadOnly(1);
+    ui->doubleSpinBox_CH151_Port1->setReadOnly(1);
+    ui->doubleSpinBox_CH175_Port1->setReadOnly(1);
 
     ui->doubleSpinBox_CH36_Port2->setReadOnly(1);
     ui->doubleSpinBox_CH48_Port2->setReadOnly(1);
@@ -519,6 +533,16 @@ void factory_set::display()
     ui->doubleSpinBox_CH157_Port2->setReadOnly(1);
     ui->doubleSpinBox_CH161_Port2->setReadOnly(1);
     ui->doubleSpinBox_CH165_Port2->setReadOnly(1);
+    //新增5G信道
+    ui->doubleSpinBox_CH38_Port2->setReadOnly(1);
+    ui->doubleSpinBox_CH46_Port2->setReadOnly(1);
+    ui->doubleSpinBox_CH54_Port2->setReadOnly(1);
+    ui->doubleSpinBox_CH62_Port2->setReadOnly(1);
+    ui->doubleSpinBox_CH102_Port2->setReadOnly(1);
+    ui->doubleSpinBox_CH118_Port2->setReadOnly(1);
+    ui->doubleSpinBox_CH142_Port2->setReadOnly(1);
+    ui->doubleSpinBox_CH151_Port2->setReadOnly(1);
+    ui->doubleSpinBox_CH175_Port2->setReadOnly(1);
 
     //
     ui->lineEdit_ModuleType->setReadOnly(1);
@@ -1506,7 +1530,9 @@ void factory_set::display_LineLoss_clicked()
     //端口号为1，2.4G的值
     ui->doubleSpinBox_CH1_Port1->setValue(openfile_display_lineloss(filename_WT_ATTEN_DUT, "CH1", port_num).toDouble());
     ui->doubleSpinBox_CH3_Port1->setValue(openfile_display_lineloss(filename_WT_ATTEN_DUT, "CH3", port_num).toDouble());
+    ui->doubleSpinBox_CH4_Port1->setValue(openfile_display_lineloss(filename_WT_ATTEN_DUT, "CH4", port_num).toDouble());
     ui->doubleSpinBox_CH7_Port1->setValue(openfile_display_lineloss(filename_WT_ATTEN_DUT, "CH7", port_num).toDouble());
+    ui->doubleSpinBox_CH10_Port1->setValue(openfile_display_lineloss(filename_WT_ATTEN_DUT, "CH10", port_num).toDouble());
     ui->doubleSpinBox_CH11_Port1->setValue(openfile_display_lineloss(filename_WT_ATTEN_DUT, "CH11", port_num).toDouble());
     ui->doubleSpinBox_CH13_Port1->setValue(openfile_display_lineloss(filename_WT_ATTEN_DUT, "CH13", port_num).toDouble());
     //端口号为1，5G的值
@@ -1522,12 +1548,24 @@ void factory_set::display_LineLoss_clicked()
     ui->doubleSpinBox_CH157_Port1->setValue(openfile_display_lineloss(filename_WT_ATTEN_DUT, "CH157", port_num).toDouble());
     ui->doubleSpinBox_CH161_Port1->setValue(openfile_display_lineloss(filename_WT_ATTEN_DUT, "CH161", port_num).toDouble());
     ui->doubleSpinBox_CH165_Port1->setValue(openfile_display_lineloss(filename_WT_ATTEN_DUT, "CH165", port_num).toDouble());
+    //新增
+    ui->doubleSpinBox_CH38_Port1->setValue(openfile_display_lineloss(filename_WT_ATTEN_DUT, "CH38", port_num).toDouble());
+    ui->doubleSpinBox_CH46_Port1->setValue(openfile_display_lineloss(filename_WT_ATTEN_DUT, "CH46", port_num).toDouble());
+    ui->doubleSpinBox_CH54_Port1->setValue(openfile_display_lineloss(filename_WT_ATTEN_DUT, "CH54", port_num).toDouble());
+    ui->doubleSpinBox_CH62_Port1->setValue(openfile_display_lineloss(filename_WT_ATTEN_DUT, "CH62", port_num).toDouble());
+    ui->doubleSpinBox_CH102_Port1->setValue(openfile_display_lineloss(filename_WT_ATTEN_DUT, "CH102", port_num).toDouble());
+    ui->doubleSpinBox_CH118_Port1->setValue(openfile_display_lineloss(filename_WT_ATTEN_DUT, "CH118", port_num).toDouble());
+    ui->doubleSpinBox_CH142_Port1->setValue(openfile_display_lineloss(filename_WT_ATTEN_DUT, "CH142", port_num).toDouble());
+    ui->doubleSpinBox_CH151_Port1->setValue(openfile_display_lineloss(filename_WT_ATTEN_DUT, "CH151", port_num).toDouble());
+    ui->doubleSpinBox_CH175_Port1->setValue(openfile_display_lineloss(filename_WT_ATTEN_DUT, "CH175", port_num).toDouble());
 
     port_num = 2;
     //端口号为2，2.4G的值
     ui->doubleSpinBox_CH1_Port2->setValue(openfile_display_lineloss(filename_WT_ATTEN_DUT, "CH1", port_num).toDouble());
     ui->doubleSpinBox_CH3_Port2->setValue(openfile_display_lineloss(filename_WT_ATTEN_DUT, "CH3", port_num).toDouble());
+    ui->doubleSpinBox_CH4_Port2->setValue(openfile_display_lineloss(filename_WT_ATTEN_DUT, "CH4", port_num).toDouble());
     ui->doubleSpinBox_CH7_Port2->setValue(openfile_display_lineloss(filename_WT_ATTEN_DUT, "CH7", port_num).toDouble());
+    ui->doubleSpinBox_CH10_Port2->setValue(openfile_display_lineloss(filename_WT_ATTEN_DUT, "CH10", port_num).toDouble());
     ui->doubleSpinBox_CH11_Port2->setValue(openfile_display_lineloss(filename_WT_ATTEN_DUT, "CH11", port_num).toDouble());
     ui->doubleSpinBox_CH13_Port2->setValue(openfile_display_lineloss(filename_WT_ATTEN_DUT, "CH13", port_num).toDouble());
     //端口号为2，5G的值
@@ -1543,6 +1581,16 @@ void factory_set::display_LineLoss_clicked()
     ui->doubleSpinBox_CH157_Port2->setValue(openfile_display_lineloss(filename_WT_ATTEN_DUT, "CH157", port_num).toDouble());
     ui->doubleSpinBox_CH161_Port2->setValue(openfile_display_lineloss(filename_WT_ATTEN_DUT, "CH161", port_num).toDouble());
     ui->doubleSpinBox_CH165_Port2->setValue(openfile_display_lineloss(filename_WT_ATTEN_DUT, "CH165", port_num).toDouble());
+    //新增
+    ui->doubleSpinBox_CH38_Port2->setValue(openfile_display_lineloss(filename_WT_ATTEN_DUT, "CH38", port_num).toDouble());
+    ui->doubleSpinBox_CH46_Port2->setValue(openfile_display_lineloss(filename_WT_ATTEN_DUT, "CH46", port_num).toDouble());
+    ui->doubleSpinBox_CH54_Port2->setValue(openfile_display_lineloss(filename_WT_ATTEN_DUT, "CH54", port_num).toDouble());
+    ui->doubleSpinBox_CH62_Port2->setValue(openfile_display_lineloss(filename_WT_ATTEN_DUT, "CH62", port_num).toDouble());
+    ui->doubleSpinBox_CH102_Port2->setValue(openfile_display_lineloss(filename_WT_ATTEN_DUT, "CH102", port_num).toDouble());
+    ui->doubleSpinBox_CH118_Port2->setValue(openfile_display_lineloss(filename_WT_ATTEN_DUT, "CH118", port_num).toDouble());
+    ui->doubleSpinBox_CH142_Port2->setValue(openfile_display_lineloss(filename_WT_ATTEN_DUT, "CH142", port_num).toDouble());
+    ui->doubleSpinBox_CH151_Port2->setValue(openfile_display_lineloss(filename_WT_ATTEN_DUT, "CH151", port_num).toDouble());
+    ui->doubleSpinBox_CH175_Port2->setValue(openfile_display_lineloss(filename_WT_ATTEN_DUT, "CH175", port_num).toDouble());
 
 
 }
@@ -2167,7 +2215,7 @@ void factory_set::on_pushButton_correct_clicked()
 
 
     //QApplication::restoreOverrideCursor();//恢复鼠标为箭头状态
-    if(PASS_flag && correct_flag)// && air_link_flag)
+    if(PASS_flag && correct_flag && air_link_flag)
     {
         ui->label_about_correct->setText("校准 PASS！");
         ui->label_about_correct->setStyleSheet("color:green;");
@@ -2177,15 +2225,15 @@ void factory_set::on_pushButton_correct_clicked()
     else
     {
         ui->label_about_correct->setText("校准 FAIL！");
-
-        /*if(!air_link_flag)
+        
+        if(!air_link_flag)
         {
             about_info("提示", "线损值超过阈值，请及时检查配置环境并重新开始校准！");
         }
         else
         {
             about_info("提示", "PASS_log 获取失败！请检查配置并重新开始校准！");
-        }*/
+        }
         PASS_flag = true;
         //air_link_flag = true;
 
