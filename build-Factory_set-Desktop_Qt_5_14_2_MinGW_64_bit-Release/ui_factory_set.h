@@ -2450,7 +2450,7 @@ public:
 
         retranslateUi(factory_set);
 
-        tabWidget->setCurrentIndex(2);
+        tabWidget->setCurrentIndex(0);
 
 
         QMetaObject::connectSlotsByName(factory_set);
@@ -2481,8 +2481,8 @@ public:
         special_set->setWhatsThis(QCoreApplication::translate("factory_set", "<html><head/><body><p><br/></p></body></html>", nullptr));
 #endif // QT_CONFIG(whatsthis)
         label_17->setText(QCoreApplication::translate("factory_set", "WT_DUT_MIMO:", nullptr));
-        checkBox_WT_AUTO_TEST_WHEN_DUT_READY->setText(QCoreApplication::translate("factory_set", "\346\230\257\345\220\246\350\256\276\347\275\256\350\207\252\345\212\250\346\265\213\350\257\225", nullptr));
-        checkBox_WT_IS_NEED_LINKMES->setText(QCoreApplication::translate("factory_set", "\346\230\257\345\220\246\350\277\236\346\216\245MES", nullptr));
+        checkBox_WT_AUTO_TEST_WHEN_DUT_READY->setText(QCoreApplication::translate("factory_set", "\350\207\252\345\212\250\346\265\213\350\257\225", nullptr));
+        checkBox_WT_IS_NEED_LINKMES->setText(QCoreApplication::translate("factory_set", "\350\277\236\346\216\245MES", nullptr));
         label_23->setText(QCoreApplication::translate("factory_set", "log\344\277\235\345\255\230\350\267\257\345\276\204\357\274\232", nullptr));
         pushButton_openfile_log->setText(QCoreApplication::translate("factory_set", "...", nullptr));
         label_18->setText(QCoreApplication::translate("factory_set", "WT_TESTER:", nullptr));

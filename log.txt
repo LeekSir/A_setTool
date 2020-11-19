@@ -40,3 +40,6 @@ Warning: File:() Line:(0) libpng warning: iCCP: known incorrect sRGB profile (20
 Warning: File:() Line:(0) libpng warning: iCCP: known incorrect sRGB profile (2020-11-05 10:14:35 周四)
 Warning: File:() Line:(0) libpng warning: iCCP: known incorrect sRGB profile (2020-11-05 10:15:41 周四)
 Warning: File:() Line:(0) libpng warning: iCCP: known incorrect sRGB profile (2020-11-05 10:41:20 周四)
+Warning: File:() Line:(0) libpng warning: iCCP: known incorrect sRGB profile (2020-11-19 19:45:50 周四)
+Warning: File:() Line:(0) libpng warning: iCCP: known incorrect sRGB profile (2020-11-19 19:50:48 周四)
+Warning: File:() Line:(0) libpng warning: iCCP: known incorrect sRGB profile (2020-11-19 19:53:36 周四)

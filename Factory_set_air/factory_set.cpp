@@ -547,6 +547,7 @@ void factory_set::display()
     //
     ui->lineEdit_ModuleType->setReadOnly(1);
     ui->lineEdit_AutoTestVersion->setReadOnly(1);
+    SetReadOnly(ui->checkBox_WT_AUTO_TEST_WHEN_DUT_READY, 1);
     //ui->checkBox_WT_IS_NEED_LINKMES->setEnabled(0);
     SetReadOnly(ui->checkBox_WT_IS_NEED_LINKMES, 1);
     //ui->lineEdit_WT_IS_NEED_LINKMES->setReadOnly(1);
@@ -1047,11 +1048,11 @@ void factory_set::openfile_set_debug(QString filename, bool check_box_sta)
                 temp += print_receive + '=' + sta;
                 temp += QString('\n');
             }
-            else if(strtemp.mid(0, print_cableloss.length()) == print_cableloss)
+            /*else if(strtemp.mid(0, print_cableloss.length()) == print_cableloss)
             {
                 temp += print_cableloss + '=' + sta;
                 temp += QString('\n');
-            }
+            }*/
             else
             {
                 temp += strtemp;

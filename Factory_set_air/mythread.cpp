@@ -732,6 +732,8 @@ void MyThread::openfile_deal_lineloss_log(/*QString filename, QString show, int 
                     }
                     else
                     {
+                        /*
+
                         //进行传导和耦合的判断，并设定线损阈值
                         QString air_link=openfile_display("../CFG_FILE/air_link.txt", "air_link");
                         double line_Loss_0 = 0;openfile_display_lineloss("CH" + list_jinban.at(1), 1).toDouble();
@@ -802,7 +804,7 @@ void MyThread::openfile_deal_lineloss_log(/*QString filename, QString show, int 
                                     air_link_flag=false;
                                 }
                             }
-                        }
+                        }*/
 
                         //loss_value = list_jinban.at(4).toDouble();
                         temp += list_test.at(2) + "\t\t" + QString::number(loss_value,'f',2);
