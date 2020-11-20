@@ -687,6 +687,9 @@ void factory_set::display()
     display_connect_mes();
     display_user_login();
 
+    //write 端口号 到 MES.ini 中
+    openfile_set_show(filename_CVTE_MES, "WT_DUT_START_NUM", ui->lineEdit_WT_DUT_START_NUM);
+
 
 /*
     //展示直通率
@@ -1183,8 +1186,8 @@ void factory_set::on_pushButton_input_clicked()
     //WT_FLOW 写EFUSE
     openfile_set_wefuse("WT_WRITE_EFUSE");
 
-    //write 端口号
-    //openfile_set_show(filename_CVTE_MES, "WT_DUT_START_NUM", ui->lineEdit_WT_DUT_START_NUM);
+    //write 端口号 到 MES.ini 中
+    openfile_set_show(filename_CVTE_MES, "WT_DUT_START_NUM", ui->lineEdit_WT_DUT_START_NUM);
 
     Sleep(2000);
     about_info("提示", "参数配置成功！");
@@ -2211,12 +2214,13 @@ void factory_set::on_pushButton_correct_clicked()
 
     thread.start();
     dialog_process_bar();
-    thread.quit();
+    //thread.quit();
+    thread.stop();
 
 
 
     //QApplication::restoreOverrideCursor();//恢复鼠标为箭头状态
-    if(PASS_flag && correct_flag && air_link_flag)
+    if(PASS_flag && correct_flag)// && air_link_flag)
     {
         ui->label_about_correct->setText("校准 PASS！");
         ui->label_about_correct->setStyleSheet("color:green;");
@@ -2227,11 +2231,11 @@ void factory_set::on_pushButton_correct_clicked()
     {
         ui->label_about_correct->setText("校准 FAIL！");
         
-        if(!air_link_flag)
+        /*if(!air_link_flag)
         {
             about_info("提示", "线损值超过阈值，请及时检查配置环境并重新开始校准！");
         }
-        else
+        else*/
         {
             about_info("提示", "PASS_log 获取失败！请检查配置并重新开始校准！");
         }

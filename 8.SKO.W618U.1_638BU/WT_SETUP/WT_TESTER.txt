@@ -11,7 +11,7 @@ WT_TESTER_CONNECT_MODE		= 1		  	// 测试仪连接模式
 							
 WT_DUT_PARALLEL_NUM		= 1			// 测试DUT个数，取值范围(1-8),默认值为1
 							
-WT_DUT_START_NUM=1                          // 起始RF端口，取值范围(1-8),默认值为1
+WT_DUT_START_NUM=2                          // 起始RF端口，取值范围(1-8),默认值为1
 
 WT_IS_LONG_CONNECTION		= 0                     // 是否长连接模式
                                                         // 0：短连接(默认值)

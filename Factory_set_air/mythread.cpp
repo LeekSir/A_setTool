@@ -23,6 +23,7 @@ extern QMutex mutex;
 extern QString cmd;
 
 bool get_pass_log = false;
+int log_file_cnt = 0;
 
 MyThread::MyThread(QObject *parent) :
     QThread(parent)
@@ -182,10 +183,10 @@ void MyThread::run()
 
 void MyThread::stop()
 {
-    stopped = true;
-    //this->stop();
-    //this->quit();
-    //this->wait();
+    //stopped = true;
+    this->quit();
+    this->terminate();
+    this->wait();
 
 }
 
@@ -229,15 +230,18 @@ bool MyThread::folder_isEmpty(QString folder_Path)
 bool MyThread::Pass_log_clicked()
 {
     get_pass_log = false;
-    //qDebug() << "????????????";
-    //about_info("提示", "1234567！");
     QString filePath = "../../LOG/PASS";
-    //QString filePath = "../../LOG/FAIL";
     QDir *dir=new QDir(filePath);
     QStringList filter;
     QDateTime time;
     QDateTime current_date_time =QDateTime::currentDateTime();
     QList<QFileInfo> *fileInfo=new QList<QFileInfo>(dir->entryInfoList(filter));
+    qDebug() << "上一次的log_file_cnt =" << log_file_cnt << " , log 文件数：" << fileInfo->count();
+    if(log_file_cnt != 0 && log_file_cnt == fileInfo->count())
+    {
+        return false;
+    }
+    log_file_cnt = fileInfo->count();
     for(int i = 0;i<fileInfo->count(); i++)
     {
 
@@ -809,9 +813,6 @@ void MyThread::openfile_deal_lineloss_log(/*QString filename, QString show, int 
                         //loss_value = list_jinban.at(4).toDouble();
                         temp += list_test.at(2) + "\t\t" + QString::number(loss_value,'f',2);
                         temp += QString('\n');
-
-
-
                         continue;
                     }
 
