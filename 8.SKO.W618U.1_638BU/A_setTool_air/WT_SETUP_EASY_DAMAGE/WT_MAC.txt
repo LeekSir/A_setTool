@@ -74,7 +74,7 @@ WT_MAC_CURRENT_1	= 100000
 // DUT2
 WT_MAC_RANGE_BEGIN_2 	= 200000       // 产品ID，MAC后6位地址，16进制，长度为6
 WT_MAC_RANGE_END_2	= 3FFFFF
-WT_MAC_CURRENT_2	= 200004	// 当前的产品ID
+WT_MAC_CURRENT_2	=
 //******************************************************************************
 
 // DUT3

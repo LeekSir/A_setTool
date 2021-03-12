@@ -6,7 +6,13 @@
 #include <QProcess>
 #include <QDateTime>
 #include <QTimer>
+#include <Windows.h>
+#include <tlhelp32.h>
+#include <string.h>
+#include "err_qdialog.h"
 
+
+bool refresh_flag = false;
 bool correct = true;
 bool correct_flag = false;//是否校准成功
 bool mythread_flag;
@@ -59,6 +65,41 @@ factory_set::factory_set(QWidget *parent)
     connect(timer, SIGNAL(timeout()), this, SLOT(display_refresh()));
 
 
+/*
+    //托盘初始化
+    //托盘
+    tray= new QSystemTrayIcon(this);//初始化托盘对象tray
+    tray->setIcon(QIcon(QPixmap(":/image/set.jpg")));//设定托盘图标，引号内是自定义的png图片路径
+    tray->setToolTip("My helper"); //提示文字
+    QString title="APP Message";
+    QString text="My helper start up";
+    tray->show();//让托盘图标显示在系统托盘上
+    tray->showMessage(title,text,QSystemTrayIcon::Information,3000); //最后一个参数为提示时长，默认10000，即10s
+
+
+    //创建菜单项动作
+    QAction *minimizeAction = new QAction("MinWin", this);
+    connect(minimizeAction, SIGNAL(triggered()), this, SLOT(hide()));
+    QAction *maximizeAction = new QAction("MaxWin", this);
+    connect(maximizeAction, SIGNAL(triggered()), this, SLOT(showMaximized()));
+    QAction *restoreAction = new QAction("restore", this);
+    connect(restoreAction, SIGNAL(triggered()), this, SLOT(showNormal()));
+    QAction *quitAction = new QAction("exit", this);
+
+    connect(quitAction, SIGNAL(triggered()), qApp, SLOT(quit())); //关闭应用
+
+    //创建托盘菜单
+    trayMenu = new QMenu(this);
+    trayMenu->addAction(minimizeAction);
+    trayMenu->addAction(maximizeAction);
+    trayMenu->addAction(restoreAction);
+    trayMenu->addSeparator();
+    trayMenu->addAction(quitAction);
+    tray->setContextMenu(trayMenu);
+
+    connect(tray,SIGNAL(activated(QSystemTrayIcon::ActivationReason)),this,SLOT(iconActivated(QSystemTrayIcon::ActivationReason)));
+
+*/
 
 }
 
@@ -66,7 +107,109 @@ factory_set::~factory_set()
 {
     delete ui;
 }
+//重写关闭事件
+void factory_set::closeEvent(QCloseEvent *event)
+{
+    this->setWindowState(Qt::WindowMinimized);
+    //iconActivated(QSystemTrayIcon::MiddleClick);
+    event->ignore(); //忽略事件
+    /*if(tray->isVisible())
+    {
+        this->hide(); //隐藏窗口
+        event->ignore(); //忽略事件
+    }*/
 
+}
+
+/*void factory_set::hideEvent(QHideEvent *event)
+{
+    if(tray->isVisible())
+    {
+        this->hide(); //隐藏窗口
+        event->ignore(); //忽略事件
+    }
+}*/
+
+void factory_set::iconActivated(QSystemTrayIcon::ActivationReason ireason)
+{
+    switch (ireason)
+    {
+    case QSystemTrayIcon::Trigger:
+        this->showNormal();
+        break;
+    case QSystemTrayIcon::DoubleClick:
+        this->showNormal();
+        break;
+    case QSystemTrayIcon::MiddleClick:
+        break;
+    default:
+        break;
+    }
+}
+
+//kill progress
+
+using namespace std;
+/*根据进程名称杀死进程
+ *1、根据进程名称找到PID
+ *2、根据PID杀死进程
+ */
+ bool killTaskl(const QString& exe)
+{
+    //1、根据进程名称找到PID
+    HANDLE hProcessSnap;
+    PROCESSENTRY32 pe32;
+
+    hProcessSnap = CreateToolhelp32Snapshot(TH32CS_SNAPPROCESS, 0);
+    if (hProcessSnap == INVALID_HANDLE_VALUE)
+    {
+        return false;
+    }
+
+    pe32.dwSize = sizeof(PROCESSENTRY32);
+
+    if (!Process32First(hProcessSnap, &pe32))
+    {
+        CloseHandle(hProcessSnap);
+        return false;
+    }
+
+    BOOL    bRet = FALSE;
+    DWORD dwPid = -1;
+    while (Process32Next(hProcessSnap, &pe32))
+    {
+        //将WCHAR转成const char*
+        int iLn = WideCharToMultiByte (CP_UTF8, 0, const_cast<LPWSTR> (pe32.szExeFile), static_cast<int>(sizeof(pe32.szExeFile)), NULL, 0, NULL, NULL);
+        std::string result (iLn, 0);
+        WideCharToMultiByte (CP_UTF8, 0, pe32.szExeFile, static_cast<int>(sizeof(pe32.szExeFile)), const_cast<LPSTR> (result.c_str()), iLn, NULL, NULL);
+        if (0 == strcmp(exe.toStdString().c_str(), result.c_str ()))
+        {
+            dwPid = pe32.th32ProcessID;
+            bRet = TRUE;
+            qDebug()<<"zhaodao";
+            break;
+        }
+    }
+
+    CloseHandle(hProcessSnap);
+    qDebug()<<dwPid;
+    //2、根据PID杀死进程
+    HANDLE hProcess=NULL;
+    //打开目标进程
+    hProcess=OpenProcess(PROCESS_TERMINATE,FALSE,dwPid);
+    if (hProcess==NULL) {
+        qDebug()<<"Open Process fAiled ,error:"<<GetLastError();
+        return -1;
+    }
+    //结束目标进程
+    DWORD ret=TerminateProcess(hProcess,0);
+    if(ret==0) {
+        qDebug()<<"kill task faild,error:"<<GetLastError();
+        return false;
+    }
+
+    return true;
+}
 
 //void customMessageHandler(QtMsgType type, const QMessageLogContext &context, const QString &msg)
 void customMessageHandler(QtMsgType type, const QMessageLogContext &context, const QString &msg)
@@ -709,7 +852,8 @@ void factory_set::display()
 
     }
 */
-    timer->start(3000);
+    timer->start(openfile_display(filename_CVTE_MES, "CheckDamageTime").toUInt());
+    //timer->start(10000);
 
 
 }
@@ -761,6 +905,49 @@ void factory_set::display_refresh()
 
     }
 
+    //检查文件是否损坏
+
+    QFile Ncfile_MIMO(filename_WT_DUT_MIMO);
+    Ncfile_MIMO.open(QIODevice::ReadOnly);
+
+    if (Ncfile_MIMO.isOpen())
+    {
+        while(!Ncfile_MIMO.atEnd())
+        {
+            //文件检查措施，确认筛选条件
+            if(Ncfile_MIMO.readLine().mid(0, 20).count("WT_TEST_LOG_PATH") >= 1)
+            {
+               //提示框警告，文件已损坏
+               return;
+            }
+        }
+        Ncfile_MIMO.close();
+        //杀死产测软件进程
+        if(!killTaskl(cmd))
+        {
+
+            //about_info("错误", "产测软件程序退出失败！");
+        }
+        //文件损坏，弹框报错
+        Err_QDialog QDial;
+
+
+
+        QDial.show();
+        if(QDial.exec() == QDialog::Accepted && refresh_flag)
+        {
+            on_pushButton_refresh_clicked();
+            timer->stop();
+            timer->start(openfile_display(filename_CVTE_MES, "CheckDamageTime").toUInt());
+            refresh_flag = false;
+            return;
+        }
+        //修改timer定时器循环时间
+        timer->stop();
+        timer->start(1000);
+        //timer->start(openfile_display(filename_CVTE_MES, "CheckDamageTime").toUInt());
+
+    }
 
 
 
@@ -1081,6 +1268,7 @@ void factory_set::about_info(QString dlgTitle, QString strInfo)
     m_box->setStandardButtons(0);
     QTimer::singleShot(2000,m_box,SLOT(accept()));
     m_box->exec();*/
+    //topWindow->setWindowFlags(topWindow->windowFlags() | Qt::WindowStaysOnTopHint);
 }
 
 //信息提示窗口
@@ -1697,6 +1885,7 @@ void factory_set::on_pushButton_refresh_clicked()
     file_one_set(filename_WT_MAC);
 
     display();
+
 }
 
 void factory_set::on_pushButton_openfile_log_clicked()

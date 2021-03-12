@@ -8,5 +8,6 @@
         <file>image/login.png</file>
         <file>image/set.png</file>
         <file>image/CVTE.jpg</file>
+        <file>image/404.jpg</file>
     </qresource>
 </RCC>

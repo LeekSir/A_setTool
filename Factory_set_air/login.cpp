@@ -13,6 +13,7 @@ login::login(QWidget *parent) :
     //thread.start();
 
 
+
 }
 
 login::~login()
