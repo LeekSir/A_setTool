@@ -906,8 +906,12 @@ void factory_set::display_refresh()
     }
 
     //检查文件是否损坏
+    //复制DUT_MIMO文件检查
+    QString filename_WT_DUT_MIMO_CP = "../../WT_SETUP/WT_DUT_MIMO_CP.txt";
+    QFile::copy(filename_WT_DUT_MIMO, filename_WT_DUT_MIMO_CP);
 
-    QFile Ncfile_MIMO(filename_WT_DUT_MIMO);
+    QFile Ncfile_MIMO(filename_WT_DUT_MIMO_CP);
+    //QFile Ncfile_MIMO(filename_WT_DUT_MIMO);
     Ncfile_MIMO.open(QIODevice::ReadOnly);
 
     if (Ncfile_MIMO.isOpen())
@@ -918,10 +922,14 @@ void factory_set::display_refresh()
             if(Ncfile_MIMO.readLine().mid(0, 20).count("WT_TEST_LOG_PATH") >= 1)
             {
                //提示框警告，文件已损坏
+                Ncfile_MIMO.close();
+               QFile::remove(filename_WT_DUT_MIMO_CP);
                return;
             }
         }
+
         Ncfile_MIMO.close();
+        QFile::remove(filename_WT_DUT_MIMO_CP);
         //杀死产测软件进程
         if(!killTaskl(cmd))
         {
@@ -1276,7 +1284,7 @@ void factory_set::about_info_auto(QString dlgTitle, QString strInfo)
 {
     QMessageBox *m_box = new QMessageBox(QMessageBox::NoIcon,dlgTitle,strInfo);
     m_box->setStandardButtons(0);
-    QTimer::singleShot(2000,m_box,SLOT(accept()));
+    QTimer::singleShot(5000,m_box,SLOT(accept()));
     m_box->exec();
 }
 
@@ -1875,7 +1883,8 @@ void factory_set::on_pushButton_refresh_clicked()
     {
         strInfo = "完成！";
         Sleep(1000);
-        about_info("提示", "原始SETUP文件恢复成功！");
+        //about_info("提示", "原始SETUP文件恢复成功！");
+        about_info_auto("提示", "原始SETUP文件恢复成功！");
     }
     else
     {
