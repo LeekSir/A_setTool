@@ -278,6 +278,8 @@ void MyThread::openfile_deal_lineloss_log(/*QString filename, QString show, int 
     QString curPath = QDir::currentPath();
     QDir *dir=new QDir(filePath);
     QStringList filter;
+    int log_lines = 0;
+    int sta_lines = 0;
 
 
     QList<QFileInfo> *fileInfo=new QList<QFileInfo>(dir->entryInfoList(filter));
@@ -371,6 +373,37 @@ void MyThread::openfile_deal_lineloss_log(/*QString filename, QString show, int 
         //每次置true
         correct_flag = true;
         air_link_flag=false;
+
+        //查金板是否和测试数据数据行对应，如不对应报错
+        /**************************** 判断测试log是否ok *********************************/
+        while(!NctextStream_jinban.atEnd())
+        {
+            if(NctextStream_jinban.readLine().mid(0,3) == "ANT" || NctextStream_jinban.readLine().mid(0,2) == "BT")
+            {
+               sta_lines += 1;
+            }
+        }
+        while(!Ncfile_test.atEnd())
+        {
+            if(Ncfile_test.readLine().mid(0,3) == "ANT" || Ncfile_test.readLine().mid(0,2) == "BT")
+            {
+               log_lines += 1;
+            }
+        }
+        NctextStream_jinban.seek(0);
+        Ncfile_test.seek(0);
+        if(log_lines != sta_lines)
+        {
+            log_lines = 0;
+            sta_lines = 0;
+            about_info("错误", "log数据提取错误！");
+            Ncfile_jinban.close();
+            Ncfile_test.close();
+            return;
+        }
+        log_lines = 0;
+        sta_lines = 0;
+        /*************************************************************/
 
         while(!NctextStream_jinban.atEnd() && !NctextStream_test.atEnd())
         {

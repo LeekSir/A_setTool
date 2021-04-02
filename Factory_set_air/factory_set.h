@@ -6,6 +6,9 @@
 #include <QDebug>
 #include <QtWidgets>
 #include "mythread.h"
+#include <QCloseEvent>
+#include <QSystemTrayIcon>  //t托盘类
+#include <QDesktopServices> //桌面事件类
 
 //bool correct;//是否第一次校准
 
@@ -30,9 +33,15 @@ public:
     void openfile_deal_lineloss_log(/*QString filename, QString show, int port_num*/);
     //
 
+protected:
+        //重写关闭事件
+        void closeEvent(QCloseEvent* event);
+        //void hideEvent(QHideEvent *event);
+
 public slots:
        // 声明槽函数 mySlot()
        void mySlot();
+       void iconActivated(QSystemTrayIcon::ActivationReason ireason);
 
 private slots:
     void on_pushButton_set_clicked();
@@ -102,6 +111,11 @@ private:
     MyThread thread;
     //添加定时器
     QTimer *timer;
+
+    //缩小托盘
+
+    QMenu *trayMenu;//托盘菜单
+    QSystemTrayIcon *tray;//托盘图标添加成员
 
 
 

@@ -136,7 +136,6 @@ public:
     QSpacerItem *horizontalSpacer_8;
     QWidget *tab;
     QGridLayout *gridLayout_40;
-    QHBoxLayout *horizontalLayout_5;
     QVBoxLayout *verticalLayout_4;
     QLabel *label_DUT_filename;
     QGridLayout *gridLayout_23;
@@ -347,7 +346,7 @@ public:
     {
         if (factory_set->objectName().isEmpty())
             factory_set->setObjectName(QString::fromUtf8("factory_set"));
-        factory_set->resize(884, 619);
+        factory_set->resize(884, 660);
         QSizePolicy sizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
         sizePolicy.setHorizontalStretch(0);
         sizePolicy.setVerticalStretch(0);
@@ -991,8 +990,6 @@ public:
         tab->setObjectName(QString::fromUtf8("tab"));
         gridLayout_40 = new QGridLayout(tab);
         gridLayout_40->setObjectName(QString::fromUtf8("gridLayout_40"));
-        horizontalLayout_5 = new QHBoxLayout();
-        horizontalLayout_5->setObjectName(QString::fromUtf8("horizontalLayout_5"));
         verticalLayout_4 = new QVBoxLayout();
         verticalLayout_4->setObjectName(QString::fromUtf8("verticalLayout_4"));
         label_DUT_filename = new QLabel(tab);
@@ -1023,14 +1020,11 @@ public:
         verticalLayout_4->addLayout(gridLayout_23);
 
 
-        horizontalLayout_5->addLayout(verticalLayout_4);
+        gridLayout_40->addLayout(verticalLayout_4, 0, 0, 1, 1);
 
-        horizontalSpacer_7 = new QSpacerItem(608, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+        horizontalSpacer_7 = new QSpacerItem(491, 58, QSizePolicy::Expanding, QSizePolicy::Minimum);
 
-        horizontalLayout_5->addItem(horizontalSpacer_7);
-
-
-        gridLayout_40->addLayout(horizontalLayout_5, 0, 0, 1, 5);
+        gridLayout_40->addItem(horizontalSpacer_7, 0, 1, 1, 5);
 
         gridLayout_21 = new QGridLayout();
         gridLayout_21->setObjectName(QString::fromUtf8("gridLayout_21"));
@@ -1470,11 +1464,11 @@ public:
         gridLayout_21->addLayout(gridLayout_19, 1, 0, 1, 1);
 
 
-        gridLayout_40->addLayout(gridLayout_21, 1, 0, 1, 1);
+        gridLayout_40->addLayout(gridLayout_21, 1, 0, 1, 2);
 
         horizontalSpacer_6 = new QSpacerItem(56, 85, QSizePolicy::Expanding, QSizePolicy::Minimum);
 
-        gridLayout_40->addItem(horizontalSpacer_6, 1, 1, 1, 1);
+        gridLayout_40->addItem(horizontalSpacer_6, 1, 2, 1, 1);
 
         gridLayout_39 = new QGridLayout();
         gridLayout_39->setObjectName(QString::fromUtf8("gridLayout_39"));
@@ -1884,7 +1878,7 @@ public:
         gridLayout_39->addItem(verticalSpacer_7, 2, 0, 1, 1);
 
 
-        gridLayout_40->addLayout(gridLayout_39, 1, 2, 1, 1);
+        gridLayout_40->addLayout(gridLayout_39, 1, 3, 1, 1);
 
         gridLayout_17 = new QGridLayout();
         gridLayout_17->setObjectName(QString::fromUtf8("gridLayout_17"));
@@ -2403,11 +2397,11 @@ public:
         gridLayout_17->addItem(verticalSpacer_6, 1, 0, 1, 1);
 
 
-        gridLayout_40->addLayout(gridLayout_17, 1, 3, 1, 1);
+        gridLayout_40->addLayout(gridLayout_17, 1, 4, 1, 1);
 
         horizontalSpacer_9 = new QSpacerItem(57, 85, QSizePolicy::Expanding, QSizePolicy::Minimum);
 
-        gridLayout_40->addItem(horizontalSpacer_9, 1, 4, 1, 1);
+        gridLayout_40->addItem(horizontalSpacer_9, 1, 5, 1, 1);
 
         gridLayout_20 = new QGridLayout();
         gridLayout_20->setObjectName(QString::fromUtf8("gridLayout_20"));
@@ -2433,7 +2427,7 @@ public:
         gridLayout_20->addWidget(pushButton_open_factory_tool, 0, 3, 1, 1);
 
 
-        gridLayout_40->addLayout(gridLayout_20, 2, 0, 1, 5);
+        gridLayout_40->addLayout(gridLayout_20, 2, 0, 1, 6);
 
         tabWidget->addTab(tab, QString());
 
@@ -2442,7 +2436,7 @@ public:
         factory_set->setCentralWidget(centralwidget);
         menubar = new QMenuBar(factory_set);
         menubar->setObjectName(QString::fromUtf8("menubar"));
-        menubar->setGeometry(QRect(0, 0, 884, 23));
+        menubar->setGeometry(QRect(0, 0, 884, 22));
         factory_set->setMenuBar(menubar);
         statusbar = new QStatusBar(factory_set);
         statusbar->setObjectName(QString::fromUtf8("statusbar"));
