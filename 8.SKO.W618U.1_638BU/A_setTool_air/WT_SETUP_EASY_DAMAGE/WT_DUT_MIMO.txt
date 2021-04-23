@@ -2,88 +2,6 @@
 //                      DUT Setup file
 //******************************************************************************
 
-WT_DEVICE_CLASSGUID			= 4D36E972-E325-11CE-BFC1-08002BE10318
-WT_DEVICE_DESCRIPTION			= Realtek RTL8188FTV Wireless LAN 802.11n USB 2.0 Mass Production Network Adapter 
-
-WT_TOTAL_EFUSE_NUMBER_OF_NEWDUT		= 256		//ÐÂDUTÓµÓÐµÄEfuse BlockÊý
-
-
-WT_SWITCH_TX_PWR_TRACKING		= 2			//Ä¬ÈÏ²»¿ªÆôTXPwrTracking
-								//0£º¹Ø±Õ
-								//1£º¿ªÆô
-								//2£ºÊ¹ÓÃÄ¬ÈÏÅäÖÃ£¬²»²Ù×÷´Ë¿ª¹Ø		
-					  					
-
-WT_DUT_FLASH_OFFSET_2_4G 		= 1			//DUT HT20,OFDM,AC80 ÔÚFLASHÖÐµÄ´æ´¢·½Ê½					
-								// 0£ºÒÔÌìÏß×éºÏ£¬¸ß×Ö½Ú´æ·ÅÌìÏß1£¬µÍ×Ö½Ú´æ·ÅÌìÏß2
-								// 1: ÒÔDEMOD×éºÏ£¬¸ß×Ö½Ú´æ·ÅHT20£¬µÍ×Ö½Ú´æ·ÅOFDM
-
-// Dut TX Verify and writing£ºgain value setting
-//
-// ¹¤³§²âÊÔ³¡¾°£º
-// (1)³£¹æÉäÆµ²âÊÔ£º½øÐÐÆµÆ«Ð£×¼¡¢¹¦ÂÊÐ£×¼¡¢ÎÂ²¹²âÊÔ¡¢Ð´Öµ¡£
-// (2)Ö»Ð£ÆµÆ«£¬PowerÊ¹ÓÃmapµÄÄÚÈÝ¡£
-// (3)·µ¹¤²âÊÔ£ºÖ»Ð´MAC£¬²»×öÉäÆµ²âÊÔ¡£
-// (4)²»cal£¬Ê¹ÓÃmapµÄÖµ½øÐÐVerify¡£
-// (5)²»cal£¬ÓÃefuseµÄÖµ½øÐÐverify£¬²»Ð´Öµ¡£
-//
-// ½øÐÐ³¡¾°1²âÊÔ ÉèÖÃ£ºWT_FLOw.txtÄ¬ÈÏÉèÖÃ
-// ½øÐÐ³¡¾°2²âÊÔ ÉèÖÃ£º°ÑWT_FLOw.txtÀïµÄ¹¦ÂÊÐ£×¼ÏîÆÁ±Îµô£¬°Ñ"WT_TX_VERIFY_PWR_GAINVALUE_SOURCE"ÉèÎª1
-// ½øÐÐ³¡¾°3²âÊÔ ÉèÖÃ£º°ÑWT_FLOw.txtÀïµÄÆµÆ«Ð£×¼¡¢¹¦ÂÊÐ£×¼¡¢ÎÂ²¹²âÊÔ¡¢Tx Verify¡¢Rx VerifyÏî¶¼ÆÁ±Î
-// ½øÐÐ³¡¾°4²âÊÔ ÉèÖÃ£º°ÑWT_FLOw.txtÀïµÄÆµÆ«Ð£×¼¡¢¹¦ÂÊÐ£×¼¡¢ÎÂ²¹²âÊÔÏî¶¼ÆÁ±Î£¬°ÑÒÔÏÂµÄ"WT_TX_VERIFY_FREQ_"¡¢"WT_TX_VERIFY_PWR_"¡¢"WT_TX_VERIFY_THERMAL_"ÉèÖÃÎª1
-// ½øÐÐ³¡¾°5²âÊÔ ÉèÖÃ£º°ÑWT_FLOw.txtÀïµÄÆµÆ«Ð£×¼¡¢¹¦ÂÊÐ£×¼¡¢ÎÂ²¹²âÊÔ¡¢Ð´efuseÏî¶¼ÆÁ±Î£¬°ÑÒÔÏÂµÄ"WT_TX_VERIFY_FREQ_"¡¢"WT_TX_VERIFY_PWR_"¡¢"WT_TX_VERIFY_THERMAL_"ÉèÖÃÎª2
-//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-								
-WT_TX_VERIFY_FREQ_GAINVALUE_SOURCE	= 1			//VerifyÊ±ÆµÆ«Òò×ÓÖµ£¨Í¬Ê±Ò²Ð´ÈëDUTµÄefuse£©µÄÀ´Ô´(²»½øÐÐÆµÆ«Ð£×¼Ê±ÓÐÐ§)
-									//1£ºÆµÆ«Òò×ÓÖµÊ¹ÓÃMapÎÄ¼þÀïµÄÖµ
-									//2£ºÆµÆ«Òò×ÓÖµÊ¹ÓÃefuseµÄÖµ
-
-WT_TX_VERIFY_PWR_GAINVALUE_SOURCE	= 1			//VerifyÊ±¹¦ÂÊÒò×ÓÖµ£¨Í¬Ê±Ò²Ð´ÈëDUTµÄefuse£©µÄÀ´Ô´(²»½øÐÐ¹¦ÂÊÐ£×¼Ê±ÓÐÐ§)
-									//1£º¹¦ÂÊÒò×ÓÖµÊ¹ÓÃMapÎÄ¼þÀïµÄÖµ
-									//2£º¹¦ÂÊÒò×ÓÖµÊ¹ÓÃefuseµÄÖµ	
-
-WT_TX_VERIFY_THERMAL_VALUE_SOURCE	= 1			//ÎÂ²¹Öµ£¨Í¬Ê±Ò²Ð´ÈëDUTµÄefuse£©µÄÀ´Ô´(²»½øÐÐÎÂ²¹Ð£×¼Ê±ÓÐÐ§)
-									//1£º¹¦ÂÊÒò×ÓÖµÊ¹ÓÃMapÎÄ¼þÀïµÄÖµ
-									//2£º¹¦ÂÊÒò×ÓÖµÊ¹ÓÃefuseµÄÖµ	
-
-
-//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-//
-// Calibration settings
-//
-//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-//DUTÆµÆ«¼Ä´æÆ÷·¶Î§		MIN	MAX
-WT_DUT_FREQ_REG_RANGE		1	62
-
-//DUT¹¦ÂÊ¼Ä´æÆ÷·¶Î§		MIN	MAX
-WT_DUT_POWER_REG_RANGE		30	48
-
-//------------------------------------------------------------------------------
-// ÆµÆ«Ð£×¼ÉèÖÃ
-//------------------------------------------------------------------------------
-WT_FREQ_CAL_DEFAULT_REG		= 32		// ÆµÆ«¼Ä´æÆ÷ÖµÄ¬ÈÏÖµ.
-
-					
-//¹¦ÂÊ¼Ä´æÆ÷ÖµÄ¬ÈÏÖµ
-//                      Channel         [1-2] [3-5] [6-8] [9-11] [12-13] [14]		
-WT_POW_CAL_DEFAULT_REG_11B_CH0            35    33   35    33    34    35
-
-//			Channel		[1-2] [3-5] [6-8] [9-11] [12-14]
-WT_POW_CAL_DEFAULT_REG_2_4G_HT40_CH0      41    41   41    40    42  
-
-
-
-//¸÷DemodeÏà¶ÔHT40µÄÆ«ÒÆÁ¿,¸ÃDemodeÎ´½øÐÐÐ£×¼Ê±ÉúÐ§
-//                            		Channel [1-2] 	[3-5] 	[6-8] 	[9-11] 	[12-13] [14]
-WT_POW_CAL_DEFAULT_REG_OFFSET_11B_CH0		 0	 0	0	0	0	0
-
-
-//                            		Channel [1-14]
-WT_POW_CAL_DEFAULT_REG_OFFSET_2_4G_OFDM_CH0	  2
-
-
-//                            		Channel [1-14]
-WT_POW_CAL_DEFAULT_REG_OFFSET_2_4G_HT20_CH0	  0
 
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 //
@@ -91,19 +9,60 @@ WT_POW_CAL_DEFAULT_REG_OFFSET_2_4G_HT20_CH0	  0
 //
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-WT_DUT_CONN_TYPE			= CARD  		//DUTÁ¬½Ó·½Ê½
+
+
+
+WT_DUT_CONN_TYPE			= COM	  		//DUTÁ¬½Ó·½Ê½
+
+WT_DUT_CONN_PORT_1			= 1			//¶Ë¿Ú1
+WT_DUT_CONN_PORT_2=22                          //¶Ë¿Ú2
+WT_DUT_CONN_PORT_3=2                          //¶Ë¿Ú3
+WT_DUT_CONN_PORT_4			= 4			//¶Ë¿Ú4
+WT_DUT_CONN_PORT_5			= 5			//¶Ë¿Ú5			
+WT_DUT_CONN_PORT_6			= 6			//¶Ë¿Ú6
+WT_DUT_CONN_PORT_7			= 7			//¶Ë¿Ú7
+WT_DUT_CONN_PORT_8			= 8			//¶Ë¿Ú8
+
+WT_COM_BAUD				= 115200			//²¨ÌØÂÊ
+WT_COM_RX_FRAM_GAP			= 50			//½ÓÊÜÖ¡¼äÏ¶
+WT_COM_BYTE_INTER                       = 0			//Á½´Î·¢ËÍµÄ¼ä¸ôÉèÖÃ
+WT_COM_RTS_ENABLE			= 0			//RTSÉèÖÃ
+
+//WT_DUT_LOGIN_NAME			= admin			//ÓÃ»§Ãû
+//WT_DUT_LOGIN_PWD			= admin			//ÃÜÂë
+
+WT_COMMUNICATE_TIMEOUT			= 5			//Í¨Ñ¶³¬Ê±Ê±¼ä£¬sec,Ä¬ÈÏ5s
+
+WT_MULTI_CMD_ENABLE			= 0			//DUT Ö¸Áî·¢ËÍ·½Ê½
+								//0:µ¥Ìõ·¢ËÍ
+								//1:¶àÌõÖ¸ÁîÒ»Æð·¢ËÍ
+
 
 WT_WRITE_EFUSE_REQUEST			= 0			// Ð´eFuseÊ±»áÌáÊ¾ÓÃ»§È·ÈÏ
 								// 1:ÌáÊ¾
 								// 0:²»ÌáÊ¾
-
 								
-WT_DRIVER_SERVICES 			= RTL8192cu	// Çý¶¯·þÎñÃû³Æ
+WT_READ_EFUSE_CMD			= AT+RCALDATA		//¶ÁefuseÃüÁî	
 
-WT_COMMUNICATE_TIMEOUT			= 5			// Í¨Ñ¶³¬Ê±Ê±¼ä£¬sec,Ä¬ÈÏ5s
 
-WT_DUT_CTRL_LIB_NAME              	= mp819xbd.dll
+WT_CHECK_ISREADY_CMD				=AT			//ÅÐ¶ÏdutÊÇ·ñreadyµÄÃüÁî				
+WT_CHECK_ISREADY_ACK				=OK			//¸ù¾Ý¸Ã»ØÓ¦£¬ÅÐ¶ÏdutÊÇ·ñready
 
+//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+//Ö´ÐÐ³õÊ¼»¯ÃüÁî
+WT_DUT_INIT_START
+//¸ñÊ½£º[cmd] [ack] [timeout]
+[AT+RST][OK][1000]
+WT_DELAY  4000
+[AT+MAC=8c:22:33:44:55:22] [OK]	[1000]	
+[AT+STARTSTA][OK][6000]
+WT_DUT_INIT_END
+//------------------------------------------------------------------------------
+
+//TX¡¢RXÖØÊÔÊ±ÏÂ·¢Ö¸Áî¼¯
+WT_DUT_Retry_COMMAND_START
+//¸ñÊ½£ºcmd
+WT_DUT_Retry_COMMAND_END
 
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 //
@@ -115,10 +74,57 @@ WT_DUT_BAND_5G				= 0			//DUTÊÇ·ñÖ§³Ö5.8G
 WT_DUT_HAS_11AC				= 0			//DUTÊÇ·ñÖ§³Ö11AC
 		
 WT_DUT_ANT_2G				= 1			//DUT 2.4GÌìÏßÊýÄ¿
-WT_DUT_ANT_5G				= 0			//DUT 5GÌìÏßÊýÄ¿
+WT_DUT_ANT_5G				= 2			//DUT 5GÌìÏßÊýÄ¿
+		
+		
+WT_DUT_ACK_TOKEN			= OK			//DUT»ØÓ¦×Ö·û,Ä¬ÈÏ¿Õ
+WT_DUT_COMMAND_END                      = \r\n			//Ä¬ÈÏ\n
 
-WT_DUT_LIB_NAME             		= DutLib_RTL8188FTV.dll	//²âÊÔ²úÆ·DLL,Ä¬ÈÏDutLib.dll
-							
+//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+//
+// Calibration settings
+//
+//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+//DUTÆµÆ«¼Ä´æÆ÷·¶Î§		MIN	MAX
+WT_DUT_FREQ_REG_RANGE		-60	60
+
+//DUT¹¦ÂÊ¼Ä´æÆ÷·¶Î§		MIN	MAX
+WT_DUT_POWER_REG_RANGE		-60	60
+
+
+//DUTÏ¸µ÷Ê±¹¦ÂÊ¼Ä´æÆ÷·¶Î§		MIN	MAX
+WT_DUT_FINE_POWER_REG_RANGE		-8	7
+
+//------------------------------------------------------------------------------
+// ÆµÆ«Ð£×¼ÉèÖÃ
+//------------------------------------------------------------------------------
+WT_FREQ_CAL_DEFAULT_REG			= 7	// ÆµÆ«¼Ä´æÆ÷ÖµÄ¬ÈÏÖµ.
+
+
+
+//------------------------------------------------------------------------------
+// ¹¦ÂÊÐ£×¼ÉèÖÃ
+//------------------------------------------------------------------------------
+//¹¦ÂÊ´Öµ÷Ê±£¬¸÷¸ögroup¹¦ÂÊ¼Ä´æÆ÷ÖµÄ¬ÈÏÖµ
+//                      Channel         [1-5] [6-10] [11-14]
+WT_POW_CAL_DEFAULT_REG           	2         1      3      
+
+
+
+//------------------------------------------------------------------------------
+// RX PERÉèÖÃ
+//------------------------------------------------------------------------------
+WT_GET_PER_REGEX_EXPRESS = \d+\b
+
+
+//------------------------------------------------------------------------------
+// MACÐ´ÖµÉèÖÃ
+//------------------------------------------------------------------------------
+
+//¶ÁÈ¡macÊ±£¬½âÎöMacµÄÕýÔò±í´ïÊ½£¬Ê¹ÓÃ¸Ã±í´ïÊ½½øÐÐÆ¥Åäºó£¬Èí¼þÄÚ²¿»á¶ÔÆ¥Åä³É¹¦ÄÚÈÝÖ´ÐÐÈ¥³ý·Ç16½øÖÆÊýµÄ²Ù×÷¡£
+WT_GET_MAC_REGEX_EXPRESS = \w{2}:\w{2}:\w{2}:\w{2}:\w{2}:\w{2}$
+
+
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 //
 // Platform settings
@@ -133,10 +139,10 @@ WT_START_TEST_WHEN_POPUP_OK		= 0			//ÔÚÆôÓÃÁË×Ô¶¯×¥¿¨²âÊÔ£¬µ¯´°ºó×Ô¶¯¿ªÊ¼²âÊÔ£¬²
   								// 0£ºÐèÒªDUT READY(Ä¬ÈÏÖµ)
 								// 1£º²»ÐèÒªDUT READY
 
-WT_IS_NEED_LINKMES=0
+WT_IS_NEED_LINKMES=1
 								//0£º²»Á¬½Ó(Ä¬ÈÏÖµ)
 								//1: Á¬½Ó
-//WT_MES_LIB_NAME		     	        = WT_MESDemo.dll
+WT_MES_LIB_NAME			= WT_MESDemo.dll
 
 WT_PASS_LOG_NAME_FORMAT			= 1			//²âÊÔPASSÊ±LOGÃüÃû·½Ê½,È¡Öµ·¶Î§(0-100)
 								//0: ÈÕÆÚÊ±¼ä+PASS
@@ -149,7 +155,7 @@ WT_FAIL_LOG_NAME_FORMAT			= 0			//MAC´ÓÅäÖÃÎÄ¼þ¶ÁÈ¡Ê±FAILÊ±LOGÃüÃû·½Ê½,È¡Öµ·¶Î§(
 								//2: MAC+ÈÕÆÚÊ±¼ä+FAIL 
 								//3: SN+ÈÕÆÚÊ±¼ä+FAIL
 									
-
+WT_TEST_LOG_PATH=                          //Ö¸¶¨LogÊä³öµÄÂ·¾¶¡£Ä¬ÈÏÎª¿ÕÊ±£¬Êä³öµ½LogÎÄ¼þ¼ÐÖÐ
 WT_IS_SHOW_EXTERNAL_PROGRAM_WINDOW 	= 0                     //ÊÇ·ñÏÔÊ¾Íâ²¿Ó¦ÓÃµÄ´°¿Ú  0£º ²»ÏÔÊ¾, 1: ÏÔÊ¾    
 WT_IS_CHECK_CAL_START_AND_END      	= 1                     //Ð´ÖµÇ°£¬¼ì²éÊÇ·ñÖ´ÐÐ WT_CAL_START/WT_CAL_END£¬  0£º²»¼ì²é£¬ 1¼ì²é                                                          
 
@@ -182,37 +188,7 @@ WT_TEST_CLEAR_FAIL		= 0		// Èí¼þ¹Ø±ÕÊ±Çå³ýFAILÍ³¼ÆÊý¾Ý
 						// 1:Çå³ý
 						// 0:²»Çå³ý(Ä¬ÈÏÖµ)
 
-
-WT_PASS_NUMBER			= 0
-WT_FAIL_NUMBER			= 0
-
-WT_PASS_NUMBER_1		= 0
-WT_FAIL_NUMBER_1		= 0
-
-WT_PASS_NUMBER_2		= 0
-WT_FAIL_NUMBER_2		= 0
-
-WT_PASS_NUMBER_3		= 0
-WT_FAIL_NUMBER_3		= 0
-
-WT_PASS_NUMBER_4		= 0
-WT_FAIL_NUMBER_4		= 0
-
-WT_PASS_NUMBER_5		= 0
-WT_FAIL_NUMBER_5		= 0
-
-WT_PASS_NUMBER_6		= 0
-WT_FAIL_NUMBER_6		= 0
-
-WT_PASS_NUMBER_7		= 0
-WT_FAIL_NUMBER_7		= 0
-
-WT_PASS_NUMBER_8		= 0
-WT_FAIL_NUMBER_8		= 0
-
 //******************************************************************************
 //                      DUT Setup file end
 //******************************************************************************
-WT_TEST_LOG_PATH=
-
 	

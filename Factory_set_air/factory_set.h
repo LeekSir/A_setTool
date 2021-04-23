@@ -101,6 +101,7 @@ private:
 
     QString filename_WT_WRITE_EFUSE;
     QString filename_WT_MAC;
+    QString filename_CORRECT_WT_DUT_MIMO;
 
     //端口信道
 

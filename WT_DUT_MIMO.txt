@@ -1,0 +1,218 @@
+//******************************************************************************
+//                      DUT Setup file
+//******************************************************************************
+
+WT_DEVICE_CLASSGUID			= 4D36E972-E325-11CE-BFC1-08002BE10318
+WT_DEVICE_DESCRIPTION			= Realtek RTL8188FTV Wireless LAN 802.11n USB 2.0 Mass Production Network Adapter 
+
+WT_TOTAL_EFUSE_NUMBER_OF_NEWDUT		= 256		//新DUT拥有的Efuse Block数
+
+
+WT_SWITCH_TX_PWR_TRACKING		= 2			//默认不开启TXPwrTracking
+								//0：关闭
+								//1：开启
+								//2：使用默认配置，不操作此开关		
+					  					
+
+WT_DUT_FLASH_OFFSET_2_4G 		= 1			//DUT HT20,OFDM,AC80 在FLASH中的存储方式					
+								// 0：以天线组合，高字节存放天线1，低字节存放天线2
+								// 1: 以DEMOD组合，高字节存放HT20，低字节存放OFDM
+
+// Dut TX Verify and writing：gain value setting
+//
+// 工厂测试场景：
+// (1)常规射频测试：进行频偏校准、功率校准、温补测试、写值。
+// (2)只校频偏，Power使用map的内容。
+// (3)返工测试：只写MAC，不做射频测试。
+// (4)不cal，使用map的值进行Verify。
+// (5)不cal，用efuse的值进行verify，不写值。
+//
+// 进行场景1测试 设置：WT_FLOw.txt默认设置
+// 进行场景2测试 设置：把WT_FLOw.txt里的功率校准项屏蔽掉，把"WT_TX_VERIFY_PWR_GAINVALUE_SOURCE"设为1
+// 进行场景3测试 设置：把WT_FLOw.txt里的频偏校准、功率校准、温补测试、Tx Verify、Rx Verify项都屏蔽
+// 进行场景4测试 设置：把WT_FLOw.txt里的频偏校准、功率校准、温补测试项都屏蔽，把以下的"WT_TX_VERIFY_FREQ_"、"WT_TX_VERIFY_PWR_"、"WT_TX_VERIFY_THERMAL_"设置为1
+// 进行场景5测试 设置：把WT_FLOw.txt里的频偏校准、功率校准、温补测试、写efuse项都屏蔽，把以下的"WT_TX_VERIFY_FREQ_"、"WT_TX_VERIFY_PWR_"、"WT_TX_VERIFY_THERMAL_"设置为2
+//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+								
+WT_TX_VERIFY_FREQ_GAINVALUE_SOURCE	= 1			//Verify时频偏因子值（同时也写入DUT的efuse）的来源(不进行频偏校准时有效)
+									//1：频偏因子值使用Map文件里的值
+									//2：频偏因子值使用efuse的值
+
+WT_TX_VERIFY_PWR_GAINVALUE_SOURCE	= 1			//Verify时功率因子值（同时也写入DUT的efuse）的来源(不进行功率校准时有效)
+									//1：功率因子值使用Map文件里的值
+									//2：功率因子值使用efuse的值	
+
+WT_TX_VERIFY_THERMAL_VALUE_SOURCE	= 1			//温补值（同时也写入DUT的efuse）的来源(不进行温补校准时有效)
+									//1：功率因子值使用Map文件里的值
+									//2：功率因子值使用efuse的值	
+
+
+//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+//
+// Calibration settings
+//
+//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+//DUT频偏寄存器范围		MIN	MAX
+WT_DUT_FREQ_REG_RANGE		1	62
+
+//DUT功率寄存器范围		MIN	MAX
+WT_DUT_POWER_REG_RANGE		30	48
+
+//------------------------------------------------------------------------------
+// 频偏校准设置
+//------------------------------------------------------------------------------
+WT_FREQ_CAL_DEFAULT_REG		= 32		// 频偏寄存器值默认值.
+
+					
+//功率寄存器值默认值
+//                      Channel         [1-2] [3-5] [6-8] [9-11] [12-13] [14]		
+WT_POW_CAL_DEFAULT_REG_11B_CH0            35    33   35    33    34    35
+
+//			Channel		[1-2] [3-5] [6-8] [9-11] [12-14]
+WT_POW_CAL_DEFAULT_REG_2_4G_HT40_CH0      41    41   41    40    42  
+
+
+
+//各Demode相对HT40的偏移量,该Demode未进行校准时生效
+//                            		Channel [1-2] 	[3-5] 	[6-8] 	[9-11] 	[12-13] [14]
+WT_POW_CAL_DEFAULT_REG_OFFSET_11B_CH0		 0	 0	0	0	0	0
+
+
+//                            		Channel [1-14]
+WT_POW_CAL_DEFAULT_REG_OFFSET_2_4G_OFDM_CH0	  2
+
+
+//                            		Channel [1-14]
+WT_POW_CAL_DEFAULT_REG_OFFSET_2_4G_HT20_CH0	  0
+
+//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+//
+// Dut connection settings
+//
+//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+WT_DUT_CONN_TYPE			= CARD  		//DUT连接方式
+
+WT_WRITE_EFUSE_REQUEST			= 0			// 写eFuse时会提示用户确认
+								// 1:提示
+								// 0:不提示
+
+								
+WT_DRIVER_SERVICES 			= RTL8192cu	// 驱动服务名称
+
+WT_COMMUNICATE_TIMEOUT			= 5			// 通讯超时时间，sec,默认5s
+
+WT_DUT_CTRL_LIB_NAME              	= mp819xbd.dll
+
+
+//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+//
+// Dut Attribute setting
+//
+//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+WT_DUT_BAND_2G				= 1			//DUT是否支持2.4G
+WT_DUT_BAND_5G				= 0			//DUT是否支持5.8G
+WT_DUT_HAS_11AC				= 0			//DUT是否支持11AC
+		
+WT_DUT_ANT_2G				= 1			//DUT 2.4G天线数目
+WT_DUT_ANT_5G				= 0			//DUT 5G天线数目
+
+WT_DUT_LIB_NAME             		= DutLib_RTL8188FTV.dll	//测试产品DLL,默认DutLib.dll
+							
+//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+//
+// Platform settings
+//
+//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+WT_AUTO_TEST_WHEN_DUT_READY=1
+								//0:手动(默认值)
+								//1:自动
+
+WT_START_TEST_WHEN_POPUP_OK		= 0			//在启用了自动抓卡测试，弹窗后自动开始测试，不需要等待DUT READY
+  								// 0：需要DUT READY(默认值)
+								// 1：不需要DUT READY
+
+WT_IS_NEED_LINKMES=0
+								//0：不连接(默认值)
+								//1: 连接
+//WT_MES_LIB_NAME		     	        = WT_MESDemo.dll
+
+WT_PASS_LOG_NAME_FORMAT			= 1			//测试PASS时LOG命名方式,取值范围(0-100)
+								//0: 日期时间+PASS
+								//1: MAC+日期时间+PASS(默认值)
+								//2: SN+日期时间+PASS
+
+WT_FAIL_LOG_NAME_FORMAT			= 0			//MAC从配置文件读取时FAIL时LOG命名方式,取值范围(0-100)
+								//0: 日期时间+FAIL(默认值)
+								//1: @@@@@@@@@@@@+日期时间+FAIL	
+								//2: MAC+日期时间+FAIL 
+								//3: SN+日期时间+FAIL
+									
+
+WT_IS_SHOW_EXTERNAL_PROGRAM_WINDOW 	= 0                     //是否显示外部应用的窗口  0： 不显示, 1: 显示    
+WT_IS_CHECK_CAL_START_AND_END      	= 1                     //写值前，检查是否执行 WT_CAL_START/WT_CAL_END，  0：不检查， 1检查                                                          
+
+//------------------------------------------------------------------------------
+// Log生成
+//------------------------------------------------------------------------------
+WT_MAC_LOG_ENABLE		= 1		// 生成 Mac Log(每个DUT独立一个Log)
+						// 1:生成(默认值)
+						// 0:不生成
+						
+WT_TOTAL_LOG_ENABLE		= 1		// 生成 Total Log
+						// 1:生成(默认值)
+						// 0:不生成
+						
+WT_CSV_LOG_ENABLE		= 1		// 生成 CSV Log
+						// 1:生成(默认值)
+						// 0:不生成
+						
+WT_CSV_LOG_LIB_NAME		= WT_CSV_LOG.dll
+                                                
+                                                
+//------------------------------------------------------------------------------
+// 统计设置
+//------------------------------------------------------------------------------
+WT_SAVE_TEST_STATISTIC		= 1		// 软件关闭时保存PASS/FAIL统计数据
+						// 1:保存(默认值)
+						// 0:不保存
+
+WT_TEST_CLEAR_FAIL		= 0		// 软件关闭时清除FAIL统计数据
+						// 1:清除
+						// 0:不清除(默认值)
+
+
+WT_PASS_NUMBER			= 0
+WT_FAIL_NUMBER			= 0
+
+WT_PASS_NUMBER_1		= 0
+WT_FAIL_NUMBER_1		= 0
+
+WT_PASS_NUMBER_2		= 0
+WT_FAIL_NUMBER_2		= 0
+
+WT_PASS_NUMBER_3		= 0
+WT_FAIL_NUMBER_3		= 0
+
+WT_PASS_NUMBER_4		= 0
+WT_FAIL_NUMBER_4		= 0
+
+WT_PASS_NUMBER_5		= 0
+WT_FAIL_NUMBER_5		= 0
+
+WT_PASS_NUMBER_6		= 0
+WT_FAIL_NUMBER_6		= 0
+
+WT_PASS_NUMBER_7		= 0
+WT_FAIL_NUMBER_7		= 0
+
+WT_PASS_NUMBER_8		= 0
+WT_FAIL_NUMBER_8		= 0
+
+//******************************************************************************
+//                      DUT Setup file end
+//******************************************************************************
+WT_TEST_LOG_PATH=
+
+	

@@ -53,6 +53,8 @@ factory_set::factory_set(QWidget *parent)
     //filename_WT_ATTEN_DUT = "../../WT_SETUP/WT_ATTEN_DUT_";
     filename_WT_WRITE_EFUSE = "../../WT_SETUP/WT_FLOW.txt";
     filename_WT_MAC = "../../WT_SETUP/WT_MAC.txt";
+
+    filename_CORRECT_WT_DUT_MIMO = "../WT_SETUP_CORRECT/WT_DUT_MIMO.txt";
 #endif
     //display();
     connect(&thread,SIGNAL(mySignal()), this, SLOT(mySlot()));
@@ -796,6 +798,7 @@ void factory_set::display()
     //展示 WT_TESTER
     ui->lineEdit_WT_IP_ADDRESS->setText(openfile_display(filename_WT_TESTER, "WT_IP_ADDRESS"));
     ui->lineEdit_WT_DUT_START_NUM->setText(openfile_display(filename_WT_TESTER, "WT_DUT_START_NUM"));
+    ui->lineEdit_WT_DUT_CONN_PORT->setText(openfile_display(filename_WT_DUT_MIMO, "WT_DUT_CONN_PORT_" + ui->lineEdit_WT_DUT_START_NUM->text()));
     //展示 advance.ini
     //ui->lineEdit_PopUpEnable->setText(openfile_display(filename_advance, "PopUpEnable"));
     //ui->lineEdit_PopUpFunction->setText(openfile_display(filename_advance, "PopUpFunction"));
@@ -1371,6 +1374,11 @@ void factory_set::on_pushButton_input_clicked()
     //WT_TESTER
     openfile_set_show(filename_WT_TESTER, "WT_IP_ADDRESS", ui->lineEdit_WT_IP_ADDRESS);
     openfile_set_show(filename_WT_TESTER, "WT_DUT_START_NUM", ui->lineEdit_WT_DUT_START_NUM);
+
+
+    //set_port
+    openfile_set_show(filename_WT_DUT_MIMO, "WT_DUT_CONN_PORT_" + ui->lineEdit_WT_DUT_START_NUM->text(), ui->lineEdit_WT_DUT_CONN_PORT);
+    openfile_set_show(filename_CORRECT_WT_DUT_MIMO, "WT_DUT_CONN_PORT_" + ui->lineEdit_WT_DUT_START_NUM->text(), ui->lineEdit_WT_DUT_CONN_PORT);
 
     //advance.ini
     //openfile_set_show(file_advance, "PopUpEnable", ui->lineEdit_PopUpEnable);
