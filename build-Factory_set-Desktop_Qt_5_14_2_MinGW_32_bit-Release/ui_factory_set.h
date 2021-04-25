@@ -23,7 +23,6 @@
 #include <QtWidgets/QMenuBar>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QSpacerItem>
-#include <QtWidgets/QSplitter>
 #include <QtWidgets/QStatusBar>
 #include <QtWidgets/QTabWidget>
 #include <QtWidgets/QVBoxLayout>
@@ -98,12 +97,9 @@ public:
     QSpacerItem *horizontalSpacer;
     QPushButton *pushButton_set;
     QWidget *special_set;
+    QGridLayout *gridLayout_41;
+    QSpacerItem *horizontalSpacer_8;
     QGridLayout *gridLayout_7;
-    QGridLayout *gridLayout_2;
-    QHBoxLayout *horizontalLayout_13;
-    QSpacerItem *horizontalSpacer_5;
-    QSplitter *splitter;
-    QWidget *layoutWidget;
     QVBoxLayout *verticalLayout;
     QLabel *label_17;
     QHBoxLayout *horizontalLayout_2;
@@ -114,8 +110,7 @@ public:
     QLabel *label_23;
     QLineEdit *lineEdit_WT_TEST_LOG_PATH;
     QPushButton *pushButton_openfile_log;
-    QWidget *layoutWidget1;
-    QVBoxLayout *verticalLayout_2;
+    QGridLayout *gridLayout_2;
     QLabel *label_18;
     QHBoxLayout *horizontalLayout_21;
     QLabel *label_24;
@@ -123,7 +118,9 @@ public:
     QHBoxLayout *horizontalLayout_22;
     QLabel *label_25;
     QLineEdit *lineEdit_WT_DUT_START_NUM;
-    QWidget *layoutWidget2;
+    QHBoxLayout *horizontalLayout_61;
+    QLabel *label_29;
+    QLineEdit *lineEdit_WT_DUT_CONN_PORT;
     QVBoxLayout *verticalLayout_3;
     QVBoxLayout *verticalLayout_15;
     QLabel *label_64;
@@ -132,8 +129,8 @@ public:
     QCheckBox *checkBox_Debug_log;
     QSpacerItem *horizontalSpacer_16;
     QVBoxLayout *verticalLayout_6;
+    QSpacerItem *horizontalSpacer_5;
     QPushButton *pushButton_input;
-    QSpacerItem *horizontalSpacer_8;
     QWidget *tab;
     QGridLayout *gridLayout_40;
     QVBoxLayout *verticalLayout_4;
@@ -346,7 +343,7 @@ public:
     {
         if (factory_set->objectName().isEmpty())
             factory_set->setObjectName(QString::fromUtf8("factory_set"));
-        factory_set->resize(884, 660);
+        factory_set->resize(884, 692);
         QSizePolicy sizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
         sizePolicy.setHorizontalStretch(0);
         sizePolicy.setVerticalStretch(0);
@@ -773,28 +770,17 @@ public:
         special_set->setEnabled(true);
         special_set->setMouseTracking(false);
         special_set->setAcceptDrops(false);
-        gridLayout_7 = new QGridLayout(special_set);
+        gridLayout_41 = new QGridLayout(special_set);
+        gridLayout_41->setObjectName(QString::fromUtf8("gridLayout_41"));
+        horizontalSpacer_8 = new QSpacerItem(243, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        gridLayout_41->addItem(horizontalSpacer_8, 0, 0, 1, 1);
+
+        gridLayout_7 = new QGridLayout();
         gridLayout_7->setObjectName(QString::fromUtf8("gridLayout_7"));
-        gridLayout_2 = new QGridLayout();
-        gridLayout_2->setObjectName(QString::fromUtf8("gridLayout_2"));
-        horizontalLayout_13 = new QHBoxLayout();
-        horizontalLayout_13->setObjectName(QString::fromUtf8("horizontalLayout_13"));
-        horizontalSpacer_5 = new QSpacerItem(348, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
-
-        horizontalLayout_13->addItem(horizontalSpacer_5);
-
-
-        gridLayout_2->addLayout(horizontalLayout_13, 1, 0, 1, 2);
-
-        splitter = new QSplitter(special_set);
-        splitter->setObjectName(QString::fromUtf8("splitter"));
-        splitter->setOrientation(Qt::Vertical);
-        layoutWidget = new QWidget(splitter);
-        layoutWidget->setObjectName(QString::fromUtf8("layoutWidget"));
-        verticalLayout = new QVBoxLayout(layoutWidget);
+        verticalLayout = new QVBoxLayout();
         verticalLayout->setObjectName(QString::fromUtf8("verticalLayout"));
-        verticalLayout->setContentsMargins(0, 0, 0, 0);
-        label_17 = new QLabel(layoutWidget);
+        label_17 = new QLabel(special_set);
         label_17->setObjectName(QString::fromUtf8("label_17"));
         sizePolicy3.setHeightForWidth(label_17->sizePolicy().hasHeightForWidth());
         label_17->setSizePolicy(sizePolicy3);
@@ -809,7 +795,7 @@ public:
 
         horizontalLayout_2 = new QHBoxLayout();
         horizontalLayout_2->setObjectName(QString::fromUtf8("horizontalLayout_2"));
-        checkBox_WT_AUTO_TEST_WHEN_DUT_READY = new QCheckBox(layoutWidget);
+        checkBox_WT_AUTO_TEST_WHEN_DUT_READY = new QCheckBox(special_set);
         checkBox_WT_AUTO_TEST_WHEN_DUT_READY->setObjectName(QString::fromUtf8("checkBox_WT_AUTO_TEST_WHEN_DUT_READY"));
 
         horizontalLayout_2->addWidget(checkBox_WT_AUTO_TEST_WHEN_DUT_READY);
@@ -819,7 +805,7 @@ public:
 
         horizontalLayout_12 = new QHBoxLayout();
         horizontalLayout_12->setObjectName(QString::fromUtf8("horizontalLayout_12"));
-        checkBox_WT_IS_NEED_LINKMES = new QCheckBox(layoutWidget);
+        checkBox_WT_IS_NEED_LINKMES = new QCheckBox(special_set);
         checkBox_WT_IS_NEED_LINKMES->setObjectName(QString::fromUtf8("checkBox_WT_IS_NEED_LINKMES"));
 
         horizontalLayout_12->addWidget(checkBox_WT_IS_NEED_LINKMES);
@@ -829,7 +815,7 @@ public:
 
         horizontalLayout_18 = new QHBoxLayout();
         horizontalLayout_18->setObjectName(QString::fromUtf8("horizontalLayout_18"));
-        label_23 = new QLabel(layoutWidget);
+        label_23 = new QLabel(special_set);
         label_23->setObjectName(QString::fromUtf8("label_23"));
         sizePolicy3.setHeightForWidth(label_23->sizePolicy().hasHeightForWidth());
         label_23->setSizePolicy(sizePolicy3);
@@ -838,14 +824,14 @@ public:
 
         horizontalLayout_18->addWidget(label_23);
 
-        lineEdit_WT_TEST_LOG_PATH = new QLineEdit(layoutWidget);
+        lineEdit_WT_TEST_LOG_PATH = new QLineEdit(special_set);
         lineEdit_WT_TEST_LOG_PATH->setObjectName(QString::fromUtf8("lineEdit_WT_TEST_LOG_PATH"));
         lineEdit_WT_TEST_LOG_PATH->setMinimumSize(QSize(220, 0));
         lineEdit_WT_TEST_LOG_PATH->setMaximumSize(QSize(220, 16777215));
 
         horizontalLayout_18->addWidget(lineEdit_WT_TEST_LOG_PATH);
 
-        pushButton_openfile_log = new QPushButton(layoutWidget);
+        pushButton_openfile_log = new QPushButton(special_set);
         pushButton_openfile_log->setObjectName(QString::fromUtf8("pushButton_openfile_log"));
         pushButton_openfile_log->setMinimumSize(QSize(25, 0));
         pushButton_openfile_log->setMaximumSize(QSize(25, 16777215));
@@ -855,13 +841,12 @@ public:
 
         verticalLayout->addLayout(horizontalLayout_18);
 
-        splitter->addWidget(layoutWidget);
-        layoutWidget1 = new QWidget(splitter);
-        layoutWidget1->setObjectName(QString::fromUtf8("layoutWidget1"));
-        verticalLayout_2 = new QVBoxLayout(layoutWidget1);
-        verticalLayout_2->setObjectName(QString::fromUtf8("verticalLayout_2"));
-        verticalLayout_2->setContentsMargins(0, 0, 0, 0);
-        label_18 = new QLabel(layoutWidget1);
+
+        gridLayout_7->addLayout(verticalLayout, 0, 0, 1, 1);
+
+        gridLayout_2 = new QGridLayout();
+        gridLayout_2->setObjectName(QString::fromUtf8("gridLayout_2"));
+        label_18 = new QLabel(special_set);
         label_18->setObjectName(QString::fromUtf8("label_18"));
         sizePolicy3.setHeightForWidth(label_18->sizePolicy().hasHeightForWidth());
         label_18->setSizePolicy(sizePolicy3);
@@ -872,11 +857,11 @@ public:
         font3.setWeight(75);
         label_18->setFont(font3);
 
-        verticalLayout_2->addWidget(label_18);
+        gridLayout_2->addWidget(label_18, 0, 0, 1, 1);
 
         horizontalLayout_21 = new QHBoxLayout();
         horizontalLayout_21->setObjectName(QString::fromUtf8("horizontalLayout_21"));
-        label_24 = new QLabel(layoutWidget1);
+        label_24 = new QLabel(special_set);
         label_24->setObjectName(QString::fromUtf8("label_24"));
         sizePolicy3.setHeightForWidth(label_24->sizePolicy().hasHeightForWidth());
         label_24->setSizePolicy(sizePolicy3);
@@ -885,7 +870,7 @@ public:
 
         horizontalLayout_21->addWidget(label_24);
 
-        lineEdit_WT_IP_ADDRESS = new QLineEdit(layoutWidget1);
+        lineEdit_WT_IP_ADDRESS = new QLineEdit(special_set);
         lineEdit_WT_IP_ADDRESS->setObjectName(QString::fromUtf8("lineEdit_WT_IP_ADDRESS"));
         lineEdit_WT_IP_ADDRESS->setMinimumSize(QSize(250, 0));
         lineEdit_WT_IP_ADDRESS->setMaximumSize(QSize(150, 16777215));
@@ -893,11 +878,11 @@ public:
         horizontalLayout_21->addWidget(lineEdit_WT_IP_ADDRESS);
 
 
-        verticalLayout_2->addLayout(horizontalLayout_21);
+        gridLayout_2->addLayout(horizontalLayout_21, 1, 0, 1, 1);
 
         horizontalLayout_22 = new QHBoxLayout();
         horizontalLayout_22->setObjectName(QString::fromUtf8("horizontalLayout_22"));
-        label_25 = new QLabel(layoutWidget1);
+        label_25 = new QLabel(special_set);
         label_25->setObjectName(QString::fromUtf8("label_25"));
         sizePolicy3.setHeightForWidth(label_25->sizePolicy().hasHeightForWidth());
         label_25->setSizePolicy(sizePolicy3);
@@ -906,7 +891,7 @@ public:
 
         horizontalLayout_22->addWidget(label_25);
 
-        lineEdit_WT_DUT_START_NUM = new QLineEdit(layoutWidget1);
+        lineEdit_WT_DUT_START_NUM = new QLineEdit(special_set);
         lineEdit_WT_DUT_START_NUM->setObjectName(QString::fromUtf8("lineEdit_WT_DUT_START_NUM"));
         lineEdit_WT_DUT_START_NUM->setMinimumSize(QSize(250, 0));
         lineEdit_WT_DUT_START_NUM->setMaximumSize(QSize(150, 16777215));
@@ -914,17 +899,37 @@ public:
         horizontalLayout_22->addWidget(lineEdit_WT_DUT_START_NUM);
 
 
-        verticalLayout_2->addLayout(horizontalLayout_22);
+        gridLayout_2->addLayout(horizontalLayout_22, 2, 0, 1, 1);
 
-        splitter->addWidget(layoutWidget1);
-        layoutWidget2 = new QWidget(splitter);
-        layoutWidget2->setObjectName(QString::fromUtf8("layoutWidget2"));
-        verticalLayout_3 = new QVBoxLayout(layoutWidget2);
+        horizontalLayout_61 = new QHBoxLayout();
+        horizontalLayout_61->setObjectName(QString::fromUtf8("horizontalLayout_61"));
+        label_29 = new QLabel(special_set);
+        label_29->setObjectName(QString::fromUtf8("label_29"));
+        sizePolicy3.setHeightForWidth(label_29->sizePolicy().hasHeightForWidth());
+        label_29->setSizePolicy(sizePolicy3);
+        label_29->setMinimumSize(QSize(70, 0));
+        label_29->setMaximumSize(QSize(16777215, 16777215));
+
+        horizontalLayout_61->addWidget(label_29);
+
+        lineEdit_WT_DUT_CONN_PORT = new QLineEdit(special_set);
+        lineEdit_WT_DUT_CONN_PORT->setObjectName(QString::fromUtf8("lineEdit_WT_DUT_CONN_PORT"));
+        lineEdit_WT_DUT_CONN_PORT->setMinimumSize(QSize(250, 0));
+        lineEdit_WT_DUT_CONN_PORT->setMaximumSize(QSize(150, 16777215));
+
+        horizontalLayout_61->addWidget(lineEdit_WT_DUT_CONN_PORT);
+
+
+        gridLayout_2->addLayout(horizontalLayout_61, 3, 0, 1, 1);
+
+
+        gridLayout_7->addLayout(gridLayout_2, 1, 0, 1, 1);
+
+        verticalLayout_3 = new QVBoxLayout();
         verticalLayout_3->setObjectName(QString::fromUtf8("verticalLayout_3"));
-        verticalLayout_3->setContentsMargins(0, 0, 0, 0);
         verticalLayout_15 = new QVBoxLayout();
         verticalLayout_15->setObjectName(QString::fromUtf8("verticalLayout_15"));
-        label_64 = new QLabel(layoutWidget2);
+        label_64 = new QLabel(special_set);
         label_64->setObjectName(QString::fromUtf8("label_64"));
         sizePolicy3.setHeightForWidth(label_64->sizePolicy().hasHeightForWidth());
         label_64->setSizePolicy(sizePolicy3);
@@ -932,7 +937,7 @@ public:
 
         verticalLayout_15->addWidget(label_64);
 
-        checkBox_WT_WRITE_EFUSE = new QCheckBox(layoutWidget2);
+        checkBox_WT_WRITE_EFUSE = new QCheckBox(special_set);
         checkBox_WT_WRITE_EFUSE->setObjectName(QString::fromUtf8("checkBox_WT_WRITE_EFUSE"));
 
         verticalLayout_15->addWidget(checkBox_WT_WRITE_EFUSE);
@@ -940,7 +945,7 @@ public:
 
         verticalLayout_3->addLayout(verticalLayout_15);
 
-        label_20 = new QLabel(layoutWidget2);
+        label_20 = new QLabel(special_set);
         label_20->setObjectName(QString::fromUtf8("label_20"));
         sizePolicy3.setHeightForWidth(label_20->sizePolicy().hasHeightForWidth());
         label_20->setSizePolicy(sizePolicy3);
@@ -948,21 +953,30 @@ public:
 
         verticalLayout_3->addWidget(label_20);
 
-        checkBox_Debug_log = new QCheckBox(layoutWidget2);
+        checkBox_Debug_log = new QCheckBox(special_set);
         checkBox_Debug_log->setObjectName(QString::fromUtf8("checkBox_Debug_log"));
 
         verticalLayout_3->addWidget(checkBox_Debug_log);
 
-        splitter->addWidget(layoutWidget2);
 
-        gridLayout_2->addWidget(splitter, 0, 1, 1, 1);
+        gridLayout_7->addLayout(verticalLayout_3, 2, 0, 1, 1);
 
-        horizontalSpacer_16 = new QSpacerItem(26, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
 
-        gridLayout_2->addItem(horizontalSpacer_16, 0, 3, 1, 1);
+        gridLayout_41->addLayout(gridLayout_7, 0, 1, 2, 1);
+
+        horizontalSpacer_16 = new QSpacerItem(242, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        gridLayout_41->addItem(horizontalSpacer_16, 0, 2, 1, 2);
 
         verticalLayout_6 = new QVBoxLayout();
         verticalLayout_6->setObjectName(QString::fromUtf8("verticalLayout_6"));
+
+        gridLayout_41->addLayout(verticalLayout_6, 1, 2, 1, 1);
+
+        horizontalSpacer_5 = new QSpacerItem(735, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        gridLayout_41->addItem(horizontalSpacer_5, 2, 0, 1, 3);
+
         pushButton_input = new QPushButton(special_set);
         pushButton_input->setObjectName(QString::fromUtf8("pushButton_input"));
         QSizePolicy sizePolicy4(QSizePolicy::Maximum, QSizePolicy::Maximum);
@@ -973,17 +987,7 @@ public:
         pushButton_input->setMaximumSize(QSize(100, 40));
         pushButton_input->setFont(font1);
 
-        verticalLayout_6->addWidget(pushButton_input);
-
-
-        gridLayout_2->addLayout(verticalLayout_6, 1, 3, 1, 1);
-
-        horizontalSpacer_8 = new QSpacerItem(26, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
-
-        gridLayout_2->addItem(horizontalSpacer_8, 0, 0, 1, 1);
-
-
-        gridLayout_7->addLayout(gridLayout_2, 0, 0, 1, 1);
+        gridLayout_41->addWidget(pushButton_input, 2, 3, 1, 1);
 
         tabWidget->addTab(special_set, QString());
         tab = new QWidget();
@@ -2436,7 +2440,7 @@ public:
         factory_set->setCentralWidget(centralwidget);
         menubar = new QMenuBar(factory_set);
         menubar->setObjectName(QString::fromUtf8("menubar"));
-        menubar->setGeometry(QRect(0, 0, 884, 22));
+        menubar->setGeometry(QRect(0, 0, 884, 25));
         factory_set->setMenuBar(menubar);
         statusbar = new QStatusBar(factory_set);
         statusbar->setObjectName(QString::fromUtf8("statusbar"));
@@ -2482,6 +2486,7 @@ public:
         label_18->setText(QCoreApplication::translate("factory_set", "WT_TESTER:", nullptr));
         label_24->setText(QCoreApplication::translate("factory_set", "\346\265\213\350\257\225\344\273\252IP\357\274\232", nullptr));
         label_25->setText(QCoreApplication::translate("factory_set", "\350\265\267\345\247\213RF\347\253\257\345\217\243\357\274\232", nullptr));
+        label_29->setText(QCoreApplication::translate("factory_set", "COM \347\253\257\345\217\243\357\274\232", nullptr));
         label_64->setText(QCoreApplication::translate("factory_set", "WT_FLOW:", nullptr));
         checkBox_WT_WRITE_EFUSE->setText(QCoreApplication::translate("factory_set", "\346\230\257\345\220\246\345\206\231EFUSE", nullptr));
         label_20->setText(QCoreApplication::translate("factory_set", "debug.ini:", nullptr));

@@ -908,6 +908,7 @@ void factory_set::display_refresh()
 
     }
 
+#if 0
     //检查文件是否损坏
     //复制DUT_MIMO文件检查
     QString filename_WT_DUT_MIMO_CP = "../../WT_SETUP/WT_DUT_MIMO_CP.txt";
@@ -959,7 +960,7 @@ void factory_set::display_refresh()
         //timer->start(openfile_display(filename_CVTE_MES, "CheckDamageTime").toUInt());
 
     }
-
+#endif
 
 
 #endif
