@@ -53,8 +53,9 @@ factory_set::factory_set(QWidget *parent)
     //filename_WT_ATTEN_DUT = "../../WT_SETUP/WT_ATTEN_DUT_";
     filename_WT_WRITE_EFUSE = "../../WT_SETUP/WT_FLOW.txt";
     filename_WT_MAC = "../../WT_SETUP/WT_MAC.txt";
-
     filename_CORRECT_WT_DUT_MIMO = "../WT_SETUP_CORRECT/WT_DUT_MIMO.txt";
+    filename_config = "../INI_FILE/config.ini";
+
 #endif
     //display();
     connect(&thread,SIGNAL(mySignal()), this, SLOT(mySlot()));
@@ -65,6 +66,9 @@ factory_set::factory_set(QWidget *parent)
 
     timer = new QTimer(this);
     connect(timer, SIGNAL(timeout()), this, SLOT(display_refresh()));
+
+    timer_file_error = new QTimer(this);
+    connect(timer_file_error, SIGNAL(timeout()), this, SLOT(check_file_error()));
 
 
 /*
@@ -855,8 +859,18 @@ void factory_set::display()
 
     }
 */
-    timer->start(openfile_display(filename_CVTE_MES, "CheckDamageTime").toUInt());
-    //timer->start(10000);
+    //timer->start(openfile_display(filename_CVTE_MES, "CheckDamageTime").toUInt());
+    QString damagetime = openfile_display(filename_config, "CheckDamageTime");
+    if(damagetime != NULL)
+    {
+        timer_file_error->start(damagetime.toUInt());
+    }
+    else
+    {
+        timer_file_error->start(30000);//默认30s
+    }
+    //timer_file_error->start(5000);   //默认启动时5s
+    timer->start(3000);
 
 
 }
@@ -908,10 +922,21 @@ void factory_set::display_refresh()
 
     }
 
+#endif
+}
+
+
+void factory_set::check_file_error()
+{
+
     //检查文件是否损坏
     //复制DUT_MIMO文件检查
     QString filename_WT_DUT_MIMO_CP = "../../WT_SETUP/WT_DUT_MIMO_CP.txt";
-    QFile::copy(filename_WT_DUT_MIMO, filename_WT_DUT_MIMO_CP);
+    bool flag = QFile::copy(filename_WT_DUT_MIMO, filename_WT_DUT_MIMO_CP);
+    if(!flag)
+    {
+        about_info("提示", "MIMO被占用，无法复制！");
+    }
 
     QFile Ncfile_MIMO(filename_WT_DUT_MIMO_CP);
     //QFile Ncfile_MIMO(filename_WT_DUT_MIMO);
@@ -925,7 +950,8 @@ void factory_set::display_refresh()
             if(Ncfile_MIMO.readLine().mid(0, 20).count("WT_TEST_LOG_PATH") >= 1)
             {
                //提示框警告，文件已损坏
-                Ncfile_MIMO.close();
+               Ncfile_MIMO.close();
+               refresh_flag = true;
                QFile::remove(filename_WT_DUT_MIMO_CP);
                return;
             }
@@ -945,24 +971,29 @@ void factory_set::display_refresh()
 
 
         QDial.show();
-        if(QDial.exec() == QDialog::Accepted && refresh_flag)
+        if(QDial.exec() == QDialog::Accepted /*&& refresh_flag*/)
         {
             on_pushButton_refresh_clicked();
-            timer->stop();
-            timer->start(openfile_display(filename_CVTE_MES, "CheckDamageTime").toUInt());
-            refresh_flag = false;
+            timer_file_error->stop();
+            QString damagetime = openfile_display(filename_config, "CheckDamageTime");
+            if(damagetime != NULL)
+            {
+                timer_file_error->start(damagetime.toUInt());
+            }
+            else
+            {
+                timer_file_error->start(30000);//默认30s
+            }
+            //refresh_flag = false;
             return;
         }
         //修改timer定时器循环时间
-        timer->stop();
-        timer->start(1000);
-        //timer->start(openfile_display(filename_CVTE_MES, "CheckDamageTime").toUInt());
+        timer_file_error->stop();
+        timer_file_error->start(1000);
+        //timer_file_error->start(openfile_display(filename_config, "CheckDamageTime").toUInt());
 
     }
 
-
-
-#endif
 }
 
 

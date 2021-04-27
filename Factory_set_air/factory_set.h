@@ -57,6 +57,8 @@ private slots:
 
     void display_refresh();//3s定时更新直通率
 
+    void check_file_error();//3s定时更新直通率
+
     void on_pushButton_open_factory_tool_clicked();
 
 private:
@@ -102,6 +104,7 @@ private:
     QString filename_WT_WRITE_EFUSE;
     QString filename_WT_MAC;
     QString filename_CORRECT_WT_DUT_MIMO;
+    QString filename_config;
 
     //端口信道
 
@@ -111,7 +114,8 @@ private:
     //添加线程私有对象
     MyThread thread;
     //添加定时器
-    QTimer *timer;
+    QTimer *timer;//直通率等相关定时器
+    QTimer *timer_file_error;//文件损坏相关定时器
 
     //缩小托盘
 
