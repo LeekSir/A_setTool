@@ -2671,23 +2671,11 @@ void factory_set::on_pushButton_open_factory_tool_clicked()
 {
     QProcess p(this);
     QStringList arguments;
-    //arguments << "/c" << "ping www.baidu.com";
-    //arguments << "cd ../../ " << " && " << "E:/qt_code/8.SKO.W618U.1_638BU/WLAN_Console.exe -p 1";
-
-    //QString cmd = "SKO.W618U.1_638BU.exe";
     arguments << "/c" << "cd ../../ && " + cmd;
-
 
     QProcess process(this);
     //process.start("./correct.bat");
     process.startDetached("cmd.exe", arguments);
     process.waitForStarted();
     process.waitForFinished();
-    /*if(process.waitForFinished())   //等待脚本运行完成，超时时间默认是3000s,超时返回0，正常返回1
-    {
-        process.start("./copy_new_log.bat");       //运行校验线损脚本文件
-        if(process.waitForFinished()){        //等待脚本运行完成，超时时间默认是3000s,超时返回0，正常返回1
-            emit mySignal();
-        }
-    }*/
 }

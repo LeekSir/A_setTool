@@ -32,6 +32,14 @@ MyThread::MyThread(QObject *parent) :
 
     timer = new QTimer(this);
     //connect(timer, SIGNAL(timeout()), this, SLOT(Pass_log_clicked()));
+
+    m_pDirectoryWatcher = new QFileSystemWatcher( this );
+    //m_pDirectoryWatcher->addPath(qApp->applicationDirPath());
+    m_pDirectoryWatcher->addPath("../../LOG/PASS");
+
+    connect( m_pDirectoryWatcher, SIGNAL( directoryChanged( const QString& ) ), this, SLOT( slotDirectoryChanged( const QString& ) ) );
+
+    qDebug() << "!!!!!!!!!!!!!!!!!!!!!!!";
 }
 
 void MyThread::run()
@@ -61,12 +69,12 @@ void MyThread::run()
                 {
 
                     //Sleep(1000);
-                    if(!Pass_log_clicked())
+                    /*if(!Pass_log_clicked())
                     {
 
                         PASS_flag = false;
                         break;
-                    }
+                    }*/
                     p.start("./copy_new_log.bat");          //运行校验线损脚本文件
                     if(p.waitForFinished())                 //等待脚本运行完成，超时时间默认是3000s,超时返回0，正常返回1
                     {
@@ -89,12 +97,12 @@ void MyThread::run()
             {
 
                 //Sleep(1000);
-                if(!Pass_log_clicked())
+                /*if(!Pass_log_clicked())
                 {
 
                     PASS_flag = false;
                     break;
-                }
+                }*/
                 p.start("./copy_new_log.bat");          //运行校验线损脚本文件
                 if(p.waitForFinished())                 //等待脚本运行完成，超时时间默认是3000s,超时返回0，正常返回1
                 {
@@ -1386,4 +1394,43 @@ void MyThread::openfile_set_BT_value(QString Box_id, double loss_value)
     }
 }
 
+void MyThread::factory_close()
+{
+    QProcess process(this);
+    //process.start("./correct.bat");
+    QStringList arguments;
+    //arguments << "taskkill /IM " + cmd +" /F";
+    arguments << "/c" << "taskkill /IM " + cmd + " /F";
+    process.startDetached("cmd.exe", arguments);
+}
 
+
+
+void MyThread::slotDirectoryChanged( const QString& )
+{
+    qDebug() << "hello world!";
+
+    QString filePath = "../../LOG/PASS";
+    QDir *dir=new QDir(filePath);
+    QStringList filter;
+    QDateTime time;
+    QDateTime current_date_time =QDateTime::currentDateTime();
+    QList<QFileInfo> *fileInfo=new QList<QFileInfo>(dir->entryInfoList(filter));
+    if(log_file_cnt != 0 && log_file_cnt == fileInfo->count())
+    {
+        return;// false;
+    }
+    for(int i = 0;i<fileInfo->count(); i++)
+    {
+
+        //qDebug() << fileInfo->at(i).fileName();
+        if( fileInfo->at(i).suffix() == "log" && fileInfo->at(i).lastModified().secsTo(current_date_time) < 1)
+        {
+            //get_pass_log = true;
+            //return true;
+            qDebug() << fileInfo->at(i).fileName();
+            factory_close();
+        }
+    }
+
+}
