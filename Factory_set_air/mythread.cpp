@@ -23,6 +23,8 @@ extern QMutex mutex;
 extern QString cmd;
 
 bool get_pass_log = false;
+bool flag_irq = false;
+
 int log_file_cnt = 0;
 
 MyThread::MyThread(QObject *parent) :
@@ -75,14 +77,19 @@ void MyThread::run()
                         PASS_flag = false;
                         break;
                     }*/
-                    p.start("./copy_new_log.bat");          //运行校验线损脚本文件
-                    if(p.waitForFinished())                 //等待脚本运行完成，超时时间默认是3000s,超时返回0，正常返回1
-                    {
-                        //Sleep(1000);
-                    }
-
 
                 }
+                if(!flag_irq)
+                {
+                    PASS_flag = false;
+                    break;
+                }
+                p.start("./copy_new_log.bat");          //运行校验线损脚本文件
+                if(p.waitForFinished())                 //等待脚本运行完成，超时时间默认是3000s,超时返回0，正常返回1
+                {
+                    //Sleep(1000);
+                }
+
                 openfile_deal_lineloss_log();
                 if(correct_flag)
                     break;
@@ -103,14 +110,19 @@ void MyThread::run()
                     PASS_flag = false;
                     break;
                 }*/
-                p.start("./copy_new_log.bat");          //运行校验线损脚本文件
-                if(p.waitForFinished())                 //等待脚本运行完成，超时时间默认是3000s,超时返回0，正常返回1
-                {
-                    //Sleep(1000);
-                }
-
 
             }
+            if(!flag_irq)
+            {
+                PASS_flag = false;
+                break;
+            }
+            p.start("./copy_new_log.bat");          //运行校验线损脚本文件
+            if(p.waitForFinished())                 //等待脚本运行完成，超时时间默认是3000s,超时返回0，正常返回1
+            {
+                //Sleep(1000);
+            }
+
             openfile_deal_lineloss_log();
             if(correct_flag)
                 break;
@@ -368,6 +380,7 @@ void MyThread::openfile_deal_lineloss_log(/*QString filename, QString show, int 
     Ncfile_test.open(QIODevice::ReadOnly);
 
     int port_num;
+    flag_irq = false;
 
     if (Ncfile_jinban.isOpen() && Ncfile_test.isOpen())
     {
@@ -1408,6 +1421,8 @@ void MyThread::factory_close()
 
 void MyThread::slotDirectoryChanged( const QString& )
 {
+
+
     qDebug() << "hello world!";
 
     QString filePath = "../../LOG/PASS";
@@ -1416,10 +1431,22 @@ void MyThread::slotDirectoryChanged( const QString& )
     QDateTime time;
     QDateTime current_date_time =QDateTime::currentDateTime();
     QList<QFileInfo> *fileInfo=new QList<QFileInfo>(dir->entryInfoList(filter));
+
+    /*flag_irq = false;
+    QTimer::singleShot(3000, this, [=]() {
+            flag_irq = true;
+        });
+    if(!flag_irq)
+        return;*/
+
     if(log_file_cnt != 0 && log_file_cnt == fileInfo->count())
     {
+        PASS_flag = false;
+        qDebug() << "12312345678902342 correct_flag" << correct_flag;
+        qDebug() << "12312345678902342 PASS_flag" << PASS_flag;
         return;// false;
     }
+
     for(int i = 0;i<fileInfo->count(); i++)
     {
 
@@ -1428,6 +1455,7 @@ void MyThread::slotDirectoryChanged( const QString& )
         {
             //get_pass_log = true;
             //return true;
+            flag_irq = true;
             qDebug() << fileInfo->at(i).fileName();
             factory_close();
         }
