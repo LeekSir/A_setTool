@@ -15,7 +15,7 @@
 WT_DUT_CONN_TYPE			= COM	  		//DUT连接方式
 
 WT_DUT_CONN_PORT_1			= 1			//端口1
-WT_DUT_CONN_PORT_2=20                          //端口2
+WT_DUT_CONN_PORT_2=44                          //端口2
 WT_DUT_CONN_PORT_3=2                          //端口3
 WT_DUT_CONN_PORT_4			= 4			//端口4
 WT_DUT_CONN_PORT_5			= 5			//端口5			
@@ -155,7 +155,7 @@ WT_FAIL_LOG_NAME_FORMAT			= 0			//MAC从配置文件读取时FAIL时LOG命名方式,取值范围(
 								//2: MAC+日期时间+FAIL 
 								//3: SN+日期时间+FAIL
 									
-WT_TEST_LOG_PATH=                          //指定Log输出的路径。默认为空时，输出到Log文件夹中
+
 WT_IS_SHOW_EXTERNAL_PROGRAM_WINDOW 	= 0                     //是否显示外部应用的窗口  0： 不显示, 1: 显示    
 WT_IS_CHECK_CAL_START_AND_END      	= 1                     //写值前，检查是否执行 WT_CAL_START/WT_CAL_END，  0：不检查， 1检查                                                          
 

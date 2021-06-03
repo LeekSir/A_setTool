@@ -922,6 +922,7 @@ void factory_set::display_refresh()
 
     }
 
+<<<<<<< HEAD
 #endif
 }
 
@@ -929,6 +930,9 @@ void factory_set::display_refresh()
 void factory_set::check_file_error()
 {
 
+=======
+#if 0
+>>>>>>> master
     //检查文件是否损坏
     //复制DUT_MIMO文件检查
     QString filename_WT_DUT_MIMO_CP = "../../WT_SETUP/WT_DUT_MIMO_CP.txt";
@@ -993,7 +997,14 @@ void factory_set::check_file_error()
         //timer_file_error->start(openfile_display(filename_config, "CheckDamageTime").toUInt());
 
     }
+<<<<<<< HEAD
 
+=======
+#endif
+
+
+#endif
+>>>>>>> master
 }
 
 

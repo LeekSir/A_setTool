@@ -1,0 +1,1 @@
+taskkill /IM Factory_set.exe /F
