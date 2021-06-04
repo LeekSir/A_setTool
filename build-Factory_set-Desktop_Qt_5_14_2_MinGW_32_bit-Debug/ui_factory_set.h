@@ -2440,7 +2440,7 @@ public:
         factory_set->setCentralWidget(centralwidget);
         menubar = new QMenuBar(factory_set);
         menubar->setObjectName(QString::fromUtf8("menubar"));
-        menubar->setGeometry(QRect(0, 0, 884, 22));
+        menubar->setGeometry(QRect(0, 0, 884, 25));
         factory_set->setMenuBar(menubar);
         statusbar = new QStatusBar(factory_set);
         statusbar->setObjectName(QString::fromUtf8("statusbar"));

@@ -1,7 +1,7 @@
 release/qrc_image.o
+release/AppIcon.o
 release/err_qdialog.o
 release/login.o
-release/main.o
 release/factory_set.o
 release/mythread.o
 release/moc_err_qdialog.o
