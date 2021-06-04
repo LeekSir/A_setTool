@@ -1,7 +1,7 @@
 debug/qrc_image.o
+debug/AppIcon.o
 debug/err_qdialog.o
 debug/login.o
-debug/main.o
 debug/factory_set.o
 debug/mythread.o
 debug/moc_err_qdialog.o

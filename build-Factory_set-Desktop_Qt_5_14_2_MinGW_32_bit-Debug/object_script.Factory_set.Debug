@@ -1,0 +1,10 @@
+debug/qrc_image.o
+debug/err_qdialog.o
+debug/login.o
+debug/main.o
+debug/factory_set.o
+debug/mythread.o
+debug/moc_err_qdialog.o
+debug/moc_factory_set.o
+debug/moc_login.o
+debug/moc_mythread.o

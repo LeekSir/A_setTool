@@ -53,8 +53,9 @@ factory_set::factory_set(QWidget *parent)
     //filename_WT_ATTEN_DUT = "../../WT_SETUP/WT_ATTEN_DUT_";
     filename_WT_WRITE_EFUSE = "../../WT_SETUP/WT_FLOW.txt";
     filename_WT_MAC = "../../WT_SETUP/WT_MAC.txt";
-
     filename_CORRECT_WT_DUT_MIMO = "../WT_SETUP_CORRECT/WT_DUT_MIMO.txt";
+    filename_config = "../INI_FILE/config.ini";
+
 #endif
     //display();
     connect(&thread,SIGNAL(mySignal()), this, SLOT(mySlot()));
@@ -65,6 +66,9 @@ factory_set::factory_set(QWidget *parent)
 
     timer = new QTimer(this);
     connect(timer, SIGNAL(timeout()), this, SLOT(display_refresh()));
+
+    timer_file_error = new QTimer(this);
+    connect(timer_file_error, SIGNAL(timeout()), this, SLOT(check_file_error()));
 
 
 /*
@@ -855,8 +859,18 @@ void factory_set::display()
 
     }
 */
-    timer->start(openfile_display(filename_CVTE_MES, "CheckDamageTime").toUInt());
-    //timer->start(10000);
+    //timer->start(openfile_display(filename_CVTE_MES, "CheckDamageTime").toUInt());
+    QString damagetime = openfile_display(filename_config, "CheckDamageTime");
+    if(damagetime != NULL)
+    {
+        timer_file_error->start(damagetime.toUInt());
+    }
+    else
+    {
+        timer_file_error->start(30000);//默认30s
+    }
+    //timer_file_error->start(5000);   //默认启动时5s
+    timer->start(3000);
 
 
 }
@@ -908,11 +922,25 @@ void factory_set::display_refresh()
 
     }
 
+<<<<<<< HEAD
+#endif
+}
+
+
+void factory_set::check_file_error()
+{
+
+=======
 #if 0
+>>>>>>> master
     //检查文件是否损坏
     //复制DUT_MIMO文件检查
     QString filename_WT_DUT_MIMO_CP = "../../WT_SETUP/WT_DUT_MIMO_CP.txt";
-    QFile::copy(filename_WT_DUT_MIMO, filename_WT_DUT_MIMO_CP);
+    bool flag = QFile::copy(filename_WT_DUT_MIMO, filename_WT_DUT_MIMO_CP);
+    if(!flag)
+    {
+        about_info("提示", "MIMO被占用，无法复制！");
+    }
 
     QFile Ncfile_MIMO(filename_WT_DUT_MIMO_CP);
     //QFile Ncfile_MIMO(filename_WT_DUT_MIMO);
@@ -926,7 +954,8 @@ void factory_set::display_refresh()
             if(Ncfile_MIMO.readLine().mid(0, 20).count("WT_TEST_LOG_PATH") >= 1)
             {
                //提示框警告，文件已损坏
-                Ncfile_MIMO.close();
+               Ncfile_MIMO.close();
+               refresh_flag = true;
                QFile::remove(filename_WT_DUT_MIMO_CP);
                return;
             }
@@ -946,24 +975,36 @@ void factory_set::display_refresh()
 
 
         QDial.show();
-        if(QDial.exec() == QDialog::Accepted && refresh_flag)
+        if(QDial.exec() == QDialog::Accepted /*&& refresh_flag*/)
         {
             on_pushButton_refresh_clicked();
-            timer->stop();
-            timer->start(openfile_display(filename_CVTE_MES, "CheckDamageTime").toUInt());
-            refresh_flag = false;
+            timer_file_error->stop();
+            QString damagetime = openfile_display(filename_config, "CheckDamageTime");
+            if(damagetime != NULL)
+            {
+                timer_file_error->start(damagetime.toUInt());
+            }
+            else
+            {
+                timer_file_error->start(30000);//默认30s
+            }
+            //refresh_flag = false;
             return;
         }
         //修改timer定时器循环时间
-        timer->stop();
-        timer->start(1000);
-        //timer->start(openfile_display(filename_CVTE_MES, "CheckDamageTime").toUInt());
+        timer_file_error->stop();
+        timer_file_error->start(1000);
+        //timer_file_error->start(openfile_display(filename_config, "CheckDamageTime").toUInt());
 
     }
+<<<<<<< HEAD
+
+=======
 #endif
 
 
 #endif
+>>>>>>> master
 }
 
 
@@ -2392,7 +2433,6 @@ bool factory_set::display_GoldBar_MAC(QString MAC)
 
 void factory_set::on_pushButton_correct_clicked()
 {
-#if 1
     if(!display_GoldBar_MAC(ui->lineEdit_GoldBar_MAC->text()))
     {
         about_info("提示", "此MAC查无对应金板！");
@@ -2428,6 +2468,8 @@ void factory_set::on_pushButton_correct_clicked()
 
 
     //QApplication::restoreOverrideCursor();//恢复鼠标为箭头状态
+    //qDebug() << " correct_flag" << correct_flag;
+    //qDebug() << "12312345678902342 PASS_flag" << PASS_flag;
     if(PASS_flag && correct_flag)// && air_link_flag)
     {
         ui->label_about_correct->setText("校准 PASS！");
@@ -2494,159 +2536,13 @@ void factory_set::on_pushButton_correct_clicked()
         //Sleep(1000);
         //about_info("提示", "setup文件夹拷贝成功！");
     }
-#else
-    //自动校线损，未加进度条
-    //*************** 启动 copy.bat *****************
-    QStringList arguments;
-    QString strInfo, Port_Num;
-    Port_Num = "./correct.bat " + ui->lineEdit_WT_DUT_START_NUM->text();
-    QProcess p(nullptr);
-    ui->label_about_correct->setText("校准中，请勿点击界面！");
-
-    bool PASS_flag_old = true;
-    QString copy_new_log = "./copy_new_log.bat";// + ui->lineEdit_WT_TEST_LOG_PATH->text();
-    while(1/*!correct_flag*/)
-    {
-
-        if(correct)
-        {
-            //1、拷入校准模式文件，拷出原始文件
-            p.start("./copy_correct.bat");
-            //备份金版数据
-
-            if(p.waitForFinished())//等待脚本运行完成，超时时间默认是3000s,超时返回0，正常返回1
-            {
-
-                strInfo = "完成！";
-                Sleep(1000);
-                about_info("提示", "进入校准模式成功！");
-                QApplication::setOverrideCursor(QCursor(Qt::WaitCursor)); //设置鼠标为等待状态
-                ui->pushButton_correct->setText("校准进行中");
-                ui->pushButton_correct->setEnabled(0);
-            //2、跑校准模式和金板对比，并重复N次
-                //第一遍不用循环
-                p.start(Port_Num);       //运行校验线损脚本文件
-                if(p.waitForFinished(120000))//等待脚本运行完成，超时时间默认是3000s,超时返回0，正常返回1
-                {
-                    strInfo = "完成！";
-                    Sleep(1000);
-                    //about_info("提示", "线损运行成功！");
-
-                    //*************** 启动 copy_new_log.bat *****************
-                    p.start(copy_new_log);       //运行校验线损脚本文件
-                    if(p.waitForFinished() ){        //等待脚本运行完成，超时时间默认是3000s,超时返回0，正常返回1
-
-                        strInfo = "完成！";
-                        Sleep(1000);
-                        //about_info("提示", "log拷贝成功！");
-                        if(!Pass_log_clicked())
-                        {
-                            PASS_flag_old = false;
-                            break;
-                        }
-
-                    }
-
-                 }
-
-                openfile_deal_lineloss_log();
-                if(correct_flag)
-                    break;
-                set_LineLoss_correct();
-                correct = false;
-                //about_info("提示", "第一次跑完了哦！");
-            }
-        }
-        else
-        {
-            //4、多次测试后，如测试数据和金板数据相差不大于正负0.5，则校准成功
-            //p.start("./correct.bat");       //运行校验线损脚本文件
-            p.start(Port_Num);
-            if(p.waitForFinished(120000)){        //等待脚本运行完成，超时时间默认是3000s,超时返回0，正常返回1
-                strInfo = "完成！";
-                Sleep(1000);
-                //about_info("提示", "线损运行成功！");
-
-                //*************** 启动 copy_new_log.bat *****************
-                //p.start("./copy_new_log.bat");       //运行校验线损脚本文件
-                p.start(copy_new_log);       //运行校验线损脚本文件
-                if(p.waitForFinished()){        //等待脚本运行完成，超时时间默认是3000s,超时返回0，正常返回1
-                    strInfo = "完成！";
-                    Sleep(1000);
-                    if(!Pass_log_clicked())
-                    {
-                        PASS_flag_old = false;
-                        break;
-                    }
-                    //about_info("提示", "log拷贝成功！");
-                }else{
-                    strInfo = "bat运行错误！";
-                }
-            }else{
-                strInfo = "bat运行错误！";
-            }
-            openfile_deal_lineloss_log();
-            if(correct_flag)
-                break;
-            set_LineLoss_correct();
-            //about_info("提示", "第N次跑完了哦！");
-            //correct_flag = true;
-        }
-    }
-
-    QApplication::restoreOverrideCursor();//恢复鼠标为箭头状态
-    if(!PASS_flag)
-    {
-        ui->label_about_correct->setText("校准 FAIL！");
-        about_info("提示", "PASS_log 获取失败！请检查配置并重新开始校准！");
-        PASS_flag_old = true;
-    }
-    else
-    {
-        ui->label_about_correct->setText("校准 PASS！");
-        ui->label_about_correct->setStyleSheet("color:green;");
-        about_info("提示", "线损校准 PASS！");
-        ui->label_about_correct->setText("");
-    }
-
-    //5、拷入原始文件，替换校准文件
-    p.start("./reset_correct.bat");  //运行脚本文件
-    //恢复金版数据
-    if(p.waitForFinished())//等待脚本运行完成，超时时间默认是3000s,超时返回0，正常返回1
-    {
-        strInfo = "完成！";
-        Sleep(1000);
-        //about_info("提示", "原始文件reset成功！");
-    }
-
-    Sleep(1000);
-    //display_LineLoss_clicked();
-    display();
-    correct = true;
-    ui->pushButton_correct->setEnabled(1);
-    ui->pushButton_correct->setText("校准开始");
-
-
-    //**************************************************
-    //校准完线损后保存一份setup文件到指定文件夹，并在关键时刻恢复
-    p.start("./copy_setup.bat");  //运行脚本文件
-    if(p.waitForFinished())//等待脚本运行完成，超时时间默认是3000s,超时返回0，正常返回1
-    {
-        strInfo = "完成！";
-        Sleep(1000);
-        //about_info("提示", "setup文件夹拷贝成功！");
-    }
-    else
-    {
-        strInfo = "bat运行错误！";
-    }
-#endif
 }
 
 void factory_set::on_pushButton_open_factory_tool_clicked()
 {
     QProcess p(this);
     QStringList arguments;
+<<<<<<< HEAD
     //arguments << "/c" << "ping www.baidu.com";
     //arguments << "cd ../../ " << " && " << "E:/qt_code/8.SKO.W618U.1_638BU/WLAN_Console.exe -p 1";
 <<<<<<< HEAD
@@ -2654,19 +2550,13 @@ void factory_set::on_pushButton_open_factory_tool_clicked()
 =======
 >>>>>>> 1fb4c3c13505d423c36dccdcc17e6a1fd1dacec3
     //QString cmd = "SKO.W618U.1_638BU.exe";
+=======
+>>>>>>> restore
     arguments << "/c" << "cd ../../ && " + cmd;
-
 
     QProcess process(this);
     //process.start("./correct.bat");
     process.startDetached("cmd.exe", arguments);
     process.waitForStarted();
     process.waitForFinished();
-    /*if(process.waitForFinished())   //等待脚本运行完成，超时时间默认是3000s,超时返回0，正常返回1
-    {
-        process.start("./copy_new_log.bat");       //运行校验线损脚本文件
-        if(process.waitForFinished()){        //等待脚本运行完成，超时时间默认是3000s,超时返回0，正常返回1
-            emit mySignal();
-        }
-    }*/
 }

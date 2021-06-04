@@ -75,7 +75,7 @@ Err_QDialog::~Err_QDialog()
 
 void Err_QDialog::quit()
 {
-    refresh_flag = true;
+    //refresh_flag = true;
     this->accept();
     this->close();
 }

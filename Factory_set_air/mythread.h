@@ -4,6 +4,8 @@
 #include <QThread>
 #include <QTimer>
 
+class QFileSystemWatcher;
+
 class MyThread : public QThread
 {
     Q_OBJECT
@@ -17,6 +19,10 @@ signals:
 
 protected:
     void run();
+
+protected slots:
+    void slotDirectoryChanged( const QString& );
+
 
 private slots:
     //bool Pass_log_clicked();
@@ -36,8 +42,11 @@ private:
 
     bool Pass_log_clicked();
 
+    void factory_close();
+
 
     QTimer *timer;
+    QFileSystemWatcher* m_pDirectoryWatcher;
 
 };
 

@@ -1,0 +1,2 @@
+del ..\WT_SETUP\WT_ATTEN_DUT_1.txt 
+copy /Y ..\WT_SETUP\WT_ATTEN_DUT_2.txt 	..\WT_SETUP\WT_ATTEN_DUT_1.txt 

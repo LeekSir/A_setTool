@@ -20,9 +20,9 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    AppIcon.cpp \
     err_qdialog.cpp \
     login.cpp \
-    main.cpp \
     factory_set.cpp \
     mythread.cpp
 
@@ -44,6 +44,12 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 RESOURCES += \
     image.qrc
 
-DISTFILES +=
+DISTFILES += \
+    AppIcon.rc \
+    uac.manifest
 
 RC_FILE += AppIcon.rc
+
+#RC_FILE += main.rc
+#QMAKE_LFLAGS += /MANIFESTUAC:"level='requireAdministrator'"
+#QMAKE_LFLAGS += /MANIFESTUAC:"level='requireAdministrator'uiAccess='false'"
