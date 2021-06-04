@@ -39,7 +39,7 @@ MyThread::MyThread(QObject *parent) :
     //m_pDirectoryWatcher->addPath(qApp->applicationDirPath());
     m_pDirectoryWatcher->addPath("../../LOG/PASS");
 
-    connect( m_pDirectoryWatcher, SIGNAL( directoryChanged( const QString& ) ), this, SLOT( slotDirectoryChanged( const QString& ) ) );
+    disconnect( m_pDirectoryWatcher, SIGNAL( directoryChanged( const QString& ) ), this, SLOT( slotDirectoryChanged( const QString& ) ) );
 
     qDebug() << "!!!!!!!!!!!!!!!!!!!!!!!";
 }
@@ -49,7 +49,7 @@ void MyThread::run()
 //半自动，
 #if 1
     QProcess p(this);
-
+    connect( m_pDirectoryWatcher, SIGNAL( directoryChanged( const QString& ) ), this, SLOT( slotDirectoryChanged( const QString& ) ) );
     while(1)
     {
         QStringList arguments;
@@ -130,6 +130,7 @@ void MyThread::run()
         }
     }
     //mutex.unlock();
+     disconnect( m_pDirectoryWatcher, SIGNAL( directoryChanged( const QString& ) ), this, SLOT( slotDirectoryChanged( const QString& ) ) );
     emit mySignal();
 //全自动
 #else

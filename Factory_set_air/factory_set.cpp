@@ -68,7 +68,7 @@ factory_set::factory_set(QWidget *parent)
     connect(timer, SIGNAL(timeout()), this, SLOT(display_refresh()));
 
     timer_file_error = new QTimer(this);
-    //connect(timer_file_error, SIGNAL(timeout()), this, SLOT(check_file_error()));
+    connect(timer_file_error, SIGNAL(timeout()), this, SLOT(check_file_error()));
 
 
 /*
@@ -860,7 +860,7 @@ void factory_set::display()
     }
 */
     //timer->start(openfile_display(filename_CVTE_MES, "CheckDamageTime").toUInt());
-    /*QString damagetime = openfile_display(filename_config, "CheckDamageTime");
+    QString damagetime = openfile_display(filename_config, "CheckDamageTime");
     if(damagetime != NULL)
     {
         timer_file_error->start(damagetime.toUInt());
@@ -870,7 +870,7 @@ void factory_set::display()
         timer_file_error->start(30000);//默认30s
     }
     //timer_file_error->start(5000);   //默认启动时5s
-    timer->start(3000);*/
+    timer->start(3000);
 
 
 }
@@ -928,7 +928,7 @@ void factory_set::display_refresh()
 
 void factory_set::check_file_error()
 {
-#if 0
+#if 1
     //检查文件是否损坏
     //复制DUT_MIMO文件检查
     QString filename_WT_DUT_MIMO_CP = "../../WT_SETUP/WT_DUT_MIMO_CP.txt";
