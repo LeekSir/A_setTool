@@ -26,6 +26,7 @@ WT_FIXED_ATTEN_5_CHAIN6  	=  3.5
 WT_FIXED_ATTEN_5_CHAIN7  	=  3.5
 
 WT_FIXED_ATTEN_BT               =  3.5
+WT_FIXED_ATTEN_BT_CHINA1        =  4.5
 
 WT_FIXED_ATTEN_ZIGBEE          	=  3.5
 //------------------------------------------------------------------------------

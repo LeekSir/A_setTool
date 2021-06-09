@@ -68,7 +68,7 @@ factory_set::factory_set(QWidget *parent)
     connect(timer, SIGNAL(timeout()), this, SLOT(display_refresh()));
 
     timer_file_error = new QTimer(this);
-    connect(timer_file_error, SIGNAL(timeout()), this, SLOT(check_file_error()));
+    //connect(timer_file_error, SIGNAL(timeout()), this, SLOT(check_file_error()));
 
 
 /*
@@ -629,6 +629,7 @@ void factory_set::display()
 
     //BT
     ui->doubleSpinBox_WT_FIXED_ATTEN_BT->setReadOnly(1);
+    ui->doubleSpinBox_WT_FIXED_ATTEN_BT_CHINA1->setReadOnly(1);
 
     //2.4G
     ui->doubleSpinBox_CH1_Port1->setReadOnly(1);
@@ -860,7 +861,7 @@ void factory_set::display()
     }
 */
     //timer->start(openfile_display(filename_CVTE_MES, "CheckDamageTime").toUInt());
-    QString damagetime = openfile_display(filename_config, "CheckDamageTime");
+    /*QString damagetime = openfile_display(filename_config, "CheckDamageTime");
     if(damagetime != NULL)
     {
         timer_file_error->start(damagetime.toUInt());
@@ -870,7 +871,7 @@ void factory_set::display()
         timer_file_error->start(30000);//默认30s
     }
     //timer_file_error->start(5000);   //默认启动时5s
-    timer->start(3000);
+    timer->start(3000);*/
 
 
 }
@@ -928,7 +929,7 @@ void factory_set::display_refresh()
 
 void factory_set::check_file_error()
 {
-#if 1
+#if 0
     //检查文件是否损坏
     //复制DUT_MIMO文件检查
     QString filename_WT_DUT_MIMO_CP = "../../WT_SETUP/WT_DUT_MIMO_CP.txt";
@@ -1687,6 +1688,7 @@ void factory_set::set_LineLoss_correct()
     int port_num = 1;
 
     openfile_set_BT_show(filename_WT_ATTEN_DUT, "WT_FIXED_ATTEN_BT", ui->doubleSpinBox_WT_FIXED_ATTEN_BT);
+    openfile_set_BT_show(filename_WT_ATTEN_DUT, "WT_FIXED_ATTEN_BT_CHAIN1", ui->doubleSpinBox_WT_FIXED_ATTEN_BT_CHINA1);
 
     //端口号为1，2.4G的值
     openfile_set_LineLoss("CH1", ui->doubleSpinBox_CH1_Port1, port_num);
@@ -1762,6 +1764,7 @@ void factory_set::display_LineLoss_clicked()
     //qDebug() <<  openfile_display(filename_WT_ATTEN_DUT, "WT_FIXED_ATTEN_2_4_CHAIN0") <<"???????????? display_LineLoss_clicked ???????????????";
     //BT
     ui->doubleSpinBox_WT_FIXED_ATTEN_BT->setValue(openfile_display(filename_WT_ATTEN_DUT, "WT_FIXED_ATTEN_BT").toDouble());
+    ui->doubleSpinBox_WT_FIXED_ATTEN_BT_CHINA1->setValue(openfile_display(filename_WT_ATTEN_DUT, "WT_FIXED_ATTEN_BT_CHAIN1").toDouble());
 
 
     //openfile_display_lineloss(filename_WT_ATTEN_DUT, "CH1");

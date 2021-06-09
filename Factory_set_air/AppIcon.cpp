@@ -40,11 +40,11 @@ int main(int argc, char *argv[])
         if(log.logining() == 0)//登陆
         {
             w.Usr_Type = true;
-            w.setWindowTitle("产测软件配置工具V5.6(工程员)");
+            w.setWindowTitle("产测软件配置工具V5.7(工程员)");
         }
         else
         {
-            w.setWindowTitle("产测软件配置工具V5.6(操作员)");
+            w.setWindowTitle("产测软件配置工具V5.7(操作员)");
         }
 
         qDebug() << w.Usr_Type;

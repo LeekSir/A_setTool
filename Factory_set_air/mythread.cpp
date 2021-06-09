@@ -320,7 +320,7 @@ void MyThread::openfile_deal_lineloss_log(/*QString filename, QString show, int 
         {
             strtemp = NctextStream.readLine();
             QStringList list;
-            if(strtemp.mid(0, 30).count("ANT0") >= 1 || strtemp.mid(0, 30).count("ANT1") >= 1)
+            if((strtemp.mid(0, 30).count("ANT0") >= 1 && strtemp.mid(0, 50).count("1DH1") != 1)  || (strtemp.mid(0, 30).count("ANT1") >= 1 && strtemp.mid(0, 50).count("1DH1") != 1))
             {
 
                 list = strtemp.split(QRegExp("\\s+"), QString::SkipEmptyParts);
@@ -341,21 +341,43 @@ void MyThread::openfile_deal_lineloss_log(/*QString filename, QString show, int 
                 }
 
             }
-            if((strtemp.mid(0, 30).count("42") == 1 && strtemp.mid(0, 30).count("2444") == 1 && strtemp.mid(0, 30).count("1DH1") == 1)
-                    || (strtemp.mid(0, 50).count("ANT0") == 1 && strtemp.mid(0, 50).count("42") == 1 && strtemp.mid(0, 50).count("2444") == 1 && strtemp.mid(0, 50).count("1DH1") == 1))
+            if((strtemp.mid(0, 50).count("42") == 1 && strtemp.mid(0, 50).count("2444") == 1 && strtemp.mid(0, 50).count("1DH1") == 1))
+                    //|| (( strtemp.mid(0, 50).count("42") == 1 && strtemp.mid(0, 50).count("2444") == 1 && strtemp.mid(0, 50).count("1DH1") == 1)))
             {
                 list = strtemp.split(QRegExp("\\s+"), QString::SkipEmptyParts);
 
-                //因为新旧产测软件的汇总数据差异，需要做筛选
-                for(; i<list.size(); i++)
+                if(strtemp.mid(0, 50).count("ANT0") == 1)
                 {
-                    if(list.at(i).count("dBm") == 1)
+                    //因为新旧产测软件的汇总数据差异，需要做筛选
+                    for(; i<list.size(); i++)
                     {
-                        break;
+                        if(list.at(i).count("dBm") == 1)
+                        {
+                            break;
+                        }
                     }
+                    temp += "BT\t\t42\t\t" + list.at(i).split('d').at(0);
+                    temp += QString('\n');
+                    i = 0;
+                    continue;
                 }
-                temp += "BT\t\t42\t\t" + list.at(i).split('d').at(0);
-                temp += QString('\n');
+
+                if(strtemp.mid(0, 50).count("ANT1") == 1 )
+                {
+                    //因为新旧产测软件的汇总数据差异，需要做筛选
+                    for(; i<list.size(); i++)
+                    {
+                        if(list.at(i).count("dBm") == 1)
+                        {
+                            break;
+                        }
+                    }
+                    temp += "BT_CHAIN1\t\t42\t\t" + list.at(i).split('d').at(0);
+                    temp += QString('\n');
+                    i = 0;
+                    continue;
+                }
+
             }
         }
         Ncfile.close();
@@ -389,7 +411,7 @@ void MyThread::openfile_deal_lineloss_log(/*QString filename, QString show, int 
         QTextStream NctextStream_jinban(&Ncfile_jinban),NctextStream_test(&Ncfile_test);
 
         QString temp = "金板" + QString("\t\t\t\t\t\t") + "测试n" + QString("\t\t") + "微调值" + QString('\n');
-        double loss_value, temp_value;
+        double loss_value =0 , temp_value = 0;
         int ch = 0;
 
         //每次置true
@@ -400,14 +422,14 @@ void MyThread::openfile_deal_lineloss_log(/*QString filename, QString show, int 
         /**************************** 判断测试log是否ok *********************************/
         while(!NctextStream_jinban.atEnd())
         {
-            if(NctextStream_jinban.readLine().mid(0,3) == "ANT" || NctextStream_jinban.readLine().mid(0,2) == "BT")
+            if(NctextStream_jinban.readLine().mid(0,3) == "ANT" || NctextStream_jinban.readLine().mid(0,2) == "BT" || NctextStream_jinban.readLine().mid(0,9) == "BT_CHAIN1")
             {
                sta_lines += 1;
             }
         }
         while(!Ncfile_test.atEnd())
         {
-            if(Ncfile_test.readLine().mid(0,3) == "ANT" || Ncfile_test.readLine().mid(0,2) == "BT")
+            if(Ncfile_test.readLine().mid(0,3) == "ANT" || Ncfile_test.readLine().mid(0,2) == "BT" || Ncfile_test.readLine().mid(0,9) == "BT_CHAIN1")
             {
                log_lines += 1;
             }
@@ -432,19 +454,21 @@ void MyThread::openfile_deal_lineloss_log(/*QString filename, QString show, int 
             strtemp_jinban = NctextStream_jinban.readLine();
             strtemp_test = NctextStream_test.readLine();
             QStringList list_jinban,list_test;
-
+            loss_value = 0;
             if(correct)
             {
-                if((strtemp_test.mid(0, 3) == "ANT" && strtemp_jinban.mid(0, 3) == "ANT") || (strtemp_test.mid(0, 2) == "BT" && strtemp_jinban.mid(0, 2) == "BT"))
+
+                if((strtemp_test.mid(0, 3) == "ANT" && strtemp_jinban.mid(0, 3) == "ANT") || (strtemp_test.mid(0, 2) == "BT" && strtemp_jinban.mid(0, 2) == "BT") || (strtemp_test.mid(0, 9) == "BT_CHAIN1" && strtemp_jinban.mid(0, 9) == "BT_CHAIN1"))
                 {
                     list_test = strtemp_test.split(QRegExp("\\s+"), QString::SkipEmptyParts);
                     list_jinban = strtemp_jinban.split(QRegExp("\\s+"), QString::SkipEmptyParts);
-                    temp += strtemp_jinban + "\t\t"  + list_test.at(2) + "\t\t" + QString::number((list_jinban.at(2).toDouble() - list_test.at(2).toDouble()),'f',2);
+                    loss_value = list_jinban.at(2).toDouble() - list_test.at(2).toDouble();
+                    temp += strtemp_jinban + "\t\t"  + list_test.at(2) + "\t\t" + QString::number((loss_value + list_test.at(2).toDouble()),'f',2) + "\t\t" + QString::number((loss_value),'f',2);
                     temp += QString('\n');
                     //if(list_jinban.at(2).toDouble() - list_test.at(2).toDouble())
 
                     ch = list_jinban.at(1).toInt();
-                    if(qAbs(list_jinban.at(2).toDouble() - list_test.at(2).toDouble()) <= 0.5)
+                    if(qAbs(loss_value) <= 0.5)
                     {
                         continue;
                     }
@@ -453,13 +477,24 @@ void MyThread::openfile_deal_lineloss_log(/*QString filename, QString show, int 
                         correct_flag = false;
                         //loss_value = list_jinban.at(2).toDouble() - list_test.at(2).toDouble();
                     }
-                    loss_value = list_jinban.at(2).toDouble() - list_test.at(2).toDouble();
+                    //loss_value = list_jinban.at(2).toDouble() - list_test.at(2).toDouble();
                     //写蓝牙线损数据
-                    if(list_test.at(0) == "BT" && list_jinban.at(0) == "BT")
+                    if(list_test.at(0) == "BT")
+                    //if(list_test.at(0).mid(0,9) == "BT_CHAIN1" &&  list_jinban.at(0).mid(0,9) == "BT_CHAIN1")
                     {
+                        //qDebug() << "!!!!!!!!!!!!!!!! hello world!!!!!!!!!!!!!";
                         openfile_set_BT_value("WT_FIXED_ATTEN_BT", loss_value + openfile_display(filename_WT_ATTEN_DUT,"WT_FIXED_ATTEN_BT").toDouble());
-                        break;
+                        //break;
+                        continue;
+                    }//else if(list_test.at(0).mid(0,2) == "BT" &&  list_jinban.at(0).mid(0,2) == "BT")
+                    else if(list_test.at(0) == "BT_CHAIN1")
+                    {
+                        //qDebug() << "!!!!!!!!!!!!!!!! yes hahah!!!!!!!!!!!!!";
+                        openfile_set_BT_value("WT_FIXED_ATTEN_BT_CHAIN1", loss_value + openfile_display(filename_WT_ATTEN_DUT,"WT_FIXED_ATTEN_BT_CHAIN1").toDouble());
+                        //break;
+                        continue;
                     }
+
 
                     if(list_jinban.at(0) == "ANT0")
                     {
@@ -752,7 +787,8 @@ void MyThread::openfile_deal_lineloss_log(/*QString filename, QString show, int 
                 //微调操作
                 //qDebug() << "WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW 微调";
                 //qDebug() << "000000000"<<strtemp_test;
-                if(strtemp_test.mid(0, 3) == "ANT" && strtemp_jinban.mid(0, 3) == "ANT")
+                //if(strtemp_test.mid(0, 3) == "ANT" && strtemp_jinban.mid(0, 3) == "ANT")
+                if((strtemp_test.mid(0, 3) == "ANT" && strtemp_jinban.mid(0, 3) == "ANT") || (strtemp_test.mid(0, 2) == "BT" && strtemp_jinban.mid(0, 2) == "BT") || (strtemp_test.mid(0, 9) == "BT_CHAIN1" && strtemp_jinban.mid(0, 9) == "BT_CHAIN1"))
                 {
 
 
@@ -782,11 +818,13 @@ void MyThread::openfile_deal_lineloss_log(/*QString filename, QString show, int 
                     ch = list_jinban.at(1).toInt();
 
                     temp += list_jinban.at(0) + "\t\t" + list_jinban.at(1) + "\t\t" + list_jinban.at(2) + "\t\t";
-                    if(qAbs(temp_value) > 0.5)
+                    if((qAbs(temp_value) > 0.5 && list_jinban.at(5).toDouble() != 0) || (list_jinban.at(5).toDouble() == 0 && qAbs(temp_value) > 1))
                     {
                         correct_flag = false;
                         loss_value = list_jinban.at(4).toDouble() + temp_value/2;
-                        temp += list_test.at(2) + "\t\t" + QString::number(loss_value,'f',2);
+                        //loss_value = list_jinban.at(4).toDouble() + temp_value/3;
+                        //temp += list_test.at(2) + "\t\t" + QString::number(loss_value,'f',2);
+                        temp += list_test.at(2) + "\t\t" + QString::number(loss_value,'f',2) + "\t\t" + QString::number(temp_value,'f',2);
                         temp += QString('\n');
                     }
                     else
@@ -866,18 +904,25 @@ void MyThread::openfile_deal_lineloss_log(/*QString filename, QString show, int 
                         }*/
 
                         //loss_value = list_jinban.at(4).toDouble();
-                        temp += list_test.at(2) + "\t\t" + QString::number(loss_value,'f',2);
+                        temp += list_test.at(2) + "\t\t" + list_jinban.at(4) + "\t\t" +  "0.00"; /*QString::number(loss_value,'f',2)*/
                         temp += QString('\n');
                         continue;
                     }
 
-                    //写蓝牙线损数据
-                    if(list_test.at(0) == "BT" && list_jinban.at(0) == "BT")
+                    //写蓝牙线损数据                    
+                    if(list_test.at(0) == "BT")
+                    //if(list_test.at(0).mid(0,9) == "BT_CHAIN1" &&  list_jinban.at(0).mid(0,9) == "BT_CHAIN1")
                     {
                         openfile_set_BT_value("WT_FIXED_ATTEN_BT", loss_value);
-                        break;
+                        //break;
+                        continue;
+                    }//else if(list_test.at(0).mid(0,2) == "BT" &&  list_jinban.at(0).mid(0,2) == "BT")
+                    else if(list_test.at(0) == "BT_CHAIN1")
+                    {
+                        openfile_set_BT_value("WT_FIXED_ATTEN_BT_CHAIN1", loss_value);
+                        // break;
+                        continue;
                     }
-
 
                     if(list_jinban.at(0) == "ANT0")
                     {
@@ -1376,6 +1421,7 @@ QString MyThread::openfile_display(QString filename, QString show)
 void MyThread::openfile_set_BT_value(QString Box_id, double loss_value)
 {
     QString RunFrameNcFile = filename_WT_ATTEN_DUT;
+    //qDebug() << Box_id;
     QFile Ncfile(RunFrameNcFile);
     Ncfile.open(QIODevice::ReadOnly);
     if (Ncfile.isOpen())
@@ -1384,13 +1430,23 @@ void MyThread::openfile_set_BT_value(QString Box_id, double loss_value)
         QTextStream NctextStream(&Ncfile);
 
         QString temp;
+        //QStringList split_string;
+        int i = 0;
         while(!NctextStream.atEnd())
         {
             strtemp = NctextStream.readLine();
-            if(strtemp.mid(0, Box_id.length()) == Box_id)
+            //split_string = NctextStream.readLine().split(QRegExp("\\s+"), QString::SkipEmptyParts);
+            if("WT_FIXED_ATTEN_BT" == Box_id && strtemp.mid(0, Box_id.length()+7) != Box_id+"_CHAIN1" && strtemp.mid(0, Box_id.length()) == Box_id)
             {
-                qDebug() << strtemp;
+
                 temp += Box_id + "\t=\t" + QString::number(loss_value,'f',1);
+                //qDebug() << Box_id + "\t=\t" + QString::number(loss_value,'f',1) << " i = "<<i++;
+                temp += QString('\n');
+            }else if("WT_FIXED_ATTEN_BT_CHAIN1" == Box_id && strtemp.mid(0, Box_id.length()) == Box_id)
+            //if(strtemp.indexOf(Box_id+"_BT_CHAIN1", 0) == -1 && strtemp.indexOf(Box_id, 0) != -1)
+            {
+                temp += Box_id + "\t=\t" + QString::number(loss_value,'f',1);
+                //qDebug() << Box_id + "\t=\t" + QString::number(loss_value,'f',1) << " i = "<<i++;
                 temp += QString('\n');
             }
             else
@@ -1399,6 +1455,7 @@ void MyThread::openfile_set_BT_value(QString Box_id, double loss_value)
                 temp += strtemp;
                 temp += QString('\n');
             }
+            //split_string.clear();
         }
         Ncfile.close();
         Ncfile.open(QIODevice::WriteOnly);
@@ -1443,8 +1500,8 @@ void MyThread::slotDirectoryChanged( const QString& )
     if(log_file_cnt != 0 && log_file_cnt == fileInfo->count())
     {
         PASS_flag = false;
-        qDebug() << "12312345678902342 correct_flag" << correct_flag;
-        qDebug() << "12312345678902342 PASS_flag" << PASS_flag;
+        //qDebug() << "12312345678902342 correct_flag" << correct_flag;
+        //qDebug() << "12312345678902342 PASS_flag" << PASS_flag;
         return;// false;
     }
 
@@ -1457,7 +1514,7 @@ void MyThread::slotDirectoryChanged( const QString& )
             //get_pass_log = true;
             //return true;
             flag_irq = true;
-            qDebug() << fileInfo->at(i).fileName();
+            //qDebug() << fileInfo->at(i).fileName();
             factory_close();
         }
     }

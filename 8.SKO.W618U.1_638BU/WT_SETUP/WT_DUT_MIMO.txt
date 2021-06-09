@@ -14,7 +14,7 @@
 
 WT_DUT_CONN_TYPE			= COM	  		//DUT连接方式
 
-WT_DUT_CONN_PORT_1			= 1			//端口1
+WT_DUT_CONN_PORT_1=20                          //端口1
 <<<<<<< HEAD
 WT_DUT_CONN_PORT_2=20                          //端口2
 =======
