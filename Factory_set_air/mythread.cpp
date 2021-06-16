@@ -818,7 +818,7 @@ void MyThread::openfile_deal_lineloss_log(/*QString filename, QString show, int 
                     ch = list_jinban.at(1).toInt();
 
                     temp += list_jinban.at(0) + "\t\t" + list_jinban.at(1) + "\t\t" + list_jinban.at(2) + "\t\t";
-                    if((qAbs(temp_value) > 0.5 && list_jinban.at(5).toDouble() != 0) || (list_jinban.at(5).toDouble() == 0 && qAbs(temp_value) > 1))
+                    if((qAbs(temp_value) > 0.5 && list_jinban.at(5).toDouble() != 0)) // || (list_jinban.at(5).toDouble() == 0 && qAbs(temp_value) > 1))
                     {
                         correct_flag = false;
                         loss_value = list_jinban.at(4).toDouble() + temp_value/2;

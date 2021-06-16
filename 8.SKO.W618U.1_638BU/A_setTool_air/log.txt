@@ -806,3 +806,8 @@ Warning: File:() Line:(0) libpng warning: iCCP: known incorrect sRGB profile (20
 Debug: File:() Line:(0) !!!!!!!!!!!!!!!!!!!!!!! (2021-06-08 14:19:36 周二)
 Debug: File:() Line:(0) logining successfully!!! "cvte" "666666" (2021-06-08 14:19:36 周二)
 Debug: File:() Line:(0) true (2021-06-08 14:19:36 周二)
+Debug: File:() Line:(0) !!!!!!!!!!!!!!!!!!!!!!! (2021-06-10 10:32:32 周四)
+Warning: File:() Line:(0) libpng warning: iCCP: known incorrect sRGB profile (2021-06-10 10:32:32 周四)
+Debug: File:() Line:(0) !!!!!!!!!!!!!!!!!!!!!!! (2021-06-10 10:32:38 周四)
+Debug: File:() Line:(0) logining successfully!!! "cvte" "666666" (2021-06-10 10:32:38 周四)
+Debug: File:() Line:(0) true (2021-06-10 10:32:38 周四)
