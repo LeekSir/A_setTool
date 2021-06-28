@@ -14,12 +14,15 @@
 
 WT_DUT_CONN_TYPE			= COM	  		//DUT连接方式
 
+<<<<<<< HEAD
 WT_DUT_CONN_PORT_1=20                          //端口1
 <<<<<<< HEAD
 WT_DUT_CONN_PORT_2=20                          //端口2
 =======
+=======
+WT_DUT_CONN_PORT_1			= 1			//端口1
+>>>>>>> zhenwei
 WT_DUT_CONN_PORT_2=44                          //端口2
->>>>>>> master
 WT_DUT_CONN_PORT_3=2                          //端口3
 WT_DUT_CONN_PORT_4			= 4			//端口4
 WT_DUT_CONN_PORT_5			= 5			//端口5			

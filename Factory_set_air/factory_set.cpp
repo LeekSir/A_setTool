@@ -180,7 +180,7 @@ using namespace std;
         return false;
     }
 
-    BOOL    bRet = FALSE;
+    //BOOL    bRet = FALSE;
     DWORD dwPid = -1;
     while (Process32Next(hProcessSnap, &pe32))
     {
@@ -191,7 +191,7 @@ using namespace std;
         if (0 == strcmp(exe.toStdString().c_str(), result.c_str ()))
         {
             dwPid = pe32.th32ProcessID;
-            bRet = TRUE;
+            //bRet = TRUE;
             qDebug()<<"zhaodao";
             break;
         }
@@ -820,7 +820,7 @@ void factory_set::display()
     }
 
     //展示 WT_FLOW
-    if(openfile_wefuse_display("WT_WRITE_EFUSE"))//\t\t"))
+    if(openfile_wefuse_display("WT_WRITE_EFUSE_FREE"))//\t\t"))
     {
         ui->checkBox_WT_WRITE_EFUSE->setCheckState(Qt::CheckState::Checked);
     }
@@ -922,7 +922,6 @@ void factory_set::display_refresh()
         ui->label_MES_Status->setText("直通率：" + QString::number(first_PASS*100,'f',1) + '%');
 
     }
-
 #endif
 }
 
@@ -930,6 +929,10 @@ void factory_set::display_refresh()
 void factory_set::check_file_error()
 {
 #if 0
+<<<<<<< HEAD
+=======
+
+>>>>>>> zhenwei
     //检查文件是否损坏
     //复制DUT_MIMO文件检查
     QString filename_WT_DUT_MIMO_CP = "../../WT_SETUP/WT_DUT_MIMO_CP.txt";
@@ -1420,7 +1423,7 @@ void factory_set::on_pushButton_input_clicked()
     openfile_set_debug(filename_debug, ui->checkBox_Debug_log->checkState());
 
     //WT_FLOW 写EFUSE
-    openfile_set_wefuse("WT_WRITE_EFUSE");
+    openfile_set_wefuse("WT_WRITE_EFUSE_FREE");
 
     //write 端口号 到 MES.ini 中
     openfile_set_show(filename_CVTE_MES, "WT_DUT_START_NUM", ui->lineEdit_WT_DUT_START_NUM);
@@ -2435,6 +2438,7 @@ void factory_set::on_pushButton_correct_clicked()
     //*************** 启动 copy.bat *****************
     QStringList arguments;
     correct_Port_Num = "./correct.bat " + ui->lineEdit_WT_DUT_START_NUM->text();
+    cmd = ui->lineEdit_ModuleType->text() + ".exe";
     QProcess p(nullptr);
     ui->label_about_correct->setText("校准中，请勿点击界面！");
     //关闭MAC弹窗
@@ -2480,6 +2484,8 @@ void factory_set::on_pushButton_correct_clicked()
         {
             about_info("提示", "PASS_log 获取失败！请检查配置并重新开始校准！");
         }
+        ui->label_about_correct->setStyleSheet("color:red;");
+        about_info("提示", "PASS_log 获取失败！请检查配置并重新开始校准！");
         PASS_flag = true;
         //air_link_flag = true;
 
@@ -2528,6 +2534,9 @@ void factory_set::on_pushButton_open_factory_tool_clicked()
 {
     QProcess p(this);
     QStringList arguments;
+    //arguments << "/c" << "ping www.baidu.com";
+    //arguments << "cd ../../ " << " && " << "E:/qt_code/8.SKO.W618U.1_638BU/WLAN_Console.exe -p 1";
+    //QString cmd = "SKO.W618U.1_638BU.exe";
     arguments << "/c" << "cd ../../ && " + cmd;
 
     QProcess process(this);

@@ -2643,6 +2643,13 @@ release/err_qdialog.o: ../Factory_set_air/err_qdialog.cpp ../Factory_set_air/err
 		D:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/qwizard.h \
 		D:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/qtwidgetsversion.h \
 		ui_login.h \
+		D:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtGui/QIcon \
+		D:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/QApplication \
+		D:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/QHBoxLayout \
+		D:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/QLabel \
+		D:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/QLineEdit \
+		D:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/QPushButton \
+		D:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/QVBoxLayout \
 		D:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/QDebug
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\err_qdialog.o ..\Factory_set_air\err_qdialog.cpp
 
@@ -3122,6 +3129,13 @@ release/login.o: ../Factory_set_air/login.cpp ../Factory_set_air/login.h \
 		D:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/QThread \
 		D:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/QTimer \
 		ui_login.h \
+		D:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtGui/QIcon \
+		D:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/QApplication \
+		D:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/QHBoxLayout \
+		D:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/QLabel \
+		D:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/QLineEdit \
+		D:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/QPushButton \
+		D:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/QVBoxLayout \
 		D:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/QDebug
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\login.o ..\Factory_set_air\login.cpp
 
@@ -3606,8 +3620,20 @@ release/factory_set.o: ../Factory_set_air/factory_set.cpp ../Factory_set_air/fac
 		D:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/QSystemTrayIcon \
 		D:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtGui/QDesktopServices \
 		ui_factory_set.h \
-		D:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/QChar \
+		D:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtGui/QIcon \
+		D:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/QApplication \
+		D:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/QCheckBox \
+		D:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/QDoubleSpinBox \
+		D:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/QGridLayout \
+		D:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/QHBoxLayout \
 		D:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/QLabel \
+		D:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/QLineEdit \
+		D:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/QMenuBar \
+		D:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/QSpacerItem \
+		D:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/QStatusBar \
+		D:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/QTabWidget \
+		D:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtWidgets/QVBoxLayout \
+		D:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/QtCore/QChar \
 		D:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/ActiveQt/QAxObject \
 		D:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/ActiveQt/qaxobject.h \
 		D:/Qt/Qt5.14.2/5.14.2/mingw73_64/include/ActiveQt/qaxbase.h \

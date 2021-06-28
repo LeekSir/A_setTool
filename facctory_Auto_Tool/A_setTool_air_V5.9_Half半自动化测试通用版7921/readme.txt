@@ -5,3 +5,6 @@
 
 5.8
 取消 "按大于1的进行重新校准，不大于1的不做校准"的功能
+
+5.9
+修改了WT_WRITE_EFUSE 到 WT_WRITE_EFUSE_FREE，修复7921新产测不识别wirte_efuse问题

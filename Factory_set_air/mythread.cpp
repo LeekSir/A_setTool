@@ -1515,7 +1515,7 @@ void MyThread::slotDirectoryChanged( const QString& )
             //return true;
             flag_irq = true;
             //qDebug() << fileInfo->at(i).fileName();
-            factory_close();
+            //factory_close();
         }
     }
 
