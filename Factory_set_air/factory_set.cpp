@@ -2431,11 +2431,30 @@ void factory_set::on_pushButton_correct_clicked()
         return;
     }
 
+
+
     //自动校线损，加进度条
     //*************** 启动 copy.bat *****************
     QStringList arguments;
     correct_Port_Num = "./correct.bat " + ui->lineEdit_WT_DUT_START_NUM->text();
     QProcess p(nullptr);
+
+    //查看上次校准是否中途崩溃，崩溃为1，不崩为0
+    bool CorrectStatus = openfile_display(filename_config, "CorrectStatus").toInt();
+    if(CorrectStatus)
+    {
+        p.start("./copy_setup.bat");  //运行脚本文件
+        if(p.waitForFinished())//等待脚本运行完成，超时时间默认是3000s,超时返回0，正常返回1
+        {
+            //Sleep(1000);
+            openfile_set_data(filename_config, "CorrectStatus", "0");
+            about_info("提示", "SETUP修复成功！");
+        }
+
+
+    }
+    openfile_set_data(filename_config, "CorrectStatus", "1");
+
     ui->label_about_correct->setText("校准中，请勿点击界面！");
     //关闭MAC弹窗
     bool PopUpEnable_flag = false;
@@ -2519,6 +2538,7 @@ void factory_set::on_pushButton_correct_clicked()
     p.start("./copy_setup.bat");  //运行脚本文件
     if(p.waitForFinished())//等待脚本运行完成，超时时间默认是3000s,超时返回0，正常返回1
     {
+        openfile_set_data(filename_config, "CorrectStatus", "0");
         //Sleep(1000);
         //about_info("提示", "setup文件夹拷贝成功！");
     }
@@ -2526,6 +2546,13 @@ void factory_set::on_pushButton_correct_clicked()
 
 void factory_set::on_pushButton_open_factory_tool_clicked()
 {
+    //展示 WT_FLOW
+    if(!openfile_wefuse_display("WT_WRITE_EFUSE"))//\t\t"))
+    {
+        about_info("警告", "WRITE_EFUSE 未打开！");
+        return;
+    }
+
     QProcess p(this);
     QStringList arguments;
     arguments << "/c" << "cd ../../ && " + cmd;
@@ -2535,4 +2562,49 @@ void factory_set::on_pushButton_open_factory_tool_clicked()
     process.startDetached("cmd.exe", arguments);
     process.waitForStarted();
     process.waitForFinished();
+}
+
+
+void factory_set::openfile_set_data(QString filename, QString line_id, QString status)
+{
+    QString RunFrameNcFile = filename;
+    QFile Ncfile(RunFrameNcFile);
+    Ncfile.open(QIODevice::ReadOnly);
+    if (Ncfile.isOpen())
+    {
+        QString strtemp;
+        QTextStream NctextStream(&Ncfile);
+
+        QString temp;
+        while(!NctextStream.atEnd())
+        {
+            strtemp = NctextStream.readLine();
+            if(strtemp.mid(0, line_id.length()) == line_id)
+            {
+                //qDebug() << strtemp;
+                if(strtemp.indexOf("//", 0) != -1)
+                {
+                    temp += line_id + '=' + status + "                          //" + strtemp.split("//").at(1);
+                    temp += QString('\n');
+                }
+                else
+                {
+                    temp += line_id + '=' + status;// + "                          //" + strtemp.split("//").at(1);
+                    temp += QString('\n');
+                }
+
+            }
+            else
+            {
+
+                temp += strtemp;
+                temp += QString('\n');
+            }
+        }
+        Ncfile.close();
+        Ncfile.open(QIODevice::WriteOnly);
+        QTextStream in(&Ncfile);
+        in <<temp;
+        Ncfile.close();
+    }
 }

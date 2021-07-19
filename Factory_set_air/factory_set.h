@@ -91,6 +91,8 @@ private:
 
     void file_one_set(QString filename);
 
+    void openfile_set_data(QString filename, QString line_id, QString status);
+
 
     Ui::factory_set *ui;
 

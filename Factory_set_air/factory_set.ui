@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>884</width>
-    <height>692</height>
+    <height>712</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -1477,7 +1477,7 @@
                  </size>
                 </property>
                 <property name="maximum">
-                 <double>30.000000000000000</double>
+                 <double>100.000000000000000</double>
                 </property>
                 <property name="singleStep">
                  <double>0.100000000000000</double>
@@ -1509,7 +1509,7 @@
                  </size>
                 </property>
                 <property name="maximum">
-                 <double>30.000000000000000</double>
+                 <double>100.000000000000000</double>
                 </property>
                 <property name="singleStep">
                  <double>0.100000000000000</double>
@@ -1541,7 +1541,7 @@
                  </size>
                 </property>
                 <property name="maximum">
-                 <double>30.000000000000000</double>
+                 <double>100.000000000000000</double>
                 </property>
                 <property name="singleStep">
                  <double>0.100000000000000</double>
@@ -1596,7 +1596,7 @@
                  </size>
                 </property>
                 <property name="maximum">
-                 <double>30.000000000000000</double>
+                 <double>100.000000000000000</double>
                 </property>
                 <property name="singleStep">
                  <double>0.100000000000000</double>
@@ -1628,7 +1628,7 @@
                  </size>
                 </property>
                 <property name="maximum">
-                 <double>30.000000000000000</double>
+                 <double>100.000000000000000</double>
                 </property>
                 <property name="singleStep">
                  <double>0.100000000000000</double>
@@ -1658,7 +1658,7 @@
                </size>
               </property>
               <property name="maximum">
-               <double>30.000000000000000</double>
+               <double>100.000000000000000</double>
               </property>
               <property name="singleStep">
                <double>0.100000000000000</double>
@@ -1686,7 +1686,7 @@
                </size>
               </property>
               <property name="maximum">
-               <double>30.000000000000000</double>
+               <double>100.000000000000000</double>
               </property>
               <property name="singleStep">
                <double>0.100000000000000</double>
@@ -1697,42 +1697,6 @@
           </item>
           <item row="0" column="0">
            <layout class="QGridLayout" name="gridLayout_6">
-            <item row="0" column="0">
-             <layout class="QHBoxLayout" name="horizontalLayout_6">
-              <item>
-               <spacer name="horizontalSpacer_12">
-                <property name="orientation">
-                 <enum>Qt::Horizontal</enum>
-                </property>
-                <property name="sizeHint" stdset="0">
-                 <size>
-                  <width>28</width>
-                  <height>20</height>
-                 </size>
-                </property>
-               </spacer>
-              </item>
-              <item>
-               <widget class="QLabel" name="label_65">
-                <property name="minimumSize">
-                 <size>
-                  <width>50</width>
-                  <height>0</height>
-                 </size>
-                </property>
-                <property name="maximumSize">
-                 <size>
-                  <width>50</width>
-                  <height>16777215</height>
-                 </size>
-                </property>
-                <property name="text">
-                 <string> TX 0</string>
-                </property>
-               </widget>
-              </item>
-             </layout>
-            </item>
             <item row="3" column="0">
              <layout class="QHBoxLayout" name="horizontalLayout_32">
               <item>
@@ -1775,160 +1739,7 @@
                  </size>
                 </property>
                 <property name="maximum">
-                 <double>30.000000000000000</double>
-                </property>
-                <property name="singleStep">
-                 <double>0.100000000000000</double>
-                </property>
-               </widget>
-              </item>
-             </layout>
-            </item>
-            <item row="6" column="0">
-             <layout class="QHBoxLayout" name="horizontalLayout_63">
-              <item>
-               <widget class="QLabel" name="label_50">
-                <property name="minimumSize">
-                 <size>
-                  <width>30</width>
-                  <height>0</height>
-                 </size>
-                </property>
-                <property name="maximumSize">
-                 <size>
-                  <width>16777215</width>
-                  <height>16777215</height>
-                 </size>
-                </property>
-                <property name="text">
-                 <string>CH11</string>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <widget class="QDoubleSpinBox" name="doubleSpinBox_CH11_Port1">
-                <property name="sizePolicy">
-                 <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-                  <horstretch>0</horstretch>
-                  <verstretch>0</verstretch>
-                 </sizepolicy>
-                </property>
-                <property name="minimumSize">
-                 <size>
-                  <width>60</width>
-                  <height>0</height>
-                 </size>
-                </property>
-                <property name="maximumSize">
-                 <size>
-                  <width>60</width>
-                  <height>16777215</height>
-                 </size>
-                </property>
-                <property name="maximum">
-                 <double>30.000000000000000</double>
-                </property>
-                <property name="singleStep">
-                 <double>0.100000000000000</double>
-                </property>
-               </widget>
-              </item>
-             </layout>
-            </item>
-            <item row="1" column="0">
-             <layout class="QHBoxLayout" name="horizontalLayout_25">
-              <item>
-               <widget class="QLabel" name="label_28">
-                <property name="minimumSize">
-                 <size>
-                  <width>30</width>
-                  <height>0</height>
-                 </size>
-                </property>
-                <property name="maximumSize">
-                 <size>
-                  <width>16777215</width>
-                  <height>16777215</height>
-                 </size>
-                </property>
-                <property name="text">
-                 <string>CH1</string>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <widget class="QDoubleSpinBox" name="doubleSpinBox_CH1_Port1">
-                <property name="sizePolicy">
-                 <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-                  <horstretch>0</horstretch>
-                  <verstretch>0</verstretch>
-                 </sizepolicy>
-                </property>
-                <property name="minimumSize">
-                 <size>
-                  <width>60</width>
-                  <height>0</height>
-                 </size>
-                </property>
-                <property name="maximumSize">
-                 <size>
-                  <width>60</width>
-                  <height>16777215</height>
-                 </size>
-                </property>
-                <property name="maximum">
-                 <double>30.000000000000000</double>
-                </property>
-                <property name="singleStep">
-                 <double>0.100000000000000</double>
-                </property>
-               </widget>
-              </item>
-             </layout>
-            </item>
-            <item row="4" column="0">
-             <layout class="QHBoxLayout" name="horizontalLayout_34">
-              <item>
-               <widget class="QLabel" name="label_37">
-                <property name="minimumSize">
-                 <size>
-                  <width>30</width>
-                  <height>0</height>
-                 </size>
-                </property>
-                <property name="maximumSize">
-                 <size>
-                  <width>16777215</width>
-                  <height>16777215</height>
-                 </size>
-                </property>
-                <property name="text">
-                 <string>CH7</string>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <widget class="QDoubleSpinBox" name="doubleSpinBox_CH7_Port1">
-                <property name="sizePolicy">
-                 <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-                  <horstretch>0</horstretch>
-                  <verstretch>0</verstretch>
-                 </sizepolicy>
-                </property>
-                <property name="minimumSize">
-                 <size>
-                  <width>60</width>
-                  <height>0</height>
-                 </size>
-                </property>
-                <property name="maximumSize">
-                 <size>
-                  <width>60</width>
-                  <height>16777215</height>
-                 </size>
-                </property>
-                <property name="maximum">
-                 <double>30.000000000000000</double>
+                 <double>100.000000000000000</double>
                 </property>
                 <property name="singleStep">
                  <double>0.100000000000000</double>
@@ -1979,58 +1790,7 @@
                  </size>
                 </property>
                 <property name="maximum">
-                 <double>30.000000000000000</double>
-                </property>
-                <property name="singleStep">
-                 <double>0.100000000000000</double>
-                </property>
-               </widget>
-              </item>
-             </layout>
-            </item>
-            <item row="2" column="0">
-             <layout class="QHBoxLayout" name="horizontalLayout_27">
-              <item>
-               <widget class="QLabel" name="label_30">
-                <property name="minimumSize">
-                 <size>
-                  <width>30</width>
-                  <height>0</height>
-                 </size>
-                </property>
-                <property name="maximumSize">
-                 <size>
-                  <width>16777215</width>
-                  <height>16777215</height>
-                 </size>
-                </property>
-                <property name="text">
-                 <string>CH3</string>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <widget class="QDoubleSpinBox" name="doubleSpinBox_CH3_Port1">
-                <property name="sizePolicy">
-                 <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-                  <horstretch>0</horstretch>
-                  <verstretch>0</verstretch>
-                 </sizepolicy>
-                </property>
-                <property name="minimumSize">
-                 <size>
-                  <width>60</width>
-                  <height>0</height>
-                 </size>
-                </property>
-                <property name="maximumSize">
-                 <size>
-                  <width>60</width>
-                  <height>16777215</height>
-                 </size>
-                </property>
-                <property name="maximum">
-                 <double>30.000000000000000</double>
+                 <double>100.000000000000000</double>
                 </property>
                 <property name="singleStep">
                  <double>0.100000000000000</double>
@@ -2081,10 +1841,250 @@
                  </size>
                 </property>
                 <property name="maximum">
-                 <double>30.000000000000000</double>
+                 <double>100.000000000000000</double>
                 </property>
                 <property name="singleStep">
                  <double>0.100000000000000</double>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+            <item row="2" column="0">
+             <layout class="QHBoxLayout" name="horizontalLayout_27">
+              <item>
+               <widget class="QLabel" name="label_30">
+                <property name="minimumSize">
+                 <size>
+                  <width>30</width>
+                  <height>0</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>16777215</width>
+                  <height>16777215</height>
+                 </size>
+                </property>
+                <property name="text">
+                 <string>CH3</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QDoubleSpinBox" name="doubleSpinBox_CH3_Port1">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="minimumSize">
+                 <size>
+                  <width>60</width>
+                  <height>0</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>60</width>
+                  <height>16777215</height>
+                 </size>
+                </property>
+                <property name="maximum">
+                 <double>100.000000000000000</double>
+                </property>
+                <property name="singleStep">
+                 <double>0.100000000000000</double>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+            <item row="6" column="0">
+             <layout class="QHBoxLayout" name="horizontalLayout_63">
+              <item>
+               <widget class="QLabel" name="label_50">
+                <property name="minimumSize">
+                 <size>
+                  <width>30</width>
+                  <height>0</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>16777215</width>
+                  <height>16777215</height>
+                 </size>
+                </property>
+                <property name="text">
+                 <string>CH11</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QDoubleSpinBox" name="doubleSpinBox_CH11_Port1">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="minimumSize">
+                 <size>
+                  <width>60</width>
+                  <height>0</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>60</width>
+                  <height>16777215</height>
+                 </size>
+                </property>
+                <property name="maximum">
+                 <double>100.000000000000000</double>
+                </property>
+                <property name="singleStep">
+                 <double>0.100000000000000</double>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+            <item row="4" column="0">
+             <layout class="QHBoxLayout" name="horizontalLayout_34">
+              <item>
+               <widget class="QLabel" name="label_37">
+                <property name="minimumSize">
+                 <size>
+                  <width>30</width>
+                  <height>0</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>16777215</width>
+                  <height>16777215</height>
+                 </size>
+                </property>
+                <property name="text">
+                 <string>CH7</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QDoubleSpinBox" name="doubleSpinBox_CH7_Port1">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="minimumSize">
+                 <size>
+                  <width>60</width>
+                  <height>0</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>60</width>
+                  <height>16777215</height>
+                 </size>
+                </property>
+                <property name="maximum">
+                 <double>100.000000000000000</double>
+                </property>
+                <property name="singleStep">
+                 <double>0.100000000000000</double>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+            <item row="1" column="0">
+             <layout class="QHBoxLayout" name="horizontalLayout_25">
+              <item>
+               <widget class="QLabel" name="label_28">
+                <property name="minimumSize">
+                 <size>
+                  <width>30</width>
+                  <height>0</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>16777215</width>
+                  <height>16777215</height>
+                 </size>
+                </property>
+                <property name="text">
+                 <string>CH1</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QDoubleSpinBox" name="doubleSpinBox_CH1_Port1">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="minimumSize">
+                 <size>
+                  <width>60</width>
+                  <height>0</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>60</width>
+                  <height>16777215</height>
+                 </size>
+                </property>
+                <property name="maximum">
+                 <double>100.000000000000000</double>
+                </property>
+                <property name="singleStep">
+                 <double>0.100000000000000</double>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+            <item row="0" column="0">
+             <layout class="QHBoxLayout" name="horizontalLayout_6">
+              <item>
+               <spacer name="horizontalSpacer_12">
+                <property name="orientation">
+                 <enum>Qt::Horizontal</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>28</width>
+                  <height>20</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+              <item>
+               <widget class="QLabel" name="label_65">
+                <property name="minimumSize">
+                 <size>
+                  <width>50</width>
+                  <height>0</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>50</width>
+                  <height>16777215</height>
+                 </size>
+                </property>
+                <property name="text">
+                 <string> TX 0</string>
                 </property>
                </widget>
               </item>
@@ -2262,7 +2262,7 @@
                      </size>
                     </property>
                     <property name="maximum">
-                     <double>30.000000000000000</double>
+                     <double>100.000000000000000</double>
                     </property>
                     <property name="singleStep">
                      <double>0.100000000000000</double>
@@ -2313,7 +2313,7 @@
                      </size>
                     </property>
                     <property name="maximum">
-                     <double>30.000000000000000</double>
+                     <double>100.000000000000000</double>
                     </property>
                     <property name="singleStep">
                      <double>0.100000000000000</double>
@@ -2364,7 +2364,7 @@
                      </size>
                     </property>
                     <property name="maximum">
-                     <double>30.000000000000000</double>
+                     <double>100.000000000000000</double>
                     </property>
                     <property name="singleStep">
                      <double>0.100000000000000</double>
@@ -2415,7 +2415,7 @@
                      </size>
                     </property>
                     <property name="maximum">
-                     <double>30.000000000000000</double>
+                     <double>100.000000000000000</double>
                     </property>
                     <property name="singleStep">
                      <double>0.100000000000000</double>
@@ -2466,7 +2466,7 @@
                      </size>
                     </property>
                     <property name="maximum">
-                     <double>30.000000000000000</double>
+                     <double>100.000000000000000</double>
                     </property>
                     <property name="singleStep">
                      <double>0.100000000000000</double>
@@ -2517,7 +2517,7 @@
                      </size>
                     </property>
                     <property name="maximum">
-                     <double>30.000000000000000</double>
+                     <double>100.000000000000000</double>
                     </property>
                     <property name="singleStep">
                      <double>0.100000000000000</double>
@@ -2568,7 +2568,7 @@
                      </size>
                     </property>
                     <property name="maximum">
-                     <double>30.000000000000000</double>
+                     <double>100.000000000000000</double>
                     </property>
                     <property name="singleStep">
                      <double>0.100000000000000</double>
@@ -2619,7 +2619,7 @@
                      </size>
                     </property>
                     <property name="maximum">
-                     <double>30.000000000000000</double>
+                     <double>100.000000000000000</double>
                     </property>
                     <property name="singleStep">
                      <double>0.100000000000000</double>
@@ -2651,7 +2651,7 @@
                      </size>
                     </property>
                     <property name="maximum">
-                     <double>30.000000000000000</double>
+                     <double>100.000000000000000</double>
                     </property>
                     <property name="singleStep">
                      <double>0.100000000000000</double>
@@ -2727,7 +2727,7 @@
                    </size>
                   </property>
                   <property name="maximum">
-                   <double>30.000000000000000</double>
+                   <double>100.000000000000000</double>
                   </property>
                   <property name="singleStep">
                    <double>0.100000000000000</double>
@@ -2755,7 +2755,7 @@
                    </size>
                   </property>
                   <property name="maximum">
-                   <double>30.000000000000000</double>
+                   <double>100.000000000000000</double>
                   </property>
                   <property name="singleStep">
                    <double>0.100000000000000</double>
@@ -2783,7 +2783,7 @@
                    </size>
                   </property>
                   <property name="maximum">
-                   <double>30.000000000000000</double>
+                   <double>100.000000000000000</double>
                   </property>
                   <property name="singleStep">
                    <double>0.100000000000000</double>
@@ -2811,7 +2811,7 @@
                    </size>
                   </property>
                   <property name="maximum">
-                   <double>30.000000000000000</double>
+                   <double>100.000000000000000</double>
                   </property>
                   <property name="singleStep">
                    <double>0.100000000000000</double>
@@ -2839,7 +2839,7 @@
                    </size>
                   </property>
                   <property name="maximum">
-                   <double>30.000000000000000</double>
+                   <double>100.000000000000000</double>
                   </property>
                   <property name="singleStep">
                    <double>0.100000000000000</double>
@@ -2867,7 +2867,7 @@
                    </size>
                   </property>
                   <property name="maximum">
-                   <double>30.000000000000000</double>
+                   <double>100.000000000000000</double>
                   </property>
                   <property name="singleStep">
                    <double>0.100000000000000</double>
@@ -2895,7 +2895,7 @@
                    </size>
                   </property>
                   <property name="maximum">
-                   <double>30.000000000000000</double>
+                   <double>100.000000000000000</double>
                   </property>
                   <property name="singleStep">
                    <double>0.100000000000000</double>
@@ -2923,7 +2923,7 @@
                    </size>
                   </property>
                   <property name="maximum">
-                   <double>30.000000000000000</double>
+                   <double>100.000000000000000</double>
                   </property>
                   <property name="singleStep">
                    <double>0.100000000000000</double>
@@ -2951,7 +2951,7 @@
                    </size>
                   </property>
                   <property name="maximum">
-                   <double>30.000000000000000</double>
+                   <double>100.000000000000000</double>
                   </property>
                   <property name="singleStep">
                    <double>0.100000000000000</double>
@@ -3040,7 +3040,7 @@
                    </size>
                   </property>
                   <property name="maximum">
-                   <double>30.000000000000000</double>
+                   <double>100.000000000000000</double>
                   </property>
                   <property name="singleStep">
                    <double>0.100000000000000</double>
@@ -3072,7 +3072,7 @@
                    </size>
                   </property>
                   <property name="maximum">
-                   <double>30.000000000000000</double>
+                   <double>100.000000000000000</double>
                   </property>
                   <property name="singleStep">
                    <double>0.100000000000000</double>
@@ -3104,7 +3104,7 @@
                    </size>
                   </property>
                   <property name="maximum">
-                   <double>30.000000000000000</double>
+                   <double>100.000000000000000</double>
                   </property>
                   <property name="singleStep">
                    <double>0.100000000000000</double>
@@ -3136,7 +3136,7 @@
                    </size>
                   </property>
                   <property name="maximum">
-                   <double>30.000000000000000</double>
+                   <double>100.000000000000000</double>
                   </property>
                   <property name="singleStep">
                    <double>0.100000000000000</double>
@@ -3168,7 +3168,7 @@
                    </size>
                   </property>
                   <property name="maximum">
-                   <double>30.000000000000000</double>
+                   <double>100.000000000000000</double>
                   </property>
                   <property name="singleStep">
                    <double>0.100000000000000</double>
@@ -3200,7 +3200,7 @@
                    </size>
                   </property>
                   <property name="maximum">
-                   <double>30.000000000000000</double>
+                   <double>100.000000000000000</double>
                   </property>
                   <property name="singleStep">
                    <double>0.100000000000000</double>
@@ -3232,7 +3232,7 @@
                    </size>
                   </property>
                   <property name="maximum">
-                   <double>30.000000000000000</double>
+                   <double>100.000000000000000</double>
                   </property>
                   <property name="singleStep">
                    <double>0.100000000000000</double>
@@ -3264,7 +3264,7 @@
                    </size>
                   </property>
                   <property name="maximum">
-                   <double>30.000000000000000</double>
+                   <double>100.000000000000000</double>
                   </property>
                   <property name="singleStep">
                    <double>0.100000000000000</double>
@@ -3296,7 +3296,7 @@
                    </size>
                   </property>
                   <property name="maximum">
-                   <double>30.000000000000000</double>
+                   <double>100.000000000000000</double>
                   </property>
                   <property name="singleStep">
                    <double>0.100000000000000</double>
@@ -3328,7 +3328,7 @@
                    </size>
                   </property>
                   <property name="maximum">
-                   <double>30.000000000000000</double>
+                   <double>100.000000000000000</double>
                   </property>
                   <property name="singleStep">
                    <double>0.100000000000000</double>
@@ -3360,7 +3360,7 @@
                    </size>
                   </property>
                   <property name="maximum">
-                   <double>30.000000000000000</double>
+                   <double>100.000000000000000</double>
                   </property>
                   <property name="singleStep">
                    <double>0.100000000000000</double>
@@ -3392,7 +3392,7 @@
                    </size>
                   </property>
                   <property name="maximum">
-                   <double>30.000000000000000</double>
+                   <double>100.000000000000000</double>
                   </property>
                   <property name="singleStep">
                    <double>0.100000000000000</double>
@@ -3449,7 +3449,7 @@
                  </size>
                 </property>
                 <property name="maximum">
-                 <double>30.000000000000000</double>
+                 <double>100.000000000000000</double>
                 </property>
                 <property name="singleStep">
                  <double>0.100000000000000</double>
@@ -3500,7 +3500,7 @@
                  </size>
                 </property>
                 <property name="maximum">
-                 <double>30.000000000000000</double>
+                 <double>100.000000000000000</double>
                 </property>
                 <property name="singleStep">
                  <double>0.100000000000000</double>
@@ -3551,7 +3551,7 @@
                  </size>
                 </property>
                 <property name="maximum">
-                 <double>30.000000000000000</double>
+                 <double>100.000000000000000</double>
                 </property>
                 <property name="singleStep">
                  <double>0.100000000000000</double>
@@ -3602,7 +3602,7 @@
                  </size>
                 </property>
                 <property name="maximum">
-                 <double>30.000000000000000</double>
+                 <double>100.000000000000000</double>
                 </property>
                 <property name="singleStep">
                  <double>0.100000000000000</double>
@@ -3653,7 +3653,7 @@
                  </size>
                 </property>
                 <property name="maximum">
-                 <double>30.000000000000000</double>
+                 <double>100.000000000000000</double>
                 </property>
                 <property name="singleStep">
                  <double>0.100000000000000</double>
@@ -3740,7 +3740,7 @@
                  </size>
                 </property>
                 <property name="maximum">
-                 <double>30.000000000000000</double>
+                 <double>100.000000000000000</double>
                 </property>
                 <property name="singleStep">
                  <double>0.100000000000000</double>
@@ -3791,7 +3791,7 @@
                  </size>
                 </property>
                 <property name="maximum">
-                 <double>30.000000000000000</double>
+                 <double>100.000000000000000</double>
                 </property>
                 <property name="singleStep">
                  <double>0.100000000000000</double>
@@ -3842,7 +3842,7 @@
                  </size>
                 </property>
                 <property name="maximum">
-                 <double>30.000000000000000</double>
+                 <double>100.000000000000000</double>
                 </property>
                 <property name="singleStep">
                  <double>0.100000000000000</double>
@@ -3893,7 +3893,7 @@
                  </size>
                 </property>
                 <property name="maximum">
-                 <double>30.000000000000000</double>
+                 <double>100.000000000000000</double>
                 </property>
                 <property name="singleStep">
                  <double>0.100000000000000</double>
@@ -3944,7 +3944,7 @@
                  </size>
                 </property>
                 <property name="maximum">
-                 <double>30.000000000000000</double>
+                 <double>100.000000000000000</double>
                 </property>
                 <property name="singleStep">
                  <double>0.100000000000000</double>
@@ -3995,7 +3995,7 @@
                  </size>
                 </property>
                 <property name="maximum">
-                 <double>30.000000000000000</double>
+                 <double>100.000000000000000</double>
                 </property>
                 <property name="singleStep">
                  <double>0.100000000000000</double>
@@ -4046,7 +4046,7 @@
                  </size>
                 </property>
                 <property name="maximum">
-                 <double>30.000000000000000</double>
+                 <double>100.000000000000000</double>
                 </property>
                 <property name="singleStep">
                  <double>0.100000000000000</double>
@@ -4164,7 +4164,7 @@
                  </size>
                 </property>
                 <property name="maximum">
-                 <double>30.000000000000000</double>
+                 <double>100.000000000000000</double>
                 </property>
                 <property name="singleStep">
                  <double>0.100000000000000</double>
@@ -4222,7 +4222,7 @@
                  </size>
                 </property>
                 <property name="maximum">
-                 <double>30.000000000000000</double>
+                 <double>100.000000000000000</double>
                 </property>
                 <property name="singleStep">
                  <double>0.100000000000000</double>
