@@ -344,7 +344,10 @@ bool factory_set::openfile_wefuse_display(QString box_id)
         while(!NctextStream.atEnd())
         {
             strtemp = NctextStream.readLine();
+            QStringList list;
+            list = strtemp.split("//").at(0).split(QRegExp("\\s+"), QString::SkipEmptyParts);
             if(strtemp.mid(0, box_id.length()) == box_id)
+            //if(list.at(0) == box_id)
             {
                 //qDebug() << "!!!!!!!!!!!!!!!!!!!!!!!";
                 Ncfile.close();
@@ -2441,12 +2444,12 @@ void factory_set::on_pushButton_correct_clicked()
 
     //查看上次校准是否中途崩溃，崩溃为1，不崩为0
     bool CorrectStatus = openfile_display(filename_config, "CorrectStatus").toInt();
+    qDebug() << "CorrectStatus = " << CorrectStatus;
     if(CorrectStatus)
     {
-        p.start("./copy_setup.bat");  //运行脚本文件
+        p.start("./reset_correct.bat");  //运行脚本文件
         if(p.waitForFinished())//等待脚本运行完成，超时时间默认是3000s,超时返回0，正常返回1
         {
-            //Sleep(1000);
             openfile_set_data(filename_config, "CorrectStatus", "0");
             about_info("提示", "SETUP修复成功！");
         }
@@ -2523,7 +2526,7 @@ void factory_set::on_pushButton_correct_clicked()
     }
 
     //Sleep(1000);
-    //display_LineLoss_clicked();
+    //display_LineLoss_clicked();RR
     display();
     timer->start(3000);
     correct = true;
@@ -2547,7 +2550,7 @@ void factory_set::on_pushButton_correct_clicked()
 void factory_set::on_pushButton_open_factory_tool_clicked()
 {
     //展示 WT_FLOW
-    if(!openfile_wefuse_display("WT_WRITE_EFUSE"))//\t\t"))
+    if(!openfile_wefuse_display("WT_WRITE_EFUSE") || !openfile_wefuse_display("WT_WRITE_EFUSE_FREE"))//\t\t"))
     {
         about_info("警告", "WRITE_EFUSE 未打开！");
         return;

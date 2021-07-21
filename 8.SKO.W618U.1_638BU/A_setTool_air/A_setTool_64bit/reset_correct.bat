@@ -5,6 +5,7 @@ move ..\WT_SETUP_TEMP\WT_FLOW.txt 				..\..\WT_SETUP
 :move ..\WT_SETUP_TEMP\WT_TESTER.txt 			..\..\WT_SETUP
 move ..\WT_SETUP_TEMP\WT_WIFI_LIMIT.txt 		..\..\WT_SETUP
 
+:xcopy .\WT_SETUP_TEMP\*							..\..\WT_SETUP\ /s/e/y
 
 echo 恢复金板数据。
 
