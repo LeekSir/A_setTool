@@ -2550,7 +2550,8 @@ void factory_set::on_pushButton_correct_clicked()
 void factory_set::on_pushButton_open_factory_tool_clicked()
 {
     //展示 WT_FLOW
-    if(!openfile_wefuse_display("WT_WRITE_EFUSE") || !openfile_wefuse_display("WT_WRITE_EFUSE_FREE"))//\t\t"))
+    //if(!openfile_wefuse_display("WT_WRITE_EFUSE") || !openfile_wefuse_display("WT_WRITE_EFUSE_FREE"))//\t\t"))
+    if(!openfile_wefuse_display("WT_WRITE_EFUSE"))
     {
         about_info("警告", "WRITE_EFUSE 未打开！");
         return;
