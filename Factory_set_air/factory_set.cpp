@@ -2440,6 +2440,7 @@ void factory_set::on_pushButton_correct_clicked()
     //*************** 启动 copy.bat *****************
     QStringList arguments;
     correct_Port_Num = "./correct.bat " + ui->lineEdit_WT_DUT_START_NUM->text();
+    cmd = ui->lineEdit_ModuleType->text() + ".exe";
     QProcess p(nullptr);
 
     //查看上次校准是否中途崩溃，崩溃为1，不崩为0
@@ -2493,6 +2494,7 @@ void factory_set::on_pushButton_correct_clicked()
     else
     {
         ui->label_about_correct->setText("校准 FAIL！");
+<<<<<<< HEAD
         
         /*if(!air_link_flag)
         {
@@ -2502,6 +2504,10 @@ void factory_set::on_pushButton_correct_clicked()
         {
             about_info("提示", "PASS_log 获取失败！请检查配置并重新开始校准！");
         }
+=======
+        ui->label_about_correct->setStyleSheet("color:red;");
+        about_info("提示", "PASS_log 获取失败！请检查配置并重新开始校准！");
+>>>>>>> 1fb4c3c13505d423c36dccdcc17e6a1fd1dacec3
         PASS_flag = true;
         //air_link_flag = true;
 
@@ -2559,6 +2565,16 @@ void factory_set::on_pushButton_open_factory_tool_clicked()
 
     QProcess p(this);
     QStringList arguments;
+<<<<<<< HEAD
+=======
+    //arguments << "/c" << "ping www.baidu.com";
+    //arguments << "cd ../../ " << " && " << "E:/qt_code/8.SKO.W618U.1_638BU/WLAN_Console.exe -p 1";
+<<<<<<< HEAD
+
+=======
+>>>>>>> 1fb4c3c13505d423c36dccdcc17e6a1fd1dacec3
+    //QString cmd = "SKO.W618U.1_638BU.exe";
+>>>>>>> 54dd0820aa67d924cbcf3cbbde27ce63218d6446
     arguments << "/c" << "cd ../../ && " + cmd;
 
     QProcess process(this);
